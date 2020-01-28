@@ -266,6 +266,7 @@ CREATE TABLE EmployeeTypeCanWorkInStationType
 	--
 );
 
+-- HEY
 CREATE TABLE EmployeesHasOrdersInStations
 (
 	Id INT NOT NULL
@@ -595,7 +596,7 @@ CREATE TABLE ProductHaveIngredients
 	Product INT NOT NULL FOREIGN KEY REFERENCES Products(Product),
 	Ingredient INT FOREIGN KEY REFERENCES Ingredients(Ingredient),
 	
-	--Nycklar:
+	-- Nycklar:
 
 	--Beräknade attribut nedan
 	--
