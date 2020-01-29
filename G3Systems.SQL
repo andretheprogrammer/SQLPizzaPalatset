@@ -19,14 +19,13 @@
 	-- Skapa dom viktigaste viewsen . Dvs maintabellerna (tabell+aggregatkolonner. Tex Total cash i building)
 	-- Skriv om allt till engelska
 	------------------------------------------------------------------------
-
 ------------------------------------------------------------------------
 ----Datatyper: (Använder alltid value som nyckelord)
 ------------------------------------------------------------------------
 CREATE TYPE PINT AS INT 
 	default 0,
 	CHECK(value >= 0);
-CREATE TYPE DEFAULTNAMETYPE AS varchar(50)   --Slipper kopiera villkor för namn
+CREATE TYPE DEFAULTNAMETYPE AS varchar(50)  --Slipper kopiera villkor för namn
 	default "Unnamed",
 	CHECK (value NOT NULL);
 CREATE TYPE STRICTBOOL AS bit  -- Default True
@@ -43,9 +42,9 @@ CREATE TYPE PERCENT AS INT  -- Default True
 	--	CHECK (value NOT NULL),
 	--	constraint UNIQUE (value);
 
-----------------------------------------------------------------------------
---- SQL DEFINITIONSFILE ---------------------------------------------------
-----------------------------------------------------------------------------
+------------------------------------------------------------------------
+--- SQL DEFINITIONSFILE ------------------------------------------------
+------------------------------------------------------------------------
 CREATE TABLE Buildings(
 	Building INT NOT NULL, 
 	BuildingName DEFAULTNAMETYPE,
@@ -126,6 +125,8 @@ CREATE TABLE QueuesShowsInInfoscreens(
 CREATE TABLE Stations(
 	Station INT NOT NULL
 	StationName DEFAULTNAMETYPE,
+	HasStationType INT FOREIGN KEY REFERENCES StationTypes(StationType),
+	InBuilding INT,
 	Aktiverad STRICTBOOL,
 	Synlig STRICTBOOL,
 	
@@ -136,6 +137,10 @@ CREATE TABLE Stations(
 	--Referensattribut nedan
 	-- STATIONTYPE: references stationtype-table
 	-- INBUILDING: references building-table
+	    CONSTRAINT FK_Building FOREIGN KEY (InBuilding)
+    		REFERENCES Buildings(Building)
+    		ON DELETE CASCADE
+    		ON UPDATE CASCADE,
 	--Extra Begränsningar nedan
 	--
 	);
@@ -154,6 +159,7 @@ CREATE TABLE StationTypes(
 	-- Extra Begränsningar nedan
 	--
 	);
+
 -- CREATE TABLE Persons
 	-- (
 	-- 	Person INT NOT NULL
@@ -185,7 +191,6 @@ CREATE TABLE Customers(
 
 	-- Extra Begränsningar nedan
 	--);
-
 CREATE TABLE Employees(
 	Employee INT NOT NULL,
 	LoggedIn bit NOT NULL DEFAULT 0, 
@@ -200,10 +205,8 @@ CREATE TABLE Employees(
 	-- Referensattribut nedan
 	-- Extra Begränsningar nedan
 	--
-);
-
-CREATE TABLE EmployeeType
-(
+	);
+CREATE TABLE EmployeeType(
 	EmployeeType INT NOT NULL
 	EmployeeTypeName DEFAULTNAMETYPE,
 
@@ -217,29 +220,26 @@ CREATE TABLE EmployeeType
 	-- Referensattribut nedan
 	-- Extra Begränsningar nedan
 	--
-)
-
-
+	);
 -- CREATE TABLE EmployeesWorkInStationAndBuilding
--- (
--- 	Id INT NOT NULL -- Trippelsamband har bara "Id" som kolumnheader 
+	-- (
+	-- 	Id INT NOT NULL -- Trippelsamband har bara "Id" som kolumnheader 
 
--- 	Employee INT NOT NULL FOREIGN KEY Employees(Employee),
--- 	Station INT NOT NULL FOREIGN KEY Employees(Employee),
--- 	Employee INT NOT NULL FOREIGN KEY Employees(Employee),
+	-- 	Employee INT NOT NULL FOREIGN KEY Employees(Employee),
+	-- 	Station INT NOT NULL FOREIGN KEY Employees(Employee),
+	-- 	Employee INT NOT NULL FOREIGN KEY Employees(Employee),
 
-	
--- 	--Nycklar:
+		
+	-- 	--Nycklar:
 
--- 	--Beräknade attribut nedan
--- 	--
--- 	-- Referensattribut nedan
--- 	-- Extra Begränsningar nedan
--- 	--
--- )
+	-- 	--Beräknade attribut nedan
+	-- 	--
+	-- 	-- Referensattribut nedan
+	-- 	-- Extra Begränsningar nedan
+	-- 	--
+	-- )
 
-CREATE TABLE EmployeesAreEmployeeTypes
-(
+CREATE TABLE EmployeesAreEmployeeTypes(
 	Reference INT NOT NULL PRIMARY KEY,  -- N-N samband har "Reference" som kolumnheader istället för "Id"
 	Employee INT NOT NULL FOREIGN KEY Employees(Employee),
 	EmployeeType INT NOT NULL FOREIGN KEY EmployeeTypes(EmployeeType),
@@ -249,10 +249,8 @@ CREATE TABLE EmployeesAreEmployeeTypes
 	-- Referensattribut nedan
 	-- Extra Begränsningar nedan
 	--
-);
-
-CREATE TABLE EmployeeTypeCanWorkInStationType
-(
+	);
+CREATE TABLE EmployeeTypeCanWorkInStationType(
 	Id INT NOT NULL
 
 	Employee INT NOT NULL FOREIGN KEY Employees(Employee),
@@ -264,11 +262,8 @@ CREATE TABLE EmployeeTypeCanWorkInStationType
 	-- Referensattribut nedan
 	-- Extra Begränsningar nedan
 	--
-);
-
--- HEY
-CREATE TABLE EmployeesHasOrdersInStations
-(
+	);
+CREATE TABLE EmployeesHasOrdersInStations(
 	Id INT NOT NULL
 
 
@@ -279,14 +274,10 @@ CREATE TABLE EmployeesHasOrdersInStations
 	-- Referensattribut nedan
 	-- Extra Begränsningar nedan
 	--
-);
+	);
 
 
-
-
-
-CREATE TABLE Products
-(
+CREATE TABLE Products(
 	Product INT NOT NULL
 
 	ProductName DEFAULTNAMETYPE, 
@@ -310,10 +301,8 @@ CREATE TABLE Products
 		REFERENCES ProductTypes(ProductType)
 	-- Extra Begränsningar nedan
 	--
-);
-
-CREATE TABLE ProductTypes
-(
+	);
+CREATE TABLE ProductTypes(
 	ProductType INT NOT NULL
 	ProductTypeName DEFAULTNAMETYPE,
 	Aktiverad STRICTBOOL,
@@ -327,25 +316,20 @@ CREATE TABLE ProductTypes
 	-- Referensattribut nedan
 	-- Extra Begränsningar nedan
 	--
-);
-
-CREATE TABLE TypeIsMadeInStationType    -- Kommentar: type Pizza tillverkas ej i Glassbar
-(
+	);
+CREATE TABLE TypeIsMadeInStationType(    -- Kommentar: type Pizza tillverkas ej i Glassbar
 	Reference INT NOT NULL
 
 
-	--Nycklar:
+	--Nycklar
 	
 	--Beräknade attribut nedan
 	--
 	-- Referensattribut nedan
 	-- Extra Begränsningar nedan
 	--
-);
-
-
-CREATE TABLE Ingredients
-(
+	);
+CREATE TABLE Ingredients(
 	Ingredient INT NOT NULL,
 	IngredientName DEFAULTNAMETYPE,
 	Pris PINT, 
@@ -355,17 +339,15 @@ CREATE TABLE Ingredients
 	Synlig STRICTBOOL,
 
 	
-	--Nycklar:
+	-- Nycklar :
 
 	--Beräknade attribut nedan
 	--
 	-- Referensattribut nedan
 	-- Extra Begränsningar nedan
 	--
-);
-
-CREATE TABLE OrderTreatedByEmployeeAt
-(
+	);
+CREATE TABLE OrderTreatedByEmployeeAt(
 	Treatment INT NOT NULL PRIMARY KEY,
 	Employee INT FOREIGN KEY REFERENCES Employees(Employee),
 	Station Int FOREIGN KEY REFERENCES Stations(Station),
@@ -385,12 +367,9 @@ CREATE TABLE OrderTreatedByEmployeeAt
 	-- Referensattribut nedan
 	-- Extra Begränsningar nedan
 	--
-);
-
-
-
+	);
 CREATE TABLE Orders
-(
+	(
 	Order INT NOT NULL,
 	--
 	Betald bit NOT NULL DEFAULT 0,
@@ -413,10 +392,9 @@ CREATE TABLE Orders
 
 	-- Extra Begränsningar nedan
 	--
-);
-
+	);
 CREATE TABLE CustomerOrderedOrderInTerminal
-(
+	(
 	Id INT NOT NULL,
 
 	QueueNumber INT FOREIGN KEY QueueNumbers(QueueNumber),
@@ -428,12 +406,9 @@ CREATE TABLE CustomerOrderedOrderInTerminal
 	-- Referensattribut nedan
 	-- Extra Begränsningar nedan
 	--
-);
-
-
-
+	);
 CREATE TABLE ProductOrders
-(
+	(
 	ProductOrder INT NOT NULL
 	Product Int,
 	Order INT,
@@ -463,12 +438,9 @@ CREATE TABLE ProductOrders
 
 	-- Extra Begränsningar nedan
 	--
-);
-
-
+	);
 CREATE TABLE ProductOrdersHaveProducts 
-
-(
+	(
 	ProductOrder INT NOT NULL
 
 
@@ -479,12 +451,8 @@ CREATE TABLE ProductOrdersHaveProducts
 	-- Referensattribut nedan
 	-- Extra Begränsningar nedan
 	--
-);
-
-
-
-CREATE TABLE QueueNumbers
-(
+	);
+CREATE TABLE QueueNumbers(
 	Queue INT NOT NULL PRIMARY KEY,
 	Order INT,
 	Customer INT,
@@ -507,7 +475,7 @@ CREATE TABLE QueueNumbers
     		ON UPDATE CASCADE,
 	-- Extra Begränsningar nedan
 	--
-);
+	);
 
 -- CREATE TABLE CustomerHasQueueNumberInInfoScreen
 	-- (
@@ -522,9 +490,7 @@ CREATE TABLE QueueNumbers
 	-- 	--
 	-- );
 
-
-CREATE TABLE Stuffings
-(
+CREATE TABLE Stuffings(
 	Lump INT NOT NULL PRIMARY KEY, -- Dvs , id, dvs objektet "en klump av ingredienser"
 
 	ProductOrder INT NOT NULL,
@@ -543,10 +509,9 @@ CREATE TABLE Stuffings
 	-- Extra Begränsningar nedan
 	CONSTRAINT UC_POIngredient (ProductOrder,Ingredient)
 	--
-);
+	);
+CREATE TABLE TypeRestrictions(   --Kommentar: OtillåtnaBladningar
 
-CREATE TABLE TypeRestrictions    --Kommentar: OtillåtnaBladningar
-(
 	Restriction INT NOT NULL PRIMARY KEY,
 
 	Ingredient1 INT FOREIGN KEY REFERENCES Ingredients(Ingredient),
@@ -563,16 +528,13 @@ CREATE TABLE TypeRestrictions    --Kommentar: OtillåtnaBladningar
 	--
 	-- Referensattribut nedan
 	-- Extra Begränsningar nedan
-	CONSTRAINT UC_TypeIngredient (Ingredient1,Ingredient2)
+	CONSTRAINT UC_TypeIngredient UNIQUE (Ingredient1,Ingredient2)
 	--CONSTRAINT UC_Approval (Approval) --Osäkert
 
 	-- BEHÖVS EN CONSTRAINT FÖR ATT KOLLA KOMMUTATIVITET mellan I1 och I2 ! TODO
 	--
-);
-
-
-CREATE TABLE TypeCanHaveIngredients   
-(
+	);
+CREATE TABLE TypeCanHaveIngredients(
 	Approval INT NOT NULL PRIMARY KEY,
 	ProductType INT NOT NULL FOREIGN KEY REFERENCES ProducTypes(ProductType),
 	Ingredient INT FOREIGN KEY REFERENCES Ingredients(Ingredient),
@@ -586,11 +548,10 @@ CREATE TABLE TypeCanHaveIngredients
 	-- Referensattribut nedan
 	-- Extra Begränsningar nedan
 	--
-);
+	);
 
 --Dessa två nedan är buggiga
-CREATE TABLE ProductHaveIngredients
-(
+CREATE TABLE ProductHaveIngredients(
 	Reference INT NOT NULL PRIMARY KEY,
 
 	Product INT NOT NULL FOREIGN KEY REFERENCES Products(Product),
@@ -602,14 +563,12 @@ CREATE TABLE ProductHaveIngredients
 	--
 	-- Referensattribut nedan
 	-- Extra Begränsningar nedan
-		CONSTRAINT UC_OnePair (Product,Ingredient)
+		CONSTRAINT UC_OnePair UNIQUE (Product,Ingredient)
 
 	-- SKA BEGRÄNSAS AV VILKA ingredienser den FÅR ha från ProductCanHave. Hur fixa detta? TODO
 	--
-);
-
-CREATE TABLE ProductCanHaveIngredients
-(
+	);
+CREATE TABLE ProductCanHaveIngredients(
 	Reference INT NOT NULL PRIMARY KEY,
 
 	Product INT NOT NULL FOREIGN KEY REFERENCES Products(Product),
@@ -620,132 +579,122 @@ CREATE TABLE ProductCanHaveIngredients
 	--
 	-- Referensattribut nedan
 	-- Extra Begränsningar nedan
-	CONSTRAINT UC_OnePair (Product,Ingredient)
+	CONSTRAINT UC_OnePair UNIQUE (Product,Ingredient)
 
 	-- SKA BEGRÄNSAS AV VILKA ingredienser den FÅR ha från TypeRestriction. Hur fixa detta? TODO
 	--
-);
+	);
 
 
+------------------------------------------------------------------------
 
-
-
-
-
-
-
-
-
-
-
-CREATE TABLE Choices  --Hierarkisk struktur , Ger förhoppningsvis "menyträd"
-(
-	SelfReference INT NOT NULL
-
-
+CREATE TABLE Choices(  --Hierarkisk struktur , Ger förhoppningsvis "menyträd"
+	Id INT NOT NULL,
+	IsParentTo FOREIGN KEY REFERENCES Choices(id),
+	IsSubTo FOREIGN KEY REFERENCES Choices(id),
 	--Beräknade attribut nedan
 	--
 	-- Referensattribut nedan
 	-- Extra Begränsningar nedan
-	--
-);
 
-CREATE TABLE PossibleCommandsInStationType -- Bygger upp Choices med funktionalitet. Kopplar en Stored procedure/funktion till en choice (om det behövs)  
-(
+		CONSTRAINT  UC_edge UNIQUE (IsParentTo,IsSubTo)
+
+	--
+	);
+CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktionalitet. Kopplar en Stored procedure/funktion till en choice (om det behövs)  
+
 	Method Int NOT NULL -- ID
 
-	
+	StationType INT FOREIGN KEY REFERENCES StationTypes(StationType),
+	Choice INT FOREIGN KEY REFERENCES Choices(Choice),	
 
 	--Beräknade attribut nedan
 	--
 	-- Referensattribut nedan
 	-- Extra Begränsningar nedan
 	--
-);
+	);
 
 
 
---------------------------------------------------------------------
---------------------- HÅRDKODAT ------------------------------------
-------------FÖRSLAG TILL VIEWS, PROCEDURES OCH TRIGGERS-------------
+------------------------------------------------------------------------
+--------------------- HÅRDKODAT ----------------------------------------
+------------FÖRSLAG TILL VIEWS, PROCEDURES OCH TRIGGERS-----------------
 
 
---VIEWS - KOMIHÅG EXISTS, ALL (tuplekalkylens Existenskvantifikator)
+	--VIEWS - KOMIHÅG EXISTS, ALL (tuplekalkylens Existenskvantifikator)
 
--- View för att se alla Orders - inklusive några beräknade kolonner
--- View för att se alla 100 senaste ordrar.
+	-- View för att se alla Orders - inklusive några beräknade kolonner
+	-- View för att se alla 100 senaste ordrar.
 
--- View för att "se alla rader i PRODUKTordrar" för en viss Order
--- View för att se stuffings för en särskilt PRODUKTordrer
--- View för att se alla PRODUKTordrar som är "Behandlade"
--- View för att se alla PRODUKTordrar where "Låstavstation = null"
-
-
--- View för att se alla Produkter för en viss produkttyp
--- View för att se alla Employees av en viss type
--- View för att se Stuffings i en särskild Produkt
-
--- View för att se alla ingredienser som är tillåtna för en särskild produkt"
--- View för att se alla ingredienser som är tillåtna för en särskild produkttyp"
--- View för att se alla ingredienser som en produkt HAR"
+	-- View för att "se alla rader i PRODUKTordrar" för en viss Order
+	-- View för att se stuffings för en särskilt PRODUKTordrer
+	-- View för att se alla PRODUKTordrar som är "Behandlade"
+	-- View för att se alla PRODUKTordrar where "Låstavstation = null"
 
 
--- View Över alla byggnader
--- View för att see alla stations i en viss Building
--- View för att se alla stations för en viss stationtype
--- View för att se alla customers i en viss building
--- View för att se alla ordrar [PÅGÅENDE | FÄRDIGA] (och betalda) för infoscreen/köscreen
--- En-Rads-VIew för att se Kvitto för en särskild order, med all viktig kvittoinfo.
+	-- View för att se alla Produkter för en viss produkttyp
+	-- View för att se alla Employees av en viss type
+	-- View för att se Stuffings i en särskild Produkt
 
--- View för att se "ProduktOrder med Stuffingsklump" för särskild Station enligt Stationtypens krav.
-
--- View över alla employees som jobbar i särskild station S
--- View över alla employees som är inloggade
--- View över alla aktiverade/Avaktiverade stationer
-
--- Choices views
--- View över en "Subs" för särskild "menynod".
--- View över "Parents" för särskild "menynod"
+	-- View för att se alla ingredienser som är tillåtna för en särskild produkt"
+	-- View för att se alla ingredienser som är tillåtna för en särskild produkttyp"
+	-- View för att se alla ingredienser som en produkt HAR"
 
 
-----------------------------------------
+	-- View Över alla byggnader
+	-- View för att see alla stations i en viss Building
+	-- View för att se alla stations för en viss stationtype
+	-- View för att se alla customers i en viss building
+	-- View för att se alla ordrar [PÅGÅENDE | FÄRDIGA] (och betalda) för infoscreen/köscreen
+	-- En-Rads-VIew för att se Kvitto för en särskild order, med all viktig kvittoinfo.
+
+	-- View för att se "ProduktOrder med Stuffingsklump" för särskild Station enligt Stationtypens krav.
+
+	-- View över alla employees som jobbar i särskild station S
+	-- View över alla employees som är inloggade
+	-- View över alla aktiverade/Avaktiverade stationer
+
+	-- Choices views
+	-- View över en "Subs" för särskild "menynod".
+	-- View över "Parents" för särskild "menynod"
+------------------------------------------------------------------------
 --Procedure
 
---Procedures för att läggatill (eller tabort) whatever.. (en procedure för varje entitetstyp)
--- Kan bli hur många som helst här...
+	--Procedures för att läggatill (eller tabort) whatever.. (en procedure för varje entitetstyp)
+	-- Kan bli hur många som helst här...
 
--------------ORDER PROCEDURES
--- Procedure för att Skapa en ny tom order
--- Procedure för att lägga in en produkt i en order.
--- Procedure för att Ta bort ingrediens i en produktorder
--- Procedure för att Lägga till Ingrediens i en produktorder.
--- Procedure för att skapa en ny ..etc etc
+	-------------ORDER PROCEDURES
+	-- Procedure för att Skapa en ny tom order
+	-- Procedure för att lägga in en produkt i en order.
+	-- Procedure för att Ta bort ingrediens i en produktorder
+	-- Procedure för att Lägga till Ingrediens i en produktorder.
+	-- Procedure för att skapa en ny ..etc etc
 
---många av dessa behövs inte då DATAGRID i winform kan användas istället, och uppdatera hela tabeller.
+	--många av dessa behövs inte då DATAGRID i winform kan användas istället, och uppdatera hela tabeller.
 
------------- Management procedures
--- För att lägga till användare (+en procedure för att ta bort)
--- För att lägga till building
--- För att lägga till station
--- För att lägga till stationtype
--- För att lägga till terminal
--- För att lägga till produktype
--- För att lägga till ingrediens
---Kanske blir smartare med att bara använda DATAGRIDS på ett smart sätt. 
---------------------------------------------------
+	------------ Management procedures
+	-- För att lägga till användare (+en procedure för att ta bort)
+	-- För att lägga till building
+	-- För att lägga till station
+	-- För att lägga till stationtype
+	-- För att lägga till terminal
+	-- För att lägga till produktype
+	-- För att lägga till ingrediens
+	--Kanske blir smartare med att bara använda DATAGRIDS på ett smart sätt. 
+	------------------------------------------------------------------------
 
--- Funktioner som räknar ut saker
---Funktion som räknar ut värdet av alla betalda ordrar
+	-- Funktioner som räknar ut saker
+	--Funktion som räknar ut värdet av alla betalda ordrar
 
-----------------------------------------
+------------------------------------------------------------------------
 --Triggers
--- Triggers Som kollar ifall Ingredient par redan finns Otillåtna blandningar
--- Trigger som kollar ifall Employee Får jobba i station
---etc
+	-- Triggers Som kollar ifall Ingredient par redan finns Otillåtna blandningar
+	-- Trigger som kollar ifall Employee Får jobba i station
+	--etc
 
-
----------------------------------------------------------------------------
---------------------------Alla INSERTS nedan ------------------------------
---
---
---
+------------------------------------------------------------------------
+--------------------------Alla INSERTS nedan ---------------------------
+	--
+	--
+	--
