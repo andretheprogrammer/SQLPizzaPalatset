@@ -42,6 +42,12 @@ CREATE TYPE PERCENT AS INT  -- Default True
 	--	CHECK (value NOT NULL),
 	--	constraint UNIQUE (value);
 
+
+BUGGG THIS TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+BUGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
+
+
 ------------------------------------------------------------------------
 --- SQL DEFINITIONSFILE ------------------------------------------------
 ------------------------------------------------------------------------
@@ -61,6 +67,8 @@ CREATE TABLE Buildings(
 	--Extra Begränsningar nedan
 	--
 	);
+
+
 CREATE TABLE Terminals(
 	Terminal INT NOT NULL,
 	TerminalName DEFAULTNAMETYPE,
