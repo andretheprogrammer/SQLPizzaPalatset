@@ -25,19 +25,19 @@
 ------------------------------------------------------------------------
 ----Datatyper: (Använder alltid value som nyckelord)
 ------------------------------------------------------------------------
-CREATE TYPE PINT AS INT 
+CREATE TYPE PINT FROM INT 
 	default 0,
 	CHECK(value >= 0);
-CREATE TYPE DEFAULTNAMETYPE AS varchar(50)  --Slipper kopiera villkor för namn
+CREATE TYPE DEFAULTNAMETYPE FROM varchar(50)  --Slipper kopiera villkor för namn
 	default "Unnamed",
 	CHECK (value NOT NULL);
-CREATE TYPE STRICTBOOL AS bit  -- Default True
+CREATE TYPE STRICTBOOL FROM bit  -- Default True
 	default 1,
 	CHECK (value NOT NULL);
-CREATE TYPE STRICTBOOLFALSE AS bit  -- Default FALSE
+CREATE TYPE STRICTBOOLFALSE FROM bit  -- Default FALSE
 	default 0,
 	CHECK (value NOT NULL);
-CREATE TYPE PERCENT AS INT  -- Default True
+CREATE TYPE PERCENT FROM INT  -- Default True
 	default 0,
 	CHECK (value =< 100 AND value >=0);
 --Potentiel inkapsling av ID-typer
