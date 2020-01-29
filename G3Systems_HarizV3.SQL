@@ -169,6 +169,8 @@ CREATE TABLE Stations(
 	);
 
 
+
+
 -- CREATE TABLE Persons
 	-- (
 	-- 	Person INT NOT NULL
@@ -480,7 +482,7 @@ CREATE TABLE OrderWasTreatedByEmployeeAtStation(
 -- CREATE TABLE CustomerOrderedOrderInTerminal
 -- 	(
 -- 	Id INT NOT NULL,
-	
+
 -- 	--QueueNumber INT FOREIGN KEY REFERENCES QueueNumbers(QueueNumber),
 	
 -- 	--Nycklar:
