@@ -21,41 +21,45 @@
 	------------------------------------------------------------------------
 ------------------------------------------------------------------------
 ----Datatyper: (Använder alltid value som nyckelord)
-------------------------------------------------------------------------
-CREATE TYPE PINT FROM INT 
-	default 0,
-	CHECK(value >= 0);
-CREATE TYPE DEFAULTNAMETYPE FROM varchar(50)  --Slipper kopiera villkor för namn
-	default "Unnamed",
-	CHECK (value NOT NULL);
-CREATE TYPE STRICTBOOL FROM bit  -- Default True
-	default 1,
-	CHECK (value NOT NULL);
-CREATE TYPE STRICTBOOLFALSE FROM bit  -- Default FALSE
-	default 0,
-	CHECK (value NOT NULL);
-CREATE TYPE PERCENT FROM INT  -- Default True
-	default 0,
-	CHECK (value =< 100 AND value >=0);
---Potentiel inkapsling av ID-typer
-	--CREATE DOMAIN IDTYPE AS INT  -- Default True
-	--	CHECK (value NOT NULL),
-	--	constraint UNIQUE (value);
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+	--CREATE TYPE PINT AS INT 
+	--	default 0,
+	--	CHECK(value >= 0);
+	--CREATE TYPE VARCHAR(50) NOT NULL DEFAULT 'UNNAMED' AS varchar(50)  --Slipper kopiera villkor för namn
+	--	default "Unnamed",
+	--	CHECK (value NOT NULL);
+	--CREATE TYPE BIT NOT NULL DEFAULT 1 AS bit  -- Default True
+	--	default 1,
+	--	CHECK (value NOT NULL);
+	--CREATE TYPE BIT NOT NULL DEFAULT 1FALSE AS bit  -- Default FALSE
+	--	default 0,
+	--	CHECK (value NOT NULL);
+	--CREATE TYPE PERCENT AS INT  -- Default True
+	--	default 0,
+	--	CHECK (value =< 100 AND value >=0);
+	----Potentiel inkapsling av ID-typer
+	--	--CREATE DOMAIN IDTYPE AS INT  -- Default True
+	--	--	CHECK (value NOT NULL),
+	--	--	constraint UNIQUE (value);
+
+
+
 
 
 ------------------------------------------------------------------------
 --- SQL DEFINITIONSFILE ------------------------------------------------
 ------------------------------------------------------------------------
 CREATE TABLE Buildings(
-	Building INT NOT NULL, 
-	BuildingName DEFAULTNAMETYPE,
-	Aktiverad STRICTBOOL,
-	Synlig STRICTBOOL,
+	Building INT PRIMARY KEY NOT NULL, 
+	BuildingName VARCHAR(50) NOT NULL DEFAULT 'UNNAMED',
+	Aktiverad BIT NOT NULL DEFAULT 1,
+	Synlig BIT NOT NULL DEFAULT 1,
 
 	--Nycklar:
 	-- 
 	-- Beräknade attribut nedan
-	--TotalCash PINT, (SUM aggregat av alla betalda ordrar)
+	--TotalCash INT NOT NULL, (SUM aggregat av alla betalda ordrar)
 
 	--Referensattribut nedan
 	-- 
@@ -66,26 +70,26 @@ CREATE TABLE Buildings(
 
 CREATE TABLE Terminals(
 	Terminal INT NOT NULL,
-	TerminalName DEFAULTNAMETYPE,
+	TerminalName VARCHAR(50) NOT NULL DEFAULT 'UNNAMED',
 	Building INT FOREIGN KEY REFERENCES Buildings(Building),
-	Aktiverad STRICTBOOL,
-	Synlig STRICTBOOL,
+	Aktiverad BIT NOT NULL DEFAULT 1,
+	Synlig BIT NOT NULL DEFAULT 1,
 
 	--Nycklar:
 
 	-- Beräknade attribut nedan
 	--
-	Ledig STRICTBOOL,
+	Ledig BIT NOT NULL DEFAULT 1,
 	-- Referensattribut nedan
 	--
 	-- Extra Begränsningar nedan
 	--
 	);
 CREATE TABLE Infoscreens(
-	Id INT NOT NULL
+	Id INT PRIMARY KEY NOT NULL,
 
-	Aktiverad STRICTBOOL,
-	Synlig STRICTBOOL,
+	Aktiverad BIT NOT NULL DEFAULT 1,
+	Synlig BIT NOT NULL DEFAULT 1,
 
 	--Nycklar:
 
@@ -98,7 +102,7 @@ CREATE TABLE Infoscreens(
 	);
 CREATE TABLE InfoScreenIsInBuilding(
 	Reference INT NOT NULL,
-	InfoScreen INT FOREIGN KEY REFERENCES InfoScreens(InfoScreen),
+	InfoScreen INT FOREIGN KEY REFERENCES InfoScreens(Id),
 	Building INT FOREIGN KEY REFERENCES Buildings(Building),
 
 	--Nycklar:
@@ -111,27 +115,42 @@ CREATE TABLE InfoScreenIsInBuilding(
 	--Extra Begränsningar nedan
 	--
 	);
-CREATE TABLE QueuesShowsInInfoscreens(
-	Reference INT NOT NULL
-	QueueNumbers INT FOREIGN KEY REFERENCES QueueNumbers(Queue),
+--CREATE TABLE QueuesShowsInInfoscreens(
+--	Reference INT PRIMARY KEY NOT NULL,
+--	QueueNumbers INT FOREIGN KEY REFERENCES QueueNumbers(QueueNumber),
 
-	InfoScreen INT FOREIGN KEY REFERENCES InfoScreens(InfoScreen),
+--	InfoScreen INT FOREIGN KEY REFERENCES InfoScreens(InfoScreen),
+
+--	--Nycklar:
+--	-- BUILDING ??
+--	--Beräknade attribut nedan
+--	-- 
+--	--Referensattribut nedan
+--	--Extra Begränsningar nedan
+--	--
+--	)
+CREATE TABLE StationTypes(
+	StationType INT PRIMARY KEY NOT NULL,
+	StationTypeName VARCHAR(50) ,
+	Aktiverad BIT NOT NULL DEFAULT 1,
+	Synlig BIT NOT NULL DEFAULT 1,
+	DangerLevel INT NOT NULL
 
 	--Nycklar:
-	-- BUILDING ??
+
 	--Beräknade attribut nedan
-	-- 
-	--Referensattribut nedan
-	--Extra Begränsningar nedan
 	--
-	)
+	-- Referensattribut nedan
+	-- Extra Begränsningar nedan
+	--
+	);
 CREATE TABLE Stations(
-	Station INT NOT NULL
-	StationName DEFAULTNAMETYPE,
+	Station INT PRIMARY KEY NOT NULL,
+	StationName VARCHAR(50) NOT NULL DEFAULT 'UNNAMED',
 	HasStationType INT FOREIGN KEY REFERENCES StationTypes(StationType),
 	InBuilding INT,
-	Aktiverad STRICTBOOL,
-	Synlig STRICTBOOL,
+	Aktiverad BIT NOT NULL DEFAULT 1,
+	Synlig BIT NOT NULL DEFAULT 1,
 	
 	--Nycklar:
 
@@ -147,29 +166,15 @@ CREATE TABLE Stations(
 	--Extra Begränsningar nedan
 	--
 	);
-CREATE TABLE StationTypes(
-	StationType INT NOT NULL,
-	StationTypeName ,
-	Aktiverad STRICTBOOL,
-	Synlig STRICTBOOL,
-	DangerLevel PINT
 
-	--Nycklar:
-
-	--Beräknade attribut nedan
-	--
-	-- Referensattribut nedan
-	-- Extra Begränsningar nedan
-	--
-	);
 
 -- CREATE TABLE Persons
 	-- (
 	-- 	Person INT NOT NULL
 
-	-- 	Wallet PINT,
-	--  NAME DEFAULTNAMETYPE,
-	--  AGE PINT,
+	-- 	Wallet INT NOT NULL,
+	--  NAME VARCHAR(50) NOT NULL DEFAULT 'UNNAMED',
+	--  AGE INT NOT NULL,
 	--  HP INT ,
 	--		CHECK (HP >= 0 AND HP <= 100) 
 
@@ -193,13 +198,13 @@ CREATE TABLE Customers(
 	-- Referensattribut nedan
 
 	-- Extra Begränsningar nedan
-	--);
+);
 CREATE TABLE Employees(
-	Employee INT NOT NULL,
+	Employee INT PRIMARY KEY NOT NULL,
 	LoggedIn bit NOT NULL DEFAULT 0, 
 	
-	Aktiverad STRICTBOOL,
-	Synlig STRICTBOOL,
+	Aktiverad BIT NOT NULL DEFAULT 1,
+	Synlig BIT NOT NULL DEFAULT 1,
 	AssignedToStation INT FOREIGN KEY REFERENCES Stations(Station)
 	--Nycklar:
 
@@ -209,12 +214,12 @@ CREATE TABLE Employees(
 	-- Extra Begränsningar nedan
 	--
 	);
-CREATE TABLE EmployeeType(
-	EmployeeType INT NOT NULL
-	EmployeeTypeName DEFAULTNAMETYPE,
+CREATE TABLE EmployeeTypes(
+	EmployeeType INT PRIMARY KEY NOT NULL,
+	EmployeeTypeName VARCHAR(50) NOT NULL DEFAULT 'UNNAMED',
 
-	Aktiverad STRICTBOOL,
-	Synlig STRICTBOOL,
+	Aktiverad BIT NOT NULL DEFAULT 1,
+	Synlig BIT NOT NULL DEFAULT 1,
 	
 	--Nycklar:
 
@@ -241,11 +246,67 @@ CREATE TABLE EmployeeType(
 	-- 	-- Extra Begränsningar nedan
 	-- 	--
 	-- )
+	CREATE TABLE Orders(
+	OrderId INT PRIMARY KEY NOT NULL,
+	Betald bit NOT NULL DEFAULT 0,
+	Avbruten bit NOT NULL DEFAULT 0,
+	QueueNr INT,
+
+	Aktiverad BIT NOT NULL DEFAULT 1, --I princip alltid 1
+	Synlig BIT NOT NULL DEFAULT 1,  -- I princip alltid 1
+
+	
+	--Nycklar:
+		--PRIMARY KEY(Order),
+
+	--Beräknade attribut nedan
+	-- Status PERCENT,  - Beräknas genom ProduktOrder. % på antal färdiga produktordrar kopplade till denna order
+	-- PriceTotal - Beräknas med hjälp av View som joinas in i tabellen
+	
+	-- Referensattribut nedan		
+		
+   -- 	CONSTRAINT FK_QueueOrder FOREIGN KEY (QueueNr) 
+			--REFERENCES QueueNumbers(QueueNumber)
+
+	-- Extra Begränsningar nedan
+	--
+	);
+			CREATE TABLE QueueNumbers(
+	QueueNumber INT PRIMARY KEY NOT NULL,
+	OrderId INT NOT NULL,
+	Customer INT,
+	InfoScreen INT,
+	
+	--Nycklar:
+
+	--Beräknade attribut nedan
+	-- QueueMod100 INT NOT NULL,   --Kommer vara id mod100. Dvs beräknad
+
+	-- Synlig BIT NOT NULL DEFAULT 1, 			 --Beräknas utifrån "Order Färdig,betald "
+								 	 --Blir false då order blir Upphämtad
+
+	-- Referensattribut nedan
+    	CONSTRAINT FK_Order FOREIGN KEY (OrderId)
+    		REFERENCES Orders(OrderId)
+    		ON DELETE CASCADE
+    		ON UPDATE CASCADE,
+
+    	CONSTRAINT FK_Customer FOREIGN KEY (Customer)
+    		REFERENCES Customers(Customer)
+    		ON DELETE SET NULL
+    		ON UPDATE CASCADE,
+
+		CONSTRAINT FK_InfoScrn FOREIGN KEY (InfoScreen)
+			REFERENCES InfoScreens(Id)
+	-- Extra Begränsningar nedan
+	--
+	);
+
 
 CREATE TABLE EmployeesAreEmployeeTypes(
-	Reference INT NOT NULL PRIMARY KEY,  -- N-N samband har "Reference" som kolumnheader istället för "Id"
-	Employee INT NOT NULL FOREIGN KEY Employees(Employee),
-	EmployeeType INT NOT NULL FOREIGN KEY EmployeeTypes(EmployeeType),
+	Reference INT PRIMARY KEY NOT NULL,  -- N-N samband har "Reference" som kolumnheader istället för "Id"
+	Employee INT FOREIGN KEY REFERENCES Employees(Employee),
+	EmployeeType INT FOREIGN KEY REFERENCES EmployeeTypes(EmployeeType) NOT NULL,
 
 	--Beräknade attribut nedan
 	--
@@ -254,10 +315,10 @@ CREATE TABLE EmployeesAreEmployeeTypes(
 	--
 	);
 CREATE TABLE EmployeeTypeCanWorkInStationType(
-	Id INT NOT NULL
+	Id INT NOT NULL,
 
-	Employee INT NOT NULL FOREIGN KEY Employees(Employee),
-	EmployeeType INT NOT NULL FOREIGN KEY EmployeeTypes(EmployeeType),
+	Employee INT NOT NULL FOREIGN KEY REFERENCES Employees(Employee),
+	EmployeeType INT NOT NULL FOREIGN KEY REFERENCES EmployeeTypes(EmployeeType),
 	StationType INT FOREIGN KEY REFERENCES StationTypes(StationType)
 
 	--Beräknade attribut nedan
@@ -279,37 +340,11 @@ CREATE TABLE EmployeesHasOrdersInStations(
 	--
 	);
 
-
-CREATE TABLE Products(
-	Product INT NOT NULL
-
-	ProductName DEFAULTNAMETYPE, 
-	ProductType INT NOT NULL,
-	Description uchar(500),
-	Tillagningstid PINT,  -- I sekunder
-
-	BasPris PINT,
-
-	Aktiverad STRICTBOOL,
-	Synlig STRICTBOOL,
-
-	--Nycklar
-	PRIMARY KEY(Product),
-
-	--Beräknade attribut nedan
-	AckumuleratPris PINT,
-	
-	-- Referensattribut nedan
-	FOREIGN KEY(ProductType) 
-		REFERENCES ProductTypes(ProductType)
-	-- Extra Begränsningar nedan
-	--
-	);
 CREATE TABLE ProductTypes(
-	ProductType INT NOT NULL
-	ProductTypeName DEFAULTNAMETYPE,
-	Aktiverad STRICTBOOL,
-	Synlig STRICTBOOL,
+	ProductType INT PRIMARY KEY NOT NULL, 
+	ProductTypeName VARCHAR(50) NOT NULL DEFAULT 'UNNAMED',
+	Aktiverad BIT NOT NULL DEFAULT 1,
+	Synlig BIT NOT NULL DEFAULT 1,
 
 	
 	--Nycklar:
@@ -320,6 +355,35 @@ CREATE TABLE ProductTypes(
 	-- Extra Begränsningar nedan
 	--
 	);
+
+
+
+CREATE TABLE Products(
+	Product INT PRIMARY KEY NOT NULL,
+
+	ProductName VARCHAR(50) NOT NULL DEFAULT 'UNNAMED', 
+	ProductType INT NOT NULL,
+	Description varchar(500),
+	Tillagningstid INT NOT NULL,  -- I sekunder
+
+	BasPris INT NOT NULL,
+
+	Aktiverad BIT NOT NULL DEFAULT 1,
+	Synlig BIT NOT NULL DEFAULT 1,
+
+	--Nycklar
+	--PRIMARY KEY(Product),
+
+	--Beräknade attribut nedan
+	--AckumuleratPris INT NOT NULL,
+	
+	-- Referensattribut nedan
+	CONSTRAINT FK_ProductType FOREIGN KEY (ProductType) 
+		REFERENCES ProductTypes(ProductType)
+	-- Extra Begränsningar nedan
+	--
+	);
+
 CREATE TABLE TypeIsMadeInStationType(    -- Kommentar: type Pizza tillverkas ej i Glassbar
 	Reference INT NOT NULL
 
@@ -333,13 +397,13 @@ CREATE TABLE TypeIsMadeInStationType(    -- Kommentar: type Pizza tillverkas ej 
 	--
 	);
 CREATE TABLE Ingredients(
-	Ingredient INT NOT NULL,
-	IngredientName DEFAULTNAMETYPE,
-	Pris PINT, 
+	Ingredient INT PRIMARY KEY NOT NULL,
+	IngredientName VARCHAR(50) NOT NULL DEFAULT 'UNNAMED',
+	Pris INT NOT NULL, 
 
 	
-	Aktiverad STRICTBOOL,
-	Synlig STRICTBOOL,
+	Aktiverad BIT NOT NULL DEFAULT 1,
+	Synlig BIT NOT NULL DEFAULT 1,
 
 	
 	-- Nycklar :
@@ -350,17 +414,18 @@ CREATE TABLE Ingredients(
 	-- Extra Begränsningar nedan
 	--
 	);
+	
 CREATE TABLE OrderTreatedByEmployeeAt(
 	Treatment INT NOT NULL PRIMARY KEY,
 	Employee INT FOREIGN KEY REFERENCES Employees(Employee),
 	Station Int FOREIGN KEY REFERENCES Stations(Station),
-	Order INT FOREIGN KEY REFERENCES Orders(Order),
+	OrderId INT FOREIGN KEY REFERENCES Orders(OrderId),
 
 	TreatmentTime DateTime,
 	
 	
-	Aktiverad STRICTBOOL,
-	Synlig STRICTBOOL,
+	Aktiverad BIT NOT NULL DEFAULT 1,
+	Synlig BIT NOT NULL DEFAULT 1,
 
 	
 	--Nycklar:
@@ -371,36 +436,12 @@ CREATE TABLE OrderTreatedByEmployeeAt(
 	-- Extra Begränsningar nedan
 	--
 	);
-CREATE TABLE Orders
-	(
-	Order INT NOT NULL,
-	--
-	Betald bit NOT NULL DEFAULT 0,
-	Avbruten bit NOT NULL DEFAULT 0,
 
-	Aktiverad STRICTBOOL, --I princip alltid 1
-	Synlig STRICTBOOL,  -- I princip alltid 1
-
-	
-	--Nycklar:
-		PRIMARY KEY(Order),
-
-	--Beräknade attribut nedan
-	-- Status PERCENT,  - Beräknas genom ProduktOrder. % på antal färdiga produktordrar kopplade till denna order
-	-- PriceTotal - Beräknas med hjälp av View som joinas in i tabellen
-	
-	-- Referensattribut nedan		
-		QueueNR int FOREIGN KEY (QueueNr) REFERENCES QueueNumbers(Queue)
-    	CONSTRAINT FK_QueueOrder 
-
-	-- Extra Begränsningar nedan
-	--
-	);
 CREATE TABLE CustomerOrderedOrderInTerminal
 	(
 	Id INT NOT NULL,
 
-	QueueNumber INT FOREIGN KEY QueueNumbers(QueueNumber),
+	QueueNumber INT FOREIGN KEY REFERENCES QueueNumbers(QueueNumber),
 	
 	--Nycklar:
 
@@ -410,18 +451,19 @@ CREATE TABLE CustomerOrderedOrderInTerminal
 	-- Extra Begränsningar nedan
 	--
 	);
+
 CREATE TABLE ProductOrders
 	(
-	ProductOrder INT NOT NULL
-	Product Int,
-	Order INT,
+	ProductOrder INT PRIMARY KEY NOT NULL,
+	Product Int NOT NULL,
+	OrderId INT,
 	LockedByStation Int FOREIGN KEY REFERENCES Stations(Station),
 	
-	Behandlad STRICTBOOL, 
+	Behandlad BIT NOT NULL DEFAULT 1, 
 
-	Aktiverad STRICTBOOL,
-	Synlig STRICTBOOL,
-	Betald STRICTBOOL,
+	Aktiverad BIT NOT NULL DEFAULT 1,
+	Synlig BIT NOT NULL DEFAULT 1,
+	Betald BIT NOT NULL DEFAULT 1,
 	
 	--Nycklar:
 
@@ -433,8 +475,8 @@ CREATE TABLE ProductOrders
     	CONSTRAINT FK_Product FOREIGN KEY (Product)
     		REFERENCES Products(Product),
 
-    	CONSTRAINT FK_Order FOREIGN KEY (Order)
-    		REFERENCES Orders(Order),
+    	CONSTRAINT FK_Order FOREIGN KEY (OrderId)
+    		REFERENCES Orders(OrderId),
 
     	CONSTRAINT FK_Station FOREIGN KEY (LockedByStation)
     		REFERENCES Stations(Station),
@@ -455,30 +497,7 @@ CREATE TABLE ProductOrdersHaveProducts
 	-- Extra Begränsningar nedan
 	--
 	);
-CREATE TABLE QueueNumbers(
-	Queue INT NOT NULL PRIMARY KEY,
-	Order INT,
-	Customer INT,
-	--Nycklar:
 
-	--Beräknade attribut nedan
-	-- QueueMod100 INT NOT NULL,   --Kommer vara id mod100. Dvs beräknad
-
-	-- Synlig STRICTBOOL, 			 --Beräknas utifrån "Order Färdig,betald "
-								 	 --Blir false då order blir Upphämtad
-
-	-- Referensattribut nedan
-    	CONSTRAINT FK_Order FOREIGN KEY (Order)
-    		REFERENCES Orders(Order)
-    		ON DELETE CASCADE,
-    		ON UPDATE CASCADE,
-    	CONSTRAINT FK_Customer FOREIGN KEY (Customer)
-    		REFERENCES Customers(Customer)
-    		ON DELETE SET NULL,
-    		ON UPDATE CASCADE,
-	-- Extra Begränsningar nedan
-	--
-	);
 
 -- CREATE TABLE CustomerHasQueueNumberInInfoScreen
 	-- (
@@ -495,22 +514,22 @@ CREATE TABLE QueueNumbers(
 
 CREATE TABLE Stuffings(
 	Lump INT NOT NULL PRIMARY KEY, -- Dvs , id, dvs objektet "en klump av ingredienser"
-
 	ProductOrder INT NOT NULL,
-	Ingredient FOREIGN KEY REFERENCES Ingredients(Ingredient),
+	Ingredient INT FOREIGN KEY REFERENCES Ingredients(Ingredient),
 	Antal INT NOT NULL,
-	Locked STRICTBOOL,
+	Locked BIT NOT NULL DEFAULT 1,
 
 	--Nycklar:
-		CONSTRAINT FK_ProductOrder FOREIGN KEY REFERENCES ProductOrders(ProductOrder) 
-		ON DELETE CASCADE, --weak entity är ON DELETE CASCADE
+		CONSTRAINT FK_ProductOrder FOREIGN KEY (ProductOrder) 
+			REFERENCES ProductOrders(ProductOrder) 
+			ON DELETE CASCADE, --weak entity är ON DELETE CASCADE
 	
 	--Beräknade attribut nedan
 	-- 	ProductType - Ska fås direkt från (Produkten i) produktordern.
 	
 	-- Referensattribut nedan
 	-- Extra Begränsningar nedan
-	CONSTRAINT UC_POIngredient (ProductOrder,Ingredient)
+	CONSTRAINT UC_POIngredient UNIQUE(ProductOrder,Ingredient)
 	--
 	);
 CREATE TABLE TypeRestrictions(   --Kommentar: OtillåtnaBladningar
@@ -539,11 +558,11 @@ CREATE TABLE TypeRestrictions(   --Kommentar: OtillåtnaBladningar
 	);
 CREATE TABLE TypeCanHaveIngredients(
 	Approval INT NOT NULL PRIMARY KEY,
-	ProductType INT NOT NULL FOREIGN KEY REFERENCES ProducTypes(ProductType),
+	ProductType INT NOT NULL FOREIGN KEY REFERENCES ProductTypes(ProductType),
 	Ingredient INT FOREIGN KEY REFERENCES Ingredients(Ingredient),
 
-	IsDemanded STRICTBOOL,
-	MaxUnits PINT, 
+	IsDemanded BIT NOT NULL DEFAULT 1,
+	MaxUnits INT NOT NULL, 
 
 	--Nycklar:
 	--Beräknade attribut nedan
@@ -592,9 +611,9 @@ CREATE TABLE ProductCanHaveIngredients(
 ------------------------------------------------------------------------
 
 CREATE TABLE Choices(  --Hierarkisk struktur , Ger förhoppningsvis "menyträd"
-	Id INT NOT NULL,
-	IsParentTo FOREIGN KEY REFERENCES Choices(id),
-	IsSubTo FOREIGN KEY REFERENCES Choices(id),
+	Id INT PRIMARY KEY NOT NULL,
+	IsParentTo INT FOREIGN KEY REFERENCES Choices(id),
+	IsSubTo INT FOREIGN KEY REFERENCES Choices(id),
 	--Beräknade attribut nedan
 	--
 	-- Referensattribut nedan
@@ -606,10 +625,10 @@ CREATE TABLE Choices(  --Hierarkisk struktur , Ger förhoppningsvis "menyträd"
 	);
 CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktionalitet. Kopplar en Stored procedure/funktion till en choice (om det behövs)  
 
-	Method Int NOT NULL -- ID
+	Method Int NOT NULL, -- ID
 
 	StationType INT FOREIGN KEY REFERENCES StationTypes(StationType),
-	Choice INT FOREIGN KEY REFERENCES Choices(Choice),	
+	Choice INT FOREIGN KEY REFERENCES Choices(Id),	
 
 	--Beräknade attribut nedan
 	--
