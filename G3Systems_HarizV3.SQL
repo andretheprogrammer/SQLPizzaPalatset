@@ -96,34 +96,6 @@ CREATE TABLE Infoscreens(
 	-- Extra Begränsningar nedan
 	--
 	);
--- CREATE TABLE InfoScreenIsInBuilding(
-	-- 	Reference INT PRIMARY KEY NOT NULL,
-	-- 	InfoScreen INT FOREIGN KEY REFERENCES InfoScreens(Id),
-
-	-- 	--Nycklar
-
-	-- 	-- INFOSCREEN
-	-- 	-- BUILDING
-	-- 	--Beräknade attribut nedan
-	-- 	-- 
-	-- 	--Referensattribut nedan
-	-- 	--Extra Begränsningar nedan
-	-- 	--
-	-- 	);
-	--CREATE TABLE QueuesShowsInInfoscreens(
-		--	Reference INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
-		--	QueueNumbers INT FOREIGN KEY REFERENCES QueueNumbers(QueueNumber),
-
-		--	InfoScreen INT FOREIGN KEY REFERENCES InfoScreens(InfoScreen),
-
-		--	--Nycklar
-		--	-- BUILDING ??
-		--	--Beräknade attribut nedan
-		--	-- 
-		--	--Referensattribut nedan
-		--	--Extra Begränsningar nedan
-		--	--
-	--	)
 CREATE TABLE StationTypes(
 	StationType INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
 	StationTypeName VARCHAR(50) ,
@@ -161,35 +133,6 @@ CREATE TABLE Stations(
 	--Extra Begränsningar nedan
 	--
 	);
--- CREATE TABLE Persons
-	-- (
-	-- 	Person INT NOT NULL
-
-	-- 	Wallet INT NOT NULL,
-	--  NAME VARCHAR(50) NOT NULL DEFAULT 'UNNAMED',
-	--  AGE INT NOT NULL,
-	--  HP INT ,
-	--		CHECK (HP >= 0 AND HP <= 100) 
-
-	-- 	--Beräknade attribut nedan
-	-- 	--
-	-- 	-- Referensattribut nedan
-	    --WEAPON --Kommer kräva en Product+ProductType för detta
-
-	-- 	-- Extra Begränsningar nedan
-	-- 	--
-	-- )
--- CREATE TABLE Customers(
-	-- 	Customer INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
-	-- 	Wallet INT NOT NULL DEFAULT 1000,
-
-	-- 	--Nycklar
-	-- 	--Beräknade attribut nedan
-	-- 	--
-	-- 	-- Referensattribut nedan
-
-	-- 	-- Extra Begränsningar nedan
-	-- );
 CREATE TABLE Employees(
 	Employee INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
 
@@ -231,13 +174,11 @@ CREATE TABLE EmployeeTypes(
 	-- Extra Begränsningar nedan
 	--
 	);
--- CREATE TABLE EmployeesWorkInStationAndBuilding
+-- CREATE TABLE EmployeesAreWorkingInStation
 	-- (
-	-- 	Id INT NOT NULL -- Trippelsamband har bara "Id" som kolumnheader 
 
 	-- 	Employee INT NOT NULL FOREIGN KEY Employees(Employee),
 	-- 	Station INT NOT NULL FOREIGN KEY Employees(Employee),
-	-- 	Employee INT NOT NULL FOREIGN KEY Employees(Employee),
 
 		
 	-- 	--Nycklar:
@@ -291,37 +232,6 @@ CREATE TABLE Orders(
 									
 				)
 	);
--- CREATE TABLE QueueNumbers(
-	-- 	QueueNumber INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
-	-- 	OrderId INT NOT NULL,
-	-- 	--Terminal INT REFERENCES  - Behövs ej, Terminal ges av ORDERID (dvs är fb)
-		
-	-- 	--Nycklar:
-
-	-- 	--Beräknade attribut nedan
-	-- 	QueueMod100 INT NOT NULL,   --Kommer vara id mod100. Dvs beräknad
-
-	-- 	-- Visible BIT NOT NULL DEFAULT 1, 			 --Beräknas utifrån "Order Färdig,betald "
-	-- 								 	 --Blir false då order blir Upphämtad
-
-	-- 	-- Referensattribut nedan
-	--     	CONSTRAINT FK_QueueOrder FOREIGN KEY (OrderId)
-	--     		REFERENCES Orders(OrderId)
-	--     		ON DELETE CASCADE
-	--     		ON UPDATE CASCADE,
-
-	--     	--DENNA ForeignKey kommer antagligen aldrig att användas. Ta bort snarast och koppla kund mot Order bara. #TODO
-	--     	-- - kommer sättas som "null" då en kund tas bort från databasen.
-	--     	CONSTRAINT FK_Queue_Customer FOREIGN KEY (Customer)
-	--     		REFERENCES Customers(Customer)
-	--     		ON DELETE SET NULL
-	--     		ON UPDATE CASCADE,
-
-	-- 		CONSTRAINT FK_Queue_InfoScrn FOREIGN KEY (InfoScreen)
-	-- 			REFERENCES InfoScreens(Id)
-	-- 	-- Extra Begränsningar nedan
-	-- 	--
-	-- 	);
 CREATE TABLE EmployeesAreEmployeeTypes(
 	--Reference INT IDENTITY(1,1) NOT NULL,  -- N-N samband har "Reference" som kolumnheader istället för "Id"
 	Employee INT NOT NULL FOREIGN KEY REFERENCES Employees(Employee),
@@ -443,20 +353,6 @@ CREATE TABLE OrderWasTreatedByEmployeeAtStation(
 	-- Extra Begränsningar nedan
 	--
 	);
--- CREATE TABLE CustomerOrderedOrderInTerminal
-	-- 	(
-	-- 	Id INT NOT NULL,
-
-	-- 	--QueueNumber INT FOREIGN KEY REFERENCES QueueNumbers(QueueNumber),
-		
-	-- 	--Nycklar:
-
-	-- 	--Beräknade attribut nedan
-	-- 	--
-	-- 	-- Referensattribut nedan
-	-- 	-- Extra Begränsningar nedan
-	-- 	--
-	-- 	);
 CREATE TABLE ProductOrders
 	(
 	ProductOrder INT IDENTITY(1,1) NOT NULL,
@@ -509,18 +405,7 @@ CREATE TABLE ProductOrders
 	-- 	-- Extra Begränsningar nedan
 	-- 	--
 	-- 	);
--- CREATE TABLE CustomerHasQueueNumberInInfoScreen
-	-- (
-	-- 	Id INT NOT NULL
 
-	-- 	--Nycklar:
-
-	-- 	--Beräknade attribut nedan
-	-- 	--
-	-- 	-- Referensattribut nedan
-	-- 	-- Extra Begränsningar nedan
-	-- 	--
-	-- );
 CREATE TABLE Stuffings(
 	Lump INT NOT NULL IDENTITY(1,1) PRIMARY KEY, -- Dvs , id, dvs objektet "en klump av ingredienser"
 
@@ -656,10 +541,11 @@ CREATE TABLE ProductCanHaveIngredients(
 ------------------------------------------------------------------------
 CREATE TABLE Choices(  --Hierarkisk struktur , Ger förhoppningsvis "menyträd"
 	Id INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
---	IsParentTo INT FOREIGN KEY REFERENCES Choices(id),
+	--IsParentTo INT FOREIGN KEY REFERENCES Choices(id),
 	IsSubTo INT FOREIGN KEY REFERENCES Choices(id),
-	StringRep VARCHAR(100) NOT NULL DEFAULT 'UNNAMED-CHOICE',
-	Description VARCHAR(500) NOT NULL DEFAULT 'NO DESCRIPTION'
+	StringRep VARCHAR(100) DEFAULT 'UNNAMED-CHOICE',
+	Description VARCHAR(500) DEFAULT NULL,
+	
 	--Beräknade attribut nedan
 	--
 	-- Referensattribut nedan
@@ -797,7 +683,6 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 		INSERT INTO Stations (StationType, StationName, InBuilding) VALUES (4,'Cashier 2',1);
 		INSERT INTO Stations (StationType, StationName, InBuilding) VALUES (4,'Cashier 3',1);
 		INSERT INTO Stations (StationType, StationName, InBuilding) VALUES (5,'First Office',1);
-
 --EmployeeTypes
 	SET IDENTITY_INSERT EmployeeTypes ON
 		INSERT INTO EmployeeTypes (EmployeeType, EmployeeTypeName) VALUES (1,'Utbildad SuperKock');
@@ -889,7 +774,6 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (19,'Championer');
 	SET IDENTITY_INSERT Ingredients OFF
 	GO
-
 --Pizza pålägg TILLÅTNA
 	INSERT INTO TypeCanHaveIngredients(ProductType, Ingredient) VALUES (2,1);
 	INSERT INTO TypeCanHaveIngredients(ProductType, Ingredient) VALUES (2,2);
