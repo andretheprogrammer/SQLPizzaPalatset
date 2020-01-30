@@ -1,12 +1,12 @@
 ------------------------------------------------
-	--------- G3 SYSTEMS ---------------------------
+--------- G3 SYSTEMS ---------------------------
 	------------------------------------------------
 	-----SKAPAT AV HARIZ@KTH.se 2020 ---------------
 	---- NEWTONS YRKESHÖGSKOLA ---------------------
 	---- PROJEKTARBETE TILL DATABASKURSEN-----------
 	------------------------------------------------
 	------------------------------------------------
-	-- Updaterat 2020 28 januari - av Hariz Hasecic
+
 ------------------------------------------------------------------------
 	-----KVAR ATT GÖRA------------------------------------------------------
 	-- Kolla ifall alla Entity tabeller finns
@@ -667,11 +667,11 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 ------------------------------------------------------------------------
 --Stationtypes
 	SET IDENTITY_INSERT StationTypes ON
-	INSERT INTO StationTypes (StationType, StationTypeName) VALUES (1,'Salladsbar');
-	INSERT INTO StationTypes (StationType, StationTypeName) VALUES (2,'BigPizzaStation');
-	INSERT INTO StationTypes (StationType, StationTypeName) VALUES (3,'IceCreamBar');
-	INSERT INTO StationTypes (StationType, StationTypeName) VALUES (4,'Cashier');
-	INSERT INTO StationTypes (StationType, StationTypeName) VALUES (5,'Office');
+		INSERT INTO StationTypes (StationType, StationTypeName) VALUES (1,'Salladsbar');
+		INSERT INTO StationTypes (StationType, StationTypeName) VALUES (2,'BigPizzaStation');
+		INSERT INTO StationTypes (StationType, StationTypeName) VALUES (3,'IceCreamBar');
+		INSERT INTO StationTypes (StationType, StationTypeName) VALUES (4,'Cashier');
+		INSERT INTO StationTypes (StationType, StationTypeName) VALUES (5,'Office');
 	SET IDENTITY_INSERT StationTypes OFF
 
 	GO
@@ -705,10 +705,10 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 	GO
 --Employees	
 	SET IDENTITY_INSERT Employees on
-	INSERT INTO Employees (Employee,Username) VALUES (1, 'GregAdmin');
-	INSERT INTO Employees (Employee,Username) VALUES (2, 'LisaCashier');
-	INSERT INTO Employees (Employee,Username) VALUES (3, 'BageyTheBaker');
-	INSERT INTO Employees (Employee,Username) VALUES (4, 'IceyTheIceman');
+		INSERT INTO Employees (Employee,Username) VALUES (1, 'GregAdmin');
+		INSERT INTO Employees (Employee,Username) VALUES (2, 'LisaCashier');
+		INSERT INTO Employees (Employee,Username) VALUES (3, 'BageyTheBaker');
+		INSERT INTO Employees (Employee,Username) VALUES (4, 'IceyTheIceman');
 	SET IDENTITY_INSERT Employees OFF
 
 	GO
@@ -815,10 +815,10 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (2,18);
 --ProductHasIngredients 
 	--Kebabpizzan har dessa ingredienser
-	INSERT INTO ProductHaveIngredients(Product, Ingredient) VALUES (1,1);
-	INSERT INTO ProductHaveIngredients(Product, Ingredient) VALUES (1,2);
-	INSERT INTO ProductHaveIngredients(Product, Ingredient) VALUES (1,8);
-	INSERT INTO ProductHaveIngredients(Product, Ingredient) VALUES (1,9);
+	INSERT INTO ProductHaveIngredients(Product, Ingredient) VALUES (2,1);
+	INSERT INTO ProductHaveIngredients(Product, Ingredient) VALUES (2,2);
+	INSERT INTO ProductHaveIngredients(Product, Ingredient) VALUES (2,8);
+	INSERT INTO ProductHaveIngredients(Product, Ingredient) VALUES (2,9);
 --Choices Tree (Kommer kanske komma till nytta någon gång)
 	SET IDENTITY_INSERT Choices ON
 		INSERT INTO Choices(Id, IsSubTo, StringRep) VALUES (1,null,'root');
@@ -843,3 +843,28 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 
 		INSERT INTO Choices(Id, IsSubTo, StringRep) VALUES (11,1, 'SalladMaker Choices');
 	SET IDENTITY_INSERT Choices OFF
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---------------------------------------------------
+---Andres Inserts---
+
+---------Pizza Inserts och relaterade Indata------
+
+---------Sallad Inserts
