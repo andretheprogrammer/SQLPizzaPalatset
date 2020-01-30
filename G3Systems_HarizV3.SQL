@@ -45,8 +45,6 @@
 
 
 
-
-
 ------------------------------------------------------------------------
 --- SQL DEFINITIONSFILE ------------------------------------------------
 ------------------------------------------------------------------------
@@ -67,8 +65,6 @@ CREATE TABLE Buildings(
 	--Extra Begränsningar nedan
 	--
 	);
-
-
 CREATE TABLE Terminals(
 	Terminal INT IDENTITY(1,1)  NOT NULL PRIMARY KEY,
 	TerminalName VARCHAR(50) NOT NULL DEFAULT 'UNNAMED',
@@ -103,33 +99,33 @@ CREATE TABLE Infoscreens(
 	--
 	);
 -- CREATE TABLE InfoScreenIsInBuilding(
--- 	Reference INT PRIMARY KEY NOT NULL,
--- 	InfoScreen INT FOREIGN KEY REFERENCES InfoScreens(Id),
+	-- 	Reference INT PRIMARY KEY NOT NULL,
+	-- 	InfoScreen INT FOREIGN KEY REFERENCES InfoScreens(Id),
 
--- 	--Nycklar
+	-- 	--Nycklar
 
--- 	-- INFOSCREEN
--- 	-- BUILDING
--- 	--Beräknade attribut nedan
--- 	-- 
--- 	--Referensattribut nedan
--- 	--Extra Begränsningar nedan
--- 	--
--- 	);
---CREATE TABLE QueuesShowsInInfoscreens(
-	--	Reference INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
-	--	QueueNumbers INT FOREIGN KEY REFERENCES QueueNumbers(QueueNumber),
+	-- 	-- INFOSCREEN
+	-- 	-- BUILDING
+	-- 	--Beräknade attribut nedan
+	-- 	-- 
+	-- 	--Referensattribut nedan
+	-- 	--Extra Begränsningar nedan
+	-- 	--
+	-- 	);
+	--CREATE TABLE QueuesShowsInInfoscreens(
+		--	Reference INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+		--	QueueNumbers INT FOREIGN KEY REFERENCES QueueNumbers(QueueNumber),
 
-	--	InfoScreen INT FOREIGN KEY REFERENCES InfoScreens(InfoScreen),
+		--	InfoScreen INT FOREIGN KEY REFERENCES InfoScreens(InfoScreen),
 
-	--	--Nycklar
-	--	-- BUILDING ??
-	--	--Beräknade attribut nedan
-	--	-- 
-	--	--Referensattribut nedan
-	--	--Extra Begränsningar nedan
-	--	--
---	)
+		--	--Nycklar
+		--	-- BUILDING ??
+		--	--Beräknade attribut nedan
+		--	-- 
+		--	--Referensattribut nedan
+		--	--Extra Begränsningar nedan
+		--	--
+	--	)
 CREATE TABLE StationTypes(
 	StationType INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
 	StationTypeName VARCHAR(50) ,
@@ -167,10 +163,6 @@ CREATE TABLE Stations(
 	--Extra Begränsningar nedan
 	--
 	);
-
-
-
-
 -- CREATE TABLE Persons
 	-- (
 	-- 	Person INT NOT NULL
@@ -190,16 +182,16 @@ CREATE TABLE Stations(
 	-- 	--
 	-- )
 -- CREATE TABLE Customers(
--- 	Customer INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
--- 	Wallet INT NOT NULL DEFAULT 1000,
+	-- 	Customer INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+	-- 	Wallet INT NOT NULL DEFAULT 1000,
 
--- 	--Nycklar
--- 	--Beräknade attribut nedan
--- 	--
--- 	-- Referensattribut nedan
+	-- 	--Nycklar
+	-- 	--Beräknade attribut nedan
+	-- 	--
+	-- 	-- Referensattribut nedan
 
--- 	-- Extra Begränsningar nedan
--- );
+	-- 	-- Extra Begränsningar nedan
+	-- );
 CREATE TABLE Employees(
 	Employee INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
 
@@ -226,9 +218,6 @@ CREATE TABLE Employees(
 			-- 	  )
 	--
 	);
-
-
-
 CREATE TABLE EmployeeTypes(
 	EmployeeType INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
 	EmployeeTypeName VARCHAR(50) NOT NULL DEFAULT 'UNNAMED',
@@ -304,41 +293,37 @@ CREATE TABLE Orders(
 									
 				)
 	);
-
-
-
-
 -- CREATE TABLE QueueNumbers(
--- 	QueueNumber INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
--- 	OrderId INT NOT NULL,
--- 	--Terminal INT REFERENCES  - Behövs ej, Terminal ges av ORDERID (dvs är fb)
-	
--- 	--Nycklar:
+	-- 	QueueNumber INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+	-- 	OrderId INT NOT NULL,
+	-- 	--Terminal INT REFERENCES  - Behövs ej, Terminal ges av ORDERID (dvs är fb)
+		
+	-- 	--Nycklar:
 
--- 	--Beräknade attribut nedan
--- 	QueueMod100 INT NOT NULL,   --Kommer vara id mod100. Dvs beräknad
+	-- 	--Beräknade attribut nedan
+	-- 	QueueMod100 INT NOT NULL,   --Kommer vara id mod100. Dvs beräknad
 
--- 	-- Visible BIT NOT NULL DEFAULT 1, 			 --Beräknas utifrån "Order Färdig,betald "
--- 								 	 --Blir false då order blir Upphämtad
+	-- 	-- Visible BIT NOT NULL DEFAULT 1, 			 --Beräknas utifrån "Order Färdig,betald "
+	-- 								 	 --Blir false då order blir Upphämtad
 
--- 	-- Referensattribut nedan
---     	CONSTRAINT FK_QueueOrder FOREIGN KEY (OrderId)
---     		REFERENCES Orders(OrderId)
---     		ON DELETE CASCADE
---     		ON UPDATE CASCADE,
+	-- 	-- Referensattribut nedan
+	--     	CONSTRAINT FK_QueueOrder FOREIGN KEY (OrderId)
+	--     		REFERENCES Orders(OrderId)
+	--     		ON DELETE CASCADE
+	--     		ON UPDATE CASCADE,
 
---     	--DENNA ForeignKey kommer antagligen aldrig att användas. Ta bort snarast och koppla kund mot Order bara. #TODO
---     	-- - kommer sättas som "null" då en kund tas bort från databasen.
---     	CONSTRAINT FK_Queue_Customer FOREIGN KEY (Customer)
---     		REFERENCES Customers(Customer)
---     		ON DELETE SET NULL
---     		ON UPDATE CASCADE,
+	--     	--DENNA ForeignKey kommer antagligen aldrig att användas. Ta bort snarast och koppla kund mot Order bara. #TODO
+	--     	-- - kommer sättas som "null" då en kund tas bort från databasen.
+	--     	CONSTRAINT FK_Queue_Customer FOREIGN KEY (Customer)
+	--     		REFERENCES Customers(Customer)
+	--     		ON DELETE SET NULL
+	--     		ON UPDATE CASCADE,
 
--- 		CONSTRAINT FK_Queue_InfoScrn FOREIGN KEY (InfoScreen)
--- 			REFERENCES InfoScreens(Id)
--- 	-- Extra Begränsningar nedan
--- 	--
--- 	);
+	-- 		CONSTRAINT FK_Queue_InfoScrn FOREIGN KEY (InfoScreen)
+	-- 			REFERENCES InfoScreens(Id)
+	-- 	-- Extra Begränsningar nedan
+	-- 	--
+	-- 	);
 CREATE TABLE EmployeesAreEmployeeTypes(
 	--Reference INT IDENTITY(1,1) NOT NULL,  -- N-N samband har "Reference" som kolumnheader istället för "Id"
 	Employee INT NOT NULL FOREIGN KEY REFERENCES Employees(Employee),
@@ -400,14 +385,12 @@ CREATE TABLE ProductTypes(
 	);
 CREATE TABLE Products(
 	Product INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+	ProductType INT NOT NULL,
 
 	ProductName VARCHAR(50) NOT NULL DEFAULT 'UNNAMED', 
-	ProductType INT NOT NULL,
-	Description varchar(500),
-	Tillagningstid INT NOT NULL,  -- I sekunder
-
-	BasPrice INT NOT NULL,
-
+	Description varchar(500) DEFAULT 'No Description',
+	Tillagningstid INT NOT NULL DEFAULT 500,  -- I sekunder
+	BasPrice INT NOT NULL DEFAULT 100,
 	Activated BIT NOT NULL DEFAULT 1,
 	Visible BIT NOT NULL DEFAULT 1,
 
@@ -440,9 +423,8 @@ CREATE TABLE TypeIsMadeInStationType(    -- Kommentar: type Pizza tillverkas ej 
 CREATE TABLE Ingredients(
 	Ingredient INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
 	IngredientName VARCHAR(50) NOT NULL DEFAULT 'UNNAMED',
-	Price INT NOT NULL, 
-
 	
+	Price INT NOT NULL DEFAULT 5, 
 	Activated BIT NOT NULL DEFAULT 1,
 	Visible BIT NOT NULL DEFAULT 1,
 
@@ -478,22 +460,20 @@ CREATE TABLE OrderWasTreatedByEmployeeAtStation(
 	-- Extra Begränsningar nedan
 	--
 	);
-
 -- CREATE TABLE CustomerOrderedOrderInTerminal
--- 	(
--- 	Id INT NOT NULL,
+	-- 	(
+	-- 	Id INT NOT NULL,
 
--- 	--QueueNumber INT FOREIGN KEY REFERENCES QueueNumbers(QueueNumber),
-	
--- 	--Nycklar:
+	-- 	--QueueNumber INT FOREIGN KEY REFERENCES QueueNumbers(QueueNumber),
+		
+	-- 	--Nycklar:
 
--- 	--Beräknade attribut nedan
--- 	--
--- 	-- Referensattribut nedan
--- 	-- Extra Begränsningar nedan
--- 	--
--- 	);
-
+	-- 	--Beräknade attribut nedan
+	-- 	--
+	-- 	-- Referensattribut nedan
+	-- 	-- Extra Begränsningar nedan
+	-- 	--
+	-- 	);
 CREATE TABLE ProductOrders
 	(
 	ProductOrder INT IDENTITY(1,1) NOT NULL,
@@ -530,26 +510,23 @@ CREATE TABLE ProductOrders
 	--
 	);
 
-
 -- EXTREMT SANNOLIKT ONÖDIG. - FIXA PRODUCTORDER-Tabellen istället, ty ProductOrder (N-1) Product	
 -- CREATE TABLE ProductOrdersHaveProducts 
--- 	(
--- 	ProductOrder INT NOT NULL FOREIGN KEY REFERENCES ProductOrders(ProductOrder),
--- 	Product INT NOT NULL FOREIGN KEY REFERENCES Products(Product)
+	-- 	(
+	-- 	ProductOrder INT NOT NULL FOREIGN KEY REFERENCES ProductOrders(ProductOrder),
+	-- 	Product INT NOT NULL FOREIGN KEY REFERENCES Products(Product)
 
 
 
--- 	--Nycklar:
+	-- 	--Nycklar:
 
--- 		CONSTRAINT PK_Person PRIMARY KEY (ProductOrder,Product); 
--- 	--Beräknade attribut nedan
--- 	--
--- 	-- Referensattribut nedan
--- 	-- Extra Begränsningar nedan
--- 	--
--- 	);
-
-
+	-- 		CONSTRAINT PK_Person PRIMARY KEY (ProductOrder,Product); 
+	-- 	--Beräknade attribut nedan
+	-- 	--
+	-- 	-- Referensattribut nedan
+	-- 	-- Extra Begränsningar nedan
+	-- 	--
+	-- 	);
 -- CREATE TABLE CustomerHasQueueNumberInInfoScreen
 	-- (
 	-- 	Id INT NOT NULL
@@ -562,7 +539,6 @@ CREATE TABLE ProductOrders
 	-- 	-- Extra Begränsningar nedan
 	-- 	--
 	-- );
-
 CREATE TABLE Stuffings(
 	Lump INT NOT NULL IDENTITY(1,1) PRIMARY KEY, -- Dvs , id, dvs objektet "en klump av ingredienser"
 
@@ -584,8 +560,6 @@ CREATE TABLE Stuffings(
 	CONSTRAINT UC_POIngredient UNIQUE(ProductOrder,Ingredient)
 	--
 	);
-
-
 CREATE TABLE TypeCanHaveIngredients(
 	ApprovedIngredient INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 	
@@ -604,7 +578,6 @@ CREATE TABLE TypeCanHaveIngredients(
 
 	--
 	);
-
 CREATE TABLE TypeRestrictions(   --Kommentar: OtillåtnaBladningar
 
 	Restriction INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
@@ -642,7 +615,6 @@ CREATE TABLE TypeRestrictions(   --Kommentar: OtillåtnaBladningar
 	-- BEHÖVS EN CONSTRAINT FÖR ATT KOLLA KOMMUTATIVITET mellan I1 och I2 ! TODO
 	--
 	);
-
 
 --Dessa två nedan är buggiga
 CREATE TABLE ProductHaveIngredients(
@@ -686,9 +658,7 @@ CREATE TABLE ProductCanHaveIngredients(
 	--
 	);
 
-
 ------------------------------------------------------------------------
-
 CREATE TABLE Choices(  --Hierarkisk struktur , Ger förhoppningsvis "menyträd"
 	Id INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
 	IsParentTo INT FOREIGN KEY REFERENCES Choices(id),
@@ -838,6 +808,15 @@ INSERT INTO StationTypes (StationType, StationTypeName) VALUES (4,'Cashier');
 INSERT INTO StationTypes (StationType, StationTypeName) VALUES (5,'Office');
 GO
 
+INSERT INTO Station (StationType, Name, InBuilding) VALUES (1,'Mini Salladsbar',1);
+INSERT INTO Station (StationType, Name, InBuilding) VALUES (2,'Corner PizzaStation',1);
+INSERT INTO Station (StationType, Name, InBuilding) VALUES (3,'Quick IceCreamBar',1);
+INSERT INTO Station (StationType, Name, InBuilding) VALUES (4,'Cashier 1',1);
+INSERT INTO Station (StationType, Name, InBuilding) VALUES (4,'Cashier 2',1);
+INSERT INTO Station (StationType, Name, InBuilding) VALUES (4,'Cashier 3',1);
+INSERT INTO Station (StationType, Name, InBuilding) VALUES (5,'First Office',1);
+
+
 
 INSERT INTO EmployeeTypes (EmployeeType, EmployeeTypeName) VALUES (1,'Kock');
 INSERT INTO EmployeeTypes (EmployeeType, EmployeeTypeName) VALUES (2,'Pizzabaker');
@@ -847,8 +826,29 @@ GO
 
 
 INSERT INTO Employees (Employee,Username) VALUES (1, 'GregTheadminGuy');
-INSERT INTO Employees (Employee,Username) VALUES (2, 'GregTheadminGuy');
-INSERT INTO Employees (Employee,Username) VALUES (3, 'GregTheadminGuy');
-INSERT INTO Employees (Employee,Username) VALUES (4, 'GregTheadminGuy');
+INSERT INTO Employees (Employee,Username) VALUES (2, 'LisaSimpson');
+INSERT INTO Employees (Employee,Username) VALUES (3, 'BageyTheBaker');
+INSERT INTO Employees (Employee,Username) VALUES (4, 'IceCreamExpert');
 GO
 
+INSERT INTO ProductTypes (ProductType, name) VALUES (1,'Pizza');
+INSERT INTO ProductTypes (ProductType, name) VALUES (2,'Sallad');
+INSERT INTO ProductTypes (ProductType, name) VALUES (3,'IceCream');
+INSERT INTO ProductTypes (ProductType, name) VALUES (4,'Fresh Juice');
+GO
+
+INSERT INTO Products(ProductType, ProductName) VALUES (2,'Vesuvio');
+INSERT INTO Products(ProductType, ProductName) VALUES (2,'KebabPizza');
+INSERT INTO Products(ProductType, ProductName) VALUES (2,'Capricosa');
+INSERT INTO Products(ProductType, ProductName) VALUES (1,'Kycklingsallad');
+INSERT INTO Products(ProductType, ProductName) VALUES (1,'Ceasarsallad');
+
+
+INSERT INTO Ingredients(IngredientName) VALUES ('Tomatsås');
+INSERT INTO Ingredients(IngredientName) VALUES ('Salami');
+INSERT INTO Ingredients(IngredientName) VALUES ('Kebabkött');
+INSERT INTO Ingredients(IngredientName) VALUES ('Cheddar');
+INSERT INTO Ingredients(IngredientName) VALUES ('Mozarella');
+INSERT INTO Ingredients(IngredientName) VALUES ('Fefferoni');
+INSERT INTO Ingredients(IngredientName) VALUES ('Ost');
+INSERT INTO Ingredients(IngredientName) VALUES ('Ost');
