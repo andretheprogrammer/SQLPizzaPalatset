@@ -70,7 +70,7 @@ CREATE TABLE Buildings(
 
 
 CREATE TABLE Terminals(
-	Terminal INT NOT NULL,
+	Terminal INT IDENTITY(1,1)  NOT NULL PRIMARY KEY,
 	TerminalName VARCHAR(50) NOT NULL DEFAULT 'UNNAMED',
 	Building INT FOREIGN KEY REFERENCES Buildings(Building),
 	Activated BIT NOT NULL DEFAULT 1,
@@ -87,7 +87,7 @@ CREATE TABLE Terminals(
 	--
 	);
 CREATE TABLE Infoscreens(
-	Id INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+	Id INT IDENTITY(1,1) NOT NULL PRIMARY KEY ,
 	InBuilding INT FOREIGN KEY REFERENCES Buildings(Building),
 
 	Activated BIT NOT NULL DEFAULT 1,
@@ -135,7 +135,7 @@ CREATE TABLE StationTypes(
 	StationTypeName VARCHAR(50) ,
 	Activated BIT NOT NULL DEFAULT 1,
 	Visible BIT NOT NULL DEFAULT 1,
-	DangerLevel INT NOT NULL
+	DangerLevel INT NOT NULL DEFAULT 0
 
 	--Nycklar:
 
@@ -189,21 +189,24 @@ CREATE TABLE Stations(
 	-- 	-- Extra Begränsningar nedan
 	-- 	--
 	-- )
-CREATE TABLE Customers(
-	Customer INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
-	Wallet INT NOT NULL DEFAULT 1000,
+-- CREATE TABLE Customers(
+-- 	Customer INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+-- 	Wallet INT NOT NULL DEFAULT 1000,
 
-	--Nycklar
-	--Beräknade attribut nedan
-	--
-	-- Referensattribut nedan
+-- 	--Nycklar
+-- 	--Beräknade attribut nedan
+-- 	--
+-- 	-- Referensattribut nedan
 
-	-- Extra Begränsningar nedan
-);
+-- 	-- Extra Begränsningar nedan
+-- );
 CREATE TABLE Employees(
 	Employee INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
-	LoggedIn bit NOT NULL DEFAULT 0, 
+
+	Username VARCHAR(20) NOT NULL,
+	Password VARCHAR(20) NOT NULL DEFAULT ROUND(RAND() * 1000000000000000000, 0), 
 	
+	LoggedIn bit NOT NULL DEFAULT 0, 
 	Activated BIT NOT NULL DEFAULT 1,
 	Visible BIT NOT NULL DEFAULT 1,
 	AssignedToStation INT FOREIGN KEY REFERENCES Stations(Station)
@@ -223,6 +226,9 @@ CREATE TABLE Employees(
 			-- 	  )
 	--
 	);
+
+
+
 CREATE TABLE EmployeeTypes(
 	EmployeeType INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
 	EmployeeTypeName VARCHAR(50) NOT NULL DEFAULT 'UNNAMED',
@@ -264,27 +270,8 @@ CREATE TABLE Orders(
 	Activated BIT NOT NULL DEFAULT 1, --I princip alltid 1
 	Visible BIT NOT NULL DEFAULT 1,  -- I princip alltid 1
 
-	OrderStatus INT FOREIGN KEY REFERENCES OrderStatuses(OrderStatus),	
-
-	--Nycklar
-	--Beräknade attribut nedan
-		-- Status PERCENT,  - Beräknas genom ProduktOrder. % på antal färdiga produktordrar kopplade till denna order
-		-- PriceTotal - Beräknas med hjälp av View som joinas in i tabellen
-	-- Referensattribut nedan:		
-		-- CONSTRAINT FK_QueueOrder FOREIGN KEY (QueueNr) REFERENCES QueueNumbers(QueueNumber) -- MÖJLIGT VIS SKRÄP #TODO
-	
-	-- Extra Begränsningar nedan
-	--
-	);
-
-CREATE TABLE OrderStatuses(
-	StatusID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-	OrderID INT FOREIGN KEY REFERENCES Orders(OrderID),
-
-	--Statusar som en order kan ha: Enkelt att lägga på fler statusar .som en order kan ha. utan att förstöra normalisering. 
-	--Dock krävs fler Checks för att bevara konsistens av samband. Att generalisera detta för ett allmänt automatiskt Check-system är potentiell utvidgning.
-	Betald bit NOT NULL DEFAULT 0,
-	Avbruten bit NOT NULL DEFAULT 0,
+	Paid bit NOT NULL DEFAULT 0,
+	Canceled bit NOT NULL DEFAULT 0,
 	PickedUp bit NOT NULL DEFAULT 0,
 	ShowOnScreen bit NOT NULL DEFAULT 1,
 	Paused bit NOT NULL DEFAULT 0,
@@ -292,8 +279,8 @@ CREATE TABLE OrderStatuses(
 	Returned bit NOT NULL DEFAULT 0,
 	HasSpit bit NOT NULL DEFAULT 0,
 	DeliveredByCompany bit NOT NULL DEFAULT 0, 
+	
 
-	--Nycklar
 	--Beräknade attribut nedan
 		-- Status PERCENT,  - Beräknas genom ProduktOrder. % på antal färdiga produktordrar kopplade till denna order
 		-- PriceTotal - Beräknas med hjälp av View som joinas in i tabellen
@@ -301,8 +288,21 @@ CREATE TABLE OrderStatuses(
 		-- CONSTRAINT FK_QueueOrder FOREIGN KEY (QueueNr) REFERENCES QueueNumbers(QueueNumber) -- MÖJLIGT VIS SKRÄP #TODO
 	
 	-- Extra Begränsningar nedan
-	CONSTRAINT UC_OrderStatuses_OrderID UNIQUE (OrderID) 
-	--
+		--Validerar
+		CONSTRAINT CHK_ORDERS_OrderValidering   
+	    	CHECK 
+	    		(
+					(PickedUp 	=0 or (Paid=1 AND Canceled =0 AND Paused=0 AND Returned=0))
+					AND
+					(Paid 		=0 or (Canceled=0) )
+					AND
+					(Canceled 	=0 OR (PickedUp=0 AND Paused =0 AND Returned=0) )
+					AND
+					(Paused 	=0 OR (PickedUp=0 AND Returned=0 AND Canceled=0 AND Paid=1) )
+					AND
+					(Returned 	=0 OR (PickedUp=0) )
+									
+				)
 	);
 
 
@@ -584,48 +584,10 @@ CREATE TABLE Stuffings(
 	CONSTRAINT UC_POIngredient UNIQUE(ProductOrder,Ingredient)
 	--
 	);
-CREATE TABLE TypeRestrictions(   --Kommentar: OtillåtnaBladningar
-
-	Restriction INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
-
-	ProductType INT NOT NULL,
-	Ingredient1 INT NOT NULL,
-	Ingredient2 INT NOT NULL,
-
-	--Nycklar:
-		--
-	--Beräknade attribut nedan
-		--
-	-- Referensattribut nedan
-
-		---denna entitetstyp är weak entity
-	    CONSTRAINT FK_TypeRestrictions_LeftIngredient FOREIGN KEY (Ingredient1)
-    		REFERENCES Ingredients(Ingredient)
-    		ON DELETE CASCADE
-    		ON UPDATE CASCADE,
-
-   		CONSTRAINT FK_TypeRestrictions_RightIngredient FOREIGN KEY (Ingredient2)
-    		REFERENCES Ingredients(Ingredient)
-    		ON DELETE CASCADE
-    		ON UPDATE CASCADE,
 
 
-   		CONSTRAINT FK_TypeRestrictions_ProductType FOREIGN KEY (ProductType)
-    		REFERENCES ProductTypes(ProductType)
-    		ON DELETE CASCADE
-    		ON UPDATE CASCADE,
-	
-	-- Extra Begränsningar nedan
-		CONSTRAINT UC_TypeINGTypeRestriction_Ingredient12 UNIQUE (ProductType,Ingredient1,Ingredient2), --Kandidatnyckel
-		CONSTRAINT UC_TypeINGTypeRestriction_Ingredient21 UNIQUE (ProductType,Ingredient2,Ingredient1) --kommutativ Kandidatnyckel? Funkar detta?
-	
-	--CONSTRAINT UC_Approval (Approval) --Osäkert
-
-	-- BEHÖVS EN CONSTRAINT FÖR ATT KOLLA KOMMUTATIVITET mellan I1 och I2 ! TODO
-	--
-	);
 CREATE TABLE TypeCanHaveIngredients(
-	Approval INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+	ApprovedIngredient INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 	
 	ProductType INT NOT NULL FOREIGN KEY REFERENCES ProductTypes(ProductType),
 	Ingredient INT NOT NULL FOREIGN KEY REFERENCES Ingredients(Ingredient),
@@ -638,8 +600,49 @@ CREATE TABLE TypeCanHaveIngredients(
 	--
 	-- Referensattribut nedan
 	-- Extra Begränsningar nedan
+		CONSTRAINT UC_TypeCanHaveIngredients UNIQUE (ProductType,Ingredient), --Kandidatnyckel
+
 	--
 	);
+
+CREATE TABLE TypeRestrictions(   --Kommentar: OtillåtnaBladningar
+
+	Restriction INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+
+	ProductType INT NOT NULL,
+	ApprovedIngredient INT NOT NULL,
+	CanotMixwith INT NOT NULL,
+
+	--Nycklar:
+		--
+	--Beräknade attribut nedan
+		--
+	-- Referensattribut nedan
+
+		---denna entitetstyp är weak entity
+	    CONSTRAINT FK_TypeRestrictions_ApprovedIngredient FOREIGN KEY (ApprovedIngredient)
+    		REFERENCES TypeCanHaveIngredients(ApprovedIngredient)
+    		ON DELETE CASCADE
+    		ON UPDATE CASCADE,
+
+   		CONSTRAINT FK_TypeRestrictions_CanotMixwithIngredient FOREIGN KEY (CanotMixwith)
+    		REFERENCES TypeCanHaveIngredients(ApprovedIngredient),
+
+   		CONSTRAINT FK_TypeRestrictions_ProductType FOREIGN KEY (ProductType)
+    		REFERENCES ProductTypes(ProductType)
+    		ON DELETE CASCADE
+    		ON UPDATE CASCADE,
+	
+	-- Extra Begränsningar nedan
+		CONSTRAINT UC_TypeINGTypeRestriction_Ingredient UNIQUE (ProductType,ApprovedIngredient,CanotMixwith), --Kandidatnyckel
+		--CONSTRAINT UC_TypeINGTypeRestriction_Ingredient21 UNIQUE (ProductType,Ingredient2,Ingredient1) --kommutativ Kandidatnyckel? Funkar detta?
+	
+	--CONSTRAINT UC_Approval (Approval) --Osäkert
+
+	-- BEHÖVS EN CONSTRAINT FÖR ATT KOLLA KOMMUTATIVITET mellan I1 och I2 ! TODO
+	--
+	);
+
 
 --Dessa två nedan är buggiga
 CREATE TABLE ProductHaveIngredients(
@@ -814,4 +817,38 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 	-- INSERT INTO [dbo].[Buildings] ([Building] ,[BuildingName] ,[Activated] ,[Visible])
 	--      VALUES(3,TonysPizzeria Göteborg,1,1)
 	-- GO
+
+
+----------------------------------ROOT NODE---------------------------------------
+GO
+INSERT INTO Buildings (Building, BuildingNAme) VALUES (1,'TonysMainPizzaHouse');
+----------------------------------------------------------------------------------
+
+INSERT INTO Buildings (Building, BuildingNAme,Activated) VALUES (2,'Tonys UnderGroundPizza',0);
+INSERT INTO Terminal (Building) VALUES (1);
+INSERT INTO Terminal (Building) VALUES (1);
+INSERT INTO Terminal (Building) VALUES (1);
+INSERT INTO InfoScreen (Building) VALUES (1);
+Go
+
+INSERT INTO StationTypes (StationType, StationTypeName) VALUES (1,'Salladsbar');
+INSERT INTO StationTypes (StationType, StationTypeName) VALUES (2,'BigPizzaStation');
+INSERT INTO StationTypes (StationType, StationTypeName) VALUES (3,'IceCreamBar');
+INSERT INTO StationTypes (StationType, StationTypeName) VALUES (4,'Cashier');
+INSERT INTO StationTypes (StationType, StationTypeName) VALUES (5,'Office');
+GO
+
+
+INSERT INTO EmployeeTypes (EmployeeType, EmployeeTypeName) VALUES (1,'Kock');
+INSERT INTO EmployeeTypes (EmployeeType, EmployeeTypeName) VALUES (2,'Pizzabaker');
+INSERT INTO EmployeeTypes (EmployeeType, EmployeeTypeName) VALUES (3,'Cashier');
+INSERT INTO EmployeeTypes (EmployeeType, EmployeeTypeName) VALUES (4,'Administrator');
+GO
+
+
+INSERT INTO Employees (Employee,Username) VALUES (1, 'GregTheadminGuy');
+INSERT INTO Employees (Employee,Username) VALUES (2, 'GregTheadminGuy');
+INSERT INTO Employees (Employee,Username) VALUES (3, 'GregTheadminGuy');
+INSERT INTO Employees (Employee,Username) VALUES (4, 'GregTheadminGuy');
+GO
 
