@@ -82,7 +82,7 @@ CREATE TABLE Terminals(
 	);
 CREATE TABLE Infoscreens(
 	Id INT IDENTITY(1,1) NOT NULL PRIMARY KEY ,
-	InBuilding INT FOREIGN KEY REFERENCES Buildings(Building),
+	Building INT FOREIGN KEY REFERENCES Buildings(Building),
 
 	Activated BIT NOT NULL DEFAULT 1,
 	Visible BIT NOT NULL DEFAULT 1,
@@ -404,7 +404,7 @@ CREATE TABLE TypeIsMadeInStationType(    -- Kommentar: type Pizza tillverkas ej 
 	--
 	);
 CREATE TABLE Ingredients(
-	Ingredient INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+	Ingredient INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
 	IngredientName VARCHAR(50) NOT NULL DEFAULT 'UNNAMED',
 	
 	Price INT NOT NULL DEFAULT 5, 
@@ -658,14 +658,14 @@ CREATE TABLE Choices(  --Hierarkisk struktur , Ger förhoppningsvis "menyträd"
 	Id INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
 --	IsParentTo INT FOREIGN KEY REFERENCES Choices(id),
 	IsSubTo INT FOREIGN KEY REFERENCES Choices(id),
-	StringRep VARCHAR(20) NOT NULL DEFAULT 'UNNAMED-CHOICE',
-	
+	StringRep VARCHAR(100) NOT NULL DEFAULT 'UNNAMED-CHOICE',
+	Description VARCHAR(500) NOT NULL DEFAULT 'NO DESCRIPTION'
 	--Beräknade attribut nedan
 	--
 	-- Referensattribut nedan
 	-- Extra Begränsningar nedan
 
-		CONSTRAINT  UC_edge UNIQUE (IsSubTo)
+		--CONSTRAINT  UC_edge UNIQUE (IsSubTo)
 
 	--
 	);
@@ -773,10 +773,10 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 	SET IDENTITY_INSERT Buildings OFF
 	GO
 
-	INSERT INTO Terminal (Building) VALUES (1);
-	INSERT INTO Terminal (Building) VALUES (1);
-	INSERT INTO Terminal (Building) VALUES (1);
-	INSERT INTO InfoScreen (Building) VALUES (1);
+	INSERT INTO Terminals(Building) VALUES (1);
+	INSERT INTO Terminals(Building) VALUES (1);
+	INSERT INTO Terminals(Building) VALUES (1);
+	INSERT INTO InfoScreens(Building) VALUES (1);
 	Go
 ------------------------------------------------------------------------
 --Stationtypes
@@ -790,15 +790,14 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 
 	GO
 --Stations
-	SET IDENTITY_INSERT Stations ON
-		INSERT INTO Stations (StationType, Name, InBuilding) VALUES (1,'Mini Salladsbar',1);
-		INSERT INTO Stations (StationType, Name, InBuilding) VALUES (2,'Corner PizzaStation',1);
-		INSERT INTO Stations (StationType, Name, InBuilding) VALUES (3,'Quick IceCreamBar',1);
-		INSERT INTO Stations (StationType, Name, InBuilding) VALUES (4,'Cashier 1',1);
-		INSERT INTO Stations (StationType, Name, InBuilding) VALUES (4,'Cashier 2',1);
-		INSERT INTO Stations (StationType, Name, InBuilding) VALUES (4,'Cashier 3',1);
-		INSERT INTO Stations (StationType, Name, InBuilding) VALUES (5,'First Office',1);
-	SET IDENTITY_INSERT Stations OFF
+		INSERT INTO Stations (StationType, StationName, InBuilding) VALUES (1,'Mini Salladsbar',1);
+		INSERT INTO Stations (StationType, StationName, InBuilding) VALUES (2,'Corner PizzaStation',1);
+		INSERT INTO Stations (StationType, StationName, InBuilding) VALUES (3,'Quick IceCreamBar',1);
+		INSERT INTO Stations (StationType, StationName, InBuilding) VALUES (4,'Cashier 1',1);
+		INSERT INTO Stations (StationType, StationName, InBuilding) VALUES (4,'Cashier 2',1);
+		INSERT INTO Stations (StationType, StationName, InBuilding) VALUES (4,'Cashier 3',1);
+		INSERT INTO Stations (StationType, StationName, InBuilding) VALUES (5,'First Office',1);
+
 --EmployeeTypes
 	SET IDENTITY_INSERT EmployeeTypes ON
 		INSERT INTO EmployeeTypes (EmployeeType, EmployeeTypeName) VALUES (1,'Utbildad SuperKock');
@@ -807,6 +806,8 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 		INSERT INTO EmployeeTypes (EmployeeType, EmployeeTypeName) VALUES (4,'Administrator');
 		INSERT INTO EmployeeTypes (EmployeeType, EmployeeTypeName) VALUES (5,'Incompetent');
 	SET IDENTITY_INSERT EmployeeTypes OFF
+	GO
+
 	GO
 --EType-2-StatType
 	INSERT INTO EmployeeTypeCanWorkInStationType (EmployeeType, StationType) VALUES (1,1);
@@ -866,28 +867,29 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 	INSERT INTO TypeIsMadeInStationType(ProductType, StationType) VALUES (6,5);
 --Ingredienser
 	SET IDENTITY_INSERT Ingredients ON
-	INSERT INTO Ingredients(IngredientName) VALUES ('Tomatsås');
-	INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (1,'Salami');
-	INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (2,'Kebabkött');
-	INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (3,'Cheddar');
-	INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (4,'Mozarella');
-	INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (5,'Fefferoni');
-	INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (6,'Ost');
-	INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (7,'Amerikansk Deg');
-	INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (8,'Italiensk Deg');
-	INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (9,'Extra Snabb Tillagning');
-	INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (10,'Kycklingbröst');
-	INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (11,'Ostkub');
-	INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (12,'KoktPasta');
-	INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (13,'Bulgur');
-	INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (14,'Snuspåse');
-	INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (15,'Oliver');
-	INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (16,'Ananas');
-	INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (17,'Tonfisk');
-	INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (18,'Lök');
-	INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (19,'Championer');
+		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (20,'Tomatsås');
+		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (1,'Salami');
+		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (2,'Kebabkött');
+		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (3,'Cheddar');
+		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (4,'Mozarella');
+		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (5,'Fefferoni');
+		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (6,'Ost');
+		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (7,'Amerikansk Deg');
+		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (8,'Italiensk Deg');
+		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (9,'Extra Snabb Tillagning');
+		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (10,'Kycklingbröst');
+		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (11,'Ostkub');
+		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (12,'KoktPasta');
+		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (13,'Bulgur');
+		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (14,'Snuspåse');
+		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (15,'Oliver');
+		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (16,'Ananas');
+		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (17,'Tonfisk');
+		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (18,'Lök');
+		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (19,'Championer');
 	SET IDENTITY_INSERT Ingredients OFF
 	GO
+
 --Pizza pålägg TILLÅTNA
 	INSERT INTO TypeCanHaveIngredients(ProductType, Ingredient) VALUES (2,1);
 	INSERT INTO TypeCanHaveIngredients(ProductType, Ingredient) VALUES (2,2);
@@ -935,25 +937,25 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 	INSERT INTO ProductHaveIngredients(Product, Ingredient) VALUES (1,9);
 --Choices Tree (Kommer kanske komma till nytta någon gång)
 	SET IDENTITY_INSERT Choices ON
-	INSERT INTO Choices(Id, IsSubTo, StringRep) VALUES (1,null,'root');
-	INSERT INTO Choices(Id, IsSubTo, StringRep) VALUES (2,1, 'Login Choices');
-	INSERT INTO Choices(Id, IsSubTo, StringRep) VALUES (3,2, 'Login Choices1');
-	INSERT INTO Choices(Id, IsSubTo, StringRep) VALUES (4,2, 'Login Choices2');
-	INSERT INTO Choices(Id, IsSubTo, StringRep) VALUES (5,2, 'Login Choices3');
-	INSERT INTO Choices(Id, IsSubTo, StringRep) VALUES (6,2, 'Login Choices4');
+		INSERT INTO Choices(Id, IsSubTo, StringRep) VALUES (1,null,'root');
+		INSERT INTO Choices(Id, IsSubTo, StringRep) VALUES (2,1, 'Login Choices');
+		INSERT INTO Choices(Id, IsSubTo, StringRep) VALUES (3,2, 'Login Choices1');
+		INSERT INTO Choices(Id, IsSubTo, StringRep) VALUES (4,2, 'Login Choices2');
+		INSERT INTO Choices(Id, IsSubTo, StringRep) VALUES (5,2, 'Login Choices3');
+		INSERT INTO Choices(Id, IsSubTo, StringRep) VALUES (6,2, 'Login Choices4');
 
 
-	INSERT INTO Choices(Id, IsSubTo, StringRep) VALUES (7,1, 'CustomerMainChoices');
-	
+		INSERT INTO Choices(Id, IsSubTo, StringRep) VALUES (7,1, 'CustomerMainChoices');
+		
 
-	INSERT INTO Choices(Id, IsSubTo, StringRep) VALUES (8,1, 'CashierChoices');
+		INSERT INTO Choices(Id, IsSubTo, StringRep) VALUES (8,1, 'CashierChoices');
 
 
-	INSERT INTO Choices(Id, IsSubTo, StringRep) VALUES (9,1, 'Administrator Choices');
-	
+		INSERT INTO Choices(Id, IsSubTo, StringRep) VALUES (9,1, 'Administrator Choices');
+		
 
-	INSERT INTO Choices(Id, IsSubTo, StringRep) VALUES (10,1, 'PizzaBaker MainChoices');
-	
+		INSERT INTO Choices(Id, IsSubTo, StringRep) VALUES (10,1, 'PizzaBaker MainChoices');
+		
 
-	INSERT INTO Choices(Id, IsSubTo, StringRep) VALUES (11,1, 'SalladMaker Choices');
+		INSERT INTO Choices(Id, IsSubTo, StringRep) VALUES (11,1, 'SalladMaker Choices');
 	SET IDENTITY_INSERT Choices OFF
