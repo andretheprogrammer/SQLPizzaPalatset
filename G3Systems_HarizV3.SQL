@@ -143,13 +143,22 @@ CREATE TABLE Employees(
 	Activated BIT NOT NULL DEFAULT 1,
 	Visible BIT NOT NULL DEFAULT 1,
 	AssignedToStation INT FOREIGN KEY REFERENCES Stations(Station)
-	--Nycklar:
-
+	
+	--Nycklar
 	--Beräknade attribut nedan
 	--
 	-- Referensattribut nedan
 	-- Extra Begränsningar nedan
-		--#Todo
+	CHECK ( IN (
+				SELECT 
+				FROM EmployeeTypeCanWorkInStationType, EmployeeTypes, EmployeesAreEmployeeTypes
+				WHERE 
+			   )
+
+			)
+
+
+		--#Todo - Implikationer
 			-- Check ( 
 			-- 		((LoggedIn =1 AND AssignedToStation IS NOT Null ) OR 
 			-- 		(LoggedIn =0 AND AssignedToStation IS Null) )
@@ -157,7 +166,7 @@ CREATE TABLE Employees(
 			-- 			-- Bara tillåtna kombinationer av Loggedin, Activated och assigned till station ska anges här
 			-- 		--(Man får ej vara Icke-Activated och inloggad) (hur skriva dettA?)
 			-- 	  )
-	--
+	
 	);
 CREATE TABLE EmployeeTypes(
 	EmployeeType INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
@@ -174,7 +183,7 @@ CREATE TABLE EmployeeTypes(
 	-- Extra Begränsningar nedan
 	--
 	);
--- CREATE TABLE EmployeesAreWorkingInStation
+-- CREATE TABLE EmployeesArefWorkingInStation
 	-- (
 
 	-- 	Employee INT NOT NULL FOREIGN KEY Employees(Employee),
@@ -387,25 +396,7 @@ CREATE TABLE ProductOrders
 		CONSTRAINT UC_ProductOrders_LockedByStation UNIQUE(LockedByStation),
 		CONSTRAINT UC_ProductOrders_ID UNIQUE(ProductOrder)
 	--
-	);
--- EXTREMT SANNOLIKT ONÖDIG. - FIXA PRODUCTORDER-Tabellen istället, ty ProductOrder (N-1) Product	
--- CREATE TABLE ProductOrdersHaveProducts 
-	-- 	(
-	-- 	ProductOrder INT NOT NULL FOREIGN KEY REFERENCES ProductOrders(ProductOrder),
-	-- 	Product INT NOT NULL FOREIGN KEY REFERENCES Products(Product)
-
-
-
-	-- 	--Nycklar:
-
-	-- 		CONSTRAINT PK_Person PRIMARY KEY (ProductOrder,Product); 
-	-- 	--Beräknade attribut nedan
-	-- 	--
-	-- 	-- Referensattribut nedan
-	-- 	-- Extra Begränsningar nedan
-	-- 	--
-	-- 	);
-
+	); 
 CREATE TABLE Stuffings(
 	Lump INT NOT NULL IDENTITY(1,1) PRIMARY KEY, -- Dvs , id, dvs objektet "en klump av ingredienser"
 
@@ -843,28 +834,3 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 
 		INSERT INTO Choices(Id, IsSubTo, StringRep) VALUES (11,1, 'SalladMaker Choices');
 	SET IDENTITY_INSERT Choices OFF
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
----------------------------------------------------
----Andres Inserts---
-
----------Pizza Inserts och relaterade Indata------
-
----------Sallad Inserts
