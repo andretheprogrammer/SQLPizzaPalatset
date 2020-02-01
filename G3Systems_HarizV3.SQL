@@ -149,13 +149,13 @@ CREATE TABLE Employees(
 	--
 	-- Referensattribut nedan
 	-- Extra Begränsningar nedan
-	CHECK ( IN (
-				SELECT 
-				FROM EmployeeTypeCanWorkInStationType, EmployeeTypes, EmployeesAreEmployeeTypes
-				WHERE 
-			   )
+	-- CHECK ( IN (
+	-- 			SELECT 
+	-- 			FROM EmployeeTypeCanWorkInStationType, EmployeeTypes, EmployeesAreEmployeeTypes
+	-- 			WHERE 
+	-- 		   )
 
-			)
+	-- 		)
 
 
 		--#Todo - Implikationer
