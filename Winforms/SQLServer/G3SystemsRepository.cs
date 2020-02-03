@@ -11,7 +11,7 @@ using TypeLib;
 
 namespace SQLServer
 {
-    class G3SystemsRepository : IDataConnection
+    public class G3SystemsRepository : IDataConnection
     {
         // Gets connectionstring from App.config in TerminalUI
         private readonly string _connString = ConfigurationManager.ConnectionStrings["PizzaDB"].ConnectionString;
