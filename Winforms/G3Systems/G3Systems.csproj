@@ -157,5 +157,15 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SQLServer\SQLServer.csproj">
+      <Project>{b222c887-bd20-473a-b6bb-3dff7332854d}</Project>
+      <Name>SQLServer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TypeLib\TypeLib.csproj">
+      <Project>{27d8122d-1dd7-42bd-90bb-d214542b22f7}</Project>
+      <Name>TypeLib</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

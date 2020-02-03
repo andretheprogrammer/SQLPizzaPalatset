@@ -18,7 +18,7 @@ namespace G3Systems
 			Application.SetCompatibleTextRenderingDefault(false);
 			
 			
-			Application.Run(new CustomerEnter());
+			Application.Run(new Customer_Forms.PickProduct());
 
 		}
 	}
