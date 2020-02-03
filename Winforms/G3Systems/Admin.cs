@@ -47,6 +47,7 @@ namespace G3Systems
 			this.employeesHaveProductOrdersLockedInStationsTableAdapter.Fill(this.yODataSet.EmployeesHaveProductOrdersLockedInStations);
 			// TODO: This line of code loads data into the 'yODataSet.Buildings' table. You can move, or remove it, as needed.
 			this.buildingsTableAdapter.Fill(this.yODataSet.Buildings);
+			// TODO: This line of code loads data into the 'yODataSet.Employees' table. You can move, or remove it, as needed.
 			this.employeesTableAdapter.Fill(this.yODataSet.Employees);
 
 		}
