@@ -76,7 +76,6 @@
 			this.hasSpitDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
 			this.deliveredByCompanyDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
 			this.ordersBindingSource = new System.Windows.Forms.BindingSource(this.components);
-			this.yODataSet = new G3Systems.YODataSet();
 			this.splitContainer9 = new System.Windows.Forms.SplitContainer();
 			this.tabControl5 = new System.Windows.Forms.TabControl();
 			this.tabPage9 = new System.Windows.Forms.TabPage();
@@ -95,10 +94,7 @@
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.labelQueue = new System.Windows.Forms.Label();
 			this.productTypesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-			this.productTypesTableAdapter = new G3Systems.YODataSetTableAdapters.ProductTypesTableAdapter();
 			this.choicesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-			this.choicesTableAdapter = new G3Systems.YODataSetTableAdapters.ChoicesTableAdapter();
-			this.ordersTableAdapter = new G3Systems.YODataSetTableAdapters.OrdersTableAdapter();
 			this.button5 = new System.Windows.Forms.Button();
 			this.button6 = new System.Windows.Forms.Button();
 			this.splitContainer11 = new System.Windows.Forms.SplitContainer();
@@ -154,7 +150,6 @@
 			this.splitContainer8.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.ordersBindingSource)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.yODataSet)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer9)).BeginInit();
 			this.splitContainer9.Panel1.SuspendLayout();
 			this.splitContainer9.Panel2.SuspendLayout();
@@ -706,16 +701,6 @@
 			this.deliveredByCompanyDataGridViewCheckBoxColumn.Name = "deliveredByCompanyDataGridViewCheckBoxColumn";
 			this.deliveredByCompanyDataGridViewCheckBoxColumn.ReadOnly = true;
 			// 
-			// ordersBindingSource
-			// 
-			this.ordersBindingSource.DataMember = "Orders";
-			this.ordersBindingSource.DataSource = this.yODataSet;
-			// 
-			// yODataSet
-			// 
-			this.yODataSet.DataSetName = "YODataSet";
-			this.yODataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-			// 
 			// splitContainer9
 			// 
 			this.splitContainer9.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -908,28 +893,6 @@
 			this.labelQueue.TabIndex = 0;
 			this.labelQueue.Text = "23";
 			// 
-			// productTypesBindingSource
-			// 
-			this.productTypesBindingSource.DataMember = "ProductTypes";
-			this.productTypesBindingSource.DataSource = this.yODataSet;
-			// 
-			// productTypesTableAdapter
-			// 
-			this.productTypesTableAdapter.ClearBeforeFill = true;
-			// 
-			// choicesBindingSource
-			// 
-			this.choicesBindingSource.DataMember = "Choices";
-			this.choicesBindingSource.DataSource = this.yODataSet;
-			// 
-			// choicesTableAdapter
-			// 
-			this.choicesTableAdapter.ClearBeforeFill = true;
-			// 
-			// ordersTableAdapter
-			// 
-			this.ordersTableAdapter.ClearBeforeFill = true;
-			// 
 			// button5
 			// 
 			this.button5.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1084,7 +1047,6 @@
 			this.splitContainer8.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.ordersBindingSource)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.yODataSet)).EndInit();
 			this.splitContainer9.Panel1.ResumeLayout(false);
 			this.splitContainer9.Panel2.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer9)).EndInit();
@@ -1166,13 +1128,9 @@
 		private System.Windows.Forms.TabPage tabPage9;
 		private System.Windows.Forms.Label label7;
 		private System.Windows.Forms.DataGridView dataGridView7;
-		private YODataSet yODataSet;
 		private System.Windows.Forms.BindingSource productTypesBindingSource;
-		private YODataSetTableAdapters.ProductTypesTableAdapter productTypesTableAdapter;
 		private System.Windows.Forms.BindingSource choicesBindingSource;
-		private YODataSetTableAdapters.ChoicesTableAdapter choicesTableAdapter;
 		private System.Windows.Forms.BindingSource ordersBindingSource;
-		private YODataSetTableAdapters.OrdersTableAdapter ordersTableAdapter;
 		private System.Windows.Forms.DataGridViewTextBoxColumn orderIdDataGridViewTextBoxColumn;
 		private System.Windows.Forms.DataGridViewTextBoxColumn byTerminalDataGridViewTextBoxColumn;
 		private System.Windows.Forms.DataGridViewCheckBoxColumn activatedDataGridViewCheckBoxColumn;

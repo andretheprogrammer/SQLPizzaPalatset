@@ -59,10 +59,6 @@ namespace G3Systems
 
 		private void Form1_Load(object sender, EventArgs e)
 		{
-			// TODO: This line of code loads data into the 'yODataSet.ProductOrders' table. You can move, or remove it, as needed.
-			this.productOrdersTableAdapter.Fill(this.yODataSet.ProductOrders);
-			// TODO: This line of code loads data into the 'yODataSet.Orders' table. You can move, or remove it, as needed.
-			this.ordersTableAdapter.Fill(this.yODataSet.Orders);
 
 		}
 
@@ -84,6 +80,11 @@ namespace G3Systems
 		private void splitContainer5_Panel1_Paint(object sender, PaintEventArgs e)
 		{
 
+		}
+
+		private void Cashier_FormClosed(object sender, FormClosedEventArgs e)
+		{
+			Application.Exit();
 		}
 	}
 }

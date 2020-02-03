@@ -32,12 +32,36 @@ namespace G3Systems
 			if (User != null)
 			{
 				MessageBox.Show($"Logged in as:\n{User.Username} ID: {User.EmployeeID}\n{cbConnectTo.SelectedItem.ToString()}");
+				ChangeLayout(cbConnectTo.SelectedIndex);
 				return;
 			}
 
 			MessageBox.Show("Fel login");
 			tbUsername.Clear();
 			tbPassword.Clear();
+		}
+
+		private void ChangeLayout(int selected)
+		{
+			switch (selected)
+			{
+				case 0:
+					{
+						var form = new Admin();
+						form.Show();
+						break;
+					}
+				case 2:
+					{
+						var form = new Cashier();
+						form.Show();
+						break;
+					}
+				default:
+					return;
+			}
+
+			this.Hide();
 		}
 	}
 }
