@@ -143,22 +143,13 @@ CREATE TABLE Employees(
 	Activated BIT NOT NULL DEFAULT 1,
 	Visible BIT NOT NULL DEFAULT 1,
 	AssignedToStation INT FOREIGN KEY REFERENCES Stations(Station)
-	
-	--Nycklar
+	--Nycklar:
+
 	--Beräknade attribut nedan
 	--
 	-- Referensattribut nedan
 	-- Extra Begränsningar nedan
-	-- CHECK ( IN (
-	-- 			SELECT 
-	-- 			FROM EmployeeTypeCanWorkInStationType, EmployeeTypes, EmployeesAreEmployeeTypes
-	-- 			WHERE 
-	-- 		   )
-
-	-- 		)
-
-
-		--#Todo - Implikationer
+		--#Todo
 			-- Check ( 
 			-- 		((LoggedIn =1 AND AssignedToStation IS NOT Null ) OR 
 			-- 		(LoggedIn =0 AND AssignedToStation IS Null) )
@@ -166,7 +157,7 @@ CREATE TABLE Employees(
 			-- 			-- Bara tillåtna kombinationer av Loggedin, Activated och assigned till station ska anges här
 			-- 		--(Man får ej vara Icke-Activated och inloggad) (hur skriva dettA?)
 			-- 	  )
-	
+	--
 	);
 CREATE TABLE EmployeeTypes(
 	EmployeeType INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
@@ -183,7 +174,7 @@ CREATE TABLE EmployeeTypes(
 	-- Extra Begränsningar nedan
 	--
 	);
--- CREATE TABLE EmployeesArefWorkingInStation
+-- CREATE TABLE EmployeesAreWorkingInStation
 	-- (
 
 	-- 	Employee INT NOT NULL FOREIGN KEY Employees(Employee),
@@ -396,7 +387,25 @@ CREATE TABLE ProductOrders
 		CONSTRAINT UC_ProductOrders_LockedByStation UNIQUE(LockedByStation),
 		CONSTRAINT UC_ProductOrders_ID UNIQUE(ProductOrder)
 	--
-	); 
+	);
+-- EXTREMT SANNOLIKT ONÖDIG. - FIXA PRODUCTORDER-Tabellen istället, ty ProductOrder (N-1) Product	
+-- CREATE TABLE ProductOrdersHaveProducts 
+	-- 	(
+	-- 	ProductOrder INT NOT NULL FOREIGN KEY REFERENCES ProductOrders(ProductOrder),
+	-- 	Product INT NOT NULL FOREIGN KEY REFERENCES Products(Product)
+
+
+
+	-- 	--Nycklar:
+
+	-- 		CONSTRAINT PK_Person PRIMARY KEY (ProductOrder,Product); 
+	-- 	--Beräknade attribut nedan
+	-- 	--
+	-- 	-- Referensattribut nedan
+	-- 	-- Extra Begränsningar nedan
+	-- 	--
+	-- 	);
+
 CREATE TABLE Stuffings(
 	Lump INT NOT NULL IDENTITY(1,1) PRIMARY KEY, -- Dvs , id, dvs objektet "en klump av ingredienser"
 
@@ -725,8 +734,11 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 	INSERT INTO Products(ProductType, ProductName) VALUES (2,'Vesuvio');
 	INSERT INTO Products(ProductType, ProductName) VALUES (2,'KebabPizza');
 	INSERT INTO Products(ProductType, ProductName) VALUES (2,'Capricosa');
+	INSERT INTO Products(ProductType, ProductName) VALUES (2,'Mexicana');
 	INSERT INTO Products(ProductType, ProductName) VALUES (1,'Kycklingsallad');
 	INSERT INTO Products(ProductType, ProductName) VALUES (1,'Ceasarsallad');
+	INSERT INTO Products(ProductType, ProductName) VALUES (2,'Marinara');
+	
 	INSERT INTO Products(ProductType, ProductName) VALUES (5,'CocaCola');
 	INSERT INTO Products(ProductType, ProductName) VALUES (5,'Fanta');
 	INSERT INTO Products(ProductType, ProductName) VALUES (5,'Red Bull');
@@ -743,7 +755,7 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 	INSERT INTO TypeIsMadeInStationType(ProductType, StationType) VALUES (6,5);
 --Ingredienser
 	SET IDENTITY_INSERT Ingredients ON
-		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (20,'Tomatsås');
+		
 		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (1,'Salami');
 		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (2,'Kebabkött');
 		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (3,'Cheddar');
@@ -753,7 +765,7 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (7,'Amerikansk Deg');
 		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (8,'Italiensk Deg');
 		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (9,'Extra Snabb Tillagning');
-		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (10,'Kycklingbröst');
+		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (10,'Kycklingfilé');
 		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (11,'Ostkub');
 		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (12,'KoktPasta');
 		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (13,'Bulgur');
@@ -761,8 +773,40 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (15,'Oliver');
 		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (16,'Ananas');
 		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (17,'Tonfisk');
-		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (18,'Lök');
+		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (18,'Gul Lök');
 		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (19,'Championer');
+		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (20,'Tomatsås');
+		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (21,'Skinka');
+		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (22,'Ruccola');
+		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (23,'Tacosås');
+		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (24,'Gräddfil');
+		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (25,'Avocado');
+		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (26,'Paprika');
+		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (27,'Köttfärs');
+		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (28,'Chilisås');
+		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (29,'Isbergssallad');
+		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (30,'Röd Lök');
+		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (31,'Rhode Island dressing');
+		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (32,'Vinägrett');
+		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (33,'Vitlöksdressing');
+		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (34,'Vitlökssås');
+		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (35,'Bearnaise');
+		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (36,'Vitlök');
+		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (37,'Persilja');
+		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (38,'Ceasardressing');
+		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (39,'Räkor');
+		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (40,'Ägg');
+		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (41,'Spenat');
+		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (42,'Kronärtskocka');
+		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (43,'Fetaost');
+		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (44,'Musslor');
+		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (45,'Bacon');
+		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (46,'Parmaskinka');
+		INSERT INTO Ingredients(Ingredient,IngredientName) VALUES (47,'Parmesanost');
+
+
+
+
 	SET IDENTITY_INSERT Ingredients OFF
 	GO
 --Pizza pålägg TILLÅTNA
@@ -834,3 +878,157 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 
 		INSERT INTO Choices(Id, IsSubTo, StringRep) VALUES (11,1, 'SalladMaker Choices');
 	SET IDENTITY_INSERT Choices OFF
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---------------------------------------------------
+---Andres Inserts---
+---------Pizza Inserts och relaterade Indata------
+--Möjliga ingredienser på Vesuvio
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (1,2);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (1,3);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (1,4);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (1,5);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (1,6);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (1,7);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (1,8);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (1,9);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (1,15);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (1,18);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (1,20);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (1,21);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (1,22);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (1,26);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (1,28);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (1,34);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (1,35);
+--Möjliga ingredienser på Capricosa
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (3,3);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (3,4);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (3,5);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (3,6);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (3,7);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (3,8);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (3,9);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (3,15);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (3,16);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (3,20);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (3,21);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (3,22);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (3,26);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (3,34);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (3,35);
+--Möjliga ingredienser på Mexicana
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (4,4);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (4,5);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (4,6);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (4,7);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (4,8);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (4,9);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (4,18);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (4,20);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (4,21);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (4,22);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (4,23);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (4,24);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (4,25);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (4,26);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (4,27);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (4,28);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (4,30);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (4,34);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (4,36);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (4,37);
+--Möjliga ingredienser på Marinara
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (7,4);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (7,5);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (7,6);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (7,7);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (7,8);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (7,9);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (7,18);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (7,20);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (7,21);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (7,22);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (7,34);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (7,35);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (7,36);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (7,37);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (7,39);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (7,41);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (7,44);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (7,47);
+--Möjliga ingredienser på Hawaii
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (5,3);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (5,4);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (5,5);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (5,6);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (5,7);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (5,8);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (5,9);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (5,20);
+--Möjliga ingredienser på Bolognese
+INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (6,20);
+--Möjliga ingredienser på Quattro Formaggio
+INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (8,20);
+
+
+---------Sallad Inserts
+--Möjliga ingredienser på Kycklingsallad
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (9,9);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (9,10);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (9,11);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (9,12);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (9,13);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (9,18);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (9,19);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (9,21);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (9,22);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (9,25);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (9,26);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (9,29);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (9,30);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (9,31);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (9,32);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (9,33);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (9,36);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (9,37);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (9,47);
+--Möjliga ingredienser på Ceasarsallad
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (10,9);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (10,10);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (10,11);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (10,12);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (10,13);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (10,15);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (10,18);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (10,22);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (10,25);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (10,29);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (10,30);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (10,31);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (10,32);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (10,33);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (10,36);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (10,37);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (10,38);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (10,39);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (10,40);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (10,45);
+	INSERT INTO ProductCanHaveIngredients(Product, Ingredient) VALUES (10,47);
