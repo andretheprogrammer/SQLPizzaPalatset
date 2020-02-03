@@ -85,16 +85,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="YODataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>YODataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="YODataSet1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>YODataSet1.xsd</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="Admin.resx">
       <DependentUpon>Admin.cs</DependentUpon>
     </EmbeddedResource>
@@ -131,31 +121,19 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="YODataSet.xsc">
-      <DependentUpon>YODataSet.xsd</DependentUpon>
-    </None>
-    <None Include="YODataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>YODataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="YODataSet.xss">
-      <DependentUpon>YODataSet.xsd</DependentUpon>
-    </None>
-    <None Include="YODataSet1.xsc">
-      <DependentUpon>YODataSet1.xsd</DependentUpon>
-    </None>
-    <None Include="YODataSet1.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>YODataSet1.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="YODataSet1.xss">
-      <DependentUpon>YODataSet1.xsd</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SQLServer\SQLServer.csproj">
+      <Project>{b222c887-bd20-473a-b6bb-3dff7332854d}</Project>
+      <Name>SQLServer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TypeLib\TypeLib.csproj">
+      <Project>{27d8122d-1dd7-42bd-90bb-d214542b22f7}</Project>
+      <Name>TypeLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

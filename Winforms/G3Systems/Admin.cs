@@ -39,22 +39,17 @@ namespace G3Systems
 
 		private void Admin_Load(object sender, EventArgs e)
 		{
-			// TODO: This line of code loads data into the 'yODataSet.ProductOrders' table. You can move, or remove it, as needed.
-			this.productOrdersTableAdapter.Fill(this.yODataSet.ProductOrders);
-			// TODO: This line of code loads data into the 'yODataSet.Orders' table. You can move, or remove it, as needed.
-			this.ordersTableAdapter.Fill(this.yODataSet.Orders);
-			// TODO: This line of code loads data into the 'yODataSet.EmployeesHaveProductOrdersLockedInStations' table. You can move, or remove it, as needed.
-			this.employeesHaveProductOrdersLockedInStationsTableAdapter.Fill(this.yODataSet.EmployeesHaveProductOrdersLockedInStations);
-			// TODO: This line of code loads data into the 'yODataSet.Buildings' table. You can move, or remove it, as needed.
-			this.buildingsTableAdapter.Fill(this.yODataSet.Buildings);
-			// TODO: This line of code loads data into the 'yODataSet.Employees' table. You can move, or remove it, as needed.
-			this.employeesTableAdapter.Fill(this.yODataSet.Employees);
 
 		}
 
 		private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
 		{
 
+		}
+
+		private void Admin_FormClosed(object sender, FormClosedEventArgs e)
+		{
+			Application.Exit();
 		}
 	}
 }

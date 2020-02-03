@@ -34,12 +34,7 @@ namespace G3Systems.Customer_Forms
 
 		private void PickProduct_Load(object sender, EventArgs e)
 		{
-			// TODO: This line of code loads data into the 'yODataSet.Orders' table. You can move, or remove it, as needed.
-			this.ordersTableAdapter.Fill(this.yODataSet.Orders);
-			// TODO: This line of code loads data into the 'yODataSet.Choices' table. You can move, or remove it, as needed.
-			this.choicesTableAdapter.Fill(this.yODataSet.Choices);
-			// TODO: This line of code loads data into the 'yODataSet.ProductTypes' table. You can move, or remove it, as needed.
-			this.productTypesTableAdapter.Fill(this.yODataSet.ProductTypes);
+
 
 		}
 
