@@ -620,18 +620,21 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 
 	--Login
 		GO
-		CREATE PROC spVerifyLogin
+		CREATE PROC [dbo].[spVerifyLogin]
 		@Username varchar(20),
 		@Password varchar(20)
 
 		as
 
 		begin
-			SELECT EmployeeID, Username FROM Employees WHERE
-			CAST(Username as varbinary(100)) = CAST(@Username as varbinary(100))
-			AND CAST([Password] as varbinary(100)) = CAST(@Password as varbinary(100))
-			AND Username = @Username 
-			AND [Password] = @Password
+			SELECT E.EmployeeID, E.Username, ET.EmployeeTypeID FROM Employees as E 
+			JOIN EmployeesAreEmployeeTypes as EET on E.EmployeeID = EET.EmployeeID
+			JOIN EmployeeTypes as ET on EET.EmployeeTypeID = ET.EmployeeTypeID
+			WHERE
+			CAST(E.Username as varbinary(100)) = CAST(@Username as varbinary(100))
+			AND CAST(E.[Password] as varbinary(100)) = CAST(@Password as varbinary(100))
+			AND E.Username = @Username 
+			AND E.[Password] = @Password
 		end
 		GO
 

@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Employee.cs" />
+    <Compile Include="EmployeeType.cs" />
     <Compile Include="ProductType.cs" />
     <Compile Include="IG3SystemsRepository.cs" />
     <Compile Include="Product.cs" />

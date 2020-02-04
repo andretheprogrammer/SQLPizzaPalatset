@@ -35,9 +35,10 @@ namespace SQLServer
             if (productType != ProductType.All)
             {
                 sqlQuery += " Where ProductTypeID = @ID";
+                return (await Connection.QueryAsync<Product>(sqlQuery)).Where(p => p.ProductTypeID == productType);
             }
 
-            return await Connection.QueryAsync<Product>(sqlQuery, new { @ID = (int)productType });
+            return (await Connection.QueryAsync<Product>(sqlQuery, new { @ID = (int)productType }));
         }
 
         public async Task<Employee> EmployeeLoginAsync(string username, string password)
@@ -48,7 +49,7 @@ namespace SQLServer
             }
 
             return (await Connection.QueryAsync<Employee>(
-                       sql: "spVerifyLogin",
+                       sql: "spVerifyLogin2",
                      param: new { @Username = username, @Password = password },
                commandType: CommandType.StoredProcedure)).FirstOrDefault();
         }

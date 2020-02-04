@@ -40,19 +40,31 @@ namespace G3Systems
 		{
 			User = await Task.Run(() => _repo.EmployeeLoginAsync(tbUsername.Text, tbPassword.Text));
 
-			if (User != null)
+			if (User is null)
 			{
-				MessageBox.Show($"Logged in as:\n{User.Username} ID: {User.EmployeeID}\n{cbConnectTo.SelectedItem.ToString()}");
-				ChangeLayout(cbConnectTo.SelectedIndex);
+				ShowErrorMessage("Fel login");
 				return;
 			}
 
-			MessageBox.Show("Fel login");
+			if (!User.HasAccess(cbConnectTo.SelectedIndex))
+			{
+				ShowErrorMessage("Access Denied");
+				return;
+			}
+
+
+			MessageBox.Show($"Logged in as:\n{User.Username} ID: {User.EmployeeID}\n{User.EmployeeTypeID}");
+			SwitchForm(cbConnectTo.SelectedIndex);
+		}
+
+		private void ShowErrorMessage(string msg)
+		{
+			MessageBox.Show(msg);
 			tbUsername.Clear();
 			tbPassword.Clear();
 		}
 
-		private void ChangeLayout(int selected)
+		private void SwitchForm(int selected)
 		{
 			switch (selected)
 			{
@@ -62,7 +74,7 @@ namespace G3Systems
 						form.Show();
 						break;
 					}
-				case 2:
+				case 1:
 					{
 						var form = new Cashier();
 						form.Show();
