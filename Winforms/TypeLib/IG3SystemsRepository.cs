@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace TypeLib
 {
-    public interface IG3SystemsRepository
+    // TODO Dela upp IRepository för varje object(table)
+    public interface IG3SystemsRepository 
     {
-        Task<Employee> LogInAsync(string username, string password);
+        Task<Employee> EmployeeLoginAsync(string username, string password);
 
         Task<IEnumerable<Product>> GetProductsAsync(ProductType productType);
 

@@ -9,17 +9,28 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TypeLib;
 using SQLServer;
+using PostgreSQL;
 
 namespace G3Systems
 {
 	public partial class Login : Form
 	{
-		private readonly IG3SystemsRepository _conn;
+		private readonly IG3SystemsRepository _repo;
+		private readonly bool _sqlServerBackEnd = true;
 
 		public Login()
 		{
 			InitializeComponent();
-			_conn = new G3SystemsRepository();
+
+			if (_sqlServerBackEnd)
+			{
+				_repo = new SQLServer.G3SystemsRepository();
+			}
+			else
+			{
+				_repo = new PostgreSQL.G3SystemsRepository();
+			}
+
 			cbConnectTo.SelectedIndex = 0;
 		}
 
@@ -27,7 +38,7 @@ namespace G3Systems
 
 		private async void LoginBtn_Click(object sender, EventArgs e)
 		{
-			User = await Task.Run(() => _conn.LogInAsync(tbUsername.Text, tbPassword.Text));
+			User = await Task.Run(() => _repo.EmployeeLoginAsync(tbUsername.Text, tbPassword.Text));
 
 			if (User != null)
 			{

@@ -40,7 +40,7 @@ namespace SQLServer
             return await Connection.QueryAsync<Product>(sqlQuery, new { @ID = (int)productType });
         }
 
-        public async Task<Employee> LogInAsync(string username, string password)
+        public async Task<Employee> EmployeeLoginAsync(string username, string password)
         {
             if (string.IsNullOrWhiteSpace(username + password))
             {

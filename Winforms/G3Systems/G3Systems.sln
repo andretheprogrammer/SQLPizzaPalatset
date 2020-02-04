@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLServer", "..\SQLServer\S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TypeLib", "..\TypeLib\TypeLib.csproj", "{27D8122D-1DD7-42BD-90BB-D214542B22F7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostgreSQL", "..\PostgreSQL\PostgreSQL.csproj", "{71812D38-81C4-4B88-BAC7-25530D2A01B6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{27D8122D-1DD7-42BD-90BB-D214542B22F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27D8122D-1DD7-42BD-90BB-D214542B22F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27D8122D-1DD7-42BD-90BB-D214542B22F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71812D38-81C4-4B88-BAC7-25530D2A01B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71812D38-81C4-4B88-BAC7-25530D2A01B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71812D38-81C4-4B88-BAC7-25530D2A01B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71812D38-81C4-4B88-BAC7-25530D2A01B6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
