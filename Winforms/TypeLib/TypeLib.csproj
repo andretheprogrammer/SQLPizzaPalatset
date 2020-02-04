@@ -43,7 +43,7 @@
   <ItemGroup>
     <Compile Include="Employee.cs" />
     <Compile Include="ProductType.cs" />
-    <Compile Include="IDataConnection.cs" />
+    <Compile Include="IG3SystemsRepository.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="ProductOrder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TypeLib
 {
-    public interface IDataConnection
+    public interface IG3SystemsRepository
     {
         Task<Employee> LogInAsync(string username, string password);
 

@@ -14,7 +14,7 @@ namespace G3Systems
 {
 	public partial class Login : Form
 	{
-		private readonly IDataConnection _conn;
+		private readonly IG3SystemsRepository _conn;
 
 		public Login()
 		{
