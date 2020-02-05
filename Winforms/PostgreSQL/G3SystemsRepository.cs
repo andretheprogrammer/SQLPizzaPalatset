@@ -10,7 +10,7 @@ using TypeLib;
 
 namespace PostgreSQL
 {
-    public class G3SystemsRepository : IG3SystemsRepository
+    public class G3SystemsRepository /*: IG3SystemsRepository*/
     {
         public Task<Employee> EmployeeLoginAsync(string username, string password)
         {

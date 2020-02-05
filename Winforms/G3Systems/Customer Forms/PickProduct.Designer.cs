@@ -1,4 +1,4 @@
-﻿namespace G3Systems.Customer_Forms
+﻿namespace G3Systems
 {
 	partial class PickProduct
 	{
@@ -237,7 +237,6 @@
 			this.tabPage3.TabIndex = 0;
 			this.tabPage3.Text = "ShoppingCart";
 			this.tabPage3.UseVisualStyleBackColor = true;
-			this.tabPage3.Click += new System.EventHandler(this.tabPage3_Click);
 			// 
 			// splitContainer1
 			// 
@@ -434,7 +433,6 @@
 			// splitContainer6.Panel1
 			// 
 			this.splitContainer6.Panel1.Controls.Add(this.splitContainer7);
-			this.splitContainer6.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer6_Panel1_Paint);
 			// 
 			// splitContainer6.Panel2
 			// 
@@ -502,7 +500,6 @@
 			this.dataGridView4.ReadOnly = true;
 			this.dataGridView4.Size = new System.Drawing.Size(342, 332);
 			this.dataGridView4.TabIndex = 0;
-			this.dataGridView4.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView4_CellContentClick);
 			// 
 			// tabControl4
 			// 
@@ -534,7 +531,6 @@
 			this.label5.Size = new System.Drawing.Size(137, 13);
 			this.label5.TabIndex = 3;
 			this.label5.Text = "Visar Ingredients som finns i";
-			this.label5.Click += new System.EventHandler(this.label5_Click);
 			// 
 			// dataGridView5
 			// 
@@ -589,19 +585,19 @@
 			this.dataGridView6.AutoGenerateColumns = false;
 			this.dataGridView6.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridView6.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.orderIdDataGridViewTextBoxColumn,
-            this.byTerminalDataGridViewTextBoxColumn,
-            this.activatedDataGridViewCheckBoxColumn,
-            this.visibleDataGridViewCheckBoxColumn,
-            this.paidDataGridViewCheckBoxColumn,
-            this.canceledDataGridViewCheckBoxColumn,
-            this.pickedUpDataGridViewCheckBoxColumn,
-            this.showOnScreenDataGridViewCheckBoxColumn,
-            this.pausedDataGridViewCheckBoxColumn,
-            this.happyCustomerDataGridViewCheckBoxColumn,
-            this.returnedDataGridViewCheckBoxColumn,
-            this.hasSpitDataGridViewCheckBoxColumn,
-            this.deliveredByCompanyDataGridViewCheckBoxColumn});
+			this.orderIdDataGridViewTextBoxColumn,
+			this.byTerminalDataGridViewTextBoxColumn,
+			this.activatedDataGridViewCheckBoxColumn,
+			this.visibleDataGridViewCheckBoxColumn,
+			this.paidDataGridViewCheckBoxColumn,
+			this.canceledDataGridViewCheckBoxColumn,
+			this.pickedUpDataGridViewCheckBoxColumn,
+			this.showOnScreenDataGridViewCheckBoxColumn,
+			this.pausedDataGridViewCheckBoxColumn,
+			this.happyCustomerDataGridViewCheckBoxColumn,
+			this.returnedDataGridViewCheckBoxColumn,
+			this.hasSpitDataGridViewCheckBoxColumn,
+			this.deliveredByCompanyDataGridViewCheckBoxColumn});
 			this.dataGridView6.DataSource = this.ordersBindingSource;
 			this.dataGridView6.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.dataGridView6.Location = new System.Drawing.Point(0, 0);
@@ -711,7 +707,6 @@
 			// splitContainer9.Panel1
 			// 
 			this.splitContainer9.Panel1.Controls.Add(this.tabControl5);
-			this.splitContainer9.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer6_Panel1_Paint);
 			// 
 			// splitContainer9.Panel2
 			// 
@@ -992,7 +987,6 @@
 			this.MinimumSize = new System.Drawing.Size(600, 550);
 			this.Name = "PickProduct";
 			this.Text = "PickProduct";
-			this.Load += new System.EventHandler(this.PickProduct_Load);
 			this.splitContainer3.Panel1.ResumeLayout(false);
 			this.splitContainer3.Panel2.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();

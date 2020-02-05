@@ -26,10 +26,10 @@ namespace G3Systems
 			{
 				_repo = new SQLServer.G3SystemsRepository();
 			}
-			else
-			{
-				_repo = new PostgreSQL.G3SystemsRepository();
-			}
+			//else
+			//{
+			//	_repo = new PostgreSQL.G3SystemsRepository();
+			//}
 
 			cbConnectTo.SelectedIndex = 0;
 		}
@@ -38,7 +38,8 @@ namespace G3Systems
 
 		private async void LoginBtn_Click(object sender, EventArgs e)
 		{
-			User = await Task.Run(() => _repo.EmployeeLoginAsync(tbUsername.Text, tbPassword.Text));
+			// Gets user if matching username and password exists
+			User = await Task.Run(() => _repo.EmployeeLogin(tbUsername.Text, tbPassword.Text));
 
 			if (User is null)
 			{
@@ -46,6 +47,13 @@ namespace G3Systems
 				return;
 			}
 
+			// Gets all of the users employeeTypes
+			var types = (await Task.Run(() => _repo.GetEmployeeTypesByID(User))).ToList();
+
+			// Add each type to the users List<EmployeeType> Types
+			types.ForEach(t => User.Types.Add(t));
+
+			// Block access if user has wrong type for selected form
 			if (!User.HasAccess(cbConnectTo.SelectedIndex))
 			{
 				ShowErrorMessage("Access Denied");
@@ -53,7 +61,7 @@ namespace G3Systems
 			}
 
 
-			MessageBox.Show($"Logged in as:\n{User.Username} ID: {User.EmployeeID}\n{User.EmployeeTypeID}");
+			MessageBox.Show($"Logged in as:\n{User.Username} ID: {User.EmployeeID}\n");
 			SwitchForm(cbConnectTo.SelectedIndex);
 		}
 
@@ -81,6 +89,7 @@ namespace G3Systems
 						break;
 					}
 				default:
+					ShowErrorMessage("Inte implementerat");
 					return;
 			}
 

@@ -6,13 +6,17 @@ using System.Threading.Tasks;
 
 namespace TypeLib
 {
-    // TODO Dela upp IRepository för varje object(table)
+    // TODO Dela upp repository
     public interface IG3SystemsRepository 
     {
-        Task<Employee> EmployeeLoginAsync(string username, string password);
 
-        Task<IEnumerable<Product>> GetProductsAsync(ProductType productType);
+        Task<IEnumerable<Product>> GetProducts(ProductType productType);
 
-        Task<IEnumerable<ProductOrder>> GetProductOrdersAsync();
+        // Temp test
+        Task<IEnumerable<ProductOrder>> GetProductOrders();
+
+        Task<Employee> EmployeeLogin(string username, string password);
+
+        Task<IEnumerable<EmployeeType>> GetEmployeeTypesByID(Employee employee);
     }
 }
