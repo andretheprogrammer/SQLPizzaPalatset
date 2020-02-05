@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{27D8122D-1DD7-42BD-90BB-D214542B22F7}</ProjectGuid>
+    <ProjectGuid>{71812D38-81C4-4B88-BAC7-25530D2A01B6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TypeLib</RootNamespace>
-    <AssemblyName>TypeLib</AssemblyName>
+    <RootNamespace>PostgreSQL</RootNamespace>
+    <AssemblyName>PostgreSQL</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\G3Systems\packages\Dapper.2.0.30\lib\net461\Dapper.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,13 +44,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Employee.cs" />
-    <Compile Include="EmployeeType.cs" />
-    <Compile Include="ProductType.cs" />
-    <Compile Include="IG3SystemsRepository.cs" />
-    <Compile Include="Product.cs" />
-    <Compile Include="ProductOrder.cs" />
+    <Compile Include="G3SystemsRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TypeLib\TypeLib.csproj">
+      <Project>{27d8122d-1dd7-42bd-90bb-d214542b22f7}</Project>
+      <Name>TypeLib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

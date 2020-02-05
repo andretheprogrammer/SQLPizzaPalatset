@@ -126,6 +126,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PostgreSQL\PostgreSQL.csproj">
+      <Project>{71812d38-81c4-4b88-bac7-25530d2a01b6}</Project>
+      <Name>PostgreSQL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SQLServer\SQLServer.csproj">
       <Project>{b222c887-bd20-473a-b6bb-3dff7332854d}</Project>
       <Name>SQLServer</Name>
