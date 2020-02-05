@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,22 +16,10 @@ namespace SQLServer
     {
         private readonly string _connString;
 
-        private SqlConnection Connection;
-
         public G3SystemsRepository()
         {
             // Gets connectionstring from App.config in TerminalUI
             _connString = ConfigurationManager.ConnectionStrings["PizzaDB"].ConnectionString;
-            Connection = new SqlConnection(_connString);
-        }
-
-        /// <summary>
-        /// Generate new connection based on connection string
-        /// </summary>
-        /// <returns></returns>
-        private SqlConnection SqlConnection()
-        {
-            return new SqlConnection(_connString);
         }
 
         /// <summary>
@@ -39,27 +28,34 @@ namespace SQLServer
         /// <returns></returns>
         private IDbConnection CreateConnection()
         {
-            var conn = SqlConnection();
+            var conn = new SqlConnection(_connString);
             conn.Open();
             return conn;
         }
 
-        public async Task<IEnumerable<ProductOrder>> GetProductOrders()
+        public async Task<IEnumerable<ProductOrder>> GetProductOrdersAsync()
         {
-            return await Connection.QueryAsync<ProductOrder>("Select * from ProductOrders");
+            using (var connection = CreateConnection())
+            {
+                return await connection.QueryAsync<ProductOrder>("Select * from ProductOrders");
+            }
         }
 
-        public async Task<IEnumerable<Product>> GetProducts(ProductType productType)
+        public async Task<IEnumerable<Product>> GetProductsAsync(ProductType productType)
         {
             var sqlQuery = "Select * From Products";
 
-            if (productType != ProductType.All)
+            // Temporärt måste göras om
+            using (var connection = CreateConnection())
             {
-                sqlQuery += " Where ProductTypeID = @ID";
-                return (await Connection.QueryAsync<Product>(sqlQuery)).Where(p => p.ProductTypeID == productType);
-            }
+                if (productType != ProductType.All)
+                {
+                    sqlQuery += " Where ProductTypeID = @ID";
+                    return (await connection.QueryAsync<Product>(sqlQuery)).Where(p => p.ProductTypeID == productType);
+                }
 
-            return (await Connection.QueryAsync<Product>(sqlQuery, new { @ID = (int)productType }));
+                return (await connection.QueryAsync<Product>(sqlQuery, new { @ID = (int)productType }));
+            }
         }
 
         /// <summary>
@@ -68,7 +64,7 @@ namespace SQLServer
         /// <param name="username"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        public async Task<Employee> EmployeeLogin(string username, string password)
+        public async Task<Employee> EmployeeLoginAsync(string username, string password)
         {
             var employee = new Employee();
 
@@ -80,7 +76,7 @@ namespace SQLServer
             using (var connection = CreateConnection())
             {
                 employee = (await connection.QueryAsync<Employee>(
-                       sql: "spVerifyLogin2",
+                       sql: "spVerifyLogin",
                      param: new { @Username = username, @Password = password },
                commandType: CommandType.StoredProcedure)).FirstOrDefault();
             }
@@ -93,13 +89,17 @@ namespace SQLServer
         /// </summary>
         /// <param name="employee"></param>
         /// <returns></returns>
-        public async Task<IEnumerable<EmployeeType>> GetEmployeeTypesByID(Employee employee)
+        public async Task GetEmployeeTypesAsync(Employee employee)
         {
             var sqlQuery = "select EmployeeTypeID from EmployeesAreEmployeeTypes where EmployeeID = @EmployeeID";
 
             using (var connection = CreateConnection())
             {
-                return await connection.QueryAsync<EmployeeType>(sqlQuery, new { employee.EmployeeID });
+                // Gets all of the users employeeTypes
+                var types = (await connection.QueryAsync<EmployeeType>(sqlQuery, new { employee.EmployeeID })).ToList();
+
+                // Add each type to the users List<EmployeeType> Types
+                types.ForEach(t => employee.Types.Add(t));
             }
         }
     }

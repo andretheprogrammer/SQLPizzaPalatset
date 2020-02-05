@@ -9,14 +9,13 @@ namespace TypeLib
     // TODO Dela upp repository
     public interface IG3SystemsRepository 
     {
-
-        Task<IEnumerable<Product>> GetProducts(ProductType productType);
+        Task<IEnumerable<Product>> GetProductsAsync(ProductType productType);
 
         // Temp test
-        Task<IEnumerable<ProductOrder>> GetProductOrders();
+        Task<IEnumerable<ProductOrder>> GetProductOrdersAsync();
 
-        Task<Employee> EmployeeLogin(string username, string password);
+        Task<Employee> EmployeeLoginAsync(string username, string password);
 
-        Task<IEnumerable<EmployeeType>> GetEmployeeTypesByID(Employee employee);
+        Task GetEmployeeTypesAsync(Employee employee);
     }
 }
