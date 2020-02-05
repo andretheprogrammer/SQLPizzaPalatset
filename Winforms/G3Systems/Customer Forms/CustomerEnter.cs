@@ -16,5 +16,12 @@ namespace G3Systems
 		{
 			InitializeComponent();
 		}
+
+		private void NewOrderBtn_Click(object sender, EventArgs e)
+		{
+			var form = new PickProduct();
+			form.Show();
+			this.Hide();
+		}
 	}
 }
