@@ -16,5 +16,10 @@ namespace G3Systems
 		{
 			InitializeComponent();
 		}
+
+		private void lstbxFinished_SelectedIndexChanged(object sender, EventArgs e)
+		{
+
+		}
 	}
 }
