@@ -627,7 +627,7 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 		as
 
 		begin
-			SELECT Employee, Username FROM Employees WHERE
+			SELECT EmployeeID, Username FROM Employees WHERE
 			CAST(Username as varbinary(100)) = CAST(@Username as varbinary(100))
 			AND CAST([Password] as varbinary(100)) = CAST(@Password as varbinary(100))
 			AND Username = @Username 
