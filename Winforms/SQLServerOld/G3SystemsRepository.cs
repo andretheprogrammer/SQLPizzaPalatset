@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -76,7 +75,7 @@ namespace SQLServer
             using (var connection = CreateConnection())
             {
                 employee = (await connection.QueryAsync<Employee>(
-                       sql: "spVerifyLogin",
+                       sql: "spVerifyLogin2",
                      param: new { @Username = username, @Password = password },
                commandType: CommandType.StoredProcedure)).FirstOrDefault();
             }

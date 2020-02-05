@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TypeLib;
 using SQLServer;
-using PostgreSQL;
 
 namespace G3Systems
 {
@@ -24,7 +23,7 @@ namespace G3Systems
 
 			if (_sqlServerBackEnd)
 			{
-				_repo = new SQLServer.G3SystemsRepository();
+				_repo = new G3SystemsRepository();
 			}
 			//else
 			//{
@@ -39,7 +38,7 @@ namespace G3Systems
 		private async void LoginBtn_Click(object sender, EventArgs e)
 		{
 			// Gets user if matching username and password exists
-			User = await Task.Run(() => _repo.EmployeeLogin(tbUsername.Text, tbPassword.Text));
+			User = await Task.Run(() => _repo.EmployeeLoginAsync(tbUsername.Text, tbPassword.Text));
 
 			if (User is null)
 			{
@@ -47,11 +46,7 @@ namespace G3Systems
 				return;
 			}
 
-			// Gets all of the users employeeTypes
-			var types = (await Task.Run(() => _repo.GetEmployeeTypesByID(User))).ToList();
-
-			// Add each type to the users List<EmployeeType> Types
-			types.ForEach(t => User.Types.Add(t));
+			await Task.Run(() => _repo.GetEmployeeTypesAsync(User));
 
 			// Block access if user has wrong type for selected form
 			if (!User.HasAccess(cbConnectTo.SelectedIndex))
