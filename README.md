@@ -12,5 +12,9 @@ dynamisk och responsiv GUI för : Login, Kundköp, Administration, Kassörska, I
 ## Funktionalitet: 
 Det är mycket enkelt att utvidga programmet för fler typer av stationer, typer av anstälda, produkter, produkttyper, restriktioner av pålägg osv. 
 
-
-
+## Dependencies: 
+Dapper 
+.Net Framework 4.7 (för GUI)
+Standard 2.0 
+SQL Server 2018
+PostGres v.12
