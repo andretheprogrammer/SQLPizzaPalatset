@@ -16,5 +16,7 @@ namespace TypeLib
         public int BasePrice { get; set; }
         public bool Activated { get; set; }
         public bool Visible { get; set; }
+
+        public List<Ingredient> Ingredients { get; set; }
     }
 }

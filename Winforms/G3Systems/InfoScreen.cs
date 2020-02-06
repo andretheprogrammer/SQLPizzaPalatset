@@ -44,8 +44,7 @@ namespace G3Systems
 
 		private void InfoScreen_Load(object sender, EventArgs e)
 		{
-			this.ordersTableAdapter1.Fill(this.g3SystemsDataSet.Orders);
-			this.ordersTableAdapter.Fill(this.dataSet1.Orders);
+
 
 		}
 

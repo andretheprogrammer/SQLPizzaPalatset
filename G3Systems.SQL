@@ -75,7 +75,7 @@ CREATE TABLE Terminals(
 
 	-- Beräknade attribut nedan
 	--
-	Ledig BIT NOT NULL DEFAULT 1,
+	Available BIT NOT NULL DEFAULT 1,
 	-- Referensattribut nedan
 	--
 	-- Extra Begränsningar nedan
@@ -283,8 +283,8 @@ CREATE TABLE Products(
 
 	ProductName VARCHAR(50) NOT NULL DEFAULT 'UNNAMED', 
 	[Description] varchar(500) DEFAULT 'No Description',
-	Tillagningstid INT NOT NULL DEFAULT 500,  -- I sekunder
-	BasPrice INT NOT NULL DEFAULT 100,
+	PrepTime INT NOT NULL DEFAULT 500,  -- I sekunder
+	BasePrice INT NOT NULL DEFAULT 100,
 	Activated BIT NOT NULL DEFAULT 1,
 	Visible BIT NOT NULL DEFAULT 1,
 
@@ -361,11 +361,11 @@ CREATE TABLE ProductOrders
 	OrderID INT NOT NULL, 											--FK
 	LockedByStation Int,    --FK
 	
-	Behandlad BIT DEFAULT 1, 
+	Handled BIT DEFAULT 1, 
 
 	Activated BIT NOT NULL DEFAULT 1,
 	Visible BIT NOT NULL DEFAULT 1,
-	Betald BIT NOT NULL DEFAULT 1,
+	Paid BIT NOT NULL DEFAULT 1,
 	
 	--Nycklar
 		primary key (ProductOrderID, ProductID),
@@ -413,7 +413,7 @@ CREATE TABLE Stuffings(
 
 	ProductOrderID INT NOT NULL,
 	IngredientID INT FOREIGN KEY REFERENCES Ingredients(IngredientID),
-	Antal INT NOT NULL,  						--Checka att den är >1 #TODO
+	Quantity INT NOT NULL,  						--Checka att den är >1 #TODO
 
 	--Nycklar:
 		CONSTRAINT FK_Stuffings_ProductOrder FOREIGN KEY (ProductOrderID)
