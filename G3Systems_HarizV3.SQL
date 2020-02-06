@@ -192,23 +192,15 @@ CREATE TABLE EmployeeTypes(
 	-- )
 CREATE TABLE Orders(
 	OrderId INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
-	--Betald bit NOT NULL DEFAULT 0,
-	--Avbruten bit NOT NULL DEFAULT 0,
 	ByTerminal INT NOT NULL FOREIGN KEY REFERENCES Terminals(Terminal),
-
-	Activated BIT NOT NULL DEFAULT 1, --I princip alltid 1
-	Visible BIT NOT NULL DEFAULT 1,  -- I princip alltid 1
 
 	Paid bit NOT NULL DEFAULT 0,
 	Canceled bit NOT NULL DEFAULT 0,
 	PickedUp bit NOT NULL DEFAULT 0,
-	ShowOnScreen bit NOT NULL DEFAULT 1,
-	Paused bit NOT NULL DEFAULT 0,
 	HappyCustomer bit NOT NULL DEFAULT 1,
 	Returned bit NOT NULL DEFAULT 0,
-	HasSpit bit NOT NULL DEFAULT 0,
-	DeliveredByCompany bit NOT NULL DEFAULT 0, 
-	
+	Activated BIT NOT NULL DEFAULT 1, --I princip alltid 1
+	Visible BIT NOT NULL DEFAULT 1,  -- I princip alltid 1	
 
 	--Beräknade attribut nedan
 		-- Status PERCENT,  - Beräknas genom ProduktOrder. % på antal färdiga produktordrar kopplade till denna order
