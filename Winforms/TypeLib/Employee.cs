@@ -16,8 +16,6 @@ namespace TypeLib
         public int EmployeeID { get; set; }
         public string Username { get; set; }
 
-        //public EmployeeType EmployeeTypeID { get; set; }
-
         public List<EmployeeType> Types { get; set; }
 
 
@@ -50,21 +48,6 @@ namespace TypeLib
             {
                 return false;
             }
-
-            //if (EmployeeTypeID == EmployeeType.Administrator)
-            //{
-            //    return true;
-            //}
-            //else if (station == 1 &&
-            //    EmployeeTypeID == EmployeeType.Cashier)
-            //{
-            //    return true;
-            //}
-            //else if (station == 2 &&
-            //    EmployeeTypeID == EmployeeType.Pizzabaker)
-            //{
-            //    return true;
-            //}
         }
     }
 }

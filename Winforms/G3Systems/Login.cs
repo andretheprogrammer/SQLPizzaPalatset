@@ -38,7 +38,7 @@ namespace G3Systems
 		private async void LoginBtn_Click(object sender, EventArgs e)
 		{
 			// Gets user if matching username and password exists
-			User = await Task.Run(() => _repo.EmployeeLoginAsync(tbUsername.Text, tbPassword.Text));
+			User = await _repo.EmployeeLoginAsync(tbUsername.Text, tbPassword.Text);
 
 			if (User is null)
 			{
@@ -69,23 +69,24 @@ namespace G3Systems
 
 		private void SwitchForm(int selected)
 		{
-			switch (selected)
+			if (selected == 0)
 			{
-				case 0:
-					{
-						var form = new Admin();
-						form.Show();
-						break;
-					}
-				case 1:
-					{
-						var form = new Cashier();
-						form.Show();
-						break;
-					}
-				default:
-					ShowErrorMessage("Inte implementerat");
-					return;
+				var form = new Admin();
+				form.Show();
+			}
+			else if (selected == 1)
+			{
+				var form = new Cashier();
+				form.Show();
+			}
+			else if (selected >= 3 && selected < 6)
+			{
+				var form = new CustomerEnter();
+				form.Show();
+			}
+			else
+			{
+				ShowErrorMessage("Inte implementerat");
 			}
 
 			this.Hide();
