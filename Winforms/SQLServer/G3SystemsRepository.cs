@@ -109,5 +109,35 @@ namespace SQLServer
                 return (await connection.QueryAsync<Order>(sqlOrderQuery)).ToList();
             }
         }
+
+
+
+
+
+
+
+
+        // Ingredients
+        public async Task<IEnumerable<Ingredient>> GetHaveIngredientsAsync(int id)
+        {
+            using (var connection = CreateConnection())
+            {
+                return (await connection.QueryAsync<Ingredient>(
+                       sql: "spGetProductIngredients",
+                     param: new { @ProductID = id },
+                commandType: CommandType.StoredProcedure));
+            }
+        }
+
+        public async Task<IEnumerable<Ingredient>> GetCanHaveIngredientsAsync(int id)
+        {
+            using (var connection = CreateConnection())
+            {
+                return (await connection.QueryAsync<Ingredient>(
+                       sql: "spGetProductCanHaveIngredients",
+                     param: new { @ProductID = id },
+                commandType: CommandType.StoredProcedure));
+            }
+        }
     }
 }

@@ -6,7 +6,7 @@ namespace TypeLib
 {
     public class Order
     {
-        public int OrderId { get; set; }
+        public int OrderID { get; set; }
 
         public int ByTerminal { get; set; }
 
