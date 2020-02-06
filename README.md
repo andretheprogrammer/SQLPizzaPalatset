@@ -7,7 +7,7 @@ Programmet är baserat på en relativt normaliserad i databas med DAPPER som avb
 Programmet fungerar även med PostGres som databas p.g.a "Repository pattern" används vid översättning av rader-till-objekt.
 
 ## Innehåller: 
-dynamisk och responsiv GUI för : Login, Kundköp, Administration, Infoskärm och Bagare.
+dynamisk och responsiv GUI för : Login, Kundköp, Administration, Kassörska, Infoskärm och Bagare.
 
 ## Funktionalitet: 
 Det är mycket enkelt att utvidga programmet för fler typer av stationer, typer av anstälda, produkter, produkttyper, restriktioner av pålägg osv. 
