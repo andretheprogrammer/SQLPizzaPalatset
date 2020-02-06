@@ -361,7 +361,7 @@ CREATE TABLE ProductOrders
 	OrderId INT NOT NULL, 											--FK
 	LockedByStation Int, --FOREIGN KEY REFERENCES Stations(Station),   --FK
 	
-	Behandlad BIT DEFAULT 1, 
+	Processed BIT DEFAULT 1, 
 
 	Activated BIT NOT NULL DEFAULT 1,
 	Visible BIT NOT NULL DEFAULT 1,
@@ -586,7 +586,7 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 
 	-- View för att "se alla rader i PRODUKTordrar" för en viss Order
 	-- View för att se stuffings för en särskilt PRODUKTordrer
-	-- View för att se alla PRODUKTordrar som är "Behandlade"
+	-- View för att se alla PRODUKTordrar som är "Processede"
 	-- View för att se alla PRODUKTordrar where "Låstavstation = null"
 
 
