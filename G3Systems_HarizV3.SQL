@@ -365,7 +365,7 @@ CREATE TABLE ProductOrders
 
 	Activated BIT NOT NULL DEFAULT 1,
 	Visible BIT NOT NULL DEFAULT 1,
-	Betald BIT NOT NULL DEFAULT 1,
+--	Betald BIT NOT NULL DEFAULT 1,
 	
 	--Nycklar
 		primary key (ProductOrder, Product),
