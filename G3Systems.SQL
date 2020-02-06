@@ -46,7 +46,16 @@
 ------------------------------------------------------------------------
 --- SQL DEFINITIONSFILE ------------------------------------------------
 ------------------------------------------------------------------------
+GO
+USE [master]
 
+GO
+Create Database G3Systems
+
+GO
+USE G3Systems
+
+GO
 CREATE TABLE Buildings(
 	BuildingID INT IDENTITY(1,1) PRIMARY KEY NOT NULL, 
 	BuildingName VARCHAR(50) NOT NULL DEFAULT 'UNNAMED',
@@ -192,23 +201,17 @@ CREATE TABLE EmployeeTypes(
 	-- )
 CREATE TABLE Orders(
 	OrderID INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
-	--Betald bit NOT NULL DEFAULT 0,
-	--Avbruten bit NOT NULL DEFAULT 0,
 	ByTerminal INT NOT NULL FOREIGN KEY REFERENCES Terminals(TerminalID),
-
-	Activated BIT NOT NULL DEFAULT 1, --I princip alltid 1
-	Visible BIT NOT NULL DEFAULT 1,  -- I princip alltid 1
 
 	Paid bit NOT NULL DEFAULT 0,
 	Canceled bit NOT NULL DEFAULT 0,
 	PickedUp bit NOT NULL DEFAULT 0,
 	ShowOnScreen bit NOT NULL DEFAULT 1,
-	Paused bit NOT NULL DEFAULT 0,
 	HappyCustomer bit NOT NULL DEFAULT 1,
 	Returned bit NOT NULL DEFAULT 0,
-	HasSpit bit NOT NULL DEFAULT 0,
-	DeliveredByCompany bit NOT NULL DEFAULT 0, 
 	
+	Activated BIT NOT NULL DEFAULT 1, --I princip alltid 1
+	Visible BIT NOT NULL DEFAULT 1,  -- I princip alltid 1
 
 	--Beräknade attribut nedan
 		-- Status PERCENT,  - Beräknas genom ProduktOrder. % på Quantity färdiga produktordrar kopplade till denna order
@@ -221,13 +224,11 @@ CREATE TABLE Orders(
 		CONSTRAINT CHK_ORDERS_OrderValidering   
 	    	CHECK 
 	    		(
-					(PickedUp 	=0 or (Paid=1 AND Canceled =0 AND Paused=0 AND Returned=0))
+					(PickedUp 	=0 or (Paid=1 AND Canceled =0 AND Returned=0))
 					AND
 					(Paid 		=0 or (Canceled=0) )
 					AND
-					(Canceled 	=0 OR (PickedUp=0 AND Paused =0 AND Returned=0) )
-					AND
-					(Paused 	=0 OR (PickedUp=0 AND Returned=0 AND Canceled=0 AND Paid=1) )
+					(Canceled 	=0 OR (PickedUp=0 AND Returned=0) )
 					AND
 					(Returned 	=0 OR (PickedUp=0) )
 									
@@ -361,11 +362,10 @@ CREATE TABLE ProductOrders
 	OrderID INT NOT NULL, 											--FK
 	LockedByStation Int,    --FK
 	
-	Handled BIT DEFAULT 1, 
+	Processed BIT DEFAULT 1, 
 
 	Activated BIT NOT NULL DEFAULT 1,
 	Visible BIT NOT NULL DEFAULT 1,
-	Paid BIT NOT NULL DEFAULT 1,
 	
 	--Nycklar
 		primary key (ProductOrderID, ProductID),
@@ -727,7 +727,7 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 		INSERT INTO Stations (StationTypeID, StationName, InBuilding) VALUES (5,'First Office',1);
 --EmployeeTypes
 	SET IDENTITY_INSERT EmployeeTypes ON
-		INSERT INTO EmployeeTypes (EmployeeTypeID, EmployeeTypeName) VALUES (1,'Utbildad SuperKock');
+		INSERT INTO EmployeeTypes (EmployeeTypeID, EmployeeTypeName) VALUES (1,'Chef');
 		INSERT INTO EmployeeTypes (EmployeeTypeID, EmployeeTypeName) VALUES (2,'Pizzabaker');
 		INSERT INTO EmployeeTypes (EmployeeTypeID, EmployeeTypeName) VALUES (3,'Cashier');
 		INSERT INTO EmployeeTypes (EmployeeTypeID, EmployeeTypeName) VALUES (4,'Administrator');
@@ -747,7 +747,7 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 	GO
 --Employees	
 	SET IDENTITY_INSERT Employees on
-		INSERT INTO Employees (EmployeeID,Username) VALUES (1, 'GregAdmin');
+		INSERT INTO Employees (EmployeeID,Username, [Password]) VALUES (1, 'Admin', 123);
 		INSERT INTO Employees (EmployeeID,Username) VALUES (2, 'LisaCashier');
 		INSERT INTO Employees (EmployeeID,Username) VALUES (3, 'BageyTheBaker');
 		INSERT INTO Employees (EmployeeID,Username) VALUES (4, 'IceyTheIceman');
@@ -1457,4 +1457,25 @@ GO
 	    values (@ProductOrderID, 2, 1);
 	End
 
+------- Views för infoscreens
+Go
+	CREATE VIEW View_LeftColumnInfoScreen AS
+	SELECT OrderID
+	FROM     dbo.Orders
+	WHERE  (PickedUp = 0) AND (Canceled = 0) AND (Returned = 0) AND (OrderID IN
+	                      (SELECT OrderID
+	                       FROM      dbo.ProductOrders
+	                       WHERE   (Processed = 0)))
 
+
+Go
+	CREATE VIEW View_RightColumnInfoScreen AS
+	SELECT OrderID
+	FROM     dbo.Orders
+	WHERE  (PickedUp = 0) AND (Canceled = 0) AND (Returned = 0) AND (OrderID IN
+	                      (SELECT OrderID
+	                       FROM      dbo.ProductOrders
+	                       WHERE   (Processed = 1))) AND (OrderID NOT IN
+	                      (SELECT OrderID
+	                       FROM      dbo.ProductOrders
+	                       WHERE   (Processed = 0)))
