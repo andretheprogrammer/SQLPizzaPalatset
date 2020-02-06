@@ -1,0 +1,10 @@
+rules korrekt i C# -- jkb
+.*
+!/.gitignore
+*.suo
+*.user
+_ReSharper.*
+bin
+obj
+packages
+App.config
