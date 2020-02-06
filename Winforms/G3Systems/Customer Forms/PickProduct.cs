@@ -24,6 +24,38 @@ namespace G3Systems
 			cart = new List<Product>();
 		}
 
+		private void PickProduct_Load(object sender, EventArgs e)
+		{
+			try
+			{
+				var values = Enum.GetValues(typeof(ProductType)).Cast<ProductType>().ToList();
+				values.ForEach(type => listBoxProductTypes.Items.Add(type));
+			}
+			catch (Exception msg)
+			{
+				MessageBox.Show("Ett fel inträffade:\n" + msg);
+				Application.Exit();
+			}
+
+			listBoxProductTypes.SelectedIndex = 0;
+		}
+
+		private void PickProduct_FormClosed(object sender, FormClosedEventArgs e)
+		{
+			Application.Exit();
+		}
+
+		private void FinishOrderBtn_Click(object sender, EventArgs e)
+		{
+			tabControlMenu.SelectedTab = tabPayment;
+		}
+
+		private void ReturnBtn_Click(object sender, EventArgs e)
+		{
+			tabControlMenu.SelectedTab = tabProducts;
+		}
+
+		// Tab 1 - Products
 		private async void AddProductBtn_Click(object sender, EventArgs e)
 		{
 			if ((gridViewProducts.SelectedRows.Count <= 0) ||
@@ -44,54 +76,12 @@ namespace G3Systems
 			UpdateCart();
 		}
 
-		private void UpdateCart()
-		{
-			listBoxCart.Items.Clear();
-
-			foreach (var p in cart)
-			{
-				listBoxCart.Items.Add($"1x {p.ProductName}");
-				{ Tag = p.ProductID; };
-			}
-		}
-
-		private void FinishOrderBtn_Click(object sender, EventArgs e)
-		{
-			tabControlMenu.SelectedTab = tabPayment;
-		}
-
 		private void CustomizeBtn_Click(object sender, EventArgs e)
 		{
 			tabControlMenu.SelectedTab = tabCustomize;
-
-			gridViewCart.DataSource = cart;
+			UpdateGridViewCart();
 		}
 
-		private void ReturnBtn_Click(object sender, EventArgs e)
-		{
-			tabControlMenu.SelectedTab = tabProducts;
-		}
-
-		private void PickProduct_FormClosed(object sender, FormClosedEventArgs e)
-		{
-			Application.Exit();
-		}
-
-		private void PickProduct_Load(object sender, EventArgs e)
-		{
-			try
-			{
-				var values = Enum.GetValues(typeof(ProductType)).Cast<ProductType>().ToList();
-				values.ForEach(type => listBoxProductTypes.Items.Add(type));
-			}
-			catch (Exception msg)
-			{
-				MessageBox.Show("Ett fel inträffade:\n" + msg);
-				Application.Exit();
-			}
-
-			listBoxProductTypes.SelectedIndex = 0;
-		}
 
 		private async void ListBoxProductTypes_SelectedIndexChanged(object sender, EventArgs e)
 		{
@@ -112,12 +102,8 @@ namespace G3Systems
 			}
 		}
 
+		// Tab 2 - Customize
 		private async void GridViewCart_SelectionChanged(object sender, EventArgs e)
-		{
-			await UpdateGridViewCart();
-		}
-
-		private async Task UpdateGridViewCart()
 		{
 			if ((gridViewCart.SelectedRows.Count <= 0) ||
 				!(gridViewCart.SelectedRows[0].DataBoundItem is Product))
@@ -127,11 +113,11 @@ namespace G3Systems
 
 			var product = (Product)gridViewCart.SelectedRows[0].DataBoundItem;
 			gridViewExtraIngredients.DataSource = await _repo.GetCanHaveIngredientsAsync(product.ProductID);
-			gridViewIngredients.DataSource = product.Ingredients;
-			UpdateCart();
+
+			UpdateGridViewCart();
 		}
 
-		private async void AddIngredientBtn_Click(object sender, EventArgs e)
+		private void AddIngredientBtn_Click(object sender, EventArgs e)
 		{
 			if ((gridViewExtraIngredients.SelectedRows.Count <= 0) ||
 				!(gridViewExtraIngredients.SelectedRows[0].DataBoundItem is Ingredient))
@@ -139,19 +125,59 @@ namespace G3Systems
 				return;
 			}
 
-			var product = (Product)gridViewCart.SelectedRows[0].DataBoundItem;
+			var selectedProduct = (Product)gridViewCart.SelectedRows[0].DataBoundItem;
+			var product = cart.Where(p => p.ProductID == selectedProduct.ProductID).FirstOrDefault();
 			var ingredient = (Ingredient)gridViewExtraIngredients.SelectedRows[0].DataBoundItem;
 
+			AddIngredient(product, ingredient);
+
+			UpdateGridViewCart();
+		}
+
+		private void AddIngredient(Product product, Ingredient ingredient)
+		{
 			if (!product.Ingredients.Any(i => i.IngredientID == ingredient.IngredientID))
 			{
 				product.Ingredients.Add(ingredient);
 			}
 			else
 			{
-				product.Ingredients.Where(i => i.IngredientID == ingredient.IngredientID).FirstOrDefault().Quantity += 1;
+				var productIngredient = product.Ingredients.Where(i => i.IngredientID == ingredient.IngredientID).FirstOrDefault();
+
+				if (productIngredient.Quantity >= 3)
+				{
+					MessageBox.Show("Kan inte lägga till fler");
+				}
+				else
+				{
+					productIngredient.Quantity += 1;
+				}
+			}
+		}
+
+		private void UpdateGridViewCart()
+		{
+			gridViewCart.DataSource = cart;
+
+			if ((gridViewCart.SelectedRows.Count <= 0) ||
+				!(gridViewCart.SelectedRows[0].DataBoundItem is Product))
+			{
+				return;
 			}
 
-			await UpdateGridViewCart();
+			var product = (Product)gridViewCart.SelectedRows[0].DataBoundItem;
+			gridViewIngredients.DataSource = product.Ingredients;
+		}
+
+		private void UpdateCart()
+		{
+			listBoxCart.Items.Clear();
+
+			foreach (var p in cart)
+			{
+				listBoxCart.Items.Add($"1x {p.ProductName}");
+				{ Tag = p.ProductID; };
+			}
 		}
 	}
 }
