@@ -48,5 +48,10 @@ namespace G3Systems
 			this.ordersTableAdapter.Fill(this.dataSet1.Orders);
 
 		}
+
+		private void lstbxFinished_SelectedIndexChanged(object sender, EventArgs e)
+		{
+
+		}
 	}
 }

@@ -28,25 +28,15 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-            this.components = new System.ComponentModel.Container();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
-            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
-            this.label2 = new System.Windows.Forms.Label();
+            this.ProcessPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.ProcessingOrderText = new System.Windows.Forms.Label();
+            this.finishedOrderPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.FinishedOrderText = new System.Windows.Forms.Label();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.FinishedOrderTiming = new System.Windows.Forms.Timer(this.components);
-            this.FinishedGridView = new System.Windows.Forms.DataGridView();
-            this.ordersBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataSet1 = new G3Systems.DataSet1();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ordersTableAdapter = new G3Systems.DataSet1TableAdapters.OrdersTableAdapter();
-            this.ProcessingOrderGridView = new System.Windows.Forms.DataGridView();
-            this.g3SystemsDataSet = new G3Systems.G3SystemsDataSet();
-            this.ordersBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.ordersTableAdapter1 = new G3Systems.G3SystemsDataSetTableAdapters.OrdersTableAdapter();
-            this.orderIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lstbxProcessing = new System.Windows.Forms.ListBox();
+            this.lstbxFinished = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -55,18 +45,12 @@
             this.splitContainer3.Panel1.SuspendLayout();
             this.splitContainer3.Panel2.SuspendLayout();
             this.splitContainer3.SuspendLayout();
-            this.flowLayoutPanel3.SuspendLayout();
-            this.flowLayoutPanel4.SuspendLayout();
+            this.ProcessPanel.SuspendLayout();
+            this.finishedOrderPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.FinishedGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ordersBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ProcessingOrderGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.g3SystemsDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ordersBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -98,57 +82,57 @@
             // 
             // splitContainer3.Panel1
             // 
-            this.splitContainer3.Panel1.Controls.Add(this.flowLayoutPanel3);
+            this.splitContainer3.Panel1.Controls.Add(this.ProcessPanel);
             // 
             // splitContainer3.Panel2
             // 
-            this.splitContainer3.Panel2.Controls.Add(this.flowLayoutPanel4);
+            this.splitContainer3.Panel2.Controls.Add(this.finishedOrderPanel);
             this.splitContainer3.Size = new System.Drawing.Size(1067, 99);
             this.splitContainer3.SplitterDistance = 533;
             this.splitContainer3.SplitterWidth = 5;
             this.splitContainer3.TabIndex = 0;
             // 
-            // flowLayoutPanel3
+            // ProcessPanel
             // 
-            this.flowLayoutPanel3.Controls.Add(this.label1);
-            this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(533, 99);
-            this.flowLayoutPanel3.TabIndex = 0;
+            this.ProcessPanel.Controls.Add(this.ProcessingOrderText);
+            this.ProcessPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ProcessPanel.Location = new System.Drawing.Point(0, 0);
+            this.ProcessPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ProcessPanel.Name = "ProcessPanel";
+            this.ProcessPanel.Size = new System.Drawing.Size(533, 99);
+            this.ProcessPanel.TabIndex = 0;
             // 
-            // label1
+            // ProcessingOrderText
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Consolas", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(4, 0);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(430, 51);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Processing Orders";
+            this.ProcessingOrderText.AutoSize = true;
+            this.ProcessingOrderText.Font = new System.Drawing.Font("Consolas", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ProcessingOrderText.Location = new System.Drawing.Point(4, 0);
+            this.ProcessingOrderText.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.ProcessingOrderText.Name = "ProcessingOrderText";
+            this.ProcessingOrderText.Size = new System.Drawing.Size(430, 51);
+            this.ProcessingOrderText.TabIndex = 0;
+            this.ProcessingOrderText.Text = "Processing Orders";
             // 
-            // flowLayoutPanel4
+            // finishedOrderPanel
             // 
-            this.flowLayoutPanel4.Controls.Add(this.label2);
-            this.flowLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel4.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.flowLayoutPanel4.Name = "flowLayoutPanel4";
-            this.flowLayoutPanel4.Size = new System.Drawing.Size(529, 99);
-            this.flowLayoutPanel4.TabIndex = 0;
+            this.finishedOrderPanel.Controls.Add(this.FinishedOrderText);
+            this.finishedOrderPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.finishedOrderPanel.Location = new System.Drawing.Point(0, 0);
+            this.finishedOrderPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.finishedOrderPanel.Name = "finishedOrderPanel";
+            this.finishedOrderPanel.Size = new System.Drawing.Size(529, 99);
+            this.finishedOrderPanel.TabIndex = 0;
             // 
-            // label2
+            // FinishedOrderText
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Consolas", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(4, 0);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(382, 51);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Finished Orders";
+            this.FinishedOrderText.AutoSize = true;
+            this.FinishedOrderText.Font = new System.Drawing.Font("Consolas", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FinishedOrderText.Location = new System.Drawing.Point(4, 0);
+            this.FinishedOrderText.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.FinishedOrderText.Name = "FinishedOrderText";
+            this.FinishedOrderText.Size = new System.Drawing.Size(382, 51);
+            this.FinishedOrderText.TabIndex = 1;
+            this.FinishedOrderText.Text = "Finished Orders";
             // 
             // splitContainer2
             // 
@@ -159,105 +143,54 @@
             // 
             // splitContainer2.Panel1
             // 
-            this.splitContainer2.Panel1.Controls.Add(this.ProcessingOrderGridView);
+            this.splitContainer2.Panel1.Controls.Add(this.lstbxProcessing);
             // 
             // splitContainer2.Panel2
             // 
-            this.splitContainer2.Panel2.Controls.Add(this.FinishedGridView);
+            this.splitContainer2.Panel2.Controls.Add(this.lstbxFinished);
             this.splitContainer2.Size = new System.Drawing.Size(1067, 450);
             this.splitContainer2.SplitterDistance = 534;
             this.splitContainer2.SplitterWidth = 5;
             this.splitContainer2.TabIndex = 0;
             // 
-            // FinishedOrderTiming
+            // lstbxProcessing
             // 
-            this.FinishedOrderTiming.Enabled = true;
-            this.FinishedOrderTiming.Interval = 5000;
-            this.FinishedOrderTiming.Tick += new System.EventHandler(this.FinishedOrderTiming_Tick);
+            this.lstbxProcessing.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lstbxProcessing.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lstbxProcessing.FormattingEnabled = true;
+            this.lstbxProcessing.ItemHeight = 39;
+            this.lstbxProcessing.Items.AddRange(new object[] {
+            "23",
+            "24",
+            "29",
+            "30",
+            "32",
+            "34"});
+            this.lstbxProcessing.Location = new System.Drawing.Point(0, 0);
+            this.lstbxProcessing.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lstbxProcessing.Name = "lstbxProcessing";
+            this.lstbxProcessing.Size = new System.Drawing.Size(534, 450);
+            this.lstbxProcessing.TabIndex = 0;
             // 
-            // FinishedGridView
+            // lstbxFinished
             // 
-            this.FinishedGridView.AllowUserToAddRows = false;
-            this.FinishedGridView.AllowUserToDeleteRows = false;
-            this.FinishedGridView.AutoGenerateColumns = false;
-            this.FinishedGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.FinishedGridView.ColumnHeadersVisible = false;
-            this.FinishedGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1});
-            this.FinishedGridView.DataSource = this.ordersBindingSource;
-            this.FinishedGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.FinishedGridView.Location = new System.Drawing.Point(0, 0);
-            this.FinishedGridView.Name = "FinishedGridView";
-            this.FinishedGridView.ReadOnly = true;
-            this.FinishedGridView.RowHeadersVisible = false;
-            this.FinishedGridView.RowHeadersWidth = 51;
-            this.FinishedGridView.RowTemplate.Height = 24;
-            this.FinishedGridView.Size = new System.Drawing.Size(528, 450);
-            this.FinishedGridView.TabIndex = 1;
-            // 
-            // ordersBindingSource
-            // 
-            this.ordersBindingSource.DataMember = "Orders";
-            this.ordersBindingSource.DataSource = this.dataSet1;
-            // 
-            // dataSet1
-            // 
-            this.dataSet1.DataSetName = "DataSet1";
-            this.dataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "OrderId";
-            this.dataGridViewTextBoxColumn1.HeaderText = "OrderId";
-            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // ordersTableAdapter
-            // 
-            this.ordersTableAdapter.ClearBeforeFill = true;
-            // 
-            // ProcessingOrderGridView
-            // 
-            this.ProcessingOrderGridView.AllowUserToAddRows = false;
-            this.ProcessingOrderGridView.AllowUserToDeleteRows = false;
-            this.ProcessingOrderGridView.AutoGenerateColumns = false;
-            this.ProcessingOrderGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ProcessingOrderGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.orderIDDataGridViewTextBoxColumn});
-            this.ProcessingOrderGridView.DataSource = this.ordersBindingSource1;
-            this.ProcessingOrderGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ProcessingOrderGridView.Location = new System.Drawing.Point(0, 0);
-            this.ProcessingOrderGridView.Name = "ProcessingOrderGridView";
-            this.ProcessingOrderGridView.ReadOnly = true;
-            this.ProcessingOrderGridView.RowHeadersWidth = 51;
-            this.ProcessingOrderGridView.RowTemplate.Height = 24;
-            this.ProcessingOrderGridView.Size = new System.Drawing.Size(534, 450);
-            this.ProcessingOrderGridView.TabIndex = 0;
-            // 
-            // g3SystemsDataSet
-            // 
-            this.g3SystemsDataSet.DataSetName = "G3SystemsDataSet";
-            this.g3SystemsDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // ordersBindingSource1
-            // 
-            this.ordersBindingSource1.DataMember = "Orders";
-            this.ordersBindingSource1.DataSource = this.g3SystemsDataSet;
-            // 
-            // ordersTableAdapter1
-            // 
-            this.ordersTableAdapter1.ClearBeforeFill = true;
-            // 
-            // orderIDDataGridViewTextBoxColumn
-            // 
-            this.orderIDDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.orderIDDataGridViewTextBoxColumn.DataPropertyName = "OrderID";
-            this.orderIDDataGridViewTextBoxColumn.HeaderText = "OrderID";
-            this.orderIDDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.orderIDDataGridViewTextBoxColumn.Name = "orderIDDataGridViewTextBoxColumn";
-            this.orderIDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.lstbxFinished.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lstbxFinished.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lstbxFinished.FormattingEnabled = true;
+            this.lstbxFinished.ItemHeight = 39;
+            this.lstbxFinished.Items.AddRange(new object[] {
+            "22",
+            "25",
+            "26",
+            "27",
+            "31",
+            "33"});
+            this.lstbxFinished.Location = new System.Drawing.Point(0, 0);
+            this.lstbxFinished.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lstbxFinished.Name = "lstbxFinished";
+            this.lstbxFinished.Size = new System.Drawing.Size(528, 450);
+            this.lstbxFinished.TabIndex = 1;
+            this.lstbxFinished.SelectedIndexChanged += new System.EventHandler(this.lstbxFinished_SelectedIndexChanged);
             // 
             // InfoScreen
             // 
@@ -268,7 +201,6 @@
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "InfoScreen";
             this.Text = "InfoScreen";
-            this.Load += new System.EventHandler(this.InfoScreen_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -277,20 +209,14 @@
             this.splitContainer3.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
             this.splitContainer3.ResumeLayout(false);
-            this.flowLayoutPanel3.ResumeLayout(false);
-            this.flowLayoutPanel3.PerformLayout();
-            this.flowLayoutPanel4.ResumeLayout(false);
-            this.flowLayoutPanel4.PerformLayout();
+            this.ProcessPanel.ResumeLayout(false);
+            this.ProcessPanel.PerformLayout();
+            this.finishedOrderPanel.ResumeLayout(false);
+            this.finishedOrderPanel.PerformLayout();
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.FinishedGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ordersBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ProcessingOrderGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.g3SystemsDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ordersBindingSource1)).EndInit();
             this.ResumeLayout(false);
 
 		}
@@ -299,21 +225,12 @@
 
 		private System.Windows.Forms.SplitContainer splitContainer1;
 		private System.Windows.Forms.SplitContainer splitContainer3;
-		private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
-		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel4;
-		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.FlowLayoutPanel ProcessPanel;
+		private System.Windows.Forms.Label ProcessingOrderText;
+		private System.Windows.Forms.FlowLayoutPanel finishedOrderPanel;
+		private System.Windows.Forms.Label FinishedOrderText;
 		private System.Windows.Forms.SplitContainer splitContainer2;
-        private System.Windows.Forms.Timer FinishedOrderTiming;
-        private DataSet1 dataSet1;
-        private System.Windows.Forms.BindingSource ordersBindingSource;
-        private DataSet1TableAdapters.OrdersTableAdapter ordersTableAdapter;
-        private System.Windows.Forms.DataGridView FinishedGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridView ProcessingOrderGridView;
-        private G3SystemsDataSet g3SystemsDataSet;
-        private System.Windows.Forms.BindingSource ordersBindingSource1;
-        private G3SystemsDataSetTableAdapters.OrdersTableAdapter ordersTableAdapter1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn orderIDDataGridViewTextBoxColumn;
-    }
+		private System.Windows.Forms.ListBox lstbxProcessing;
+		private System.Windows.Forms.ListBox lstbxFinished;
+	}
 }
