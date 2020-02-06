@@ -20,8 +20,6 @@ namespace TypeLib
 
         Task GetEmployeeTypesAsync(Employee employee);
 
-        // --
-
-        // --
+        Task<IEnumerable<Order>> GetOrdersAsync();
     }
 }
