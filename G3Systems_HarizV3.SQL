@@ -1416,6 +1416,7 @@ GO
 	    insert into Stuffings(ProductOrder, Ingredient, Antal)
 	    values (@ProductOrderID, 2, 1);
 	End
+	GO
 --------------------Views för InfoScreens
 	CREATE VIEW View_LeftColumnInfoScreen AS
 	SELECT OrderID
@@ -1424,7 +1425,7 @@ GO
 	                      (SELECT OrderID
 	                       FROM      dbo.ProductOrders
 	                       WHERE   (Behandlad = 0)))
-
+	GO
 	CREATE VIEW View_RightColumnInfoScreen
 	SELECT OrderID
 	FROM     dbo.Orders
@@ -1435,5 +1436,6 @@ GO
 	                      (SELECT OrderID
 	                       FROM      dbo.ProductOrders
 	                       WHERE   (Behandlad = 0)))
+	                       GO
 
 

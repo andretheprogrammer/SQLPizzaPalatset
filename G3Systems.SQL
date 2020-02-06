@@ -1435,3 +1435,22 @@ GO
 	End
 
 
+	--------------------Views för InfoScreens
+	CREATE VIEW View_LeftColumnInfoScreen AS
+	SELECT OrderID
+	FROM     dbo.Orders
+	WHERE  (PickedUp = 0) AND (Canceled = 0) AND (Returned = 0) AND (OrderID IN
+	                      (SELECT OrderID
+	                       FROM      dbo.ProductOrders
+	                       WHERE   (Behandlad = 0)))
+
+	CREATE VIEW View_RightColumnInfoScreen
+	SELECT OrderID
+	FROM     dbo.Orders
+	WHERE  (PickedUp = 0) AND (Canceled = 0) AND (Returned = 0) AND (OrderID IN
+	                      (SELECT OrderID
+	                       FROM      dbo.ProductOrders
+	                       WHERE   (Behandlad = 1))) AND (OrderID NOT IN
+	                      (SELECT OrderID
+	                       FROM      dbo.ProductOrders
+	                       WHERE   (Behandlad = 0)))
