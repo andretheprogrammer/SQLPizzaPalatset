@@ -18,7 +18,7 @@ namespace SQLServer
 
         public G3SystemsRepository()
         {
-            // Gets connectionstring from App.config in TerminalUI
+            // Gets connectionstring from App.config in G3Systems
             _connString = ConfigurationManager.ConnectionStrings["PizzaDB"].ConnectionString;
         }
 
@@ -41,20 +41,18 @@ namespace SQLServer
             }
         }
 
+        /// <summary>
+        /// Get all products and return chosen category by matching productType with productTypeID
+        /// </summary>
+        /// <param name="productType"></param>
+        /// <returns></returns>
         public async Task<IEnumerable<Product>> GetProductsAsync(ProductType productType)
         {
             var sqlQuery = "Select * From Products";
 
-            // Temporärt måste göras om
             using (var connection = CreateConnection())
             {
-                if (productType != ProductType.All)
-                {
-                    sqlQuery += " Where ProductTypeID = @ID";
-                    return (await connection.QueryAsync<Product>(sqlQuery)).Where(p => p.ProductTypeID == productType);
-                }
-
-                return (await connection.QueryAsync<Product>(sqlQuery, new { @ID = (int)productType }));
+                return (await connection.QueryAsync<Product>(sqlQuery)).Where(p => p.ProductTypeID == productType);
             }
         }
 

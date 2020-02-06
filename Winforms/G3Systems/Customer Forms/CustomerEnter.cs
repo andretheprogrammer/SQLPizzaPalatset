@@ -23,5 +23,10 @@ namespace G3Systems
 			form.Show();
 			this.Hide();
 		}
+
+		private void CustomerEnter_FormClosed(object sender, FormClosedEventArgs e)
+		{
+			Application.Exit();
+		}
 	}
 }
