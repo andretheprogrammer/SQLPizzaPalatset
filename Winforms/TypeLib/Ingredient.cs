@@ -11,5 +11,8 @@ namespace TypeLib
         public int Price { get; set; }
         public bool Activated { get; set; }
         public bool Visible { get; set; }
+
+        // For use with product order
+        public int Quantity { get; set; } = 1;
     }
 }

@@ -211,7 +211,7 @@ CREATE TABLE Orders(
 	
 
 	--Beräknade attribut nedan
-		-- Status PERCENT,  - Beräknas genom ProduktOrder. % på antal färdiga produktordrar kopplade till denna order
+		-- Status PERCENT,  - Beräknas genom ProduktOrder. % på Quantity färdiga produktordrar kopplade till denna order
 		-- PriceTotal - Beräknas med hjälp av View som joinas in i tabellen
 	-- Referensattribut nedan:		
 		-- CONSTRAINT FK_QueueOrder FOREIGN KEY (QueueNr) REFERENCES QueueNumbers(QueueNumber) -- MÖJLIGT VIS SKRÄP #TODO
@@ -633,7 +633,30 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 			AND Username = @Username 
 			AND [Password] = @Password
 		end
-		GO
+	
+	--Product Ingredients
+		go
+		create proc spGetProductIngredients
+		@ProductID int
+		as
+		begin
+			SELECT * FROM Ingredients as I
+			JOIN ProductHaveIngredients as PHI
+			ON PHI.IngredientID = I.IngredientID
+			WHERE PHI.ProductID = @ProductID
+		end
+
+		go
+		create proc spGetProductCanHaveIngredients
+		@ProductID int
+		as
+		begin
+			SELECT * FROM Ingredients as I
+			JOIN ProductCanHaveIngredients as PCHI
+			ON PCHI.IngredientID = I.IngredientID
+			WHERE PCHI.ProductID = @ProductID
+		end
+		go
 
 	--Procedures för att läggatill (eller tabort) whatever.. (en procedure för varje entitetstyp)
 	-- Kan bli hur många som helst här...
@@ -1329,11 +1352,11 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 	End
 
 	Begin
-	    insert into Stuffings(ProductOrderID, IngredientID, Antal)
+	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
 	    values (@ProductOrderID, 2, 1);
-	    insert into Stuffings(ProductOrderID, IngredientID, Antal)
+	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
 	    values (@ProductOrderID, 4, 2);
-	    insert into Stuffings(ProductOrderID, IngredientID, Antal)
+	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
 	    values (@ProductOrderID, 8, 1);
 	End
 
@@ -1344,11 +1367,11 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 	End
 
 	Begin
-	    insert into Stuffings(ProductOrderID, IngredientID, Antal)
+	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
 	    values (@ProductOrderID, 6, 3);
-	    insert into Stuffings(ProductOrderID, IngredientID, Antal)
+	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
 	    values (@ProductOrderID, 4, 2);
-	    insert into Stuffings(ProductOrderID, IngredientID, Antal)
+	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
 	    values (@ProductOrderID, 7, 1);
 	End
 	GO
@@ -1370,11 +1393,11 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 	End
 
 	Begin
-	    insert into Stuffings(ProductOrderID, IngredientID, Antal)
+	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
 	    values (@ProductOrderID, 3, 2);
-	    insert into Stuffings(ProductOrderID, IngredientID, Antal)
+	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
 	    values (@ProductOrderID, 5, 2);
-	    insert into Stuffings(ProductOrderID, IngredientID, Antal)
+	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
 	    values (@ProductOrderID, 9, 1);
 	End
 
@@ -1385,11 +1408,11 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 	End
 
 	Begin
-	    insert into Stuffings(ProductOrderID, IngredientID, Antal)
+	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
 	    values (@ProductOrderID, 7, 3);
-	    insert into Stuffings(ProductOrderID, IngredientID, Antal)
+	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
 	    values (@ProductOrderID, 5, 2);
-	    insert into Stuffings(ProductOrderID, IngredientID, Antal)
+	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
 	    values (@ProductOrderID, 6, 1);
 	End
 GO
@@ -1411,11 +1434,11 @@ GO
 	End
 
 	Begin
-	    insert into Stuffings(ProductOrderID, IngredientID, Antal)
+	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
 	    values (@ProductOrderID, 6, 1);
-	    insert into Stuffings(ProductOrderID, IngredientID, Antal)
+	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
 	    values (@ProductOrderID, 7, 2);
-	    insert into Stuffings(ProductOrderID, IngredientID, Antal)
+	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
 	    values (@ProductOrderID, 8, 1);
 	End
 
@@ -1426,11 +1449,11 @@ GO
 	End
 
 	Begin
-	    insert into Stuffings(ProductOrderID, IngredientID, Antal)
+	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
 	    values (@ProductOrderID, 10, 3);
-	    insert into Stuffings(ProductOrderID, IngredientID, Antal)
+	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
 	    values (@ProductOrderID, 3, 2);
-	    insert into Stuffings(ProductOrderID, IngredientID, Antal)
+	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
 	    values (@ProductOrderID, 2, 1);
 	End
 
