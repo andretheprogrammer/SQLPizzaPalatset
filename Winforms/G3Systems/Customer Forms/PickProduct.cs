@@ -32,7 +32,7 @@ namespace G3Systems
 			tabControlMenu.SelectedTab = tabPayment;
 		}
 
-		private void ContinueBtn_Click(object sender, EventArgs e)
+		private void CustomizeBtn_Click(object sender, EventArgs e)
 		{
 			tabControlMenu.SelectedTab = tabCustomize;
 		}
@@ -40,6 +40,11 @@ namespace G3Systems
 		private void PickProduct_FormClosed(object sender, FormClosedEventArgs e)
 		{
 			Application.Exit();
+		}
+
+		private async void PickProduct_Load(object sender, EventArgs e)
+		{
+			GridViewProducts.DataSource = (await _repo.GetProductsAsync(ProductType.Pizza));
 		}
 	}
 }

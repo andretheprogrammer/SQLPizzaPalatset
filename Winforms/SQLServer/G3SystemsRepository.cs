@@ -48,11 +48,11 @@ namespace SQLServer
         /// <returns></returns>
         public async Task<IEnumerable<Product>> GetProductsAsync(ProductType productType)
         {
-            var sqlQuery = "Select * From Products";
+            var sqlQuery = "Select * From Products Where ProductTypeID = @ProductTypeID";
 
             using (var connection = CreateConnection())
             {
-                return (await connection.QueryAsync<Product>(sqlQuery)).Where(p => p.ProductTypeID == productType);
+                return await connection.QueryAsync<Product>(sqlQuery, new { @ProductTypeID = productType });
             }
         }
 
