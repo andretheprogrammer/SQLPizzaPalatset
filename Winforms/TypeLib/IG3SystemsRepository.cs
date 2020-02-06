@@ -17,5 +17,7 @@ namespace TypeLib
         Task<Employee> EmployeeLoginAsync(string username, string password);
 
         Task GetEmployeeTypesAsync(Employee employee);
+
+        Task<IEnumerable<Order>> GetOrdersAsync();
     }
 }

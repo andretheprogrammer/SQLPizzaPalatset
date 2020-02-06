@@ -102,5 +102,14 @@ namespace SQLServer
                 types.ForEach(t => employee.Types.Add(t));
             }
         }
+
+        public async Task<IEnumerable<Order>> GetOrdersAsync()
+        {
+            var sqlOrderQuery = "Select OrderID from Orders where Paid = 1 and PickedUp = 1";
+            using (var connection = CreateConnection())
+            {
+                return (await connection.QueryAsync<Order>(sqlOrderQuery)).ToList();
+            }
+        }
     }
 }

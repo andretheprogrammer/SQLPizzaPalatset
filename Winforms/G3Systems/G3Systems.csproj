@@ -93,6 +93,16 @@
     <Compile Include="Customer Forms\PickProduct.Designer.cs">
       <DependentUpon>PickProduct.cs</DependentUpon>
     </Compile>
+    <Compile Include="DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="G3SystemsDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>G3SystemsDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="InfoScreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,6 +144,28 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="DataSet1.xsc">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DataSet1.xss">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="G3SystemsDataSet.xsc">
+      <DependentUpon>G3SystemsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="G3SystemsDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>G3SystemsDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="G3SystemsDataSet.xss">
+      <DependentUpon>G3SystemsDataSet.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
