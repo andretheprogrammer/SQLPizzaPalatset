@@ -101,18 +101,36 @@ namespace SQLServer
             }
         }
 
-        public async Task<IEnumerable<Order>> GetOrdersAsync()
+        public async Task<IEnumerable<Order>> GetFinishedOrdersAsync(int id)
         {
-            var sqlOrderQuery = "Select OrderID from Orders where Paid = 1 and PickedUp = 1";
             using (var connection = CreateConnection())
             {
-                return (await connection.QueryAsync<Order>(sqlOrderQuery)).ToList();
+                return (await connection.QueryAsync<Order>(
+                      sql: "Proc_RightColumnInfoScreen",
+                    param: new { @Building = id },
+               commandType: CommandType.StoredProcedure));
+            }
+        }
+
+        public async Task<IEnumerable<Order>> GetInProcessOrderssAsync(int id)
+        {
+            using (var connection = CreateConnection())
+            {
+                return (await connection.QueryAsync<Order>(
+                      sql: "Proc_LeftColumnInfoScreen",
+                    param: new { @Building = id },
+               commandType: CommandType.StoredProcedure)).ToList();
             }
         }
 
 
 
 
+        //-------------- Infoscreen
+
+
+
+        //_------------------
 
 
 

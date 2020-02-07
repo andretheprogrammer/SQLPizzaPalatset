@@ -36,9 +36,9 @@
 			this.finishedOrderPanel = new System.Windows.Forms.FlowLayoutPanel();
 			this.FinishedOrderText = new System.Windows.Forms.Label();
 			this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-			this.lstbxProcessing = new System.Windows.Forms.ListBox();
-			this.lstbxFinished = new System.Windows.Forms.ListBox();
 			this.orderBindingSource = new System.Windows.Forms.BindingSource(this.components);
+			this.lstbxFinished = new System.Windows.Forms.ListBox();
+			this.lstbxProcessing = new System.Windows.Forms.ListBox();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -146,9 +146,24 @@
 			this.splitContainer2.SplitterDistance = 400;
 			this.splitContainer2.TabIndex = 0;
 			// 
+			// orderBindingSource
+			// 
+			this.orderBindingSource.DataSource = typeof(TypeLib.Order);
+			// 
+			// lstbxFinished
+			// 
+			this.lstbxFinished.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.lstbxFinished.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lstbxFinished.FormattingEnabled = true;
+			this.lstbxFinished.ItemHeight = 31;
+			this.lstbxFinished.Location = new System.Drawing.Point(0, 0);
+			this.lstbxFinished.Name = "lstbxFinished";
+			this.lstbxFinished.Size = new System.Drawing.Size(396, 366);
+			this.lstbxFinished.TabIndex = 1;
+			this.lstbxFinished.SelectedIndexChanged += new System.EventHandler(this.lstbxFinished_SelectedIndexChanged);
+			// 
 			// lstbxProcessing
 			// 
-			this.lstbxProcessing.DataSource = this.orderBindingSource;
 			this.lstbxProcessing.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.lstbxProcessing.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lstbxProcessing.FormattingEnabled = true;
@@ -157,29 +172,6 @@
 			this.lstbxProcessing.Name = "lstbxProcessing";
 			this.lstbxProcessing.Size = new System.Drawing.Size(400, 366);
 			this.lstbxProcessing.TabIndex = 0;
-			// 
-			// lstbxFinished
-			// 
-			this.lstbxFinished.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.lstbxFinished.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lstbxFinished.FormattingEnabled = true;
-			this.lstbxFinished.ItemHeight = 31;
-			this.lstbxFinished.Items.AddRange(new object[] {
-            "22",
-            "25",
-            "26",
-            "27",
-            "31",
-            "33"});
-			this.lstbxFinished.Location = new System.Drawing.Point(0, 0);
-			this.lstbxFinished.Name = "lstbxFinished";
-			this.lstbxFinished.Size = new System.Drawing.Size(396, 366);
-			this.lstbxFinished.TabIndex = 1;
-			this.lstbxFinished.SelectedIndexChanged += new System.EventHandler(this.lstbxFinished_SelectedIndexChanged);
-			// 
-			// orderBindingSource
-			// 
-			this.orderBindingSource.DataSource = typeof(TypeLib.Order);
 			// 
 			// InfoScreen
 			// 
@@ -220,8 +212,8 @@
 		private System.Windows.Forms.FlowLayoutPanel finishedOrderPanel;
 		private System.Windows.Forms.Label FinishedOrderText;
 		private System.Windows.Forms.SplitContainer splitContainer2;
-		private System.Windows.Forms.ListBox lstbxProcessing;
 		private System.Windows.Forms.ListBox lstbxFinished;
 		private System.Windows.Forms.BindingSource orderBindingSource;
+		private System.Windows.Forms.ListBox lstbxProcessing;
 	}
 }

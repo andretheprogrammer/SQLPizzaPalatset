@@ -26,21 +26,21 @@ namespace G3Systems
 
 		}
 
-		private async void FinishedOrderTiming_Tick(object sender, EventArgs e)
-		{
-			IEnumerable<Order> orders= await _repo.GetOrdersAsync();
-			//ProcessingOrdersGrid.Clear();
-			//foreach (Order order in orders)
-			//{
-			//	ListViewItem columnInList = new ListViewItem();
-			//	columnInList.Tag = order.OrderId; //
-			//	columnInList.Text = order.OrderId.ToString();
-			//	//columnInList.SubItems.Add("second column");
-			//	ProcessingOrdersGrid.Items.Add(columnInList);
+		//private async void FinishedOrderTiming_Tick(object sender, EventArgs e)
+		//{
+		//	IEnumerable<Order> orders= await _repo.GetOrdersAsync();
+		//	ProcessingOrdersGrid.Clear();
+		//	foreach (Order order in orders)
+		//	{
+		//		ListViewItem columnInList = new ListViewItem();
+		//		columnInList.Tag = order.OrderId; //
+		//		columnInList.Text = order.OrderId.ToString();
+		//		//columnInList.SubItems.Add("second column");
+		//		ProcessingOrdersGrid.Items.Add(columnInList);
 				
-			//}
+		//	}
 			
-		}
+		//}
 
 		private void InfoScreen_Load(object sender, EventArgs e)
 		{
@@ -56,14 +56,20 @@ namespace G3Systems
 		private void InfoScreen_Load_1(object sender, EventArgs e)
 		{
 			Timer Screentimer = new Timer();
-			Screentimer.Interval = (1 * 1000); // 1 secs
+			Screentimer.Interval = (5 * 1000); // 1 secs
 			Screentimer.Tick += new EventHandler(Screen_Tick);
 			Screentimer.Start();
 		}
 
-		private void Screen_Tick(object sender, EventArgs e)
+		private async void Screen_Tick(object sender, EventArgs e)
 		{
-			//Ticklabel.Text = Ticklabel.Text + " o";
+			List<Order> InProcessOrders = (await _repo.GetInProcessOrderssAsync(1)).ToList();
+			List<Order> finishedOrders = (await _repo.GetFinishedOrdersAsync(1)).ToList();
+
+
+			InProcessOrders.ForEach(a => lstbxProcessing.Items.Add(a.OrderID));
+			finishedOrders.ForEach(a => lstbxFinished.Items.Add(a.OrderID));
+
 		}
 	}
 }
