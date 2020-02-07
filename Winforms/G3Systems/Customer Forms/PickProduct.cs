@@ -188,7 +188,7 @@ namespace G3Systems
 				return;
 			}
 
-			var product = (Product)gridViewCart.SelectedRows[0].DataBoundItem;
+			//var product = (Product)gridViewCart.SelectedRows[0].DataBoundItem;
 			gridViewIngredients.DataSource = product.Ingredients;
 		}
 
