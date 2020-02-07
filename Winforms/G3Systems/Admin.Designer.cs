@@ -485,7 +485,7 @@
             this.tabPage9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage9.Name = "tabPage9";
             this.tabPage9.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tabPage9.Size = new System.Drawing.Size(303, 383);
+            this.tabPage9.Size = new System.Drawing.Size(302, 383);
             this.tabPage9.TabIndex = 1;
             this.tabPage9.Text = "tabPage9";
             this.tabPage9.UseVisualStyleBackColor = true;
@@ -729,6 +729,7 @@
             // 
             this.bindingNavigatorPositionItem.AccessibleName = "Position";
             this.bindingNavigatorPositionItem.AutoSize = false;
+            this.bindingNavigatorPositionItem.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
             this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(65, 27);
             this.bindingNavigatorPositionItem.Text = "0";
@@ -769,7 +770,7 @@
             this.tabEditEmplTypes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabEditEmplTypes.Name = "tabEditEmplTypes";
             this.tabEditEmplTypes.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tabEditEmplTypes.Size = new System.Drawing.Size(973, 543);
+            this.tabEditEmplTypes.Size = new System.Drawing.Size(969, 540);
             this.tabEditEmplTypes.TabIndex = 1;
             this.tabEditEmplTypes.Text = "EmployeeTypes";
             this.tabEditEmplTypes.UseVisualStyleBackColor = true;
@@ -790,8 +791,8 @@
             // 
             this.splitContainer5.Panel2.Controls.Add(this.label5);
             this.splitContainer5.Panel2.Controls.Add(this.dataGridView3);
-            this.splitContainer5.Size = new System.Drawing.Size(965, 535);
-            this.splitContainer5.SplitterDistance = 464;
+            this.splitContainer5.Size = new System.Drawing.Size(961, 532);
+            this.splitContainer5.SplitterDistance = 462;
             this.splitContainer5.SplitterWidth = 5;
             this.splitContainer5.TabIndex = 0;
             // 
@@ -841,7 +842,7 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 25);
             this.tabPage4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(973, 543);
+            this.tabPage4.Size = new System.Drawing.Size(969, 540);
             this.tabPage4.TabIndex = 2;
             this.tabPage4.Text = "EmployeeType And Stations";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -871,7 +872,7 @@
             this.bindingNavigator6.MovePreviousItem = this.bindingNavigatorMovePreviousItem5;
             this.bindingNavigator6.Name = "bindingNavigator6";
             this.bindingNavigator6.PositionItem = this.bindingNavigatorPositionItem5;
-            this.bindingNavigator6.Size = new System.Drawing.Size(973, 27);
+            this.bindingNavigator6.Size = new System.Drawing.Size(969, 27);
             this.bindingNavigator6.TabIndex = 0;
             this.bindingNavigator6.Text = "bindingNavigator6";
             // 
@@ -927,6 +928,7 @@
             // 
             this.bindingNavigatorPositionItem5.AccessibleName = "Position";
             this.bindingNavigatorPositionItem5.AutoSize = false;
+            this.bindingNavigatorPositionItem5.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.bindingNavigatorPositionItem5.Name = "bindingNavigatorPositionItem5";
             this.bindingNavigatorPositionItem5.Size = new System.Drawing.Size(65, 27);
             this.bindingNavigatorPositionItem5.Text = "0";
@@ -967,7 +969,7 @@
             this.TabProducts.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TabProducts.Name = "TabProducts";
             this.TabProducts.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.TabProducts.Size = new System.Drawing.Size(988, 579);
+            this.TabProducts.Size = new System.Drawing.Size(989, 580);
             this.TabProducts.TabIndex = 1;
             this.TabProducts.Text = "Products";
             this.TabProducts.UseVisualStyleBackColor = true;
@@ -982,7 +984,7 @@
             this.tabControl4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabControl4.Name = "tabControl4";
             this.tabControl4.SelectedIndex = 0;
-            this.tabControl4.Size = new System.Drawing.Size(980, 571);
+            this.tabControl4.Size = new System.Drawing.Size(981, 572);
             this.tabControl4.TabIndex = 0;
             // 
             // tabProdTypes
@@ -991,7 +993,7 @@
             this.tabProdTypes.Location = new System.Drawing.Point(4, 25);
             this.tabProdTypes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabProdTypes.Name = "tabProdTypes";
-            this.tabProdTypes.Size = new System.Drawing.Size(972, 542);
+            this.tabProdTypes.Size = new System.Drawing.Size(973, 543);
             this.tabProdTypes.TabIndex = 2;
             this.tabProdTypes.Text = "ProductTypes";
             this.tabProdTypes.UseVisualStyleBackColor = true;
@@ -1021,7 +1023,7 @@
             this.bindingNavigator7.MovePreviousItem = this.bindingNavigatorMovePreviousItem6;
             this.bindingNavigator7.Name = "bindingNavigator7";
             this.bindingNavigator7.PositionItem = this.bindingNavigatorPositionItem6;
-            this.bindingNavigator7.Size = new System.Drawing.Size(972, 27);
+            this.bindingNavigator7.Size = new System.Drawing.Size(973, 27);
             this.bindingNavigator7.TabIndex = 0;
             this.bindingNavigator7.Text = "bindingNavigator7";
             // 
@@ -1077,6 +1079,7 @@
             // 
             this.bindingNavigatorPositionItem6.AccessibleName = "Position";
             this.bindingNavigatorPositionItem6.AutoSize = false;
+            this.bindingNavigatorPositionItem6.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.bindingNavigatorPositionItem6.Name = "bindingNavigatorPositionItem6";
             this.bindingNavigatorPositionItem6.Size = new System.Drawing.Size(65, 27);
             this.bindingNavigatorPositionItem6.Text = "0";
@@ -1203,6 +1206,7 @@
             // 
             this.bindingNavigatorPositionItem7.AccessibleName = "Position";
             this.bindingNavigatorPositionItem7.AutoSize = false;
+            this.bindingNavigatorPositionItem7.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.bindingNavigatorPositionItem7.Name = "bindingNavigatorPositionItem7";
             this.bindingNavigatorPositionItem7.Size = new System.Drawing.Size(65, 27);
             this.bindingNavigatorPositionItem7.Text = "0";
@@ -1329,6 +1333,7 @@
             // 
             this.bindingNavigatorPositionItem8.AccessibleName = "Position";
             this.bindingNavigatorPositionItem8.AutoSize = false;
+            this.bindingNavigatorPositionItem8.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.bindingNavigatorPositionItem8.Name = "bindingNavigatorPositionItem8";
             this.bindingNavigatorPositionItem8.Size = new System.Drawing.Size(65, 27);
             this.bindingNavigatorPositionItem8.Text = "0";
@@ -1369,7 +1374,7 @@
             this.tabBuildings.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabBuildings.Name = "tabBuildings";
             this.tabBuildings.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tabBuildings.Size = new System.Drawing.Size(988, 579);
+            this.tabBuildings.Size = new System.Drawing.Size(989, 580);
             this.tabBuildings.TabIndex = 4;
             this.tabBuildings.Text = "Buildings";
             this.tabBuildings.UseVisualStyleBackColor = true;
@@ -1384,7 +1389,7 @@
             this.tabControl5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabControl5.Name = "tabControl5";
             this.tabControl5.SelectedIndex = 0;
-            this.tabControl5.Size = new System.Drawing.Size(980, 571);
+            this.tabControl5.Size = new System.Drawing.Size(981, 572);
             this.tabControl5.TabIndex = 0;
             // 
             // tabPage1
@@ -1394,7 +1399,7 @@
             this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tabPage1.Size = new System.Drawing.Size(972, 542);
+            this.tabPage1.Size = new System.Drawing.Size(973, 543);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Edit Buildings";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -1424,7 +1429,7 @@
             this.bindingNavigator11.MovePreviousItem = this.bindingNavigatorMovePreviousItem10;
             this.bindingNavigator11.Name = "bindingNavigator11";
             this.bindingNavigator11.PositionItem = this.bindingNavigatorPositionItem10;
-            this.bindingNavigator11.Size = new System.Drawing.Size(964, 27);
+            this.bindingNavigator11.Size = new System.Drawing.Size(965, 27);
             this.bindingNavigator11.TabIndex = 0;
             this.bindingNavigator11.Text = "bindingNavigator11";
             // 
@@ -1480,6 +1485,7 @@
             // 
             this.bindingNavigatorPositionItem10.AccessibleName = "Position";
             this.bindingNavigatorPositionItem10.AutoSize = false;
+            this.bindingNavigatorPositionItem10.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.bindingNavigatorPositionItem10.Name = "bindingNavigatorPositionItem10";
             this.bindingNavigatorPositionItem10.Size = new System.Drawing.Size(65, 27);
             this.bindingNavigatorPositionItem10.Text = "0";
@@ -1631,6 +1637,7 @@
             // 
             this.bindingNavigatorPositionItem4.AccessibleName = "Position";
             this.bindingNavigatorPositionItem4.AutoSize = false;
+            this.bindingNavigatorPositionItem4.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.bindingNavigatorPositionItem4.Name = "bindingNavigatorPositionItem4";
             this.bindingNavigatorPositionItem4.Size = new System.Drawing.Size(65, 27);
             this.bindingNavigatorPositionItem4.Text = "0";
@@ -1768,6 +1775,7 @@
             // 
             this.bindingNavigatorPositionItem3.AccessibleName = "Position";
             this.bindingNavigatorPositionItem3.AutoSize = false;
+            this.bindingNavigatorPositionItem3.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.bindingNavigatorPositionItem3.Name = "bindingNavigatorPositionItem3";
             this.bindingNavigatorPositionItem3.Size = new System.Drawing.Size(65, 27);
             this.bindingNavigatorPositionItem3.Text = "0";
@@ -1903,6 +1911,7 @@
             // 
             this.bindingNavigatorPositionItem9.AccessibleName = "Position";
             this.bindingNavigatorPositionItem9.AutoSize = false;
+            this.bindingNavigatorPositionItem9.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.bindingNavigatorPositionItem9.Name = "bindingNavigatorPositionItem9";
             this.bindingNavigatorPositionItem9.Size = new System.Drawing.Size(65, 27);
             this.bindingNavigatorPositionItem9.Text = "0";
@@ -1942,7 +1951,7 @@
             this.tabPage7.Location = new System.Drawing.Point(4, 25);
             this.tabPage7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Size = new System.Drawing.Size(988, 579);
+            this.tabPage7.Size = new System.Drawing.Size(989, 580);
             this.tabPage7.TabIndex = 5;
             this.tabPage7.Text = "Orders";
             this.tabPage7.UseVisualStyleBackColor = true;
@@ -1955,7 +1964,7 @@
             this.tabControl7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabControl7.Name = "tabControl7";
             this.tabControl7.SelectedIndex = 0;
-            this.tabControl7.Size = new System.Drawing.Size(988, 579);
+            this.tabControl7.Size = new System.Drawing.Size(989, 580);
             this.tabControl7.TabIndex = 1;
             // 
             // tabPage10
@@ -1966,7 +1975,7 @@
             this.tabPage10.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage10.Name = "tabPage10";
             this.tabPage10.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tabPage10.Size = new System.Drawing.Size(980, 550);
+            this.tabPage10.Size = new System.Drawing.Size(981, 551);
             this.tabPage10.TabIndex = 0;
             this.tabPage10.Text = "TimeFrame";
             this.tabPage10.UseVisualStyleBackColor = true;
@@ -1980,7 +1989,7 @@
             this.tabControl8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabControl8.Name = "tabControl8";
             this.tabControl8.SelectedIndex = 0;
-            this.tabControl8.Size = new System.Drawing.Size(972, 419);
+            this.tabControl8.Size = new System.Drawing.Size(973, 420);
             this.tabControl8.TabIndex = 2;
             // 
             // tabPage11
@@ -1991,7 +2000,7 @@
             this.tabPage11.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage11.Name = "tabPage11";
             this.tabPage11.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tabPage11.Size = new System.Drawing.Size(964, 390);
+            this.tabPage11.Size = new System.Drawing.Size(965, 391);
             this.tabPage11.TabIndex = 0;
             this.tabPage11.Text = "Orders";
             this.tabPage11.UseVisualStyleBackColor = true;
@@ -2006,7 +2015,7 @@
             this.dataGridView4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dataGridView4.Name = "dataGridView4";
             this.dataGridView4.RowHeadersWidth = 51;
-            this.dataGridView4.Size = new System.Drawing.Size(956, 355);
+            this.dataGridView4.Size = new System.Drawing.Size(957, 356);
             this.dataGridView4.TabIndex = 1;
             // 
             // bindingNavigator2
@@ -2034,7 +2043,7 @@
             this.bindingNavigator2.MovePreviousItem = this.bindingNavigatorMovePreviousItem1;
             this.bindingNavigator2.Name = "bindingNavigator2";
             this.bindingNavigator2.PositionItem = this.bindingNavigatorPositionItem1;
-            this.bindingNavigator2.Size = new System.Drawing.Size(956, 27);
+            this.bindingNavigator2.Size = new System.Drawing.Size(957, 27);
             this.bindingNavigator2.TabIndex = 0;
             this.bindingNavigator2.Text = "bindingNavigator2";
             // 
@@ -2090,6 +2099,7 @@
             // 
             this.bindingNavigatorPositionItem1.AccessibleName = "Position";
             this.bindingNavigatorPositionItem1.AutoSize = false;
+            this.bindingNavigatorPositionItem1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.bindingNavigatorPositionItem1.Name = "bindingNavigatorPositionItem1";
             this.bindingNavigatorPositionItem1.Size = new System.Drawing.Size(65, 27);
             this.bindingNavigatorPositionItem1.Text = "0";
@@ -2230,6 +2240,7 @@
             // 
             this.bindingNavigatorPositionItem2.AccessibleName = "Position";
             this.bindingNavigatorPositionItem2.AutoSize = false;
+            this.bindingNavigatorPositionItem2.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.bindingNavigatorPositionItem2.Name = "bindingNavigatorPositionItem2";
             this.bindingNavigatorPositionItem2.Size = new System.Drawing.Size(65, 27);
             this.bindingNavigatorPositionItem2.Text = "0";
@@ -2279,7 +2290,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 82F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(972, 123);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(973, 123);
             this.tableLayoutPanel1.TabIndex = 1;
             this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
