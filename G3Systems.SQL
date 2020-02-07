@@ -648,7 +648,7 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 
 	--Create Order
 		GO
-		CREATE Proc [dbo].[spNewOrder]
+		CREATE Proc spNewOrder
 		(
 			@TerminalID int,
 			@Paid bit,
@@ -666,7 +666,7 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 			End
 
 		GO
-		CREATE PROC [dbo].[spInsertProductOrders]
+		CREATE PROC spInsertProductOrders
 		(
 			@OrderID int,
 			@ProductID int,
