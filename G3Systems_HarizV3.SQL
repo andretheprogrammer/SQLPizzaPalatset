@@ -48,7 +48,7 @@
 ------------------------------------------------------------------------
 
 CREATE TABLE Buildings(
-	Building INT IDENTITY(1,1) PRIMARY KEY NOT NULL, 
+	BuildingID INT IDENTITY(1,1) PRIMARY KEY NOT NULL, 
 	BuildingName VARCHAR(50) NOT NULL DEFAULT 'UNNAMED',
 	
 	Activated BIT NOT NULL DEFAULT 1,
@@ -65,9 +65,9 @@ CREATE TABLE Buildings(
 	--
 	);
 CREATE TABLE Terminals(
-	Terminal INT IDENTITY(1,1)  NOT NULL PRIMARY KEY,
+	TerminalID INT IDENTITY(1,1)  NOT NULL PRIMARY KEY,
 	TerminalName VARCHAR(50) NOT NULL DEFAULT 'UNNAMED',
-	Building INT FOREIGN KEY REFERENCES Buildings(Building),
+	BuildingID INT FOREIGN KEY REFERENCES Buildings(BuildingID),
 	Activated BIT NOT NULL DEFAULT 1,
 	Visible BIT NOT NULL DEFAULT 1,
 
@@ -83,7 +83,7 @@ CREATE TABLE Terminals(
 	);
 CREATE TABLE Infoscreens(
 	Id INT IDENTITY(1,1) NOT NULL PRIMARY KEY ,
-	Building INT FOREIGN KEY REFERENCES Buildings(Building),
+	BuildingID INT FOREIGN KEY REFERENCES Buildings(BuildingID),
 
 	Activated BIT NOT NULL DEFAULT 1,
 	Visible BIT NOT NULL DEFAULT 1,
@@ -128,7 +128,7 @@ CREATE TABLE Stations(
 	-- STATIONTYPE: references stationtype-table
 	-- INBUILDING: references building-table
 	    CONSTRAINT FK_Stations_Buildings FOREIGN KEY (InBuilding)
-    		REFERENCES Buildings(Building)
+    		REFERENCES Buildings(BuildingID)
     		ON DELETE CASCADE
     		ON UPDATE CASCADE,
 	--Extra Begränsningar nedan
@@ -648,15 +648,15 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 	GO
 
 	SET IDENTITY_INSERT Buildings ON
-		INSERT INTO Buildings (Building, BuildingNAme) VALUES (1,'TonysMainPizzaHouse');
-		INSERT INTO Buildings (Building, BuildingNAme,Activated) VALUES (2,'Tonys UnderGroundPizza',0);
+		INSERT INTO Buildings (BuildingID, BuildingNAme) VALUES (1,'TonysMainPizzaHouse');
+		INSERT INTO Buildings (BuildingID, BuildingNAme,Activated) VALUES (2,'Tonys UnderGroundPizza',0);
 	SET IDENTITY_INSERT Buildings OFF
 	GO
 
-	INSERT INTO Terminals(Building) VALUES (1);
-	INSERT INTO Terminals(Building) VALUES (1);
-	INSERT INTO Terminals(Building) VALUES (1);
-	INSERT INTO InfoScreens(Building) VALUES (1);
+	INSERT INTO Terminals(BuildingID) VALUES (1);
+	INSERT INTO Terminals(BuildingID) VALUES (1);
+	INSERT INTO Terminals(BuildingID) VALUES (1);
+	INSERT INTO InfoScreens(BuildingID) VALUES (1);
 	Go
 ------------------------------------------------------------------------
 --Stationtypes
@@ -1408,6 +1408,8 @@ GO
 	    insert into Stuffings(ProductOrder, Ingredient, Antal)
 	    values (@ProductOrderID, 2, 1);
 	End
+
+GO
 --------------------Views för InfoScreens
 	CREATE VIEW View_LeftColumnInfoScreen AS
 	SELECT OrderID
@@ -1415,18 +1417,18 @@ GO
 	WHERE  (PickedUp = 0) AND (Canceled = 0) AND (Returned = 0) AND (OrderID IN
 	                      (SELECT OrderID
 	                       FROM      dbo.ProductOrders
-	                       WHERE   (Behandlad = 0)))
-
+	                       WHERE   (Processed = 0)))
+GO
 	CREATE VIEW View_RightColumnInfoScreen
 	SELECT OrderID
 	FROM     dbo.Orders
 	WHERE  (PickedUp = 0) AND (Canceled = 0) AND (Returned = 0) AND (OrderID IN
 	                      (SELECT OrderID
 	                       FROM      dbo.ProductOrders
-	                       WHERE   (Behandlad = 1))) AND (OrderID NOT IN
+	                       WHERE   (Processed = 1))) AND (OrderID NOT IN
 	                      (SELECT OrderID
 	                       FROM      dbo.ProductOrders
-	                       WHERE   (Behandlad = 0)))
+	                       WHERE   (Processed = 0)))
 
 GO
 
@@ -1443,7 +1445,7 @@ WHERE		Orders.PickedUp =0 and
 			Orders.OrderID IN
 				(SELECT ProductOrders.OrderID
 				FROM ProductOrders 
-				WHERE ProductOrders.Behandlad = 0) 
+				WHERE ProductOrders.Processed = 0) 
 			
 			and
 			Orders.ByTerminal in 
@@ -1466,13 +1468,13 @@ WHERE		Orders.PickedUp =0 and
 			Orders.OrderID IN
 				(SELECT ProductOrders.OrderID
 				FROM ProductOrders 
-				WHERE ProductOrders.Behandlad = 1) 
+				WHERE ProductOrders.Processed = 1) 
 
 			and 
 			Orders.orderID not in
 				(	SELECT ProductOrders.OrderID
 					FROM ProductOrders 
-					WHERE ProductOrders.Behandlad = 0
+					WHERE ProductOrders.Processed = 0
 				)
 			
 			and
