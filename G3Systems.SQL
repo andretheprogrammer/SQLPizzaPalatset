@@ -1458,24 +1458,51 @@ GO
 	End
 
 ------- Views för infoscreens
-Go
-	CREATE VIEW View_LeftColumnInfoScreen AS
-	SELECT OrderID
-	FROM     dbo.Orders
-	WHERE  (PickedUp = 0) AND (Canceled = 0) AND (Returned = 0) AND (OrderID IN
-	                      (SELECT OrderID
-	                       FROM      dbo.ProductOrders
-	                       WHERE   (Processed = 0)))
+GO
+CREATE VIEW View_LeftColumnInfoScreen AS
+SELECT OrderID
+FROM Orders
+WHERE        Orders.PickedUp =0 and
+            Orders.Canceled = 0 and
+            Orders.Returned = 0 and
+            Orders.Paid = 1
 
+            and  
+            Orders.OrderID IN
+                (SELECT ProductOrders.OrderID
+                FROM ProductOrders 
+                WHERE ProductOrders.Processed = 0) 
 
-Go
-	CREATE VIEW View_RightColumnInfoScreen AS
-	SELECT OrderID
-	FROM     dbo.Orders
-	WHERE  (PickedUp = 0) AND (Canceled = 0) AND (Returned = 0) AND (OrderID IN
-	                      (SELECT OrderID
-	                       FROM      dbo.ProductOrders
-	                       WHERE   (Processed = 1))) AND (OrderID NOT IN
-	                      (SELECT OrderID
-	                       FROM      dbo.ProductOrders
-	                       WHERE   (Processed = 0)))
+            and
+            Orders.ByTerminal in 
+            (SELECT TerminalID
+            FROM Terminals
+            WHERE Terminals.BuildingID =1) --Parametrisera för att visa orders från din byggnad 
+
+GO
+CREATE VIEW View_RightColumnInfoScreen AS
+SELECT OrderID
+FROM Orders
+WHERE        Orders.PickedUp =0 and
+            Orders.Canceled = 0 and
+            Orders.Returned = 0 and
+            Orders.Paid = 1
+            
+            and  
+            Orders.OrderID IN
+                (SELECT ProductOrders.OrderID
+                FROM ProductOrders 
+                WHERE ProductOrders.Processed = 1) 
+
+            and 
+            Orders.orderID not in
+                (    SELECT ProductOrders.OrderID
+                    FROM ProductOrders 
+                    WHERE ProductOrders.Processed = 0
+                )
+            
+            and
+            Orders.ByTerminal in 
+            (SELECT TerminalID
+            FROM Terminals
+            WHERE Terminals.BuildingID =1) --Parametrisera för att visa orders från din byggnad 
