@@ -177,6 +177,7 @@
     </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\TypeLib.Ingredient.datasource" />
+    <None Include="Properties\DataSources\TypeLib.Order.datasource" />
     <None Include="Properties\DataSources\TypeLib.Product.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

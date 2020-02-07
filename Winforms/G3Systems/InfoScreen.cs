@@ -52,5 +52,18 @@ namespace G3Systems
 		{
 
 		}
+
+		private void InfoScreen_Load_1(object sender, EventArgs e)
+		{
+			Timer Screentimer = new Timer();
+			Screentimer.Interval = (1 * 1000); // 1 secs
+			Screentimer.Tick += new EventHandler(Screen_Tick);
+			Screentimer.Start();
+		}
+
+		private void Screen_Tick(object sender, EventArgs e)
+		{
+			//Ticklabel.Text = Ticklabel.Text + " o";
+		}
 	}
 }
