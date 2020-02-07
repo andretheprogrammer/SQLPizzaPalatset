@@ -192,7 +192,7 @@ CREATE TABLE EmployeeTypes(
 	-- )
 CREATE TABLE Orders(
 	OrderId INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
-	ByTerminal INT NOT NULL FOREIGN KEY REFERENCES Terminals(Terminal),
+	ByTerminal INT NOT NULL FOREIGN KEY REFERENCES Terminals(TerminalID),
 
 	Paid bit NOT NULL DEFAULT 0,
 	Canceled bit NOT NULL DEFAULT 0,
