@@ -79,7 +79,15 @@ namespace G3Systems
 		private void CustomizeBtn_Click(object sender, EventArgs e)
 		{
 			tabControlMenu.SelectedTab = tabCustomize;
-			UpdateGridViewCart();
+			gridViewCart.DataSource = cart;
+
+			//if ((gridViewCart.SelectedRows.Count <= 0) ||
+			//	!(gridViewCart.SelectedRows[0].DataBoundItem is Product))
+			//{
+			//	return;
+			//}
+
+			//var product = (Product)gridViewCart.SelectedRows[0].DataBoundItem;
 		}
 
 
@@ -112,6 +120,8 @@ namespace G3Systems
 			}
 
 			var product = (Product)gridViewCart.SelectedRows[0].DataBoundItem;
+
+			gridViewIngredients.DataSource = product.Ingredients;
 			gridViewExtraIngredients.DataSource = await _repo.GetCanHaveIngredientsAsync(product.ProductID);
 
 			UpdateGridViewCart();
@@ -157,7 +167,8 @@ namespace G3Systems
 
 		private void UpdateGridViewCart()
 		{
-			gridViewCart.DataSource = cart;
+			gridViewCart.Update();
+			gridViewCart.Refresh();
 
 			if ((gridViewCart.SelectedRows.Count <= 0) ||
 				!(gridViewCart.SelectedRows[0].DataBoundItem is Product))
@@ -166,6 +177,18 @@ namespace G3Systems
 			}
 
 			var product = (Product)gridViewCart.SelectedRows[0].DataBoundItem;
+			//gridViewIngredients.DataSource = product.Ingredients;
+			gridViewIngredients.Update();
+			gridViewIngredients.Refresh();
+			UpdateCart();
+
+			if ((gridViewCart.SelectedRows.Count <= 0) ||
+				!(gridViewCart.SelectedRows[0].DataBoundItem is Product))
+			{
+				return;
+			}
+
+			//var product = (Product)gridViewCart.SelectedRows[0].DataBoundItem;
 			gridViewIngredients.DataSource = product.Ingredients;
 		}
 
