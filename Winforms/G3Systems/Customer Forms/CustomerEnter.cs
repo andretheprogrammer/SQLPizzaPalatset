@@ -17,21 +17,16 @@ namespace G3Systems
 			InitializeComponent();
 		}
 
-		private void panel1_Paint(object sender, PaintEventArgs e)
+		private void NewOrderBtn_Click(object sender, EventArgs e)
 		{
-
+			var form = new PickProduct();
+			form.Show();
+			this.Hide();
 		}
 
-		private void label1_Click(object sender, EventArgs e)
+		private void CustomerEnter_FormClosed(object sender, FormClosedEventArgs e)
 		{
-
+			Application.Exit();
 		}
-
-		private void tabPage1_Click(object sender, EventArgs e)
-		{
-
-		}
-
-
 	}
 }

@@ -33,5 +33,26 @@ namespace G3Systems.Properties {
                 return ((string)(this["YOConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-2EGNP80\\SQLEXPRESS;Integrated Security=True")]
+        public string ConnectionString {
+            get {
+                return ((string)(this["ConnectionString"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-2EGNP80\\SQLEXPRESS;Initial Catalog=G3Systems;Integrated Secur" +
+            "ity=True")]
+        public string G3SystemsConnectionString {
+            get {
+                return ((string)(this["G3SystemsConnectionString"]));
+            }
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,46 +12,132 @@ using TypeLib;
 
 namespace SQLServer
 {
-    public class G3SystemsRepository : IDataConnection
+    public class G3SystemsRepository : IG3SystemsRepository
     {
-        // Gets connectionstring from App.config in TerminalUI
-        private readonly string _connString = ConfigurationManager.ConnectionStrings["PizzaDB"].ConnectionString;
-
-        private SqlConnection Connection;
+        private readonly string _connString;
 
         public G3SystemsRepository()
         {
-            Connection = new SqlConnection(_connString);
+            // Gets connectionstring from App.config in G3Systems
+            _connString = ConfigurationManager.ConnectionStrings["PizzaDB"].ConnectionString;
+        }
+
+        /// <summary>
+        /// Open new connection and return it for use
+        /// </summary>
+        /// <returns></returns>
+        private IDbConnection CreateConnection()
+        {
+            var conn = new SqlConnection(_connString);
+            conn.Open();
+            return conn;
         }
 
         public async Task<IEnumerable<ProductOrder>> GetProductOrdersAsync()
         {
-            return await Connection.QueryAsync<ProductOrder>("Select * from ProductOrders");
+            using (var connection = CreateConnection())
+            {
+                return await connection.QueryAsync<ProductOrder>("Select * from ProductOrders");
+            }
         }
 
+        /// <summary>
+        /// Get all products and return chosen category by matching productType with productTypeID
+        /// </summary>
+        /// <param name="productType"></param>
+        /// <returns></returns>
         public async Task<IEnumerable<Product>> GetProductsAsync(ProductType productType)
         {
-            var sqlQuery = "Select * From Products";
+            var sqlQuery = "Select * From Products Where ProductTypeID = @ProductTypeID";
 
-            if (productType != ProductType.All)
+            using (var connection = CreateConnection())
             {
-                sqlQuery += " Where ProductTypeID = @ID";
+                return await connection.QueryAsync<Product>(sqlQuery, new { @ProductTypeID = productType });
             }
-
-            return await Connection.QueryAsync<Product>(sqlQuery, new { @ID = (int)productType });
         }
 
-        public async Task<Employee> LogInAsync(string username, string password)
+        /// <summary>
+        /// Get employee by matching username and password
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        public async Task<Employee> EmployeeLoginAsync(string username, string password)
         {
+            var employee = new Employee();
+
             if (string.IsNullOrWhiteSpace(username + password))
             {
                 return null;
             }
 
-            return (await Connection.QueryAsync<Employee>(
+            using (var connection = CreateConnection())
+            {
+                employee = (await connection.QueryAsync<Employee>(
                        sql: "spVerifyLogin",
                      param: new { @Username = username, @Password = password },
                commandType: CommandType.StoredProcedure)).FirstOrDefault();
+            }
+
+            return employee;
+        }
+
+        /// <summary>
+        /// Get all employeeTypes for employee through ID
+        /// </summary>
+        /// <param name="employee"></param>
+        /// <returns></returns>
+        public async Task GetEmployeeTypesAsync(Employee employee)
+        {
+            var sqlQuery = "select EmployeeTypeID from EmployeesAreEmployeeTypes where EmployeeID = @EmployeeID";
+
+            using (var connection = CreateConnection())
+            {
+                // Gets all of the users employeeTypes
+                var types = (await connection.QueryAsync<EmployeeType>(sqlQuery, new { employee.EmployeeID })).ToList();
+
+                // Add each type to the users List<EmployeeType> Types
+                types.ForEach(t => employee.Types.Add(t));
+            }
+        }
+
+        public async Task<IEnumerable<Order>> GetOrdersAsync()
+        {
+            var sqlOrderQuery = "Select OrderID from Orders where Paid = 1 and PickedUp = 1";
+            using (var connection = CreateConnection())
+            {
+                return (await connection.QueryAsync<Order>(sqlOrderQuery)).ToList();
+            }
+        }
+
+
+
+
+
+
+
+
+        // Ingredients
+        public async Task<IEnumerable<Ingredient>> GetHaveIngredientsAsync(int id)
+        {
+            using (var connection = CreateConnection())
+            {
+                return (await connection.QueryAsync<Ingredient>(
+                       sql: "spGetProductIngredients",
+                     param: new { @ProductID = id },
+                commandType: CommandType.StoredProcedure));
+            }
+        }
+
+        public async Task<IEnumerable<Ingredient>> GetCanHaveIngredientsAsync(int id)
+        {
+            using (var connection = CreateConnection())
+            {
+                return (await connection.QueryAsync<Ingredient>(
+                       sql: "spGetProductCanHaveIngredients",
+                     param: new { @ProductID = id },
+                commandType: CommandType.StoredProcedure));
+            }
         }
     }
 }

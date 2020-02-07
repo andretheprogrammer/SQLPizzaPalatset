@@ -6,15 +6,16 @@ using System.Threading.Tasks;
 
 namespace TypeLib
 {
+    /// <summary>
+    /// ProductTypes connected by products productTypeID
+    /// </summary>
     public enum ProductType
     {
-        All,
-        Pizza,
+        Pizza = 1,
         Sallad,
         IceCream,
         FreshJuice,
         Drinks,
-        Extras,
-        Other
+        Extras
     }
 }
