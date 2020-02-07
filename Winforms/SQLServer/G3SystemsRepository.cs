@@ -18,7 +18,7 @@ namespace SQLServer
 
         public G3SystemsRepository()
         {
-            // Gets connectionstring from App.config in TerminalUI
+            // Gets connectionstring from App.config in G3Systems
             _connString = ConfigurationManager.ConnectionStrings["PizzaDB"].ConnectionString;
         }
 
@@ -41,20 +41,18 @@ namespace SQLServer
             }
         }
 
+        /// <summary>
+        /// Get all products and return chosen category by matching productType with productTypeID
+        /// </summary>
+        /// <param name="productType"></param>
+        /// <returns></returns>
         public async Task<IEnumerable<Product>> GetProductsAsync(ProductType productType)
         {
-            var sqlQuery = "Select * From Products";
+            var sqlQuery = "Select * From Products Where ProductTypeID = @ProductTypeID";
 
-            // Temporärt måste göras om
             using (var connection = CreateConnection())
             {
-                if (productType != ProductType.All)
-                {
-                    sqlQuery += " Where ProductTypeID = @ID";
-                    return (await connection.QueryAsync<Product>(sqlQuery)).Where(p => p.ProductTypeID == productType);
-                }
-
-                return (await connection.QueryAsync<Product>(sqlQuery, new { @ID = (int)productType }));
+                return await connection.QueryAsync<Product>(sqlQuery, new { @ProductTypeID = productType });
             }
         }
 
@@ -109,6 +107,36 @@ namespace SQLServer
             using (var connection = CreateConnection())
             {
                 return (await connection.QueryAsync<Order>(sqlOrderQuery)).ToList();
+            }
+        }
+
+
+
+
+
+
+
+
+        // Ingredients
+        public async Task<IEnumerable<Ingredient>> GetHaveIngredientsAsync(int id)
+        {
+            using (var connection = CreateConnection())
+            {
+                return (await connection.QueryAsync<Ingredient>(
+                       sql: "spGetProductIngredients",
+                     param: new { @ProductID = id },
+                commandType: CommandType.StoredProcedure));
+            }
+        }
+
+        public async Task<IEnumerable<Ingredient>> GetCanHaveIngredientsAsync(int id)
+        {
+            using (var connection = CreateConnection())
+            {
+                return (await connection.QueryAsync<Ingredient>(
+                       sql: "spGetProductCanHaveIngredients",
+                     param: new { @ProductID = id },
+                commandType: CommandType.StoredProcedure));
             }
         }
     }
