@@ -1544,7 +1544,8 @@ INSERT INTO ProductOrders(ProductID, OrderID,Processed) VALUES(1, 8, 0);
 
 ------- Procedures för infoscreens
 GO
-CREATE PROCEDURE Proc_LeftColumnInfoScreen AS 	--Ska fungera bra. //hariz
+CREATE PROCEDURE Proc_LeftColumnInfoScreen  @Building INT
+AS 												--Ska fungera bra. //hariz
 SELECT OrderID AS [ProcessingOrders]
 FROM Orders
 WHERE        Orders.PickedUp =0 and
@@ -1562,10 +1563,11 @@ WHERE        Orders.PickedUp =0 and
             Orders.ByTerminal in 
             (SELECT TerminalID
             FROM Terminals
-            WHERE Terminals.BuildingID =1) --Parametrisera för att visa orders från din byggnad 
+            WHERE Terminals.BuildingID = @Building) --Parametrisera för att visa orders från din byggnad 
 
 GO
-CREATE PROCEDURE Proc_RightColumnInfoScreen AS
+CREATE PROCEDURE Proc_RightColumnInfoScreen  @Building INT
+AS
 SELECT OrderID AS [Finished Orders]
 FROM Orders
 WHERE        Orders.PickedUp =0 and
@@ -1590,4 +1592,4 @@ WHERE        Orders.PickedUp =0 and
             Orders.ByTerminal in 
             (SELECT TerminalID
             FROM Terminals
-            WHERE Terminals.BuildingID =1) --Parametrisera för att visa orders från din byggnad 
+            WHERE Terminals.BuildingID = @Building) --Parametrisera för att visa orders från din byggnad 
