@@ -9,53 +9,41 @@
 
 ------------------------------------------------------------------------
 	-----KVAR ATT GÖRA------------------------------------------------------
-	-- Kolla ifall alla Entity tabeller finns
-	-- kolla ifall alla Sambands Tabeller finns
 	-- Sätt cascade överallt
 
 	---Sätt in alla Nycklar i nyckelraden
 	-- Sätt in alla referensattribut i referensattributraden, Så det blir snyggt uppdelat
 
 	-- Skapa dom viktigaste viewsen . Dvs maintabellerna (tabell+aggregatkolonner. Tex Total cash i BuildingID)
-	-- Skriv om allt till engelska
 	------------------------------------------------------------------------
 ------------------------------------------------------------------------
-----Datatyper: (Använder alltid value som nyckelord)
---------------------------------------------------------------------------
---------------------------------------------------------------------------
-	--CREATE TYPE PINT AS INT 
-		--	default 0,
-		--	CHECK(value >= 0);
-	--CREATE TYPE VARCHAR(50) NOT NULL DEFAULT 'UNNAMED' AS varchar(50)  --Slipper kopiera villkor för namn
-		--	default "Unnamed",
-		--	CHECK (value NOT NULL);
-	--CREATE TYPE BIT NOT NULL DEFAULT 1 AS bit  -- Default True
-		--	default 1,
-		--	CHECK (value NOT NULL);
-	--CREATE TYPE BIT NOT NULL DEFAULT 1FALSE AS bit  -- Default FALSE
-		--	default 0,
-		--	CHECK (value NOT NULL);
-	--CREATE TYPE PERCENT AS INT  -- Default True
-		--	default 0,
-		--	CHECK (value =< 100 AND value >=0);
-	----Potentiel inkapsling av ID-typer
-		--	--CREATE DOMAIN IDTYPE AS INT  -- Default True
-		--	--	CHECK (value NOT NULL),
-		--	--	constraint UNIQUE (value);
 
 ------------------------------------------------------------------------
 --- SQL DEFINITIONSFILE ------------------------------------------------
 ------------------------------------------------------------------------
-GO
-USE [master]
 
-GO
-Create Database G3Systems
 
-GO
-USE G3Systems
+--------------- WARNING
+-- DENNA FIL TAR BORT DATABAS SOM HETER G3Systems- 
+	USE [master]
+	GO
+	ALTER DATABASE [G3Systems] SET  SINGLE_USER WITH ROLLBACK IMMEDIATE
+	GO
+	USE [master]
+	GO
+	DROP DATABASE [G3Systems]
+	GO
+	----------- WARNING
 
-GO
+	--Skapas en helt ny Tom G3Systems Databas.
+	GO 
+	USE [master]
+	GO
+	Create Database G3Systems
+	GO
+	USE G3Systems
+	GO
+
 CREATE TABLE Buildings(
 	BuildingID INT IDENTITY(1,1) PRIMARY KEY NOT NULL, 
 	BuildingName VARCHAR(50) NOT NULL DEFAULT 'UNNAMED',
@@ -760,7 +748,7 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 
 	SET IDENTITY_INSERT Buildings ON
 		INSERT INTO Buildings (BuildingID, BuildingNAme) VALUES (1,'TonysMainPizzaHouse');
-		INSERT INTO Buildings (BuildingID, BuildingNAme,Activated) VALUES (2,'Tonys UnderGroundPizza',0);
+		INSERT INTO Buildings (BuildingID, BuildingNAme, Activated) VALUES (2,'Tonys UnderGroundPizza',0);
 	SET IDENTITY_INSERT Buildings OFF
 	GO
 
@@ -1083,7 +1071,6 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 	INSERT INTO ProductCanHaveIngredients(ProductID, IngredientID) VALUES (1,28);
 	INSERT INTO ProductCanHaveIngredients(ProductID, IngredientID) VALUES (1,34);
 	INSERT INTO ProductCanHaveIngredients(ProductID, IngredientID) VALUES (1,35);
-
 --Möjliga Ingredienser i KebabPizza 
 	INSERT INTO ProductCanHaveIngredients(ProductID, IngredientID) VALUES (2,2);
 	INSERT INTO ProductCanHaveIngredients(ProductID, IngredientID) VALUES (2,5);
@@ -1289,8 +1276,6 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 		INSERT INTO ProductHaveIngredients(ProductID, IngredientID) VALUES (11,20);
 		INSERT INTO ProductHaveIngredients(ProductID, IngredientID) VALUES (11,39);
 		INSERT INTO ProductHaveIngredients(ProductID, IngredientID) VALUES (11,44);
-		
-
 
 ---------Möjliga ingredienser Sallad
 	--Möjliga ingredienser på Kycklingsallad
@@ -1395,135 +1380,172 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 		INSERT INTO ProductHaveIngredients(ProductID, IngredientID) VALUES (11,43);
 		INSERT INTO ProductHaveIngredients(ProductID, IngredientID) VALUES (11,48);
 		INSERT INTO ProductHaveIngredients(ProductID, IngredientID) VALUES (11,49);
---Skapa order
+--Skapa Sample orders. 
 	GO
-	declare @TerminalID int;
-	declare @OrderID int;
-	declare @ProductOrderID int;
 
-	select @TerminalID = TerminalID from Terminals where TerminalID = 2;
-	Begin
-	    insert into Orders (ByTerminal, Paid)
-	    values (@TerminalID, 1);
-	    select @OrderID = SCOPE_IDENTITY();
-	End
+	--Order 1
+		declare @TerminalID int;
+		declare @OrderID int;
+		declare @ProductOrderID int;
 
-	Begin
-	    insert into ProductOrders(ProductID, OrderID)
-	    values (2, @OrderID);
-	    select @ProductOrderID = SCOPE_IDENTITY();
-	End
+		select @TerminalID = TerminalID from Terminals where TerminalID = 2;
+		Begin
+		    insert into Orders(ByTerminal, Paid) values (@TerminalID, 1);
+		    select @OrderID = SCOPE_IDENTITY();
+		End
 
-	Begin
-	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
-	    values (@ProductOrderID, 2, 1);
-	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
-	    values (@ProductOrderID, 4, 2);
-	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
-	    values (@ProductOrderID, 8, 1);
-	End
+		Begin
+		    insert into ProductOrders(ProductID, OrderID)
+		    values (2, @OrderID);
+		    select @ProductOrderID = SCOPE_IDENTITY();
+		End
 
-	Begin
-	    insert into ProductOrders(ProductID, OrderID)
-	    values (3, @OrderID);
-	    select @ProductOrderID = SCOPE_IDENTITY();
-	End
+		Begin
+		    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+		    values (@ProductOrderID, 2, 1);
+		    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+		    values (@ProductOrderID, 4, 2);
+		    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+		    values (@ProductOrderID, 8, 1);
+		End
 
-	Begin
-	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
-	    values (@ProductOrderID, 6, 3);
-	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
-	    values (@ProductOrderID, 4, 2);
-	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
-	    values (@ProductOrderID, 7, 1);
-	End
-	GO
-	declare @TerminalID int;
-	declare @OrderID int;
-	declare @ProductOrderID int;
+		Begin
+		    insert into ProductOrders(ProductID, OrderID)
+		    values (3, @OrderID);
+		    select @ProductOrderID = SCOPE_IDENTITY();
+		End
 
-	select @TerminalID = TerminalID from Terminals where TerminalID = 2;
-	Begin
-	    insert into Orders (ByTerminal, Paid)
-	    values (@TerminalID, 1);
-	    select @OrderID = SCOPE_IDENTITY();
-	End
+		Begin
+		    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+		    values (@ProductOrderID, 6, 3);
+		    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+		    values (@ProductOrderID, 4, 2);
+		    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+		    values (@ProductOrderID, 7, 1);
+		End
+		GO
 
-	Begin
-	    insert into ProductOrders(ProductID, OrderID)
-	    values (3, @OrderID);
-	    select @ProductOrderID = SCOPE_IDENTITY();
-	End
+	--Order 2
+		declare @TerminalID int;
+		declare @OrderID int;
+		declare @ProductOrderID int;
 
-	Begin
-	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
-	    values (@ProductOrderID, 3, 2);
-	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
-	    values (@ProductOrderID, 5, 2);
-	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
-	    values (@ProductOrderID, 9, 1);
-	End
+		select @TerminalID = TerminalID from Terminals where TerminalID = 2;
+		Begin
+		    insert into Orders (ByTerminal, Paid)
+		    values (@TerminalID, 1);
+		    select @OrderID = SCOPE_IDENTITY();
+		End
 
-	Begin
-	    insert into ProductOrders(ProductID, OrderID)
-	    values (3, @OrderID);
-	    select @ProductOrderID = SCOPE_IDENTITY();
-	End
+		Begin
+		    insert into ProductOrders(ProductID, OrderID)
+		    values (3, @OrderID);
+		    select @ProductOrderID = SCOPE_IDENTITY();
+		End
 
-	Begin
-	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
-	    values (@ProductOrderID, 7, 3);
-	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
-	    values (@ProductOrderID, 5, 2);
-	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
-	    values (@ProductOrderID, 6, 1);
-	End
+		Begin
+		    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+		    values (@ProductOrderID, 3, 2);
+		    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+		    values (@ProductOrderID, 5, 2);
+		    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+		    values (@ProductOrderID, 9, 1);
+		End
+
+		Begin
+		    insert into ProductOrders(ProductID, OrderID)
+		    values (3, @OrderID);
+		    select @ProductOrderID = SCOPE_IDENTITY();
+		End
+
+		Begin
+		    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+		    values (@ProductOrderID, 7, 3);
+		    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+		    values (@ProductOrderID, 5, 2);
+		    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+		    values (@ProductOrderID, 6, 1);
+		End
+		GO
+
+	--Order 3
+		declare @TerminalID int;
+		declare @OrderID int;
+		declare @ProductOrderID int;
+
+		select @TerminalID = TerminalID from Terminals where TerminalID = 2;
+		Begin
+		    insert into Orders (ByTerminal, Paid)
+		    values (@TerminalID, 0);
+		    select @OrderID = SCOPE_IDENTITY();
+		End
+
+		Begin
+		    insert into ProductOrders(ProductID, OrderID)
+		    values (2, @OrderID);
+		    select @ProductOrderID = SCOPE_IDENTITY();
+		End
+
+		Begin
+		    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+		    values (@ProductOrderID, 6, 1);
+		    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+		    values (@ProductOrderID, 7, 2);
+		    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+		    values (@ProductOrderID, 8, 1);
+		End
+
+		Begin
+		    insert into ProductOrders(ProductID, OrderID)
+		    values (3, @OrderID);
+		    select @ProductOrderID = SCOPE_IDENTITY();
+		End
+
+		Begin
+		    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+		    values (@ProductOrderID, 10, 3);
+		    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+		    values (@ProductOrderID, 3, 2);
+		    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+		    values (@ProductOrderID, 2, 1);
+		End
+
+--Sample Orders (några enklare orders utan stuffing details)
+INSERT INTO Orders(ByTerminal, Paid, Canceled, PickedUp, Returned) VALUES(2, 1, 0,1,0); -- Order4
+INSERT INTO Orders(ByTerminal, Paid, Canceled, PickedUp, Returned) VALUES(2, 0, 1,0,0); -- Order5
+INSERT INTO Orders(ByTerminal, Paid, Canceled, PickedUp, Returned) VALUES(2, 1, 0,0,1); -- Order6
+INSERT INTO Orders(ByTerminal, Paid, Canceled, PickedUp, Returned) VALUES(1, 1, 0,0,0); -- Order7
+INSERT INTO Orders(ByTerminal, Paid, Canceled, PickedUp, Returned) VALUES(1, 1, 0,0,0); -- Order8
+
+
+--OrderID4  (Paid, pickedup) (fully processed)
+INSERT INTO ProductOrders(ProductID, OrderID,Processed) VALUES(2, 4, 1);
+INSERT INTO ProductOrders(ProductID, OrderID,Processed) VALUES(2, 4, 1);
+INSERT INTO ProductOrders(ProductID, OrderID,Processed) VALUES(1, 4, 1);
+
+--OrderID5 (Canceled) (not proceessed)
+INSERT INTO ProductOrders(ProductID, OrderID,Processed) VALUES(2, 5, 0);
+INSERT INTO ProductOrders(ProductID, OrderID,Processed) VALUES(2, 5, 0);
+INSERT INTO ProductOrders(ProductID, OrderID,Processed) VALUES(2, 5, 0);
+
+--OrderID6 (Paid, returned) (fully processed)
+INSERT INTO ProductOrders(ProductID, OrderID,Processed) VALUES(2, 6, 1);
+INSERT INTO ProductOrders(ProductID, OrderID,Processed) VALUES(1, 6, 1);
+
+--Order7 (paid) (Fully Processed)
+INSERT INTO ProductOrders(ProductID, OrderID,Processed) VALUES(1, 7, 1);
+INSERT INTO ProductOrders(ProductID, OrderID,Processed) VALUES(1, 7, 1);
+INSERT INTO ProductOrders(ProductID, OrderID,Processed) VALUES(3, 7, 1);
+
+--Order8 (paid) (partially processed)
+INSERT INTO ProductOrders(ProductID, OrderID,Processed) VALUES(1, 8, 1);
+INSERT INTO ProductOrders(ProductID, OrderID,Processed) VALUES(1, 8, 0);
+
+
+------- Procedures för infoscreens
 GO
-	declare @TerminalID int;
-	declare @OrderID int;
-	declare @ProductOrderID int;
-
-	select @TerminalID = TerminalID from Terminals where TerminalID = 2;
-	Begin
-	    insert into Orders (ByTerminal, Paid)
-	    values (@TerminalID, 0);
-	    select @OrderID = SCOPE_IDENTITY();
-	End
-
-	Begin
-	    insert into ProductOrders(ProductID, OrderID)
-	    values (2, @OrderID);
-	    select @ProductOrderID = SCOPE_IDENTITY();
-	End
-
-	Begin
-	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
-	    values (@ProductOrderID, 6, 1);
-	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
-	    values (@ProductOrderID, 7, 2);
-	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
-	    values (@ProductOrderID, 8, 1);
-	End
-
-	Begin
-	    insert into ProductOrders(ProductID, OrderID)
-	    values (3, @OrderID);
-	    select @ProductOrderID = SCOPE_IDENTITY();
-	End
-
-	Begin
-	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
-	    values (@ProductOrderID, 10, 3);
-	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
-	    values (@ProductOrderID, 3, 2);
-	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
-	    values (@ProductOrderID, 2, 1);
-	End
-
-------- Views för infoscreens
-GO
-CREATE VIEW View_LeftColumnInfoScreen AS
-SELECT OrderID
+CREATE PROCEDURE Proc_LeftColumnInfoScreen AS 	--Ska fungera bra. //hariz
+SELECT OrderID AS [ProcessingOrders]
 FROM Orders
 WHERE        Orders.PickedUp =0 and
             Orders.Canceled = 0 and
@@ -1531,7 +1553,7 @@ WHERE        Orders.PickedUp =0 and
             Orders.Paid = 1
 
             and  
-            Orders.OrderID IN
+            Orders.OrderID IN 			  --är Element av 
                 (SELECT ProductOrders.OrderID
                 FROM ProductOrders 
                 WHERE ProductOrders.Processed = 0) 
@@ -1543,8 +1565,8 @@ WHERE        Orders.PickedUp =0 and
             WHERE Terminals.BuildingID =1) --Parametrisera för att visa orders från din byggnad 
 
 GO
-CREATE VIEW View_RightColumnInfoScreen AS
-SELECT OrderID
+CREATE PROCEDURE Proc_RightColumnInfoScreen AS
+SELECT OrderID AS [Finished Orders]
 FROM Orders
 WHERE        Orders.PickedUp =0 and
             Orders.Canceled = 0 and
@@ -1552,13 +1574,13 @@ WHERE        Orders.PickedUp =0 and
             Orders.Paid = 1
             
             and  
-            Orders.OrderID IN
+            Orders.OrderID IN 			--är element av
                 (SELECT ProductOrders.OrderID
                 FROM ProductOrders 
                 WHERE ProductOrders.Processed = 1) 
 
             and 
-            Orders.orderID not in
+            Orders.orderID not in 		--är inte element av
                 (    SELECT ProductOrders.OrderID
                     FROM ProductOrders 
                     WHERE ProductOrders.Processed = 0
