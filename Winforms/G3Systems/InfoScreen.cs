@@ -18,7 +18,7 @@ namespace G3Systems
 		public InfoScreen()
 		{
 			InitializeComponent();
-			_repo = new G3SystemsRepository();
+			//_repo = new G3SystemsRepository();
 		}
 
 		private void listView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -45,9 +45,9 @@ namespace G3Systems
 		private void InfoScreen_Load(object sender, EventArgs e)
 		{
 			// TODO: This line of code loads data into the 'viewDatabaseinfoscrn.View_ReadyForPickupOrders' table. You can move, or remove it, as needed.
-			this.view_ReadyForPickupOrdersTableAdapter.Fill(this.viewDatabaseinfoscrn.View_ReadyForPickupOrders);
-			// TODO: This line of code loads data into the 'viewDatabaseinfoscrn.View_InfoScreenLeftColumn' table. You can move, or remove it, as needed.
-			this.view_InfoScreenLeftColumnTableAdapter.Fill(this.viewDatabaseinfoscrn.View_InfoScreenLeftColumn);
+			//this.view_ReadyForPickupOrdersTableAdapter.Fill(this.viewDatabaseinfoscrn.View_ReadyForPickupOrders);
+			//// TODO: This line of code loads data into the 'viewDatabaseinfoscrn.View_InfoScreenLeftColumn' table. You can move, or remove it, as needed.
+			//this.view_InfoScreenLeftColumnTableAdapter.Fill(this.viewDatabaseinfoscrn.View_InfoScreenLeftColumn);
 			this.ordersTableAdapter1.Fill(this.g3SystemsDataSet.Orders);
 			this.ordersTableAdapter.Fill(this.dataSet1.Orders);
 

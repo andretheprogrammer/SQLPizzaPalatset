@@ -46,12 +46,12 @@
             this.ordersTableAdapter = new G3Systems.DataSet1TableAdapters.OrdersTableAdapter();
             this.ordersTableAdapter1 = new G3Systems.G3SystemsDataSetTableAdapters.OrdersTableAdapter();
             this.dataSet1BindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.viewDatabaseinfoscrn = new G3Systems.ViewDatabaseinfoscrn();
+            //this.viewDatabaseinfoscrn = new G3Systems.ViewDatabaseinfoscrn();
             this.viewInfoScreenLeftColumnBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.view_InfoScreenLeftColumnTableAdapter = new G3Systems.ViewDatabaseinfoscrnTableAdapters.View_InfoScreenLeftColumnTableAdapter();
+            //this.view_InfoScreenLeftColumnTableAdapter = new G3Systems.ViewDatabaseinfoscrnTableAdapters.View_InfoScreenLeftColumnTableAdapter();
             this.orderIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.viewReadyForPickupOrdersBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.view_ReadyForPickupOrdersTableAdapter = new G3Systems.ViewDatabaseinfoscrnTableAdapters.View_ReadyForPickupOrdersTableAdapter();
+            //this.view_ReadyForPickupOrdersTableAdapter = new G3Systems.ViewDatabaseinfoscrnTableAdapters.View_ReadyForPickupOrdersTableAdapter();
             this.orderIDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -75,7 +75,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ordersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1BindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.viewDatabaseinfoscrn)).BeginInit();
+            //((System.ComponentModel.ISupportInitialize)(this.viewDatabaseinfoscrn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewInfoScreenLeftColumnBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewReadyForPickupOrdersBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -259,18 +259,18 @@
             this.dataSet1BindingSource.Position = 0;
             // 
             // viewDatabaseinfoscrn
-            // 
-            this.viewDatabaseinfoscrn.DataSetName = "ViewDatabaseinfoscrn";
-            this.viewDatabaseinfoscrn.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            //// 
+            //this.viewDatabaseinfoscrn.DataSetName = "ViewDatabaseinfoscrn";
+            //this.viewDatabaseinfoscrn.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // viewInfoScreenLeftColumnBindingSource
             // 
             this.viewInfoScreenLeftColumnBindingSource.DataMember = "View_InfoScreenLeftColumn";
-            this.viewInfoScreenLeftColumnBindingSource.DataSource = this.viewDatabaseinfoscrn;
+            //this.viewInfoScreenLeftColumnBindingSource.DataSource = this.viewDatabaseinfoscrn;
             // 
             // view_InfoScreenLeftColumnTableAdapter
             // 
-            this.view_InfoScreenLeftColumnTableAdapter.ClearBeforeFill = true;
+            //this.view_InfoScreenLeftColumnTableAdapter.ClearBeforeFill = true;
             // 
             // orderIDDataGridViewTextBoxColumn
             // 
@@ -284,11 +284,11 @@
             // viewReadyForPickupOrdersBindingSource
             // 
             this.viewReadyForPickupOrdersBindingSource.DataMember = "View_ReadyForPickupOrders";
-            this.viewReadyForPickupOrdersBindingSource.DataSource = this.viewDatabaseinfoscrn;
+            //this.viewReadyForPickupOrdersBindingSource.DataSource = this.viewDatabaseinfoscrn;
             // 
             // view_ReadyForPickupOrdersTableAdapter
             // 
-            this.view_ReadyForPickupOrdersTableAdapter.ClearBeforeFill = true;
+            //this.view_ReadyForPickupOrdersTableAdapter.ClearBeforeFill = true;
             // 
             // orderIDDataGridViewTextBoxColumn1
             // 
@@ -342,7 +342,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ordersBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1BindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.viewDatabaseinfoscrn)).EndInit();
+            //((System.ComponentModel.ISupportInitialize)(this.viewDatabaseinfoscrn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewInfoScreenLeftColumnBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewReadyForPickupOrdersBindingSource)).EndInit();
             this.ResumeLayout(false);
@@ -368,12 +368,12 @@
         private System.Windows.Forms.BindingSource ordersBindingSource1;
         private G3SystemsDataSetTableAdapters.OrdersTableAdapter ordersTableAdapter1;
         private System.Windows.Forms.BindingSource dataSet1BindingSource;
-        private ViewDatabaseinfoscrn viewDatabaseinfoscrn;
+        //private ViewDatabaseinfoscrn viewDatabaseinfoscrn;
         private System.Windows.Forms.BindingSource viewInfoScreenLeftColumnBindingSource;
-        private ViewDatabaseinfoscrnTableAdapters.View_InfoScreenLeftColumnTableAdapter view_InfoScreenLeftColumnTableAdapter;
+        //private ViewDatabaseinfoscrnTableAdapters.View_InfoScreenLeftColumnTableAdapter view_InfoScreenLeftColumnTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn orderIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource viewReadyForPickupOrdersBindingSource;
-        private ViewDatabaseinfoscrnTableAdapters.View_ReadyForPickupOrdersTableAdapter view_ReadyForPickupOrdersTableAdapter;
+        //private ViewDatabaseinfoscrnTableAdapters.View_ReadyForPickupOrdersTableAdapter view_ReadyForPickupOrdersTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn orderIDDataGridViewTextBoxColumn1;
         private System.Windows.Forms.Button button1;
     }
