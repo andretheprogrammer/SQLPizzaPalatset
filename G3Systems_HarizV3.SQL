@@ -1290,7 +1290,7 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 	declare @OrderID int;
 	declare @ProductOrderID int;
 
-	select @TerminalID = Terminal from Terminals where Terminal = 2;
+	select @TerminalID = TerminalID from Terminals where TerminalID = 2;
 	Begin
 	    insert into Orders (ByTerminal, Paid)
 	    values (@TerminalID, 1);
@@ -1331,7 +1331,7 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 	declare @OrderID int;
 	declare @ProductOrderID int;
 
-	select @TerminalID = Terminal from Terminals where Terminal = 2;
+	select @TerminalID = TerminalID from Terminals where TerminalID = 2;
 	Begin
 	    insert into Orders (ByTerminal, Paid)
 	    values (@TerminalID, 1);
@@ -1372,7 +1372,7 @@ GO
 	declare @OrderID int;
 	declare @ProductOrderID int;
 
-	select @TerminalID = Terminal from Terminals where Terminal = 2;
+	select @TerminalID = TerminalID from Terminals where TerminalID = 2;
 	Begin
 	    insert into Orders (ByTerminal, Paid)
 	    values (@TerminalID, 0);
@@ -1408,27 +1408,6 @@ GO
 	    insert into Stuffings(ProductOrder, Ingredient, Antal)
 	    values (@ProductOrderID, 2, 1);
 	End
-
-GO
---------------------Views för InfoScreens
-	CREATE VIEW View_LeftColumnInfoScreen AS
-	SELECT OrderID
-	FROM     dbo.Orders
-	WHERE  (PickedUp = 0) AND (Canceled = 0) AND (Returned = 0) AND (OrderID IN
-	                      (SELECT OrderID
-	                       FROM      dbo.ProductOrders
-	                       WHERE   (Processed = 0)))
-GO
-	CREATE VIEW View_RightColumnInfoScreen
-	SELECT OrderID
-	FROM     dbo.Orders
-	WHERE  (PickedUp = 0) AND (Canceled = 0) AND (Returned = 0) AND (OrderID IN
-	                      (SELECT OrderID
-	                       FROM      dbo.ProductOrders
-	                       WHERE   (Processed = 1))) AND (OrderID NOT IN
-	                      (SELECT OrderID
-	                       FROM      dbo.ProductOrders
-	                       WHERE   (Processed = 0)))
 
 GO
 
