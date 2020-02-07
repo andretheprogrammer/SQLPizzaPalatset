@@ -658,6 +658,69 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 		end
 		go
 
+	--Create Order
+		GO
+		CREATE Proc [dbo].[spNewOrder]
+		(
+			@TerminalID int,
+			@Paid bit,
+			@OrderID int = 0 OUTPUT
+		)
+		AS
+			Begin
+				insert into Orders (ByTerminal, Paid)
+				values (@TerminalID, @Paid);
+				set @OrderID = SCOPE_IDENTITY();
+			End
+		if (@Paid = 0)
+			Begin
+				Update Orders Set Canceled = 1;
+			End
+
+		GO
+		CREATE PROC [dbo].[spInsertProductOrders]
+		(
+			@OrderID int,
+			@ProductID int,
+			@IngredientID int,
+			@Quantity int
+		)
+		AS
+		Begin
+			Begin Transaction;
+			Save Transaction MySavePoint;
+			Begin Try
+				declare @ProductOrderID int;
+
+				-- ProductOrder
+				Select @ProductOrderID = ProductOrderID From ProductOrders
+				Where @OrderID = OrderID AND @ProductID = ProductID;
+
+				if @ProductOrderID is null
+				Begin
+					insert into ProductOrders(ProductID, OrderID)
+					values (@ProductID, @OrderID);
+					select @ProductOrderID = SCOPE_IDENTITY();
+				End
+				
+				-- Stuffing
+				if @IngredientID is not null
+				Begin
+					Begin
+						insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+						values (@ProductOrderID, @IngredientID, @Quantity);
+					End
+				End
+				Commit Transaction
+			End Try
+			Begin Catch
+				IF (@@TRANCOUNT > 0)
+				Begin
+					Rollback transaction MySavePoint; -- Rollback to MySavePoint
+				End
+			End Catch
+		End
+
 	--Procedures för att läggatill (eller tabort) whatever.. (en procedure för varje entitetstyp)
 	-- Kan bli hur många som helst här...
 

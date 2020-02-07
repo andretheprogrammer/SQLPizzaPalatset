@@ -267,7 +267,7 @@ namespace G3Systems
 
 			foreach (var p in cart)
 			{
-				listBoxCart.Items.Add($"1x {p.ProductName}");
+				listBoxCart.Items.Add($"+ {p.ProductName}");
 				{ Tag = p.ProductID; };
 			}
 		}
