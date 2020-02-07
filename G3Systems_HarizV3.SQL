@@ -199,6 +199,7 @@ CREATE TABLE Orders(
 	PickedUp bit NOT NULL DEFAULT 0,
 	HappyCustomer bit NOT NULL DEFAULT 1,
 	Returned bit NOT NULL DEFAULT 0,
+	Paused bit NOT NULL DEFAULT 0,
 	Activated BIT NOT NULL DEFAULT 1, --I princip alltid 1
 	Visible BIT NOT NULL DEFAULT 1,  -- I princip alltid 1	
 
@@ -1427,4 +1428,56 @@ GO
 	                       FROM      dbo.ProductOrders
 	                       WHERE   (Behandlad = 0)))
 
+GO
 
+--------------------Views för InfoScreens
+CREATE VIEW View_LeftColumnInfoScreen AS
+SELECT OrderID
+FROM Orders
+WHERE		Orders.PickedUp =0 and
+			Orders.Canceled = 0 and
+			Orders.Returned = 0 and
+			Orders.Paid = 1
+			
+			and  
+			Orders.OrderID IN
+				(SELECT ProductOrders.OrderID
+				FROM ProductOrders 
+				WHERE ProductOrders.Behandlad = 0) 
+			
+			and
+			Orders.ByTerminal in 
+			(SELECT TerminalID
+			FROM Terminals
+			WHERE Terminals.BuildingID =1) --Parametrisera för att visa orders från din byggnad 
+
+GO
+
+
+CREATE VIEW View_RightColumnInfoScreen AS
+SELECT OrderID
+FROM Orders
+WHERE		Orders.PickedUp =0 and
+			Orders.Canceled = 0 and
+			Orders.Returned = 0 and
+			Orders.Paid = 1
+			
+			and  
+			Orders.OrderID IN
+				(SELECT ProductOrders.OrderID
+				FROM ProductOrders 
+				WHERE ProductOrders.Behandlad = 1) 
+
+			and 
+			Orders.orderID not in
+				(	SELECT ProductOrders.OrderID
+					FROM ProductOrders 
+					WHERE ProductOrders.Behandlad = 0
+				)
+			
+			and
+			Orders.ByTerminal in 
+			(SELECT TerminalID
+			FROM Terminals
+			WHERE Terminals.BuildingID =1) --Parametrisera för att visa orders från din byggnad 
+GO
