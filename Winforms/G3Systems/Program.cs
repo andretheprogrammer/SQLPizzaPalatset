@@ -18,6 +18,7 @@ namespace G3Systems
 			Application.SetCompatibleTextRenderingDefault(false);
 
 			Application.Run(new Login());
+			//Application.Run(new InfoScreen());
 		}
 	}
 }
