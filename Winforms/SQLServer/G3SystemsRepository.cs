@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.CSharp;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
@@ -115,6 +116,28 @@ namespace SQLServer
 
 
 
+
+        public async Task CreateProductOrdersAsync(object[] parameters)
+        {
+            using (var connection = CreateConnection())
+            {
+                await connection.ExecuteAsync("spInsertProductOrders", parameters, commandType: CommandType.StoredProcedure);
+            }
+        }
+
+        public async Task<int> CreateNewOrderAsync(Order order)
+        {
+            var p = new DynamicParameters();
+            p.AddDynamicParams(new { @TerminalID = order.ByTerminal, @Paid = order.Paid });
+            p.Add("OrderID", dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+            using (var connection = CreateConnection())
+            {
+                await connection.ExecuteScalarAsync("spNewOrder", p, commandType: CommandType.StoredProcedure);
+            }
+
+            return p.Get<int>("OrderID");
+        }
 
 
         // Ingredients
