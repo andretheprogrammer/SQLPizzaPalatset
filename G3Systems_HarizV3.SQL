@@ -1421,10 +1421,10 @@ GO
 	CREATE VIEW View_LeftColumnInfoScreen AS
 	SELECT OrderID
 	FROM     dbo.Orders
-	WHERE  (PickedUp = 0) AND (Canceled = 0) AND (Returned = 0) AND (OrderID IN
-	                      (SELECT OrderID
-	                       FROM      dbo.ProductOrders
-	                       WHERE   (Behandlad = 0)))
+	WHERE  (PickedUp = 0) AND (Canceled = 0) AND (Returned = 0) AND (Paid = 1) AND 
+							(OrderID IN (SELECT OrderID
+		                       FROM      dbo.ProductOrders
+		                       WHERE   (Behandlad = 0)))
 	GO
 	CREATE VIEW View_RightColumnInfoScreen
 	SELECT OrderID

@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ViewDatabaseinfoscrn" targetNamespace="http://tempuri.org/ViewDatabaseinfoscrn.xsd" xmlns:mstns="http://tempuri.org/ViewDatabaseinfoscrn.xsd" xmlns="http://tempuri.org/ViewDatabaseinfoscrn.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="G3SystemsConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="G3SystemsConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.G3Systems.Properties.Settings.GlobalReference.Default.G3SystemsConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="View_InfoScreenLeftColumnTableAdapter" GeneratorDataComponentClassName="View_InfoScreenLeftColumnTableAdapter" Name="View_InfoScreenLeftColumn" UserDataComponentName="View_InfoScreenLeftColumnTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="G3SystemsConnectionString (Settings)" DbObjectName="G3Systems.dbo.View_InfoScreenLeftColumn" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT OrderID FROM dbo.View_InfoScreenLeftColumn</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="OrderID" DataSetColumn="OrderID" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="View_ReadyForPickupOrdersTableAdapter" GeneratorDataComponentClassName="View_ReadyForPickupOrdersTableAdapter" Name="View_ReadyForPickupOrders" UserDataComponentName="View_ReadyForPickupOrdersTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="G3SystemsConnectionString (Settings)" DbObjectName="G3Systems.dbo.View_ReadyForPickupOrders" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT OrderID FROM dbo.View_ReadyForPickupOrders</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="OrderID" DataSetColumn="OrderID" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ViewDatabaseinfoscrn" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="ViewDatabaseinfoscrn" msprop:Generator_UserDSName="ViewDatabaseinfoscrn">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="View_InfoScreenLeftColumn" msprop:Generator_TableClassName="View_InfoScreenLeftColumnDataTable" msprop:Generator_TableVarName="tableView_InfoScreenLeftColumn" msprop:Generator_TablePropName="View_InfoScreenLeftColumn" msprop:Generator_RowDeletingName="View_InfoScreenLeftColumnRowDeleting" msprop:Generator_RowChangingName="View_InfoScreenLeftColumnRowChanging" msprop:Generator_RowEvHandlerName="View_InfoScreenLeftColumnRowChangeEventHandler" msprop:Generator_RowDeletedName="View_InfoScreenLeftColumnRowDeleted" msprop:Generator_UserTableName="View_InfoScreenLeftColumn" msprop:Generator_RowChangedName="View_InfoScreenLeftColumnRowChanged" msprop:Generator_RowEvArgName="View_InfoScreenLeftColumnRowChangeEvent" msprop:Generator_RowClassName="View_InfoScreenLeftColumnRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="OrderID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnOrderID" msprop:Generator_ColumnPropNameInRow="OrderID" msprop:Generator_ColumnPropNameInTable="OrderIDColumn" msprop:Generator_UserColumnName="OrderID" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="View_ReadyForPickupOrders" msprop:Generator_TableClassName="View_ReadyForPickupOrdersDataTable" msprop:Generator_TableVarName="tableView_ReadyForPickupOrders" msprop:Generator_TablePropName="View_ReadyForPickupOrders" msprop:Generator_RowDeletingName="View_ReadyForPickupOrdersRowDeleting" msprop:Generator_RowChangingName="View_ReadyForPickupOrdersRowChanging" msprop:Generator_RowEvHandlerName="View_ReadyForPickupOrdersRowChangeEventHandler" msprop:Generator_RowDeletedName="View_ReadyForPickupOrdersRowDeleted" msprop:Generator_UserTableName="View_ReadyForPickupOrders" msprop:Generator_RowChangedName="View_ReadyForPickupOrdersRowChanged" msprop:Generator_RowEvArgName="View_ReadyForPickupOrdersRowChangeEvent" msprop:Generator_RowClassName="View_ReadyForPickupOrdersRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="OrderID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnOrderID" msprop:Generator_ColumnPropNameInRow="OrderID" msprop:Generator_ColumnPropNameInTable="OrderIDColumn" msprop:Generator_UserColumnName="OrderID" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:View_InfoScreenLeftColumn" />
+      <xs:field xpath="mstns:OrderID" />
+    </xs:unique>
+    <xs:unique name="View_ReadyForPickupOrders_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:View_ReadyForPickupOrders" />
+      <xs:field xpath="mstns:OrderID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

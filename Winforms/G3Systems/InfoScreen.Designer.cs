@@ -36,17 +36,24 @@
             this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.FinishedOrderTiming = new System.Windows.Forms.Timer(this.components);
+            this.ProcessingOrderGridView = new System.Windows.Forms.DataGridView();
+            this.ordersBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.g3SystemsDataSet = new G3Systems.G3SystemsDataSet();
             this.FinishedGridView = new System.Windows.Forms.DataGridView();
             this.ordersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataSet1 = new G3Systems.DataSet1();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FinishedOrderTiming = new System.Windows.Forms.Timer(this.components);
             this.ordersTableAdapter = new G3Systems.DataSet1TableAdapters.OrdersTableAdapter();
-            this.ProcessingOrderGridView = new System.Windows.Forms.DataGridView();
-            this.g3SystemsDataSet = new G3Systems.G3SystemsDataSet();
-            this.ordersBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.ordersTableAdapter1 = new G3Systems.G3SystemsDataSetTableAdapters.OrdersTableAdapter();
+            this.dataSet1BindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.viewDatabaseinfoscrn = new G3Systems.ViewDatabaseinfoscrn();
+            this.viewInfoScreenLeftColumnBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.view_InfoScreenLeftColumnTableAdapter = new G3Systems.ViewDatabaseinfoscrnTableAdapters.View_InfoScreenLeftColumnTableAdapter();
             this.orderIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.viewReadyForPickupOrdersBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.view_ReadyForPickupOrdersTableAdapter = new G3Systems.ViewDatabaseinfoscrnTableAdapters.View_ReadyForPickupOrdersTableAdapter();
+            this.orderIDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -61,19 +68,23 @@
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ProcessingOrderGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ordersBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.g3SystemsDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FinishedGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ordersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ProcessingOrderGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.g3SystemsDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ordersBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSet1BindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.viewDatabaseinfoscrn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.viewInfoScreenLeftColumnBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.viewReadyForPickupOrdersBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -93,7 +104,7 @@
             // 
             this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer3.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.splitContainer3.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainer3.Name = "splitContainer3";
             // 
             // splitContainer3.Panel1
@@ -113,7 +124,7 @@
             this.flowLayoutPanel3.Controls.Add(this.label1);
             this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel3.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.flowLayoutPanel3.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
             this.flowLayoutPanel3.Size = new System.Drawing.Size(533, 99);
             this.flowLayoutPanel3.TabIndex = 0;
@@ -134,7 +145,7 @@
             this.flowLayoutPanel4.Controls.Add(this.label2);
             this.flowLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel4.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.flowLayoutPanel4.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel4.Name = "flowLayoutPanel4";
             this.flowLayoutPanel4.Size = new System.Drawing.Size(529, 99);
             this.flowLayoutPanel4.TabIndex = 0;
@@ -154,11 +165,12 @@
             // 
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer2.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.splitContainer2.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainer2.Name = "splitContainer2";
             // 
             // splitContainer2.Panel1
             // 
+            this.splitContainer2.Panel1.Controls.Add(this.button1);
             this.splitContainer2.Panel1.Controls.Add(this.ProcessingOrderGridView);
             // 
             // splitContainer2.Panel2
@@ -169,11 +181,33 @@
             this.splitContainer2.SplitterWidth = 5;
             this.splitContainer2.TabIndex = 0;
             // 
-            // FinishedOrderTiming
+            // ProcessingOrderGridView
             // 
-            this.FinishedOrderTiming.Enabled = true;
-            this.FinishedOrderTiming.Interval = 5000;
-            this.FinishedOrderTiming.Tick += new System.EventHandler(this.FinishedOrderTiming_Tick);
+            this.ProcessingOrderGridView.AllowUserToAddRows = false;
+            this.ProcessingOrderGridView.AllowUserToDeleteRows = false;
+            this.ProcessingOrderGridView.AutoGenerateColumns = false;
+            this.ProcessingOrderGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ProcessingOrderGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.orderIDDataGridViewTextBoxColumn});
+            this.ProcessingOrderGridView.DataSource = this.viewInfoScreenLeftColumnBindingSource;
+            this.ProcessingOrderGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ProcessingOrderGridView.Location = new System.Drawing.Point(0, 0);
+            this.ProcessingOrderGridView.Name = "ProcessingOrderGridView";
+            this.ProcessingOrderGridView.ReadOnly = true;
+            this.ProcessingOrderGridView.RowHeadersWidth = 51;
+            this.ProcessingOrderGridView.RowTemplate.Height = 24;
+            this.ProcessingOrderGridView.Size = new System.Drawing.Size(534, 450);
+            this.ProcessingOrderGridView.TabIndex = 0;
+            // 
+            // ordersBindingSource1
+            // 
+            this.ordersBindingSource1.DataMember = "Orders";
+            this.ordersBindingSource1.DataSource = this.g3SystemsDataSet;
+            // 
+            // g3SystemsDataSet
+            // 
+            this.g3SystemsDataSet.DataSetName = "G3SystemsDataSet";
+            this.g3SystemsDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // FinishedGridView
             // 
@@ -183,8 +217,8 @@
             this.FinishedGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.FinishedGridView.ColumnHeadersVisible = false;
             this.FinishedGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1});
-            this.FinishedGridView.DataSource = this.ordersBindingSource;
+            this.orderIDDataGridViewTextBoxColumn1});
+            this.FinishedGridView.DataSource = this.viewReadyForPickupOrdersBindingSource;
             this.FinishedGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.FinishedGridView.Location = new System.Drawing.Point(0, 0);
             this.FinishedGridView.Name = "FinishedGridView";
@@ -205,59 +239,75 @@
             this.dataSet1.DataSetName = "DataSet1";
             this.dataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // dataGridViewTextBoxColumn1
+            // FinishedOrderTiming
             // 
-            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "OrderId";
-            this.dataGridViewTextBoxColumn1.HeaderText = "OrderId";
-            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.FinishedOrderTiming.Enabled = true;
+            this.FinishedOrderTiming.Interval = 5000;
+            this.FinishedOrderTiming.Tick += new System.EventHandler(this.FinishedOrderTiming_Tick);
             // 
             // ordersTableAdapter
             // 
             this.ordersTableAdapter.ClearBeforeFill = true;
             // 
-            // ProcessingOrderGridView
-            // 
-            this.ProcessingOrderGridView.AllowUserToAddRows = false;
-            this.ProcessingOrderGridView.AllowUserToDeleteRows = false;
-            this.ProcessingOrderGridView.AutoGenerateColumns = false;
-            this.ProcessingOrderGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ProcessingOrderGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.orderIDDataGridViewTextBoxColumn});
-            this.ProcessingOrderGridView.DataSource = this.ordersBindingSource1;
-            this.ProcessingOrderGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ProcessingOrderGridView.Location = new System.Drawing.Point(0, 0);
-            this.ProcessingOrderGridView.Name = "ProcessingOrderGridView";
-            this.ProcessingOrderGridView.ReadOnly = true;
-            this.ProcessingOrderGridView.RowHeadersWidth = 51;
-            this.ProcessingOrderGridView.RowTemplate.Height = 24;
-            this.ProcessingOrderGridView.Size = new System.Drawing.Size(534, 450);
-            this.ProcessingOrderGridView.TabIndex = 0;
-            // 
-            // g3SystemsDataSet
-            // 
-            this.g3SystemsDataSet.DataSetName = "G3SystemsDataSet";
-            this.g3SystemsDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // ordersBindingSource1
-            // 
-            this.ordersBindingSource1.DataMember = "Orders";
-            this.ordersBindingSource1.DataSource = this.g3SystemsDataSet;
-            // 
             // ordersTableAdapter1
             // 
             this.ordersTableAdapter1.ClearBeforeFill = true;
             // 
+            // dataSet1BindingSource
+            // 
+            this.dataSet1BindingSource.DataSource = this.dataSet1;
+            this.dataSet1BindingSource.Position = 0;
+            // 
+            // viewDatabaseinfoscrn
+            // 
+            this.viewDatabaseinfoscrn.DataSetName = "ViewDatabaseinfoscrn";
+            this.viewDatabaseinfoscrn.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // viewInfoScreenLeftColumnBindingSource
+            // 
+            this.viewInfoScreenLeftColumnBindingSource.DataMember = "View_InfoScreenLeftColumn";
+            this.viewInfoScreenLeftColumnBindingSource.DataSource = this.viewDatabaseinfoscrn;
+            // 
+            // view_InfoScreenLeftColumnTableAdapter
+            // 
+            this.view_InfoScreenLeftColumnTableAdapter.ClearBeforeFill = true;
+            // 
             // orderIDDataGridViewTextBoxColumn
             // 
-            this.orderIDDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.orderIDDataGridViewTextBoxColumn.DataPropertyName = "OrderID";
             this.orderIDDataGridViewTextBoxColumn.HeaderText = "OrderID";
             this.orderIDDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.orderIDDataGridViewTextBoxColumn.Name = "orderIDDataGridViewTextBoxColumn";
             this.orderIDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.orderIDDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // viewReadyForPickupOrdersBindingSource
+            // 
+            this.viewReadyForPickupOrdersBindingSource.DataMember = "View_ReadyForPickupOrders";
+            this.viewReadyForPickupOrdersBindingSource.DataSource = this.viewDatabaseinfoscrn;
+            // 
+            // view_ReadyForPickupOrdersTableAdapter
+            // 
+            this.view_ReadyForPickupOrdersTableAdapter.ClearBeforeFill = true;
+            // 
+            // orderIDDataGridViewTextBoxColumn1
+            // 
+            this.orderIDDataGridViewTextBoxColumn1.DataPropertyName = "OrderID";
+            this.orderIDDataGridViewTextBoxColumn1.HeaderText = "OrderID";
+            this.orderIDDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.orderIDDataGridViewTextBoxColumn1.Name = "orderIDDataGridViewTextBoxColumn1";
+            this.orderIDDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.orderIDDataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(153, 93);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // InfoScreen
             // 
@@ -265,7 +315,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 554);
             this.Controls.Add(this.splitContainer1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "InfoScreen";
             this.Text = "InfoScreen";
             this.Load += new System.EventHandler(this.InfoScreen_Load);
@@ -285,12 +335,16 @@
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ProcessingOrderGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ordersBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.g3SystemsDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.FinishedGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ordersBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ProcessingOrderGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.g3SystemsDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ordersBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSet1BindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.viewDatabaseinfoscrn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.viewInfoScreenLeftColumnBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.viewReadyForPickupOrdersBindingSource)).EndInit();
             this.ResumeLayout(false);
 
 		}
@@ -309,11 +363,18 @@
         private System.Windows.Forms.BindingSource ordersBindingSource;
         private DataSet1TableAdapters.OrdersTableAdapter ordersTableAdapter;
         private System.Windows.Forms.DataGridView FinishedGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridView ProcessingOrderGridView;
         private G3SystemsDataSet g3SystemsDataSet;
         private System.Windows.Forms.BindingSource ordersBindingSource1;
         private G3SystemsDataSetTableAdapters.OrdersTableAdapter ordersTableAdapter1;
+        private System.Windows.Forms.BindingSource dataSet1BindingSource;
+        private ViewDatabaseinfoscrn viewDatabaseinfoscrn;
+        private System.Windows.Forms.BindingSource viewInfoScreenLeftColumnBindingSource;
+        private ViewDatabaseinfoscrnTableAdapters.View_InfoScreenLeftColumnTableAdapter view_InfoScreenLeftColumnTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn orderIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource viewReadyForPickupOrdersBindingSource;
+        private ViewDatabaseinfoscrnTableAdapters.View_ReadyForPickupOrdersTableAdapter view_ReadyForPickupOrdersTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn orderIDDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.Button button1;
     }
 }
