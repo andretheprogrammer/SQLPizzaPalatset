@@ -16,13 +16,19 @@ namespace G3Systems
 	{
 		private readonly IG3SystemsRepository _repo;
 		private readonly List<Product> cart;
+		private readonly Order order;
 
-		public PickProduct()
+		#region Form Load/Close
+		public PickProduct(int terminalID)
 		{
 			InitializeComponent();
 			_repo = new G3SystemsRepository();
 			cart = new List<Product>();
+			order = new Order() { ByTerminal = terminalID, Paid = false };
 		}
+
+		// Get cart sorted by producttype
+		private List<Product> GetCart() => cart.OrderBy(p => p.ProductTypeID).ToList();
 
 		private void PickProduct_Load(object sender, EventArgs e)
 		{
@@ -44,18 +50,47 @@ namespace G3Systems
 		{
 			Application.Exit();
 		}
+		#endregion
 
+		#region NavigationButtons
 		private void FinishOrderBtn_Click(object sender, EventArgs e)
 		{
+			// Go to finish order tab
 			tabControlMenu.SelectedTab = tabPayment;
+
+			if (gridViewFinishCart.DataSource != null)
+			{
+				gridViewFinishCart.DataSource = null;
+			}
+
+			// Load cart
+			gridViewFinishCart.DataSource = GetCart();
+			lblTotalPrice.Text = $"Totalt pris: {cart.Sum(p => p.BasePrice)}";
 		}
 
+		// Return to start tab
 		private void ReturnBtn_Click(object sender, EventArgs e)
 		{
 			tabControlMenu.SelectedTab = tabProducts;
 		}
+		#endregion
 
-		// Tab 1 - Products
+		#region Tab 1 - Products tab
+		private void CustomizeBtn_Click(object sender, EventArgs e)
+		{
+			// Go to tab 2 customize product ingredients
+			tabControlMenu.SelectedTab = tabCustomize;
+
+			if (gridViewCart.DataSource != null)
+			{
+				gridViewCart.DataSource = null;
+			}
+
+			// Load cart
+			gridViewCart.DataSource = GetCart();
+		}
+
+		// Add selected product to cart
 		private async void AddProductBtn_Click(object sender, EventArgs e)
 		{
 			if ((gridViewProducts.SelectedRows.Count <= 0) ||
@@ -76,21 +111,7 @@ namespace G3Systems
 			UpdateCart();
 		}
 
-		private void CustomizeBtn_Click(object sender, EventArgs e)
-		{
-			tabControlMenu.SelectedTab = tabCustomize;
-			gridViewCart.DataSource = cart;
-
-			//if ((gridViewCart.SelectedRows.Count <= 0) ||
-			//	!(gridViewCart.SelectedRows[0].DataBoundItem is Product))
-			//{
-			//	return;
-			//}
-
-			//var product = (Product)gridViewCart.SelectedRows[0].DataBoundItem;
-		}
-
-
+		// Bottom cart
 		private async void ListBoxProductTypes_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			if (listBoxProductTypes.SelectedItem == null)
@@ -109,8 +130,9 @@ namespace G3Systems
 				Application.Exit();
 			}
 		}
+		#endregion
 
-		// Tab 2 - Customize
+		#region Tab 2 - Customize
 		private async void GridViewCart_SelectionChanged(object sender, EventArgs e)
 		{
 			if ((gridViewCart.SelectedRows.Count <= 0) ||
@@ -123,8 +145,6 @@ namespace G3Systems
 
 			gridViewIngredients.DataSource = product.Ingredients;
 			gridViewExtraIngredients.DataSource = await _repo.GetCanHaveIngredientsAsync(product.ProductID);
-
-			UpdateGridViewCart();
 		}
 
 		private void AddIngredientBtn_Click(object sender, EventArgs e)
@@ -139,12 +159,12 @@ namespace G3Systems
 			var product = cart.Where(p => p.ProductID == selectedProduct.ProductID).FirstOrDefault();
 			var ingredient = (Ingredient)gridViewExtraIngredients.SelectedRows[0].DataBoundItem;
 
-			AddIngredient(product, ingredient);
+			ValidateAddIngredient(product, ingredient);
 
-			UpdateGridViewCart();
+			UpdateIngredientGridView();
 		}
 
-		private void AddIngredient(Product product, Ingredient ingredient)
+		private void ValidateAddIngredient(Product product, Ingredient ingredient)
 		{
 			if (!product.Ingredients.Any(i => i.IngredientID == ingredient.IngredientID))
 			{
@@ -165,10 +185,9 @@ namespace G3Systems
 			}
 		}
 
-		private void UpdateGridViewCart()
+		private void UpdateIngredientGridView()
 		{
-			gridViewCart.Update();
-			gridViewCart.Refresh();
+			gridViewIngredients.DataSource = null;
 
 			if ((gridViewCart.SelectedRows.Count <= 0) ||
 				!(gridViewCart.SelectedRows[0].DataBoundItem is Product))
@@ -177,20 +196,70 @@ namespace G3Systems
 			}
 
 			var product = (Product)gridViewCart.SelectedRows[0].DataBoundItem;
-			//gridViewIngredients.DataSource = product.Ingredients;
-			gridViewIngredients.Update();
-			gridViewIngredients.Refresh();
-			UpdateCart();
+			gridViewIngredients.DataSource = product.Ingredients;
 
-			if ((gridViewCart.SelectedRows.Count <= 0) ||
-				!(gridViewCart.SelectedRows[0].DataBoundItem is Product))
+			UpdateCart();
+		}
+		#endregion
+
+		private async void ConfirmBtn_Click(object sender, EventArgs e)
+		{
+			DialogResult dialogResult = MessageBox.Show("Betala", "Slutföra", MessageBoxButtons.YesNo);
+			if (dialogResult == DialogResult.Yes)
+			{
+				order.Paid = true;
+			}
+
+			order.OrderID = (await _repo.CreateNewOrderAsync(order));
+
+			if (!order.Paid)
 			{
 				return;
 			}
 
-			//var product = (Product)gridViewCart.SelectedRows[0].DataBoundItem;
-			gridViewIngredients.DataSource = product.Ingredients;
+			await _repo.CreateProductOrdersAsync(GetInsertParameters(order));
+
+			cart.Clear();
+			gridViewCart.DataSource = null;
+			UpdateIngredientGridView();
+			UpdateCart();
+			tabControlMenu.SelectedTab = tabQueue;
+			labelQueue.Text = order.OrderID.ToString();
 		}
+
+		private object[] GetInsertParameters(Order order)
+		{
+			var parameterList = new List<object>();
+
+			foreach (var product in cart)
+			{
+				if (product.Ingredients == null)
+				{
+					parameterList.Add(InsertParameters(order, product));
+				}
+
+				foreach (var ingredient in product.Ingredients)
+				{
+					parameterList.Add(InsertParameters(order, product, ingredient));
+				}
+			}
+
+			return parameterList.ToArray();
+		}
+
+		private object InsertParameters(Order order, Product product, Ingredient ingredient) => new
+		{
+			@OrderID = order.OrderID,
+			@ProductID = product.ProductID,
+			@IngredientID = ingredient.IngredientID,
+			@Quantity = ingredient.Quantity,
+		};
+
+		private object InsertParameters(Order order, Product product) => new
+		{
+			@OrderID = order.OrderID,
+			@ProductID = product.ProductID,
+		};
 
 		private void UpdateCart()
 		{
