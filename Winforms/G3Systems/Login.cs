@@ -79,7 +79,17 @@ namespace G3Systems
 				var form = new Cashier();
 				form.Show();
 			}
-			else if (selected >= 3 && selected < 6)
+			else if (selected == 2)
+			{
+				var form = new Baker();
+				form.Show();
+			}
+			else if (selected == 3)
+			{
+				var form = new InfoScreen();
+				form.Show();
+			}
+			else if (selected >= 4 && selected < 6)
 			{
 				var form = new CustomerEnter();
 				form.Show();
