@@ -56,6 +56,7 @@ namespace SQLServer
                 return await connection.QueryAsync<Product>(sqlQuery, new { ProductTypeID = productType });
             }
         }
+        
 
         /// <summary>
         /// Get employee by matching username and password
@@ -102,20 +103,31 @@ namespace SQLServer
             }
         }
 
-        public async Task<IEnumerable<Order>> GetOrdersAsync()
+
+
+        //-------------- Infoscreen
+        public async Task<IEnumerable<Order>> GetFinishedOrdersAsync(int id)
         {
-            var sqlOrderQuery = "Select OrderID from Orders where Paid = 1 and PickedUp = 1";
             using (var connection = CreateConnection())
             {
-                return (await connection.QueryAsync<Order>(sqlOrderQuery)).ToList();
+                return (await connection.QueryAsync<Order>(
+                      sql: "Proc_RightColumnInfoScreen",
+                    param: new { @Building = id },
+               commandType: CommandType.StoredProcedure));
             }
         }
 
-
-
-
-
-
+        public async Task<IEnumerable<Order>> GetInProcessOrderssAsync(int id)
+        {
+            using (var connection = CreateConnection())
+            {
+                return (await connection.QueryAsync<Order>(
+                      sql: "Proc_LeftColumnInfoScreen",
+                    param: new { @Building = id },
+               commandType: CommandType.StoredProcedure)).ToList();
+            }
+        }
+        //_------------------
 
         public async Task CreateProductOrdersAsync(object[] parameters)
         {
@@ -124,6 +136,7 @@ namespace SQLServer
                 await connection.ExecuteAsync("spInsertProductOrders", parameters, commandType: CommandType.StoredProcedure);
             }
         }
+        
 
         public async Task<int> CreateNewOrderAsync(Order order)
         {
@@ -162,5 +175,27 @@ namespace SQLServer
                 commandType: CommandType.StoredProcedure));
             }
         }
+
+        //Cashier  - Hariz
+        //Sätter picked up på en order.
+        public async Task SetOrderPickedUpToAsync(int id, bool pickbit)
+        {
+            //Konvertera bool till en int
+            int bit_from_bool;
+            if (pickbit == true) bit_from_bool = 1;
+            else bit_from_bool = 0;
+
+            using (var connection = CreateConnection())
+            {
+                 await connection.QueryAsync<Order>(
+                       sql: "SetPickedUp",
+                     param: new { @OrderID = id, @PickedUp = bit_from_bool },
+                commandType: CommandType.StoredProcedure);
+            }
+
+            //Return signal of successs?
+        }
+
+
     }
 }

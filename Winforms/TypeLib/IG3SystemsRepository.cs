@@ -19,15 +19,16 @@ namespace TypeLib
         Task<Employee> EmployeeLoginAsync(string username, string password);
 
         Task GetEmployeeTypesAsync(Employee employee);
+        
+        // InfoScreen
+        Task<IEnumerable<Order>> GetFinishedOrdersAsync(int id);
+        Task<IEnumerable<Order>> GetInProcessOrderssAsync(int id);
 
-        // Orders
-        Task<IEnumerable<Order>> GetOrdersAsync();
+        //Cashier
+        Task SetOrderPickedUpToAsync(int id, bool pickbit);
 
 
-
-
-
-
+        //// ???????
         Task<int> CreateNewOrderAsync(Order order);
 
         Task CreateProductOrdersAsync(object[] parameters);

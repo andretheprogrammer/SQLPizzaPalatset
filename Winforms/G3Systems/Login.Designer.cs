@@ -124,10 +124,10 @@
             this.cbConnectTo.Items.AddRange(new object[] {
             "Administrator",
             "Cashier",
-            "Pizza Station 1",
+            "FoodStation",
+            "InfoScreen",
             "Terminal1",
-            "Terminal2",
-            "Terminal3"});
+            "Terminal2"});
             this.cbConnectTo.Location = new System.Drawing.Point(85, 308);
             this.cbConnectTo.Name = "cbConnectTo";
             this.cbConnectTo.Size = new System.Drawing.Size(156, 21);
