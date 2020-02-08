@@ -24,6 +24,11 @@ namespace TypeLib
         Task<IEnumerable<Order>> GetFinishedOrdersAsync(int id);
         Task<IEnumerable<Order>> GetInProcessOrderssAsync(int id);
 
+        //Cashier
+        Task SetOrderPickedUpToAsync(int id, bool pickbit);
+
+
+        //// ???????
         Task<int> CreateNewOrderAsync(Order order);
 
         Task CreateProductOrdersAsync(object[] parameters);
