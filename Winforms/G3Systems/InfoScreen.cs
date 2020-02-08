@@ -56,7 +56,7 @@ namespace G3Systems
 		private void InfoScreen_Load_1(object sender, EventArgs e)
 		{
 			Timer Screentimer = new Timer();
-			Screentimer.Interval = (5 * 1000); // 1 secs
+			Screentimer.Interval = (1 * 1000); // 1 secs
 			Screentimer.Tick += new EventHandler(Screen_Tick);
 			Screentimer.Start();
 		}
@@ -66,9 +66,8 @@ namespace G3Systems
 			List<Order> InProcessOrders = (await _repo.GetInProcessOrderssAsync(1)).ToList();
 			List<Order> finishedOrders = (await _repo.GetFinishedOrdersAsync(1)).ToList();
 
-
-			InProcessOrders.ForEach(a => lstbxProcessing.Items.Add(a.OrderID));
-			finishedOrders.ForEach(a => lstbxFinished.Items.Add(a.OrderID));
+			//InProcessOrders.ForEach(a => lstbxProcessing.Items.Add(a.OrderID));
+			//finishedOrders.ForEach(a => lstbxFinished.Items.Add(a.OrderID));
 
 		}
 	}
