@@ -350,7 +350,7 @@ CREATE TABLE ProductOrders
 	OrderID INT NOT NULL, 											--FK
 	LockedByStation Int,    --FK
 	
-	Processed BIT DEFAULT 1, 
+	Processed BIT DEFAULT 0 NOT NULL, 
 
 	Activated BIT NOT NULL DEFAULT 1,
 	Visible BIT NOT NULL DEFAULT 1,
@@ -1546,7 +1546,7 @@ INSERT INTO ProductOrders(ProductID, OrderID,Processed) VALUES(1, 8, 0);
 GO
 CREATE PROCEDURE Proc_LeftColumnInfoScreen  @Building INT
 AS 												--Ska fungera bra. //hariz
-SELECT OrderID AS [ProcessingOrders]
+SELECT OrderID 
 FROM Orders
 WHERE        Orders.PickedUp =0 and
             Orders.Canceled = 0 and
@@ -1568,7 +1568,7 @@ WHERE        Orders.PickedUp =0 and
 GO
 CREATE PROCEDURE Proc_RightColumnInfoScreen  @Building INT
 AS
-SELECT OrderID AS [Finished Orders]
+SELECT OrderID
 FROM Orders
 WHERE        Orders.PickedUp =0 and
             Orders.Canceled = 0 and

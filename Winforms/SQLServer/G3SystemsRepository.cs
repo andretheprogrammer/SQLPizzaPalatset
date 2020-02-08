@@ -56,6 +56,7 @@ namespace SQLServer
                 return await connection.QueryAsync<Product>(sqlQuery, new { @ProductTypeID = productType });
             }
         }
+        
 
         /// <summary>
         /// Get employee by matching username and password
@@ -102,6 +103,9 @@ namespace SQLServer
             }
         }
 
+
+
+        //-------------- Infoscreen
         public async Task<IEnumerable<Order>> GetFinishedOrdersAsync(int id)
         {
             using (var connection = CreateConnection())
@@ -123,17 +127,7 @@ namespace SQLServer
                commandType: CommandType.StoredProcedure)).ToList();
             }
         }
-
-
-
-
-        //-------------- Infoscreen
-
-
-
         //_------------------
-
-
 
         public async Task CreateProductOrdersAsync(object[] parameters)
         {
@@ -142,12 +136,15 @@ namespace SQLServer
                 await connection.ExecuteAsync("spInsertProductOrders", parameters, commandType: CommandType.StoredProcedure);
             }
         }
+        
 
         public async Task<int> CreateNewOrderAsync(Order order)
         {
             var p = new DynamicParameters();
             p.AddDynamicParams(new { @TerminalID = order.ByTerminal, @Paid = order.Paid });
-            p.Add("OrderID", dbType: DbType.Int32, direction: ParameterDirection.Output);
+            p.Add("OrderID", 
+                    dbType: DbType.Int32, 
+                    direction: ParameterDirection.Output);
 
             using (var connection = CreateConnection())
             {

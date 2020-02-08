@@ -23,11 +23,14 @@ namespace G3Systems
 			var form = new PickProduct(rnd.Next(1, 4));
 			form.Show();
 			this.Hide();
+
+
 		}
 
 		private void CustomerEnter_FormClosed(object sender, FormClosedEventArgs e)
 		{
 			Application.Exit();
+			
 		}
 	}
 }

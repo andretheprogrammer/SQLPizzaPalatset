@@ -56,19 +56,29 @@ namespace G3Systems
 		private void InfoScreen_Load_1(object sender, EventArgs e)
 		{
 			Timer Screentimer = new Timer();
-			Screentimer.Interval = (1 * 1000); // 1 secs
+			Screentimer.Interval = (2 * 1000); // 1 secs
 			Screentimer.Tick += new EventHandler(Screen_Tick);
 			Screentimer.Start();
 		}
 
 		private async void Screen_Tick(object sender, EventArgs e)
 		{
+			lstbxFinished.Items.Clear();
+			lstbxProcessing.Items.Clear();
+
 			List<Order> InProcessOrders = (await _repo.GetInProcessOrderssAsync(1)).ToList();
 			List<Order> finishedOrders = (await _repo.GetFinishedOrdersAsync(1)).ToList();
 
-			//InProcessOrders.ForEach(a => lstbxProcessing.Items.Add(a.OrderID));
-			//finishedOrders.ForEach(a => lstbxFinished.Items.Add(a.OrderID));
+			InProcessOrders.ForEach(a => lstbxProcessing.Items.Add(a.OrderID));
+			finishedOrders.ForEach(a => lstbxFinished.Items.Add(a.OrderID));
 
+
+		}
+
+		private void button000_click(object sender, EventArgs e)
+		{
+			var Form0 = new CustomerEnter();
+			Form0.ShowDialog();
 		}
 	}
 }
