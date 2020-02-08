@@ -215,18 +215,6 @@ namespace G3Systems
 
 		private async void ConfirmBtn_Click(object sender, EventArgs e)
 		{
-			DialogResult dialogResult = MessageBox.Show("Betala", "Slutföra", MessageBoxButtons.YesNo);
-			if (dialogResult == DialogResult.Yes)
-			{
-				order.Paid = true;
-			}
-
-			
-			if (!order.Paid)
-			{
-				return;
-			}
-
 			await _repo.CreateProductOrdersAsync(GetInsertParameters(order));
 
 			cart.Clear();
@@ -235,6 +223,17 @@ namespace G3Systems
 			UpdateCart();
 			tabControlMenu.SelectedTab = tabQueue;
 			labelQueue.Text = order.OrderID.ToString();
+
+			// Temp ny order
+			try
+			{
+				order.OrderID = (await _repo.CreateNewOrderAsync(order));
+			}
+			catch (Exception msg)
+			{
+				MessageBox.Show("Ett fel inträffade:\n" + msg);
+				Application.Exit();
+			}
 		}
 
 		private object[] GetInsertParameters(Order order)

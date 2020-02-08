@@ -66,8 +66,6 @@ namespace SQLServer
         /// <returns></returns>
         public async Task<Employee> EmployeeLoginAsync(string username, string password)
         {
-            var employee = new Employee();
-
             if (string.IsNullOrWhiteSpace(username + password))
             {
                 return null;
@@ -75,13 +73,11 @@ namespace SQLServer
 
             using (var connection = CreateConnection())
             {
-                employee = (await connection.QueryAsync<Employee>(
+                return (await connection.QueryAsync<Employee>(
                        sql: "spVerifyLogin",
                      param: new { Username = username, Password = password },
                commandType: CommandType.StoredProcedure)).FirstOrDefault();
             }
-
-            return employee;
         }
 
         /// <summary>
