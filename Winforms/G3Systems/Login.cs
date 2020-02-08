@@ -76,7 +76,7 @@ namespace G3Systems
 			}
 			else if (selected == 1)
 			{
-				var form = new Cashier();
+				var form = new Cashier(User);
 				form.Show();
 			}
 			else if (selected == 2)

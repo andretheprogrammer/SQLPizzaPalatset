@@ -1593,3 +1593,14 @@ WHERE        Orders.PickedUp =0 and
             (SELECT TerminalID
             FROM Terminals
             WHERE Terminals.BuildingID = @Building) --Parametrisera för att visa orders från din byggnad 
+GO
+
+--- Procedure för att sätta order som Picked Up:
+CREATE PROCEDURE SetPickedUp (@OrderID Int, @PickedUp bit)
+AS
+	BEGIN 
+		UPDATE Orders
+		SET PickedUp = @PickedUp
+		WHERE OrderID = @OrderID;
+	END
+GO
