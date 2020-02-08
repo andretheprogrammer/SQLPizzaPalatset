@@ -61,6 +61,11 @@ namespace G3Systems
 		#region NavigationButtons
 		private void FinishOrderBtn_Click(object sender, EventArgs e)
 		{
+			if (cart.Count <= 0)
+			{
+				return;
+			}
+
 			// Go to finish order tab
 			tabControlMenu.SelectedTab = tabPayment;
 
@@ -216,6 +221,7 @@ namespace G3Systems
 				order.Paid = true;
 			}
 
+			
 			if (!order.Paid)
 			{
 				return;

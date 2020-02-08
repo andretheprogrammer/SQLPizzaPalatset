@@ -91,20 +91,20 @@
             this.splitContainer10 = new System.Windows.Forms.SplitContainer();
             this.tabControl6 = new System.Windows.Forms.TabControl();
             this.tabPage10 = new System.Windows.Forms.TabPage();
+            this.DeleteProductBtn = new System.Windows.Forms.Button();
+            this.gridViewFinishCart = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl7 = new System.Windows.Forms.TabControl();
             this.tabPage12 = new System.Windows.Forms.TabPage();
+            this.ConfirmBtn = new System.Windows.Forms.Button();
             this.lblTotalPrice = new System.Windows.Forms.Label();
             this.tabQueue = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
             this.labelQueue = new System.Windows.Forms.Label();
             this.productTypesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.choicesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.gridViewFinishCart = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DeleteProductBtn = new System.Windows.Forms.Button();
-            this.ConfirmBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
             this.splitContainer3.Panel1.SuspendLayout();
             this.splitContainer3.Panel2.SuspendLayout();
@@ -177,13 +177,13 @@
             this.splitContainer10.SuspendLayout();
             this.tabControl6.SuspendLayout();
             this.tabPage10.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewFinishCart)).BeginInit();
             this.tabControl7.SuspendLayout();
             this.tabPage12.SuspendLayout();
             this.tabQueue.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productTypesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.choicesBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridViewFinishCart)).BeginInit();
             this.SuspendLayout();
             // 
             // ReturnBtn
@@ -334,12 +334,12 @@
             // listBoxProductTypes
             // 
             this.listBoxProductTypes.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listBoxProductTypes.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBoxProductTypes.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxProductTypes.FormattingEnabled = true;
-            this.listBoxProductTypes.ItemHeight = 29;
-            this.listBoxProductTypes.Location = new System.Drawing.Point(21, 20);
+            this.listBoxProductTypes.ItemHeight = 33;
+            this.listBoxProductTypes.Location = new System.Drawing.Point(24, 39);
             this.listBoxProductTypes.Name = "listBoxProductTypes";
-            this.listBoxProductTypes.Size = new System.Drawing.Size(208, 319);
+            this.listBoxProductTypes.Size = new System.Drawing.Size(208, 297);
             this.listBoxProductTypes.TabIndex = 2;
             this.listBoxProductTypes.TabStop = false;
             this.listBoxProductTypes.SelectedIndexChanged += new System.EventHandler(this.ListBoxProductTypes_SelectedIndexChanged);
@@ -946,70 +946,16 @@
             this.tabPage10.Text = "Order Details";
             this.tabPage10.UseVisualStyleBackColor = true;
             // 
-            // tabControl7
+            // DeleteProductBtn
             // 
-            this.tabControl7.Controls.Add(this.tabPage12);
-            this.tabControl7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl7.Location = new System.Drawing.Point(0, 0);
-            this.tabControl7.Name = "tabControl7";
-            this.tabControl7.SelectedIndex = 0;
-            this.tabControl7.Size = new System.Drawing.Size(711, 497);
-            this.tabControl7.TabIndex = 0;
-            // 
-            // tabPage12
-            // 
-            this.tabPage12.Controls.Add(this.ConfirmBtn);
-            this.tabPage12.Controls.Add(this.lblTotalPrice);
-            this.tabPage12.Location = new System.Drawing.Point(4, 22);
-            this.tabPage12.Name = "tabPage12";
-            this.tabPage12.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage12.Size = new System.Drawing.Size(703, 471);
-            this.tabPage12.TabIndex = 0;
-            this.tabPage12.Text = "Reciept";
-            this.tabPage12.UseVisualStyleBackColor = true;
-            // 
-            // lblTotalPrice
-            // 
-            this.lblTotalPrice.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lblTotalPrice.AutoSize = true;
-            this.lblTotalPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalPrice.Location = new System.Drawing.Point(17, 324);
-            this.lblTotalPrice.Name = "lblTotalPrice";
-            this.lblTotalPrice.Size = new System.Drawing.Size(333, 39);
-            this.lblTotalPrice.TabIndex = 0;
-            this.lblTotalPrice.Text = "Totalt pris: 500.00 kr";
-            // 
-            // tabQueue
-            // 
-            this.tabQueue.Controls.Add(this.panel2);
-            this.tabQueue.Location = new System.Drawing.Point(4, 22);
-            this.tabQueue.Name = "tabQueue";
-            this.tabQueue.Size = new System.Drawing.Size(1131, 497);
-            this.tabQueue.TabIndex = 4;
-            this.tabQueue.Text = "Your Queue Number";
-            this.tabQueue.UseVisualStyleBackColor = true;
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.labelQueue);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Enabled = false;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1131, 497);
-            this.panel2.TabIndex = 2;
-            // 
-            // labelQueue
-            // 
-            this.labelQueue.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.labelQueue.AutoSize = true;
-            this.labelQueue.Font = new System.Drawing.Font("Microsoft Sans Serif", 120F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelQueue.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.labelQueue.Location = new System.Drawing.Point(446, 181);
-            this.labelQueue.Name = "labelQueue";
-            this.labelQueue.Size = new System.Drawing.Size(255, 181);
-            this.labelQueue.TabIndex = 0;
-            this.labelQueue.Text = "23";
+            this.DeleteProductBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DeleteProductBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DeleteProductBtn.Location = new System.Drawing.Point(3, 363);
+            this.DeleteProductBtn.Name = "DeleteProductBtn";
+            this.DeleteProductBtn.Size = new System.Drawing.Size(402, 105);
+            this.DeleteProductBtn.TabIndex = 4;
+            this.DeleteProductBtn.Text = "Ta bort vara";
+            this.DeleteProductBtn.UseVisualStyleBackColor = true;
             // 
             // gridViewFinishCart
             // 
@@ -1059,16 +1005,27 @@
             this.dataGridViewTextBoxColumn7.ReadOnly = true;
             this.dataGridViewTextBoxColumn7.Width = 80;
             // 
-            // DeleteProductBtn
+            // tabControl7
             // 
-            this.DeleteProductBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DeleteProductBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DeleteProductBtn.Location = new System.Drawing.Point(3, 363);
-            this.DeleteProductBtn.Name = "DeleteProductBtn";
-            this.DeleteProductBtn.Size = new System.Drawing.Size(402, 105);
-            this.DeleteProductBtn.TabIndex = 4;
-            this.DeleteProductBtn.Text = "Ta bort vara";
-            this.DeleteProductBtn.UseVisualStyleBackColor = true;
+            this.tabControl7.Controls.Add(this.tabPage12);
+            this.tabControl7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl7.Location = new System.Drawing.Point(0, 0);
+            this.tabControl7.Name = "tabControl7";
+            this.tabControl7.SelectedIndex = 0;
+            this.tabControl7.Size = new System.Drawing.Size(711, 497);
+            this.tabControl7.TabIndex = 0;
+            // 
+            // tabPage12
+            // 
+            this.tabPage12.Controls.Add(this.ConfirmBtn);
+            this.tabPage12.Controls.Add(this.lblTotalPrice);
+            this.tabPage12.Location = new System.Drawing.Point(4, 22);
+            this.tabPage12.Name = "tabPage12";
+            this.tabPage12.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage12.Size = new System.Drawing.Size(703, 471);
+            this.tabPage12.TabIndex = 0;
+            this.tabPage12.Text = "Reciept";
+            this.tabPage12.UseVisualStyleBackColor = true;
             // 
             // ConfirmBtn
             // 
@@ -1081,8 +1038,52 @@
             this.ConfirmBtn.UseVisualStyleBackColor = true;
             this.ConfirmBtn.Click += new System.EventHandler(this.ConfirmBtn_Click);
             // 
+            // lblTotalPrice
+            // 
+            this.lblTotalPrice.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblTotalPrice.AutoSize = true;
+            this.lblTotalPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalPrice.Location = new System.Drawing.Point(17, 324);
+            this.lblTotalPrice.Name = "lblTotalPrice";
+            this.lblTotalPrice.Size = new System.Drawing.Size(333, 39);
+            this.lblTotalPrice.TabIndex = 0;
+            this.lblTotalPrice.Text = "Totalt pris: 500.00 kr";
+            // 
+            // tabQueue
+            // 
+            this.tabQueue.Controls.Add(this.panel2);
+            this.tabQueue.Location = new System.Drawing.Point(4, 22);
+            this.tabQueue.Name = "tabQueue";
+            this.tabQueue.Size = new System.Drawing.Size(1131, 497);
+            this.tabQueue.TabIndex = 4;
+            this.tabQueue.Text = "Your Queue Number";
+            this.tabQueue.UseVisualStyleBackColor = true;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.labelQueue);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Enabled = false;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1131, 497);
+            this.panel2.TabIndex = 2;
+            // 
+            // labelQueue
+            // 
+            this.labelQueue.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.labelQueue.AutoSize = true;
+            this.labelQueue.Font = new System.Drawing.Font("Microsoft Sans Serif", 120F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelQueue.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.labelQueue.Location = new System.Drawing.Point(446, 181);
+            this.labelQueue.Name = "labelQueue";
+            this.labelQueue.Size = new System.Drawing.Size(255, 181);
+            this.labelQueue.TabIndex = 0;
+            this.labelQueue.Text = "23";
+            // 
             // PickProduct
             // 
+            this.AcceptButton = this.FinishOrderBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1139, 722);
@@ -1168,6 +1169,7 @@
             this.splitContainer10.ResumeLayout(false);
             this.tabControl6.ResumeLayout(false);
             this.tabPage10.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewFinishCart)).EndInit();
             this.tabControl7.ResumeLayout(false);
             this.tabPage12.ResumeLayout(false);
             this.tabPage12.PerformLayout();
@@ -1176,7 +1178,6 @@
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productTypesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.choicesBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridViewFinishCart)).EndInit();
             this.ResumeLayout(false);
 
 		}

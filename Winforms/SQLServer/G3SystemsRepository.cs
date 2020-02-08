@@ -128,7 +128,7 @@ namespace SQLServer
         public async Task<int> CreateNewOrderAsync(Order order)
         {
             var p = new DynamicParameters();
-            p.AddDynamicParams(new { @TerminalID = order.ByTerminal, @Paid = order.Paid });
+            p.AddDynamicParams(new { TerminalID = order.ByTerminal, Paid = order.Paid });
             p.Add("OrderID", dbType: DbType.Int32, direction: ParameterDirection.Output);
 
             using (var connection = CreateConnection())

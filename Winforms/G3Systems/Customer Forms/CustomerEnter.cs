@@ -20,8 +20,10 @@ namespace G3Systems
 		private void NewOrderBtn_Click(object sender, EventArgs e)
 		{
 			Random rnd = new Random();
-			var form = new PickProduct(rnd.Next(1, 4));
+			var terminalID = rnd.Next(1, 4);
+			var form = new PickProduct(terminalID);
 			form.Show();
+			form.Text += $" {terminalID}";
 			this.Hide();
 		}
 
