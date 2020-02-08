@@ -53,7 +53,7 @@ namespace SQLServer
 
             using (var connection = CreateConnection())
             {
-                return await connection.QueryAsync<Product>(sqlQuery, new { @ProductTypeID = productType });
+                return await connection.QueryAsync<Product>(sqlQuery, new { ProductTypeID = productType });
             }
         }
 
@@ -76,7 +76,7 @@ namespace SQLServer
             {
                 employee = (await connection.QueryAsync<Employee>(
                        sql: "spVerifyLogin",
-                     param: new { @Username = username, @Password = password },
+                     param: new { Username = username, Password = password },
                commandType: CommandType.StoredProcedure)).FirstOrDefault();
             }
 
@@ -147,7 +147,7 @@ namespace SQLServer
             {
                 return (await connection.QueryAsync<Ingredient>(
                        sql: "spGetProductIngredients",
-                     param: new { @ProductID = id },
+                     param: new { ProductID = id },
                 commandType: CommandType.StoredProcedure));
             }
         }
@@ -158,7 +158,7 @@ namespace SQLServer
             {
                 return (await connection.QueryAsync<Ingredient>(
                        sql: "spGetProductCanHaveIngredients",
-                     param: new { @ProductID = id },
+                     param: new { ProductID = id },
                 commandType: CommandType.StoredProcedure));
             }
         }

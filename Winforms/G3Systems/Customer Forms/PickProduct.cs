@@ -30,18 +30,24 @@ namespace G3Systems
 		// Get cart sorted by producttype
 		private List<Product> GetCart() => cart.OrderBy(p => p.ProductTypeID).ToList();
 
-		private void PickProduct_Load(object sender, EventArgs e)
+		private async void PickProduct_Load(object sender, EventArgs e)
 		{
 			try
 			{
-				var values = Enum.GetValues(typeof(ProductType)).Cast<ProductType>().ToList();
-				values.ForEach(type => listBoxProductTypes.Items.Add(type));
+				order.OrderID = (await _repo.CreateNewOrderAsync(order));
 			}
 			catch (Exception msg)
 			{
 				MessageBox.Show("Ett fel inträffade:\n" + msg);
 				Application.Exit();
 			}
+
+			// Cast and load productype enum onto listbox 
+			//var values = Enum.GetValues(typeof(ProductType)).Cast<ProductType>().ToList();
+			//values.ForEach(type => listBoxProductTypes.Items.Add(type));
+
+			listBoxProductTypes.Items.Add(ProductType.Pizza);
+			listBoxProductTypes.Items.Add(ProductType.Sallad);
 
 			listBoxProductTypes.SelectedIndex = 0;
 		}
@@ -210,8 +216,6 @@ namespace G3Systems
 				order.Paid = true;
 			}
 
-			order.OrderID = (await _repo.CreateNewOrderAsync(order));
-
 			if (!order.Paid)
 			{
 				return;
@@ -249,16 +253,16 @@ namespace G3Systems
 
 		private object InsertParameters(Order order, Product product, Ingredient ingredient) => new
 		{
-			@OrderID = order.OrderID,
-			@ProductID = product.ProductID,
-			@IngredientID = ingredient.IngredientID,
-			@Quantity = ingredient.Quantity,
+			order.OrderID,
+			product.ProductID,
+			ingredient.IngredientID,
+			ingredient.Quantity,
 		};
 
 		private object InsertParameters(Order order, Product product) => new
 		{
-			@OrderID = order.OrderID,
-			@ProductID = product.ProductID,
+			order.OrderID,
+			product.ProductID,
 		};
 
 		private void UpdateCart()
