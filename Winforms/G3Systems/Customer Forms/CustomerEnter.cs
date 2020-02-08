@@ -19,7 +19,8 @@ namespace G3Systems
 
 		private void NewOrderBtn_Click(object sender, EventArgs e)
 		{
-			var form = new PickProduct();
+			Random rnd = new Random();
+			var form = new PickProduct(rnd.Next(1, 4));
 			form.Show();
 			this.Hide();
 		}

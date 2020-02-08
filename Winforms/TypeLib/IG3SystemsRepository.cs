@@ -24,6 +24,10 @@ namespace TypeLib
         Task<IEnumerable<Order>> GetFinishedOrdersAsync(int id);
         Task<IEnumerable<Order>> GetInProcessOrderssAsync(int id);
 
+        Task<int> CreateNewOrderAsync(Order order);
+
+        Task CreateProductOrdersAsync(object[] parameters);
+
 
         // Ingredients
         Task<IEnumerable<Ingredient>> GetHaveIngredientsAsync(int id);
