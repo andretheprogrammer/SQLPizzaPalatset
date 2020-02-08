@@ -2458,7 +2458,6 @@
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.employeesBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.buildingsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fKEmployeesEmplo10566F31BindingSource)).EndInit();
             this.ResumeLayout(false);
 
 		}

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.CSharp;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
@@ -55,6 +56,7 @@ namespace SQLServer
                 return await connection.QueryAsync<Product>(sqlQuery, new { @ProductTypeID = productType });
             }
         }
+        
 
         /// <summary>
         /// Get employee by matching username and password
@@ -101,20 +103,56 @@ namespace SQLServer
             }
         }
 
-        public async Task<IEnumerable<Order>> GetOrdersAsync()
+
+
+        //-------------- Infoscreen
+        public async Task<IEnumerable<Order>> GetFinishedOrdersAsync(int id)
         {
-            var sqlOrderQuery = "Select OrderID from Orders where Paid = 1 and PickedUp = 1";
             using (var connection = CreateConnection())
             {
-                return (await connection.QueryAsync<Order>(sqlOrderQuery)).ToList();
+                return (await connection.QueryAsync<Order>(
+                      sql: "Proc_RightColumnInfoScreen",
+                    param: new { @Building = id },
+               commandType: CommandType.StoredProcedure));
             }
         }
 
+        public async Task<IEnumerable<Order>> GetInProcessOrderssAsync(int id)
+        {
+            using (var connection = CreateConnection())
+            {
+                return (await connection.QueryAsync<Order>(
+                      sql: "Proc_LeftColumnInfoScreen",
+                    param: new { @Building = id },
+               commandType: CommandType.StoredProcedure)).ToList();
+            }
+        }
+        //_------------------
 
+        public async Task CreateProductOrdersAsync(object[] parameters)
+        {
+            using (var connection = CreateConnection())
+            {
+                await connection.ExecuteAsync("spInsertProductOrders", parameters, commandType: CommandType.StoredProcedure);
+            }
+        }
+        
 
+        public async Task<int> CreateNewOrderAsync(Order order)
+        {
+            var p = new DynamicParameters();
+            p.AddDynamicParams(new { @TerminalID = order.ByTerminal, @Paid = order.Paid });
+            p.Add("OrderID", 
+                    dbType: DbType.Int32, 
+                    direction: ParameterDirection.Output);
 
+            using (var connection = CreateConnection())
+            {
+                await connection.ExecuteScalarAsync("spNewOrder", p, commandType: CommandType.StoredProcedure);
+            }
 
-
+            return p.Get<int>("OrderID");
+        }
 
 
         // Ingredients

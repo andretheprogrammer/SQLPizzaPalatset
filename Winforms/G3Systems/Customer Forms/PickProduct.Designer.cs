@@ -34,6 +34,7 @@
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.listBoxCart = new System.Windows.Forms.ListBox();
             this.FinishOrderBtn = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tabControlMenu = new System.Windows.Forms.TabControl();
@@ -42,21 +43,37 @@
             this.listBoxProductTypes = new System.Windows.Forms.ListBox();
             this.splitContainer5 = new System.Windows.Forms.SplitContainer();
             this.gridViewProducts = new System.Windows.Forms.DataGridView();
+            this.productNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.prepTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.basePriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.CustomizeBtn = new System.Windows.Forms.Button();
             this.AddProductBtn = new System.Windows.Forms.Button();
             this.tabCustomize = new System.Windows.Forms.TabPage();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
+            this.RemoveProductBtn = new System.Windows.Forms.Button();
+            this.gridViewCart = new System.Windows.Forms.DataGridView();
+            this.ProductTypeID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label3 = new System.Windows.Forms.Label();
             this.splitContainer6 = new System.Windows.Forms.SplitContainer();
             this.splitContainer7 = new System.Windows.Forms.SplitContainer();
             this.tabControl3 = new System.Windows.Forms.TabControl();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.gridViewIngredients = new System.Windows.Forms.DataGridView();
+            this.ingredientNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ingredientBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabControl4 = new System.Windows.Forms.TabControl();
             this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.gridViewExtraIngredients = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.splitContainer12 = new System.Windows.Forms.SplitContainer();
-            this.AddIngredientBtn = new System.Windows.Forms.Button();
             this.RemoveIngredientBtn = new System.Windows.Forms.Button();
+            this.AddIngredientBtn = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.splitContainer8 = new System.Windows.Forms.SplitContainer();
             this.label6 = new System.Windows.Forms.Label();
@@ -74,33 +91,20 @@
             this.splitContainer10 = new System.Windows.Forms.SplitContainer();
             this.tabControl6 = new System.Windows.Forms.TabControl();
             this.tabPage10 = new System.Windows.Forms.TabPage();
-            this.label8 = new System.Windows.Forms.Label();
-            this.dataGridView8 = new System.Windows.Forms.DataGridView();
             this.tabControl7 = new System.Windows.Forms.TabControl();
             this.tabPage12 = new System.Windows.Forms.TabPage();
-            this.label9 = new System.Windows.Forms.Label();
+            this.lblTotalPrice = new System.Windows.Forms.Label();
             this.tabQueue = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
             this.labelQueue = new System.Windows.Forms.Label();
             this.productTypesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.choicesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.listBoxCart = new System.Windows.Forms.ListBox();
-            this.gridViewCart = new System.Windows.Forms.DataGridView();
-            this.gridViewExtraIngredients = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.prepTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.basePriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.ProductTypeID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ingredientBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ingredientNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RemoveProductBtn = new System.Windows.Forms.Button();
+            this.gridViewFinishCart = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DeleteProductBtn = new System.Windows.Forms.Button();
+            this.ConfirmBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
             this.splitContainer3.Panel1.SuspendLayout();
             this.splitContainer3.Panel2.SuspendLayout();
@@ -122,11 +126,13 @@
             this.splitContainer5.Panel2.SuspendLayout();
             this.splitContainer5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewProducts)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
             this.tabCustomize.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).BeginInit();
             this.splitContainer4.Panel1.SuspendLayout();
             this.splitContainer4.Panel2.SuspendLayout();
             this.splitContainer4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewCart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer6)).BeginInit();
             this.splitContainer6.Panel1.SuspendLayout();
             this.splitContainer6.Panel2.SuspendLayout();
@@ -138,8 +144,10 @@
             this.tabControl3.SuspendLayout();
             this.tabPage7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewIngredients)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ingredientBindingSource)).BeginInit();
             this.tabControl4.SuspendLayout();
             this.tabPage8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewExtraIngredients)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer12)).BeginInit();
             this.splitContainer12.Panel1.SuspendLayout();
             this.splitContainer12.Panel2.SuspendLayout();
@@ -169,17 +177,13 @@
             this.splitContainer10.SuspendLayout();
             this.tabControl6.SuspendLayout();
             this.tabPage10.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView8)).BeginInit();
             this.tabControl7.SuspendLayout();
             this.tabPage12.SuspendLayout();
             this.tabQueue.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productTypesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.choicesBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridViewCart)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridViewExtraIngredients)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ingredientBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewFinishCart)).BeginInit();
             this.SuspendLayout();
             // 
             // ReturnBtn
@@ -240,6 +244,15 @@
             this.tabPage3.TabIndex = 0;
             this.tabPage3.Text = "Varukorg";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // listBoxCart
+            // 
+            this.listBoxCart.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listBoxCart.FormattingEnabled = true;
+            this.listBoxCart.Location = new System.Drawing.Point(6, 1);
+            this.listBoxCart.Name = "listBoxCart";
+            this.listBoxCart.Size = new System.Drawing.Size(406, 169);
+            this.listBoxCart.TabIndex = 0;
             // 
             // FinishOrderBtn
             // 
@@ -373,6 +386,45 @@
             this.gridViewProducts.Size = new System.Drawing.Size(870, 360);
             this.gridViewProducts.TabIndex = 0;
             // 
+            // productNameDataGridViewTextBoxColumn
+            // 
+            this.productNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.productNameDataGridViewTextBoxColumn.DataPropertyName = "ProductName";
+            this.productNameDataGridViewTextBoxColumn.HeaderText = "ProductName";
+            this.productNameDataGridViewTextBoxColumn.Name = "productNameDataGridViewTextBoxColumn";
+            this.productNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.productNameDataGridViewTextBoxColumn.Width = 97;
+            // 
+            // descriptionDataGridViewTextBoxColumn
+            // 
+            this.descriptionDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.descriptionDataGridViewTextBoxColumn.DataPropertyName = "Description";
+            this.descriptionDataGridViewTextBoxColumn.HeaderText = "Description";
+            this.descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
+            this.descriptionDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // prepTimeDataGridViewTextBoxColumn
+            // 
+            this.prepTimeDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.prepTimeDataGridViewTextBoxColumn.DataPropertyName = "PrepTime";
+            this.prepTimeDataGridViewTextBoxColumn.HeaderText = "PrepTime";
+            this.prepTimeDataGridViewTextBoxColumn.Name = "prepTimeDataGridViewTextBoxColumn";
+            this.prepTimeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.prepTimeDataGridViewTextBoxColumn.Width = 77;
+            // 
+            // basePriceDataGridViewTextBoxColumn
+            // 
+            this.basePriceDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.basePriceDataGridViewTextBoxColumn.DataPropertyName = "BasePrice";
+            this.basePriceDataGridViewTextBoxColumn.HeaderText = "BasePrice";
+            this.basePriceDataGridViewTextBoxColumn.Name = "basePriceDataGridViewTextBoxColumn";
+            this.basePriceDataGridViewTextBoxColumn.ReadOnly = true;
+            this.basePriceDataGridViewTextBoxColumn.Width = 80;
+            // 
+            // productBindingSource
+            // 
+            this.productBindingSource.DataSource = typeof(TypeLib.Product);
+            // 
             // CustomizeBtn
             // 
             this.CustomizeBtn.BackColor = System.Drawing.Color.PowderBlue;
@@ -428,6 +480,66 @@
             this.splitContainer4.Size = new System.Drawing.Size(1131, 497);
             this.splitContainer4.SplitterDistance = 377;
             this.splitContainer4.TabIndex = 1;
+            // 
+            // RemoveProductBtn
+            // 
+            this.RemoveProductBtn.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.RemoveProductBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RemoveProductBtn.Location = new System.Drawing.Point(0, 368);
+            this.RemoveProductBtn.Name = "RemoveProductBtn";
+            this.RemoveProductBtn.Size = new System.Drawing.Size(377, 129);
+            this.RemoveProductBtn.TabIndex = 3;
+            this.RemoveProductBtn.Text = "Ta bort vara";
+            this.RemoveProductBtn.UseVisualStyleBackColor = true;
+            // 
+            // gridViewCart
+            // 
+            this.gridViewCart.AllowUserToAddRows = false;
+            this.gridViewCart.AllowUserToDeleteRows = false;
+            this.gridViewCart.AutoGenerateColumns = false;
+            this.gridViewCart.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.gridViewCart.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridViewCart.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ProductTypeID,
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn4});
+            this.gridViewCart.DataSource = this.productBindingSource;
+            this.gridViewCart.Dock = System.Windows.Forms.DockStyle.Top;
+            this.gridViewCart.Location = new System.Drawing.Point(0, 0);
+            this.gridViewCart.Name = "gridViewCart";
+            this.gridViewCart.ReadOnly = true;
+            this.gridViewCart.RowHeadersVisible = false;
+            this.gridViewCart.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            this.gridViewCart.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.gridViewCart.Size = new System.Drawing.Size(377, 360);
+            this.gridViewCart.TabIndex = 2;
+            this.gridViewCart.SelectionChanged += new System.EventHandler(this.GridViewCart_SelectionChanged);
+            // 
+            // ProductTypeID
+            // 
+            this.ProductTypeID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.ProductTypeID.DataPropertyName = "ProductTypeID";
+            this.ProductTypeID.HeaderText = "Kategori";
+            this.ProductTypeID.Name = "ProductTypeID";
+            this.ProductTypeID.ReadOnly = true;
+            this.ProductTypeID.Width = 71;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "ProductName";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Namn";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "BasePrice";
+            this.dataGridViewTextBoxColumn4.HeaderText = "Pris";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Width = 80;
             // 
             // label3
             // 
@@ -515,6 +627,27 @@
             this.gridViewIngredients.Size = new System.Drawing.Size(342, 332);
             this.gridViewIngredients.TabIndex = 0;
             // 
+            // ingredientNameDataGridViewTextBoxColumn
+            // 
+            this.ingredientNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ingredientNameDataGridViewTextBoxColumn.DataPropertyName = "IngredientName";
+            this.ingredientNameDataGridViewTextBoxColumn.HeaderText = "Namn";
+            this.ingredientNameDataGridViewTextBoxColumn.Name = "ingredientNameDataGridViewTextBoxColumn";
+            this.ingredientNameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // Quantity
+            // 
+            this.Quantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Quantity.DataPropertyName = "Quantity";
+            this.Quantity.HeaderText = "Antal";
+            this.Quantity.Name = "Quantity";
+            this.Quantity.ReadOnly = true;
+            this.Quantity.Width = 80;
+            // 
+            // ingredientBindingSource
+            // 
+            this.ingredientBindingSource.DataSource = typeof(TypeLib.Ingredient);
+            // 
             // tabControl4
             // 
             this.tabControl4.Controls.Add(this.tabPage8);
@@ -536,6 +669,43 @@
             this.tabPage8.Text = "Extra ingredienser";
             this.tabPage8.UseVisualStyleBackColor = true;
             // 
+            // gridViewExtraIngredients
+            // 
+            this.gridViewExtraIngredients.AllowUserToAddRows = false;
+            this.gridViewExtraIngredients.AllowUserToDeleteRows = false;
+            this.gridViewExtraIngredients.AutoGenerateColumns = false;
+            this.gridViewExtraIngredients.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.gridViewExtraIngredients.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridViewExtraIngredients.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn5});
+            this.gridViewExtraIngredients.DataSource = this.ingredientBindingSource;
+            this.gridViewExtraIngredients.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridViewExtraIngredients.Location = new System.Drawing.Point(3, 3);
+            this.gridViewExtraIngredients.MultiSelect = false;
+            this.gridViewExtraIngredients.Name = "gridViewExtraIngredients";
+            this.gridViewExtraIngredients.ReadOnly = true;
+            this.gridViewExtraIngredients.RowHeadersVisible = false;
+            this.gridViewExtraIngredients.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.gridViewExtraIngredients.Size = new System.Drawing.Size(376, 332);
+            this.gridViewExtraIngredients.TabIndex = 1;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "IngredientName";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Namn";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "Price";
+            this.dataGridViewTextBoxColumn5.HeaderText = "Pris";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Width = 80;
+            // 
             // splitContainer12
             // 
             this.splitContainer12.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -553,6 +723,17 @@
             this.splitContainer12.SplitterDistance = 366;
             this.splitContainer12.TabIndex = 0;
             // 
+            // RemoveIngredientBtn
+            // 
+            this.RemoveIngredientBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RemoveIngredientBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RemoveIngredientBtn.Location = new System.Drawing.Point(0, 0);
+            this.RemoveIngredientBtn.Name = "RemoveIngredientBtn";
+            this.RemoveIngredientBtn.Size = new System.Drawing.Size(366, 129);
+            this.RemoveIngredientBtn.TabIndex = 2;
+            this.RemoveIngredientBtn.Text = "Ta bort Ingrediens";
+            this.RemoveIngredientBtn.UseVisualStyleBackColor = true;
+            // 
             // AddIngredientBtn
             // 
             this.AddIngredientBtn.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -564,17 +745,6 @@
             this.AddIngredientBtn.Text = "Lägg till";
             this.AddIngredientBtn.UseVisualStyleBackColor = true;
             this.AddIngredientBtn.Click += new System.EventHandler(this.AddIngredientBtn_Click);
-            // 
-            // RemoveIngredientBtn
-            // 
-            this.RemoveIngredientBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RemoveIngredientBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RemoveIngredientBtn.Location = new System.Drawing.Point(0, 0);
-            this.RemoveIngredientBtn.Name = "RemoveIngredientBtn";
-            this.RemoveIngredientBtn.Size = new System.Drawing.Size(366, 129);
-            this.RemoveIngredientBtn.TabIndex = 2;
-            this.RemoveIngredientBtn.Text = "Ta bort Ingrediens";
-            this.RemoveIngredientBtn.UseVisualStyleBackColor = true;
             // 
             // tabPage4
             // 
@@ -766,8 +936,8 @@
             // 
             // tabPage10
             // 
-            this.tabPage10.Controls.Add(this.label8);
-            this.tabPage10.Controls.Add(this.dataGridView8);
+            this.tabPage10.Controls.Add(this.DeleteProductBtn);
+            this.tabPage10.Controls.Add(this.gridViewFinishCart);
             this.tabPage10.Location = new System.Drawing.Point(4, 22);
             this.tabPage10.Name = "tabPage10";
             this.tabPage10.Padding = new System.Windows.Forms.Padding(3);
@@ -775,23 +945,6 @@
             this.tabPage10.TabIndex = 0;
             this.tabPage10.Text = "Order Details";
             this.tabPage10.UseVisualStyleBackColor = true;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(64, 162);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(256, 13);
-            this.label8.TabIndex = 1;
-            this.label8.Text = "Visa alla produkter i ordern - HELA BASKET + details";
-            // 
-            // dataGridView8
-            // 
-            this.dataGridView8.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView8.Location = new System.Drawing.Point(71, 99);
-            this.dataGridView8.Name = "dataGridView8";
-            this.dataGridView8.Size = new System.Drawing.Size(240, 150);
-            this.dataGridView8.TabIndex = 0;
             // 
             // tabControl7
             // 
@@ -805,7 +958,8 @@
             // 
             // tabPage12
             // 
-            this.tabPage12.Controls.Add(this.label9);
+            this.tabPage12.Controls.Add(this.ConfirmBtn);
+            this.tabPage12.Controls.Add(this.lblTotalPrice);
             this.tabPage12.Location = new System.Drawing.Point(4, 22);
             this.tabPage12.Name = "tabPage12";
             this.tabPage12.Padding = new System.Windows.Forms.Padding(3);
@@ -814,16 +968,16 @@
             this.tabPage12.Text = "Reciept";
             this.tabPage12.UseVisualStyleBackColor = true;
             // 
-            // label9
+            // lblTotalPrice
             // 
-            this.label9.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(41, 162);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(583, 39);
-            this.label9.TabIndex = 0;
-            this.label9.Text = "Products: - Price- Etc TEXT STRING";
+            this.lblTotalPrice.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblTotalPrice.AutoSize = true;
+            this.lblTotalPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalPrice.Location = new System.Drawing.Point(17, 324);
+            this.lblTotalPrice.Name = "lblTotalPrice";
+            this.lblTotalPrice.Size = new System.Drawing.Size(333, 39);
+            this.lblTotalPrice.TabIndex = 0;
+            this.lblTotalPrice.Text = "Totalt pris: 500.00 kr";
             // 
             // tabQueue
             // 
@@ -857,171 +1011,75 @@
             this.labelQueue.TabIndex = 0;
             this.labelQueue.Text = "23";
             // 
-            // listBoxCart
+            // gridViewFinishCart
             // 
-            this.listBoxCart.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listBoxCart.FormattingEnabled = true;
-            this.listBoxCart.Location = new System.Drawing.Point(6, 1);
-            this.listBoxCart.Name = "listBoxCart";
-            this.listBoxCart.Size = new System.Drawing.Size(406, 169);
-            this.listBoxCart.TabIndex = 0;
+            this.gridViewFinishCart.AllowUserToAddRows = false;
+            this.gridViewFinishCart.AllowUserToDeleteRows = false;
+            this.gridViewFinishCart.AutoGenerateColumns = false;
+            this.gridViewFinishCart.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.gridViewFinishCart.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridViewFinishCart.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn6,
+            this.dataGridViewTextBoxColumn7});
+            this.gridViewFinishCart.DataSource = this.productBindingSource;
+            this.gridViewFinishCart.Dock = System.Windows.Forms.DockStyle.Top;
+            this.gridViewFinishCart.Location = new System.Drawing.Point(3, 3);
+            this.gridViewFinishCart.Name = "gridViewFinishCart";
+            this.gridViewFinishCart.ReadOnly = true;
+            this.gridViewFinishCart.RowHeadersVisible = false;
+            this.gridViewFinishCart.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            this.gridViewFinishCart.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.gridViewFinishCart.Size = new System.Drawing.Size(402, 360);
+            this.gridViewFinishCart.TabIndex = 3;
             // 
-            // gridViewCart
+            // dataGridViewTextBoxColumn2
             // 
-            this.gridViewCart.AllowUserToAddRows = false;
-            this.gridViewCart.AllowUserToDeleteRows = false;
-            this.gridViewCart.AutoGenerateColumns = false;
-            this.gridViewCart.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.gridViewCart.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridViewCart.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ProductTypeID,
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn4});
-            this.gridViewCart.DataSource = this.productBindingSource;
-            this.gridViewCart.Dock = System.Windows.Forms.DockStyle.Top;
-            this.gridViewCart.Location = new System.Drawing.Point(0, 0);
-            this.gridViewCart.Name = "gridViewCart";
-            this.gridViewCart.ReadOnly = true;
-            this.gridViewCart.RowHeadersVisible = false;
-            this.gridViewCart.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            this.gridViewCart.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridViewCart.Size = new System.Drawing.Size(377, 360);
-            this.gridViewCart.TabIndex = 2;
-            this.gridViewCart.SelectionChanged += new System.EventHandler(this.GridViewCart_SelectionChanged);
+            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "ProductTypeID";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Kategori";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 71;
             // 
-            // gridViewExtraIngredients
+            // dataGridViewTextBoxColumn6
             // 
-            this.gridViewExtraIngredients.AllowUserToAddRows = false;
-            this.gridViewExtraIngredients.AllowUserToDeleteRows = false;
-            this.gridViewExtraIngredients.AutoGenerateColumns = false;
-            this.gridViewExtraIngredients.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.gridViewExtraIngredients.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridViewExtraIngredients.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn5});
-            this.gridViewExtraIngredients.DataSource = this.ingredientBindingSource;
-            this.gridViewExtraIngredients.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridViewExtraIngredients.Location = new System.Drawing.Point(3, 3);
-            this.gridViewExtraIngredients.MultiSelect = false;
-            this.gridViewExtraIngredients.Name = "gridViewExtraIngredients";
-            this.gridViewExtraIngredients.ReadOnly = true;
-            this.gridViewExtraIngredients.RowHeadersVisible = false;
-            this.gridViewExtraIngredients.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridViewExtraIngredients.Size = new System.Drawing.Size(376, 332);
-            this.gridViewExtraIngredients.TabIndex = 1;
+            this.dataGridViewTextBoxColumn6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "ProductName";
+            this.dataGridViewTextBoxColumn6.HeaderText = "Namn";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
             // 
-            // dataGridViewTextBoxColumn1
+            // dataGridViewTextBoxColumn7
             // 
-            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "ProductName";
-            this.dataGridViewTextBoxColumn1.HeaderText = "Namn";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.dataGridViewTextBoxColumn7.DataPropertyName = "BasePrice";
+            this.dataGridViewTextBoxColumn7.HeaderText = "Pris";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
+            this.dataGridViewTextBoxColumn7.Width = 80;
             // 
-            // productNameDataGridViewTextBoxColumn
+            // DeleteProductBtn
             // 
-            this.productNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.productNameDataGridViewTextBoxColumn.DataPropertyName = "ProductName";
-            this.productNameDataGridViewTextBoxColumn.HeaderText = "ProductName";
-            this.productNameDataGridViewTextBoxColumn.Name = "productNameDataGridViewTextBoxColumn";
-            this.productNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.productNameDataGridViewTextBoxColumn.Width = 97;
+            this.DeleteProductBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DeleteProductBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DeleteProductBtn.Location = new System.Drawing.Point(3, 363);
+            this.DeleteProductBtn.Name = "DeleteProductBtn";
+            this.DeleteProductBtn.Size = new System.Drawing.Size(402, 105);
+            this.DeleteProductBtn.TabIndex = 4;
+            this.DeleteProductBtn.Text = "Ta bort vara";
+            this.DeleteProductBtn.UseVisualStyleBackColor = true;
             // 
-            // descriptionDataGridViewTextBoxColumn
+            // ConfirmBtn
             // 
-            this.descriptionDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.descriptionDataGridViewTextBoxColumn.DataPropertyName = "Description";
-            this.descriptionDataGridViewTextBoxColumn.HeaderText = "Description";
-            this.descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
-            this.descriptionDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // prepTimeDataGridViewTextBoxColumn
-            // 
-            this.prepTimeDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.prepTimeDataGridViewTextBoxColumn.DataPropertyName = "PrepTime";
-            this.prepTimeDataGridViewTextBoxColumn.HeaderText = "PrepTime";
-            this.prepTimeDataGridViewTextBoxColumn.Name = "prepTimeDataGridViewTextBoxColumn";
-            this.prepTimeDataGridViewTextBoxColumn.ReadOnly = true;
-            this.prepTimeDataGridViewTextBoxColumn.Width = 77;
-            // 
-            // basePriceDataGridViewTextBoxColumn
-            // 
-            this.basePriceDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.basePriceDataGridViewTextBoxColumn.DataPropertyName = "BasePrice";
-            this.basePriceDataGridViewTextBoxColumn.HeaderText = "BasePrice";
-            this.basePriceDataGridViewTextBoxColumn.Name = "basePriceDataGridViewTextBoxColumn";
-            this.basePriceDataGridViewTextBoxColumn.ReadOnly = true;
-            this.basePriceDataGridViewTextBoxColumn.Width = 80;
-            // 
-            // productBindingSource
-            // 
-            this.productBindingSource.DataSource = typeof(TypeLib.Product);
-            // 
-            // ProductTypeID
-            // 
-            this.ProductTypeID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.ProductTypeID.DataPropertyName = "ProductTypeID";
-            this.ProductTypeID.HeaderText = "Kategori";
-            this.ProductTypeID.Name = "ProductTypeID";
-            this.ProductTypeID.ReadOnly = true;
-            this.ProductTypeID.Width = 71;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "BasePrice";
-            this.dataGridViewTextBoxColumn4.HeaderText = "Pris";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            this.dataGridViewTextBoxColumn4.Width = 80;
-            // 
-            // ingredientBindingSource
-            // 
-            this.ingredientBindingSource.DataSource = typeof(TypeLib.Ingredient);
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "IngredientName";
-            this.dataGridViewTextBoxColumn3.HeaderText = "Namn";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "Price";
-            this.dataGridViewTextBoxColumn5.HeaderText = "Pris";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            this.dataGridViewTextBoxColumn5.Width = 80;
-            // 
-            // ingredientNameDataGridViewTextBoxColumn
-            // 
-            this.ingredientNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ingredientNameDataGridViewTextBoxColumn.DataPropertyName = "IngredientName";
-            this.ingredientNameDataGridViewTextBoxColumn.HeaderText = "Namn";
-            this.ingredientNameDataGridViewTextBoxColumn.Name = "ingredientNameDataGridViewTextBoxColumn";
-            this.ingredientNameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // Quantity
-            // 
-            this.Quantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Quantity.DataPropertyName = "Quantity";
-            this.Quantity.HeaderText = "Antal";
-            this.Quantity.Name = "Quantity";
-            this.Quantity.ReadOnly = true;
-            this.Quantity.Width = 80;
-            // 
-            // RemoveProductBtn
-            // 
-            this.RemoveProductBtn.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.RemoveProductBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RemoveProductBtn.Location = new System.Drawing.Point(0, 368);
-            this.RemoveProductBtn.Name = "RemoveProductBtn";
-            this.RemoveProductBtn.Size = new System.Drawing.Size(377, 129);
-            this.RemoveProductBtn.TabIndex = 3;
-            this.RemoveProductBtn.Text = "Ta bort vara";
-            this.RemoveProductBtn.UseVisualStyleBackColor = true;
+            this.ConfirmBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ConfirmBtn.Location = new System.Drawing.Point(378, 298);
+            this.ConfirmBtn.Name = "ConfirmBtn";
+            this.ConfirmBtn.Size = new System.Drawing.Size(238, 90);
+            this.ConfirmBtn.TabIndex = 5;
+            this.ConfirmBtn.Text = "Slutför";
+            this.ConfirmBtn.UseVisualStyleBackColor = true;
+            this.ConfirmBtn.Click += new System.EventHandler(this.ConfirmBtn_Click);
             // 
             // PickProduct
             // 
@@ -1056,12 +1114,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer5)).EndInit();
             this.splitContainer5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridViewProducts)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).EndInit();
             this.tabCustomize.ResumeLayout(false);
             this.splitContainer4.Panel1.ResumeLayout(false);
             this.splitContainer4.Panel1.PerformLayout();
             this.splitContainer4.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
             this.splitContainer4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewCart)).EndInit();
             this.splitContainer6.Panel1.ResumeLayout(false);
             this.splitContainer6.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer6)).EndInit();
@@ -1073,8 +1133,10 @@
             this.tabControl3.ResumeLayout(false);
             this.tabPage7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridViewIngredients)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ingredientBindingSource)).EndInit();
             this.tabControl4.ResumeLayout(false);
             this.tabPage8.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewExtraIngredients)).EndInit();
             this.splitContainer12.Panel1.ResumeLayout(false);
             this.splitContainer12.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer12)).EndInit();
@@ -1106,8 +1168,6 @@
             this.splitContainer10.ResumeLayout(false);
             this.tabControl6.ResumeLayout(false);
             this.tabPage10.ResumeLayout(false);
-            this.tabPage10.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView8)).EndInit();
             this.tabControl7.ResumeLayout(false);
             this.tabPage12.ResumeLayout(false);
             this.tabPage12.PerformLayout();
@@ -1116,10 +1176,7 @@
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productTypesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.choicesBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridViewCart)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridViewExtraIngredients)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ingredientBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewFinishCart)).EndInit();
             this.ResumeLayout(false);
 
 		}
@@ -1180,11 +1237,9 @@
 		private System.Windows.Forms.SplitContainer splitContainer10;
 		private System.Windows.Forms.TabControl tabControl6;
 		private System.Windows.Forms.TabPage tabPage10;
-		private System.Windows.Forms.Label label8;
-		private System.Windows.Forms.DataGridView dataGridView8;
 		private System.Windows.Forms.TabControl tabControl7;
 		private System.Windows.Forms.TabPage tabPage12;
-		private System.Windows.Forms.Label label9;
+		private System.Windows.Forms.Label lblTotalPrice;
 		private System.Windows.Forms.SplitContainer splitContainer11;
 		private System.Windows.Forms.Button button5;
 		private System.Windows.Forms.Button button6;
@@ -1211,5 +1266,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ingredientNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
         private System.Windows.Forms.Button RemoveProductBtn;
+        private System.Windows.Forms.DataGridView gridViewFinishCart;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.Button DeleteProductBtn;
+        private System.Windows.Forms.Button ConfirmBtn;
     }
 }
