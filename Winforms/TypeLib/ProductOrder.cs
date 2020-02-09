@@ -15,7 +15,5 @@ namespace TypeLib
         public bool Processed { get; set; }
         public bool Activated { get; set; }
         public bool Visible { get; set; }
-
-        public List<Stuffing> Stuffings { get; set; }
     }
 }

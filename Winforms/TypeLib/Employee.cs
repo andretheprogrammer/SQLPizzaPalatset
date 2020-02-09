@@ -24,13 +24,6 @@ namespace TypeLib
         {
             // TODO Implementera enum för Stations/Stationtypes i ComboBox ?
             // Implementera Employeetypecanworkinstationtype ?
-            // Stations
-            //"Administrator" = 0
-            //"Cashier"
-            //"Pizza Station 1"
-            //"Terminal1"
-            //"Terminal2"
-            //"Terminal3"
 
             if (Types.Any(type => type == EmployeeType.Administrator))
             {
