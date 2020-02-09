@@ -13,11 +13,11 @@ namespace TypeLib
         // Products
         Task<IEnumerable<Product>> GetProductsAsync(ProductType productType);
 
-        // Temp test
+        // TODO Delete om ej används
         Task<IEnumerable<ProductOrder>> GetProductOrdersAsync();
 
         // Employees
-        Task<Employee> EmployeeLoginAsync(string username, string password);
+        Task<Employee> GetEmployeeLoginAsync(string username, string password);
 
         Task GetEmployeeTypesAsync(Employee employee);
         
@@ -36,7 +36,7 @@ namespace TypeLib
         Task SetProcessedOnkPOAsync(int pProductOrderid, bool processed);
 
 
-        //// ???????
+        // Order Inserts
         Task<int> CreateNewOrderAsync(Order order);
 
         Task CreateProductOrdersAsync(object[] parameters);

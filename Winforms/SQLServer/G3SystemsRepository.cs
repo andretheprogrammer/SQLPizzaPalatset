@@ -64,7 +64,7 @@ namespace SQLServer
         /// <param name="username"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        public async Task<Employee> EmployeeLoginAsync(string username, string password)
+        public async Task<Employee> GetEmployeeLoginAsync(string username, string password)
         {
             if (string.IsNullOrWhiteSpace(username + password))
             {
