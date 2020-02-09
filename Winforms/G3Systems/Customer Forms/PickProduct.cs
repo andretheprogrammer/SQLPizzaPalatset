@@ -117,7 +117,16 @@ namespace G3Systems
 			product.Ingredients = (await _repo.GetHaveIngredientsAsync(product.ProductID)).ToList();
 
 			// Save product to cart
-			cart.Add(product);
+			cart.Add(new Product()
+			{
+				ProductID = product.ProductID,
+				ProductTypeID = product.ProductTypeID,
+				ProductName = product.ProductName,
+				PrepTime = product.PrepTime,
+				BasePrice = product.BasePrice,
+				Ingredients = product.Ingredients
+			});
+
 
 			UpdateCart();
 		}
@@ -166,8 +175,7 @@ namespace G3Systems
 				return;
 			}
 
-			var selectedProduct = (Product)gridViewCart.SelectedRows[0].DataBoundItem;
-			var product = cart.Where(p => p.ProductID == selectedProduct.ProductID).FirstOrDefault();
+			var product = (Product)gridViewCart.SelectedRows[0].DataBoundItem;
 			var ingredient = (Ingredient)gridViewExtraIngredients.SelectedRows[0].DataBoundItem;
 
 			ValidateAddIngredient(product, ingredient);
