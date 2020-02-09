@@ -18,13 +18,18 @@ namespace G3Systems
 
 		private Employee user;
 		private readonly IG3SystemsRepository _repo;
-		public Baker(Employee puser)
+		
+		private bool Lockedstate = false;
+
+		public Baker(
+		//Employee puser
+		)
 		{
 			InitializeComponent();
 			_repo = new G3SystemsRepository();
-			user = puser;
-			lbl_username.Text = user.Username;
-			lbl_usrPname.Text = user.Username;
+			//user = puser;
+			//lbl_username.Text = user.Username;
+			//lbl_usrPname.Text = user.Username;
 
 		}
 
@@ -34,8 +39,56 @@ namespace G3Systems
 
 		}
 
-		private void button1_Click(object sender, EventArgs e)
+		private async void btn_Lock_click(object sender, EventArgs e)
 		{
+			if (noSelections()) { return; }
+			
+
+
+
+			if (Lockedstate == false) 
+			{
+				lstbxOpen.Enabled = false; //Nu AV-aktiveras ProductOrders-listan
+
+
+				int pickedPO = (int)lstbxOpen.SelectedItems[0];
+
+				//Hårdkodat??
+				int pickedStation = 1;
+
+				await _repo.SetLockOnkPOAsync(pickedPO, pickedStation);
+
+				btn_Finished.Enabled = true;
+				btn_Refresh.Enabled = false;
+				btn_Finished.BackColor = Color.Lime;
+				btn_Lock.Text = "Press to UNLOCK";
+				btn_Finished.Text = "FINISHED";
+				btn_Lock.BackColor = Color.Yellow;
+				Lockedstate = true;
+
+
+				}
+
+			else
+			{
+				lstbxOpen.Enabled = true;
+
+				int pickedPO = (int)lstbxOpen.SelectedItems[0];
+
+				//Hårdkodat??
+				int pickedStation = 1;
+
+				await _repo.SetLockOnkPOAsync(pickedPO, 0);
+
+				btn_Finished.Enabled = false;
+				btn_Refresh.Enabled = true;
+				btn_Finished.BackColor = Color.Gray;
+				btn_Finished.Text = "";
+				btn_Lock.Text = "Press to LOCK";
+				btn_Lock.BackColor = Color.Beige;
+				Lockedstate = false;
+			}
+			
 		}
 
 		private async void Baker_Load(object sender, EventArgs e)
@@ -96,9 +149,12 @@ namespace G3Systems
 			this.Hide();
 		}
 
+		private bool noSelections(){
+			return lstbxOpen.SelectedItem == "" || lstbxOpen.SelectedItem is null;
+		}
 		private async void btn_Refresh_Click(object sender, EventArgs e)
 		{
-			lstbxOpen.SelectedItems.c
+			if (noSelections() ) { return; } //Knapp kan inte göra något utan valda ProdOrders
 			int pickedPO = (int)lstbxOpen.SelectedItems[0];
 
 			lstbxOpen.Items.Clear();
@@ -121,7 +177,7 @@ namespace G3Systems
 
 		private async void lstbxOpen_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			
+			if (noSelections()) { return; } //event kan inte göra något utan valda ProdOrders
 			int pickedPO = (int)lstbxOpen.SelectedItems[0];
 			
 			lstbxStuffings.Items.Clear();
@@ -134,5 +190,27 @@ namespace G3Systems
 
 
 		}
+
+		private async void btn_Finished_Click(object sender, EventArgs e)
+		{
+
+			lstbxOpen.Enabled = true;
+
+			int pickedPO = (int)lstbxOpen.SelectedItems[0];
+
+			//Hårdkodat??
+			int pickedStation = 1;
+
+			await _repo.SetProcessedOnkPOAsync(pickedPO, true);
+
+			btn_Finished.Enabled = false;
+			btn_Refresh.Enabled = true;
+			btn_Finished.BackColor = Color.Gray;
+			btn_Finished.Text = "";
+			btn_Lock.Text = "Press to LOCK";
+			btn_Lock.BackColor = Color.Beige;
+			Lockedstate = false;
+		}
 	}
 }
+

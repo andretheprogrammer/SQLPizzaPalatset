@@ -1540,10 +1540,10 @@ INSERT INTO ProductOrders(ProductID, OrderID,Processed) VALUES(3, 7, 1);
 --Order8 (paid) (partially processed)
 INSERT INTO ProductOrders(ProductID, OrderID,Processed) VALUES(1, 8, 1);
 INSERT INTO ProductOrders(ProductID, OrderID,Processed) VALUES(1, 8, 0);
+GO
 
 
 ------- Procedures för infoscreens
-GO
 CREATE PROCEDURE Proc_LeftColumnInfoScreen  @BuildingID INT
 	AS 												--Ska fungera bra. //hariz
 	SELECT OrderID 
@@ -1621,11 +1621,6 @@ CREATE PROCEDURE Proc_GetStuffings (@ProductOrderID Int)
 				ProductOrders.ProductOrderID = Stuffings.ProductOrderID)
 		END
 	GO
-
-
-
-
-
 
 --ProductOrders som går att välja
 --Bagarens vänstra lista.
