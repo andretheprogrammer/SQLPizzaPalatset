@@ -1544,63 +1544,149 @@ INSERT INTO ProductOrders(ProductID, OrderID,Processed) VALUES(1, 8, 0);
 
 ------- Procedures för infoscreens
 GO
-CREATE PROCEDURE Proc_LeftColumnInfoScreen  @Building INT
-AS 												--Ska fungera bra. //hariz
-SELECT OrderID 
-FROM Orders
-WHERE        Orders.PickedUp =0 and
-            Orders.Canceled = 0 and
-            Orders.Returned = 0 and
-            Orders.Paid = 1
+CREATE PROCEDURE Proc_LeftColumnInfoScreen  @BuildingID INT
+	AS 												--Ska fungera bra. //hariz
+	SELECT OrderID 
+	FROM Orders
+	WHERE        Orders.PickedUp =0 and
+	            Orders.Canceled = 0 and
+	            Orders.Returned = 0 and
+	            Orders.Paid = 1
 
-            and  
-            Orders.OrderID IN 			  --är Element av 
-                (SELECT ProductOrders.OrderID
-                FROM ProductOrders 
-                WHERE ProductOrders.Processed = 0) 
+	            and  
+	            Orders.OrderID IN 			  --är Element av 
+	                (SELECT ProductOrders.OrderID
+	                FROM ProductOrders 
+	                WHERE ProductOrders.Processed = 0) 
 
-            and
-            Orders.ByTerminal in 
-            (SELECT TerminalID
-            FROM Terminals
-            WHERE Terminals.BuildingID = @Building) --Parametrisera för att visa orders från din byggnad 
+	            and
+	            Orders.ByTerminal in 
+	            (SELECT TerminalID
+	            FROM Terminals
+	            WHERE Terminals.BuildingID = @BuildingID) --Parametrisera för att visa orders från din byggnad 
 
-GO
-CREATE PROCEDURE Proc_RightColumnInfoScreen  @Building INT
-AS
-SELECT OrderID
-FROM Orders
-WHERE        Orders.PickedUp =0 and
-            Orders.Canceled = 0 and
-            Orders.Returned = 0 and
-            Orders.Paid = 1
-            
-            and  
-            Orders.OrderID IN 			--är element av
-                (SELECT ProductOrders.OrderID
-                FROM ProductOrders 
-                WHERE ProductOrders.Processed = 1) 
+	GO
 
-            and 
-            Orders.orderID not in 		--är inte element av
-                (    SELECT ProductOrders.OrderID
-                    FROM ProductOrders 
-                    WHERE ProductOrders.Processed = 0
-                )
-            
-            and
-            Orders.ByTerminal in 
-            (SELECT TerminalID
-            FROM Terminals
-            WHERE Terminals.BuildingID = @Building) --Parametrisera för att visa orders från din byggnad 
-GO
+CREATE PROCEDURE Proc_RightColumnInfoScreen  @BuildingID INT
+	AS
+	SELECT OrderID
+	FROM Orders
+	WHERE        Orders.PickedUp =0 and
+	            Orders.Canceled = 0 and
+	            Orders.Returned = 0 and
+	            Orders.Paid = 1
+	            
+	            and  
+	            Orders.OrderID IN 			--är element av
+	                (SELECT ProductOrders.OrderID
+	                FROM ProductOrders 
+	                WHERE ProductOrders.Processed = 1) 
+
+	            and 
+	            Orders.orderID not in 		--är inte element av
+	                (    SELECT ProductOrders.OrderID
+	                    FROM ProductOrders 
+	                    WHERE ProductOrders.Processed = 0
+	                )
+	            
+	            and
+	            Orders.ByTerminal in 
+	            (SELECT TerminalID
+	            FROM Terminals
+	            WHERE Terminals.BuildingID = @BuildingID) --Parametrisera för att visa orders från din byggnad 
+	GO
 
 --- Procedure för att sätta order som Picked Up:
 CREATE PROCEDURE SetPickedUp (@OrderID Int, @PickedUp bit)
-AS
-	BEGIN 
-		UPDATE Orders
-		SET PickedUp = @PickedUp
-		WHERE OrderID = @OrderID;
-	END
-GO
+	AS
+		BEGIN 
+			UPDATE Orders
+			SET PickedUp = @PickedUp
+			WHERE OrderID = @OrderID;
+		END
+	GO
+
+--- För Baker - Hämtar ingredients, dvs stuffings.
+CREATE PROCEDURE Proc_GetStuffings (@ProductOrderID Int)
+	AS
+		BEGIN 
+		Select *
+		FROM Ingredients 
+
+		WHERE IngredientID IN
+			(SELECT Stuffings.IngredientID
+			FROM ProductOrders, Stuffings
+			Where ProductOrders.ProductOrderID = @ProductOrderID
+				and
+				ProductOrders.ProductOrderID = Stuffings.ProductOrderID)
+		END
+	GO
+
+
+
+
+
+
+--ProductOrders som går att välja
+--Bagarens vänstra lista.
+--Filtreringsstrategi: Börja med den största mängden. Sålla sedan ner.
+CREATE PROCEDURE Proc_OpenOrders  @BuildingID INT
+	AS
+
+	SELECT ProductOrderID, ProductName,PrepTime
+	FROM (SELECT ProductOrderID, ProductID
+		 FROM ProductOrders
+		 WHERE LockedByStation IS NULL and
+				Processed =0 and
+				Activated=1 and
+				Visible=1 and
+
+		 OrderID in ( SELECT OrderID 
+				FROM Orders
+				WHERE Orders.Paid = 1 and
+						Orders.Canceled=0 and
+						Orders.Activated=1 and
+						Orders.Visible=1 and
+						Orders.PickedUp=0 and
+						Orders.Returned=0 and
+
+						Orders.ByTerminal IN 
+							(SELECT TerminalID
+							FROM Terminals
+							WHERE Terminals.BuildingID = @BuildingID)
+					 )) as POProds JOIN Products on Products.ProductID=POProds.ProductID
+	GO
+
+--Baker
+--Låser upp med @stationid=0
+CREATE PROCEDURE Proc_SetLockedByStation (@ProductOrderID Int, @StationID Int)
+	AS
+		BEGIN 
+			if(@StationID =0)
+
+				BEGIN 
+				UPDATE ProductOrders
+				SET LockedByStation = NULL
+				WHERE ProductOrderID = @ProductOrderID;
+				END
+
+			ELSE
+				BEGIN
+				UPDATE ProductOrders
+				SET LockedByStation = @StationID
+				WHERE ProductOrderID = @ProductOrderID;
+				END
+		END
+	GO
+
+
+--Baker
+CREATE PROCEDURE Proc_SetProcessed (@ProductOrderID Int, @Processed bit)
+	AS
+		BEGIN 
+			UPDATE ProductOrders
+			SET Processed = @Processed
+			WHERE ProductOrderID = @ProductOrderID;
+		END
+	GO
+

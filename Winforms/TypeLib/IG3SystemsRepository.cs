@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace TypeLib
 {
     // TODO Dela upp repository?
+    // TODO en repository för varje form?
     public interface IG3SystemsRepository 
     {
         // Products
@@ -26,6 +27,13 @@ namespace TypeLib
 
         //Cashier
         Task SetOrderPickedUpToAsync(int id, bool pickbit);
+
+        //Baker
+        //Obs Open ProductOrders. Only for baker.
+        Task<IEnumerable<ProductOrder>> GetOpenPOAsync(int pBuidlingid=1);
+        Task<IEnumerable<Ingredient>> GetStuffingsAsync(int pProductOrderid);
+        Task SetLockOnkPOAsync(int pProductOrderid,int pStationid);
+        Task SetProcessedOnkPOAsync(int pProductOrderid, bool processed);
 
 
         //// ???????

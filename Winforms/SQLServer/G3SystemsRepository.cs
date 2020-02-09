@@ -104,30 +104,28 @@ namespace SQLServer
         }
 
 
-
-        //-------------- Infoscreen
+        // Todo sätt summary kommentarer överallt
+        // InfoScreen - Hariz
         public async Task<IEnumerable<Order>> GetFinishedOrdersAsync(int id)
         {
             using (var connection = CreateConnection())
             {
                 return (await connection.QueryAsync<Order>(
                       sql: "Proc_RightColumnInfoScreen",
-                    param: new { @Building = id },
+                    param: new { @BuildingID = id },
                commandType: CommandType.StoredProcedure));
             }
         }
-
         public async Task<IEnumerable<Order>> GetInProcessOrderssAsync(int id)
         {
             using (var connection = CreateConnection())
             {
                 return (await connection.QueryAsync<Order>(
                       sql: "Proc_LeftColumnInfoScreen",
-                    param: new { @Building = id },
+                    param: new { @BuildingID = id },
                commandType: CommandType.StoredProcedure)).ToList();
             }
         }
-        //_------------------
 
         public async Task CreateProductOrdersAsync(object[] parameters)
         {
@@ -178,11 +176,11 @@ namespace SQLServer
             }
         }
 
-        //Cashier  - Hariz
+        // Cashier  - Hariz
         //Sätter picked up på en order.
         public async Task SetOrderPickedUpToAsync(int id, bool pickbit)
         {
-            //Konvertera bool till en int
+            //Konvertera bool till en int - - Inkapsla! Denna kod upprepas.
             int bit_from_bool;
             if (pickbit == true) bit_from_bool = 1;
             else bit_from_bool = 0;
@@ -193,10 +191,65 @@ namespace SQLServer
                        sql: "SetPickedUp",
                      param: new { @OrderID = id, @PickedUp = bit_from_bool },
                 commandType: CommandType.StoredProcedure);
+            }   //Return signal of successs?
+
+
+        }
+
+        // Baker - Hariz
+        public async Task<IEnumerable<ProductOrder>> GetOpenPOAsync(int pBuildingid)
+        {
+            //Vänstra listan på baker
+            using (var connection = CreateConnection())
+            {
+                return (await connection.QueryAsync<ProductOrder>(
+                       sql: "Proc_OpenOrders",
+                     param: new { @BuildingID = pBuildingid },
+                commandType: CommandType.StoredProcedure));
             }
 
-            //Return signal of successs?
         }
+        public async Task<IEnumerable<Ingredient>> GetStuffingsAsync(int pProductOrderid)
+        {
+            using (var connection = CreateConnection())
+            {
+                return (await connection.QueryAsync<Ingredient>(
+                       sql: "Proc_GetStuffings",
+                     param: new { @ProductOrderID = pProductOrderid },
+                commandType: CommandType.StoredProcedure));
+            }
+        }
+
+        //Använd stationid =0 för att "låsa upp" productorder.
+        public async Task SetLockOnkPOAsync(int pProductOrderid, int pStationid)
+        {
+                using (var connection = CreateConnection())
+                {
+                    await connection.QueryAsync<Order>(
+                          sql: "Proc_SetLockedByStation",
+                        param: new { @ProductOrderID = pProductOrderid, @StationID = pStationid },
+                   commandType: CommandType.StoredProcedure);
+                }
+        }
+        public async Task SetProcessedOnkPOAsync(int pProductOrderid, bool pProcessed)
+        {
+       
+            int bit_from_bool;
+            if (pProcessed == true) bit_from_bool = 1;
+            else bit_from_bool = 0;
+
+            using (var connection = CreateConnection())
+            {
+                await connection.QueryAsync<Order>(
+                      sql: "Proc_SetLockedByStation",
+                    param: new { @ProductOrderID = pProductOrderid, @Processed = bit_from_bool },
+               commandType: CommandType.StoredProcedure);
+            }
+
+        }
+
+
+
 
 
     }
