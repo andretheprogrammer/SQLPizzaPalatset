@@ -21,15 +21,20 @@ namespace G3Systems
 		
 		private bool Lockedstate = false;
 
-		public Baker(
-		//Employee puser
-		)
+
+		//Ska ha som inputs helst: Employee, Building, Station
+		public Baker(Employee puser)
 		{
 			InitializeComponent();
 			_repo = new G3SystemsRepository();
-			//user = puser;
-			//lbl_username.Text = user.Username;
-			//lbl_usrPname.Text = user.Username;
+			user = puser;
+			lbl_username.Text = user.Username;
+			lbl_usrPname.Text = user.Username;
+
+			//Todo: hårdkodat här. Fixa så den visar riktigt värde.
+			lbl_activated.Text = "True";
+			lbl_visible.Text = "True";
+			lblPassword.Text = "";
 
 		}
 
@@ -43,15 +48,12 @@ namespace G3Systems
 		{
 			if (noSelections()) { return; }
 			
-
-
-
 			if (Lockedstate == false) 
 			{
 				lstbxOpen.Enabled = false; //Nu AV-aktiveras ProductOrders-listan
 
 
-				int pickedPO = (int)lstbxOpen.SelectedItems[0];
+				int pickedPO = getOpenListChoiceInt();
 
 				//Hårdkodat??
 				int pickedStation = 1;
@@ -73,7 +75,7 @@ namespace G3Systems
 			{
 				lstbxOpen.Enabled = true;
 
-				int pickedPO = (int)lstbxOpen.SelectedItems[0];
+				int pickedPO = getOpenListChoiceInt();
 
 				//Hårdkodat??
 				int pickedStation = 1;
@@ -100,10 +102,8 @@ namespace G3Systems
 
 			//Hårdkodat??
 			int building = 1;
+			repopulate_POList(building);
 
-			List<ProductOrder> openPOrders = (await _repo.GetOpenPOAsync(building)).ToList();
-
-			openPOrders.ForEach(a => lstbxOpen.Items.Add(a.ProductOrderID));
 
 		}
 
@@ -152,10 +152,11 @@ namespace G3Systems
 		private bool noSelections(){
 			return lstbxOpen.SelectedItem == "" || lstbxOpen.SelectedItem is null;
 		}
+
 		private async void btn_Refresh_Click(object sender, EventArgs e)
 		{
 			if (noSelections() ) { return; } //Knapp kan inte göra något utan valda ProdOrders
-			int pickedPO = (int)lstbxOpen.SelectedItems[0];
+			int pickedPO = getOpenListChoiceInt();
 
 			lstbxOpen.Items.Clear();
 			lstbxStuffings.Items.Clear();
@@ -165,30 +166,41 @@ namespace G3Systems
 
 
 
-			List<ProductOrder> openPOrders = (await _repo.GetOpenPOAsync(building)).ToList();
-			List<Ingredient> stuffings = (await _repo.GetStuffingsAsync(pickedPO)).ToList();
-
-			openPOrders.ForEach(a => lstbxOpen.Items.Add(a.ProductOrderID));
-			stuffings.ForEach(a => lstbxStuffings.Items.Add(a.IngredientName));
-
-			
-
+			repopulate_POList(building);
+			repopulate_StuffingsList(pickedPO);
 		}
 
+		private int getOpenListChoiceInt() {
+			return Int32.Parse((lstbxOpen.SelectedItems[0]).ToString().Split(':')[0]);
+		}
+
+		//TODO Ta bort async här?
 		private async void lstbxOpen_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			if (noSelections()) { return; } //event kan inte göra något utan valda ProdOrders
-			int pickedPO = (int)lstbxOpen.SelectedItems[0];
-			
+			int pickedPO = getOpenListChoiceInt();
+
 			lstbxStuffings.Items.Clear();
 
 			//Hårdkodat??
 			int building = 1;
 
+
+			repopulate_StuffingsList(pickedPO);
+		}
+
+		private async void repopulate_POList(int building)
+		{
+			lstbxOpen.Items.Clear();
+			List<Workload> openPOrders = (await _repo.GetOpenPOAsync(building)).ToList();
+			openPOrders.ForEach(a => lstbxOpen.Items.Add(a.ProductOrderID + ": " + a.ProductName + ", " + a.PrepTime));
+		}
+
+		private async void repopulate_StuffingsList(int pickedPO)
+		{
+			lstbxStuffings.Items.Clear();
 			List<Ingredient> stuffings = (await _repo.GetStuffingsAsync(pickedPO)).ToList();
 			stuffings.ForEach(a => lstbxStuffings.Items.Add(a.IngredientName));
-
-
 		}
 
 		private async void btn_Finished_Click(object sender, EventArgs e)
@@ -196,12 +208,13 @@ namespace G3Systems
 
 			lstbxOpen.Enabled = true;
 
-			int pickedPO = (int)lstbxOpen.SelectedItems[0];
+			int pickedPO = getOpenListChoiceInt();
 
 			//Hårdkodat??
 			int pickedStation = 1;
 
 			await _repo.SetProcessedOnkPOAsync(pickedPO, true);
+			await _repo.SetLockOnkPOAsync(pickedPO, 0);
 
 			btn_Finished.Enabled = false;
 			btn_Refresh.Enabled = true;
@@ -210,6 +223,17 @@ namespace G3Systems
 			btn_Lock.Text = "Press to LOCK";
 			btn_Lock.BackColor = Color.Beige;
 			Lockedstate = false;
+
+
+			int building = 1;
+
+			repopulate_POList(building);
+			repopulate_StuffingsList(pickedPO);
+		}
+
+		private void lbl_username_Click(object sender, EventArgs e)
+		{
+
 		}
 	}
 }

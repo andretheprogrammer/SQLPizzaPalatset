@@ -81,7 +81,7 @@ namespace G3Systems
 			}
 			else if (selected == 2)
 			{
-				var form = new Baker();
+				var form = new Baker(User);
 				form.Show();
 			}
 			else if (selected == 3)

@@ -18,4 +18,6 @@ namespace TypeLib
 
         public List<Stuffing> Stuffings { get; set; }
     }
+
+    //Todo: Behöver metod för att fetcha productnamn, produkttyp, pris, etc.?
 }

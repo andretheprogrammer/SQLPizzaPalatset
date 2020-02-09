@@ -30,7 +30,7 @@ namespace TypeLib
 
         //Baker
         //Obs Open ProductOrders. Only for baker.
-        Task<IEnumerable<ProductOrder>> GetOpenPOAsync(int pBuidlingid=1);
+        Task<IEnumerable<Workload>> GetOpenPOAsync(int pBuidlingid=1); //Byt workload till Object oom du måste
         Task<IEnumerable<Ingredient>> GetStuffingsAsync(int pProductOrderid);
         Task SetLockOnkPOAsync(int pProductOrderid,int pStationid);
         Task SetProcessedOnkPOAsync(int pProductOrderid, bool processed);

@@ -135,7 +135,6 @@ namespace SQLServer
             }
         }
         
-
         public async Task<int> CreateNewOrderAsync(Order order)
         {
             var p = new DynamicParameters();
@@ -197,12 +196,12 @@ namespace SQLServer
         }
 
         // Baker - Hariz
-        public async Task<IEnumerable<ProductOrder>> GetOpenPOAsync(int pBuildingid)
+        public async Task<IEnumerable<Workload>> GetOpenPOAsync(int pBuildingid)
         {
             //Vänstra listan på baker
             using (var connection = CreateConnection())
             {
-                return (await connection.QueryAsync<ProductOrder>(
+                return (await connection.QueryAsync<Workload>(
                        sql: "Proc_OpenOrders",
                      param: new { @BuildingID = pBuildingid },
                 commandType: CommandType.StoredProcedure));
@@ -241,7 +240,7 @@ namespace SQLServer
             using (var connection = CreateConnection())
             {
                 await connection.QueryAsync<Order>(
-                      sql: "Proc_SetLockedByStation",
+                      sql: "Proc_SetProcessed",
                     param: new { @ProductOrderID = pProductOrderid, @Processed = bit_from_bool },
                commandType: CommandType.StoredProcedure);
             }
