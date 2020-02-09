@@ -608,12 +608,10 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 
 	--Login
 		GO
-		CREATE PROC spVerifyLogin
-		@Username varchar(20),
-		@Password varchar(20)
-
+		CREATE PROC Proc_VerifyLogin
+			@Username varchar(20),
+			@Password varchar(20)
 		as
-
 		begin
 			SELECT EmployeeID, Username FROM Employees WHERE
 			CAST(Username as varbinary(100)) = CAST(@Username as varbinary(100))
@@ -621,93 +619,80 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 			AND Username = @Username 
 			AND [Password] = @Password
 		end
-	
+		GO
+
 	--Product Ingredients
-		go
-		create proc spGetProductIngredients
-		@ProductID int
-		as
-		begin
+		Create proc Proc_GetProductHaveIngredients
+			@ProductID int
+		AS
+		Begin
 			SELECT * FROM Ingredients as I
 			JOIN ProductHaveIngredients as PHI
 			ON PHI.IngredientID = I.IngredientID
 			WHERE PHI.ProductID = @ProductID
-		end
+		End
+		GO
 
-		go
-		create proc spGetProductCanHaveIngredients
-		@ProductID int
-		as
-		begin
+		Create proc Proc_GetProductCanHaveIngredients
+			@ProductID int
+		AS
+		Begin
 			SELECT * FROM Ingredients as I
 			JOIN ProductCanHaveIngredients as PCHI
 			ON PCHI.IngredientID = I.IngredientID
 			WHERE PCHI.ProductID = @ProductID
-		end
-		go
+		End
+		GO
 
 	--Create Order
-		GO
-		CREATE Proc spNewOrder
-		(
+		CREATE Proc Proc_NewOrder
 			@TerminalID int,
-			@Paid bit,
 			@OrderID int = 0 OUTPUT
-		)
 		AS
 			Begin
-				insert into Orders (ByTerminal, Paid)
-				values (@TerminalID, @Paid);
+				insert into Orders (ByTerminal)
+				values (@TerminalID);
 				set @OrderID = SCOPE_IDENTITY();
 			End
-		if (@Paid = 0)
-			Begin
-				Update Orders Set Canceled = 1;
-			End
-
 		GO
-		CREATE PROC spInsertProductOrders
-		(
+
+
+		CREATE PROC Proc_InsertProductOrders
 			@OrderID int,
 			@ProductID int,
 			@IngredientID int,
 			@Quantity int
-		)
 		AS
 		Begin
-			Begin Transaction;
-			Save Transaction MySavePoint;
-			Begin Try
-				declare @ProductOrderID int;
+			declare @ProductOrderID int;
 
-				-- ProductOrder
-				Select @ProductOrderID = ProductOrderID From ProductOrders
-				Where @OrderID = OrderID AND @ProductID = ProductID;
+			-- ProductOrder
+			Select @ProductOrderID = P.ProductOrderID From ProductOrders AS P
+			Where @OrderID = P.OrderID 
+			AND @ProductID = P.ProductID
+			AND NOT EXISTS(
+				Select PO.* From Stuffings AS PO
+				Where PO.ProductOrderID = P.ProductOrderID
+				AND @IngredientID = PO.IngredientID);
 
-				if @ProductOrderID is null
+			if @ProductOrderID is null
+			Begin
+				insert into ProductOrders(ProductID, OrderID)
+				values (@ProductID, @OrderID);
+				select @ProductOrderID = SCOPE_IDENTITY();
+			End
+						
+			-- Stuffing
+			if @IngredientID is not null
+			Begin
 				Begin
-					insert into ProductOrders(ProductID, OrderID)
-					values (@ProductID, @OrderID);
-					select @ProductOrderID = SCOPE_IDENTITY();
+					insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+					values (@ProductOrderID, @IngredientID, @Quantity);
 				End
-				
-				-- Stuffing
-				if @IngredientID is not null
-				Begin
-					Begin
-						insert into Stuffings(ProductOrderID, IngredientID, Quantity)
-						values (@ProductOrderID, @IngredientID, @Quantity);
-					End
-				End
-				Commit Transaction
-			End Try
-			Begin Catch
-				IF (@@TRANCOUNT > 0)
-				Begin
-					Rollback transaction MySavePoint; -- Rollback to MySavePoint
-				End
-			End Catch
+			End
 		End
+		GO
+
 
 	--Procedures för att läggatill (eller tabort) whatever.. (en procedure för varje entitetstyp)
 	-- Kan bli hur många som helst här...

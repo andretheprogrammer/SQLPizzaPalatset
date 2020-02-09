@@ -77,7 +77,11 @@ namespace G3Systems
 
 		private void button000_click(object sender, EventArgs e)
 		{
-			var Form0 = new CustomerEnter();
+			// Skapa ny random terminal
+			Random rnd = new Random();
+			int terminalID = rnd.Next(1, 50);
+			var Form0 = new CustomerEnter(terminalID);
+			Form0.Text += $" {terminalID}";
 			Form0.ShowDialog();
 		}
 	}

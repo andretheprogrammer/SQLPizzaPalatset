@@ -91,8 +91,9 @@ namespace G3Systems
 			}
 			else if (selected >= 4 && selected < 6)
 			{
-				var form = new CustomerEnter();
+				var form = new CustomerEnter(selected - 3);
 				form.Show();
+				form.Text += $" {selected - 3}";
 			}
 			else
 			{

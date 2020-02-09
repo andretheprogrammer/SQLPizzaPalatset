@@ -30,18 +30,24 @@ namespace G3Systems
 		// Get cart sorted by producttype
 		private List<Product> GetCart() => cart.OrderBy(p => p.ProductTypeID).ToList();
 
-		private void PickProduct_Load(object sender, EventArgs e)
+		private async void PickProduct_Load(object sender, EventArgs e)
 		{
 			try
 			{
-				var values = Enum.GetValues(typeof(ProductType)).Cast<ProductType>().ToList();
-				values.ForEach(type => listBoxProductTypes.Items.Add(type));
+				order.OrderID = (await _repo.CreateNewOrderAsync(order));
 			}
 			catch (Exception msg)
 			{
 				MessageBox.Show("Ett fel inträffade:\n" + msg);
 				Application.Exit();
 			}
+
+			// Cast and load productype enum onto listbox 
+			//var values = Enum.GetValues(typeof(ProductType)).Cast<ProductType>().ToList();
+			//values.ForEach(type => listBoxProductTypes.Items.Add(type));
+
+			listBoxProductTypes.Items.Add(ProductType.Pizza);
+			listBoxProductTypes.Items.Add(ProductType.Sallad);
 
 			listBoxProductTypes.SelectedIndex = 0;
 		}
@@ -55,6 +61,11 @@ namespace G3Systems
 		#region NavigationButtons
 		private void FinishOrderBtn_Click(object sender, EventArgs e)
 		{
+			if (cart.Count <= 0)
+			{
+				return;
+			}
+
 			// Go to finish order tab
 			tabControlMenu.SelectedTab = tabPayment;
 
@@ -106,7 +117,16 @@ namespace G3Systems
 			product.Ingredients = (await _repo.GetHaveIngredientsAsync(product.ProductID)).ToList();
 
 			// Save product to cart
-			cart.Add(product);
+			cart.Add(new Product()
+			{
+				ProductID = product.ProductID,
+				ProductTypeID = product.ProductTypeID,
+				ProductName = product.ProductName,
+				PrepTime = product.PrepTime,
+				BasePrice = product.BasePrice,
+				Ingredients = product.Ingredients
+			});
+
 
 			UpdateCart();
 		}
@@ -155,8 +175,7 @@ namespace G3Systems
 				return;
 			}
 
-			var selectedProduct = (Product)gridViewCart.SelectedRows[0].DataBoundItem;
-			var product = cart.Where(p => p.ProductID == selectedProduct.ProductID).FirstOrDefault();
+			var product = (Product)gridViewCart.SelectedRows[0].DataBoundItem;
 			var ingredient = (Ingredient)gridViewExtraIngredients.SelectedRows[0].DataBoundItem;
 
 			ValidateAddIngredient(product, ingredient);
@@ -204,19 +223,6 @@ namespace G3Systems
 
 		private async void ConfirmBtn_Click(object sender, EventArgs e)
 		{
-			DialogResult dialogResult = MessageBox.Show("Betala", "Slutföra", MessageBoxButtons.YesNo);
-			if (dialogResult == DialogResult.Yes)
-			{
-				order.Paid = true;
-			}
-
-			order.OrderID = (await _repo.CreateNewOrderAsync(order));
-
-			if (!order.Paid)
-			{
-				return;
-			}
-
 			await _repo.CreateProductOrdersAsync(GetInsertParameters(order));
 
 			cart.Clear();
@@ -225,6 +231,17 @@ namespace G3Systems
 			UpdateCart();
 			tabControlMenu.SelectedTab = tabQueue;
 			labelQueue.Text = order.OrderID.ToString();
+
+			// Temp ny order
+			try
+			{
+				order.OrderID = (await _repo.CreateNewOrderAsync(order));
+			}
+			catch (Exception msg)
+			{
+				MessageBox.Show("Ett fel inträffade:\n" + msg);
+				Application.Exit();
+			}
 		}
 
 		private object[] GetInsertParameters(Order order)
@@ -249,16 +266,16 @@ namespace G3Systems
 
 		private object InsertParameters(Order order, Product product, Ingredient ingredient) => new
 		{
-			@OrderID = order.OrderID,
-			@ProductID = product.ProductID,
-			@IngredientID = ingredient.IngredientID,
-			@Quantity = ingredient.Quantity,
+			order.OrderID,
+			product.ProductID,
+			ingredient.IngredientID,
+			ingredient.Quantity,
 		};
 
 		private object InsertParameters(Order order, Product product) => new
 		{
-			@OrderID = order.OrderID,
-			@ProductID = product.ProductID,
+			order.OrderID,
+			product.ProductID,
 		};
 
 		private void UpdateCart()

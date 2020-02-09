@@ -53,7 +53,7 @@ namespace SQLServer
 
             using (var connection = CreateConnection())
             {
-                return await connection.QueryAsync<Product>(sqlQuery, new { @ProductTypeID = productType });
+                return await connection.QueryAsync<Product>(sqlQuery, new { ProductTypeID = productType });
             }
         }
         
@@ -66,8 +66,6 @@ namespace SQLServer
         /// <returns></returns>
         public async Task<Employee> EmployeeLoginAsync(string username, string password)
         {
-            var employee = new Employee();
-
             if (string.IsNullOrWhiteSpace(username + password))
             {
                 return null;
@@ -75,13 +73,11 @@ namespace SQLServer
 
             using (var connection = CreateConnection())
             {
-                employee = (await connection.QueryAsync<Employee>(
-                       sql: "spVerifyLogin",
-                     param: new { @Username = username, @Password = password },
+                return (await connection.QueryAsync<Employee>(
+                       sql: "Proc_VerifyLogin",
+                     param: new { Username = username, Password = password },
                commandType: CommandType.StoredProcedure)).FirstOrDefault();
             }
-
-            return employee;
         }
 
         /// <summary>
@@ -131,24 +127,47 @@ namespace SQLServer
         {
             using (var connection = CreateConnection())
             {
-                await connection.ExecuteAsync("spInsertProductOrders", parameters, commandType: CommandType.StoredProcedure);
+                // Wrap order data insert in transaction
+                using (var transaction = connection.BeginTransaction())
+                {
+                    try
+                    {
+                        // Loop through object array parameters for each insert
+                        await connection.ExecuteAsync(
+                                sql: "Proc_InsertProductOrders",
+                              param: parameters,
+                        commandType: CommandType.StoredProcedure,
+                        transaction: transaction);
+
+                        // Save if all inserts successfull
+                        transaction.Commit();
+                    }
+                    catch
+                    {
+                        // Undo inserts if error occured
+                        transaction.Rollback();
+                        throw;
+                    }
+                }
             }
         }
         
         public async Task<int> CreateNewOrderAsync(Order order)
         {
-            var p = new DynamicParameters();
-            p.AddDynamicParams(new { @TerminalID = order.ByTerminal, @Paid = order.Paid });
-            p.Add("OrderID", 
-                    dbType: DbType.Int32, 
-                    direction: ParameterDirection.Output);
+            var orderParam = new DynamicParameters();
+            orderParam.AddDynamicParams(new { TerminalID = order.ByTerminal });
+            orderParam.Add("OrderID",
+                    dbType: DbType.Int32,
+                 direction: ParameterDirection.Output);
 
             using (var connection = CreateConnection())
             {
-                await connection.ExecuteScalarAsync("spNewOrder", p, commandType: CommandType.StoredProcedure);
+                await connection.ExecuteScalarAsync("Proc_NewOrder", 
+                                              param: orderParam, 
+                                        commandType: CommandType.StoredProcedure);
             }
 
-            return p.Get<int>("OrderID");
+            return orderParam.Get<int>("OrderID");
         }
 
 
@@ -158,8 +177,8 @@ namespace SQLServer
             using (var connection = CreateConnection())
             {
                 return (await connection.QueryAsync<Ingredient>(
-                       sql: "spGetProductIngredients",
-                     param: new { @ProductID = id },
+                        sql: "Proc_GetProductHaveIngredients",
+                      param: new { ProductID = id },
                 commandType: CommandType.StoredProcedure));
             }
         }
@@ -169,8 +188,8 @@ namespace SQLServer
             using (var connection = CreateConnection())
             {
                 return (await connection.QueryAsync<Ingredient>(
-                       sql: "spGetProductCanHaveIngredients",
-                     param: new { @ProductID = id },
+                        sql: "Proc_GetProductCanHaveIngredients",
+                      param: new { ProductID = id },
                 commandType: CommandType.StoredProcedure));
             }
         }
@@ -188,7 +207,7 @@ namespace SQLServer
             {
                  await connection.QueryAsync<Order>(
                        sql: "SetPickedUp",
-                     param: new { @OrderID = id, @PickedUp = bit_from_bool },
+                     param: new { OrderID = id, PickedUp = bit_from_bool },
                 commandType: CommandType.StoredProcedure);
             }   //Return signal of successs?
 

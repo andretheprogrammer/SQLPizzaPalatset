@@ -40,15 +40,16 @@
             this.NewOrderBtn.Name = "NewOrderBtn";
             this.NewOrderBtn.Size = new System.Drawing.Size(800, 203);
             this.NewOrderBtn.TabIndex = 0;
-            this.NewOrderBtn.Text = "Ny Order";
+            this.NewOrderBtn.Text = "Starta Beställning";
             this.NewOrderBtn.UseVisualStyleBackColor = true;
             this.NewOrderBtn.Click += new System.EventHandler(this.NewOrderBtn_Click);
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Consolas", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(55, 111);
+            this.label1.Location = new System.Drawing.Point(51, 141);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(700, 56);
             this.label1.TabIndex = 1;
@@ -56,9 +57,10 @@
             // 
             // CustomerEnter
             // 
+            this.AcceptButton = this.NewOrderBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.BackColor = System.Drawing.Color.SteelBlue;
             this.ClientSize = new System.Drawing.Size(800, 548);
             this.ControlBox = false;
             this.Controls.Add(this.label1);
