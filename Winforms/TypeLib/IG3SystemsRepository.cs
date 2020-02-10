@@ -36,10 +36,13 @@ namespace TypeLib
         Task SetProcessedOnkPOAsync(int pProductOrderid, bool processed);
 
 
-        // Order Inserts
+        // Order Create
         Task<int> CreateNewOrderAsync(Order order);
 
         Task CreateProductOrdersAsync(object[] parameters);
+
+        // Order Update
+        Task UpdateOrderStatusAsync(Order order);
 
 
         // Ingredients

@@ -56,7 +56,6 @@ namespace SQLServer
                 return await connection.QueryAsync<Product>(sqlQuery, new { ProductTypeID = productType });
             }
         }
-        
 
         /// <summary>
         /// Get employee by matching username and password
@@ -152,6 +151,7 @@ namespace SQLServer
             }
         }
         
+        // Create new order and return OrderID
         public async Task<int> CreateNewOrderAsync(Order order)
         {
             var orderParam = new DynamicParameters();
@@ -170,6 +170,24 @@ namespace SQLServer
             return orderParam.Get<int>("OrderID");
         }
 
+        // Update order by OrderID
+        public async Task UpdateOrderStatusAsync(Order order)
+        {
+            using (var connection = CreateConnection())
+            {
+                await connection.ExecuteAsync(
+                        sql: "Proc_UpdateOrderStatus",
+                      param: new
+                      {
+                          order.OrderID,
+                          order.Paid,
+                          order.Canceled,
+                          order.PickedUp,
+                          order.Returned
+                      },
+                commandType: CommandType.StoredProcedure);
+            }
+        }
 
         // Ingredients
         public async Task<IEnumerable<Ingredient>> GetHaveIngredientsAsync(int id)
@@ -265,10 +283,5 @@ namespace SQLServer
             }
 
         }
-
-
-
-
-
     }
 }

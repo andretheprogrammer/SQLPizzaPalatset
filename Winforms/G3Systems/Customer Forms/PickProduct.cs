@@ -31,6 +31,9 @@ namespace G3Systems
 		// Get cart sorted by producttype
 		private List<Product> GetCart() => cart.OrderBy(p => p.ProductTypeID).ToList();
 
+		// Return calculated total price for order as string
+		private string GetTotalPrice() => $"Totalt pris: {cart.Sum(p => p.BasePrice)}";
+
 		private async void PickProduct_Load(object sender, EventArgs e)
 		{
 			try
@@ -48,7 +51,7 @@ namespace G3Systems
 			HideAllTabs();
 
 			// Populate producttype listboxes
-			LoadProductTypesListboxes();
+			LoadProductTypesListbox();
 		}
 
 		private void PickProduct_FormClosed(object sender, FormClosedEventArgs e)
@@ -69,17 +72,6 @@ namespace G3Systems
 				return;
 			}
 
-			// Go to Extras tab if not on payment
-			if (tabControlMenu.SelectedTab != tabPayment)
-			{
-				tabControlMenu.SelectedTab = tabExtras;
-
-				// Load cart
-				gridViewExtrasCart.DataSource = GetCart();
-				return;
-			}
-
-
 			// Go to finish order tab
 			tabControlMenu.SelectedTab = tabPayment;
 
@@ -90,13 +82,27 @@ namespace G3Systems
 
 			// Load cart
 			gridViewFinishCart.DataSource = GetCart();
-			lblTotalPrice.Text = $"Totalt pris: {cart.Sum(p => p.BasePrice)}";
+			lblTotalPrice.Text = GetTotalPrice();
 		}
 
 		// Return to start tab
 		private void ReturnBtn_Click(object sender, EventArgs e)
 		{
 			tabControlMenu.SelectedTab = tabProducts;
+			CustomizeBtn.Enabled = true;
+		}
+
+		private async void CancelOrderBtn_Click(object sender, EventArgs e)
+		{
+			// Set order to cancelled 
+			order.Canceled = true;
+			order.Paid = false;
+
+			// Update orderstatus in database
+			await _repo.UpdateOrderStatusAsync(order);
+
+			// Return to entry form
+			ReturnToEntryForm();
 		}
 		#endregion
 
@@ -107,13 +113,9 @@ namespace G3Systems
 			// Go to tab 2 customize product ingredients
 			tabControlMenu.SelectedTab = tabCustomize;
 
-			if (gridViewCart.DataSource != null)
-			{
-				gridViewCart.DataSource = null;
-			}
+			UpdateGridViewCart();
 
-			// Load cart
-			gridViewCart.DataSource = GetCart();
+			CustomizeBtn.Enabled = false;
 		}
 
 		// Add selected product to cart
@@ -182,7 +184,6 @@ namespace G3Systems
 			var ingredient = (Ingredient)gridViewExtraIngredients.SelectedRows[0].DataBoundItem;
 
 			ValidateAddIngredient(product, ingredient);
-
 			UpdateIngredientGridView();
 		}
 
@@ -199,18 +200,57 @@ namespace G3Systems
 				if (productIngredient.Quantity >= 3)
 				{
 					MessageBox.Show("Kan inte lägga till fler");
+					return;
 				}
 				else
 				{
 					productIngredient.Quantity += 1;
 				}
 			}
+
+			if (product.Ingredients.Count > 4)
+			{
+				product.BasePrice += ingredient.Price;
+			}
 		}
 
-		private void UpdateIngredientGridView()
+		private void RemoveIngredientBtn_Click(object sender, EventArgs e)
 		{
-			gridViewIngredients.DataSource = null;
+			if ((gridViewIngredients.SelectedRows.Count <= 0) ||
+				!(gridViewIngredients.SelectedRows[0].DataBoundItem is Ingredient))
+			{
+				return;
+			}
 
+			var product = (Product)gridViewCart.SelectedRows[0].DataBoundItem;
+			var ingredient = (Ingredient)gridViewIngredients.SelectedRows[0].DataBoundItem;
+			var dialogResult = MessageBox.Show($"Ta bort {ingredient.IngredientName}?", "", MessageBoxButtons.YesNo);
+
+			if (product.Ingredients.Count <= 1)
+			{
+				MessageBox.Show("Kan inte ta bort allt innehåll", "Felmeddelande");
+				return;
+			}
+
+			if (dialogResult == DialogResult.No)
+			{
+				return;
+			}
+
+			product.Ingredients.Remove(ingredient);
+
+			// Stop price from going below baseprice
+			if (!((product.BasePrice + ingredient.Price) <= 105))
+			{
+				product.BasePrice -= ingredient.Price;
+			}
+
+			UpdateGridViewCart();
+			UpdateIngredientGridView();
+		}
+
+		private void RemoveProductBtn_Click(object sender, EventArgs e)
+		{
 			if ((gridViewCart.SelectedRows.Count <= 0) ||
 				!(gridViewCart.SelectedRows[0].DataBoundItem is Product))
 			{
@@ -218,49 +258,29 @@ namespace G3Systems
 			}
 
 			var product = (Product)gridViewCart.SelectedRows[0].DataBoundItem;
-			gridViewIngredients.DataSource = product.Ingredients;
 
-			UpdateCart();
-		}
-        #endregion
-
-        #region Tab 3 - Extras
-
-        private void AddExtraBtn_Click(object sender, EventArgs e)
-		{
-			if ((gridViewExtras.SelectedRows.Count <= 0) ||
-				!(gridViewExtras.SelectedRows[0].DataBoundItem is Product))
-			{
-				return;
-			}
-
-			// Save selected product from datagridview to product object
-			var product = (Product)gridViewExtras.SelectedRows[0].DataBoundItem;
-
-			AddProductToCart(product);
-		}
-
-		private async void listBoxExtras_SelectedIndexChanged(object sender, EventArgs e)
-		{
-			if (listBoxExtras.SelectedItem == null)
-			{
-				return;
-			}
-
-			try
-			{
-				var type = (ProductType)listBoxExtras.SelectedItem;
-				gridViewExtras.DataSource = await _repo.GetProductsAsync(type);
-			}
-			catch (Exception msg)
-			{
-				MessageBox.Show("Ett fel inträffade:", msg.ToString());
-				Application.Exit();
-			}
+			RemoveProductFromCart(product);
+			UpdateGridViewCart();
+			UpdateIngredientGridView();
 		}
 		#endregion
 
-		#region Tab 4 - Payment
+		#region Tab 3 - Payment
+
+		private void DeleteProductBtn_Click(object sender, EventArgs e)
+		{
+			if ((gridViewFinishCart.SelectedRows.Count <= 0) ||
+				!(gridViewFinishCart.SelectedRows[0].DataBoundItem is Product))
+			{
+				return;
+			}
+
+			var product = (Product)gridViewFinishCart.SelectedRows[0].DataBoundItem;
+					   
+			RemoveProductFromCart(product);
+
+			UpdateFinishCart();
+		}
 
 		private async void ConfirmBtn_Click(object sender, EventArgs e)
 		{
@@ -274,26 +294,31 @@ namespace G3Systems
 				MessageBox.Show(ex.ToString());
 			}
 
-			MessageBox.Show("Order mottagen", "Betalning Godkänd");
+			ShowReceipt();
 
-			tabControlMain.SelectedTab = tabReceipt;
-			labelQueue.Text = order.OrderID.ToString();
+			// Set order to paid
+			order.Paid = true;
 
-			// Temp ny order
 			try
 			{
-				order.OrderID = (await _repo.CreateNewOrderAsync(order));
+				// Try to update orderstatus to paid
+				await _repo.UpdateOrderStatusAsync(order);
 			}
 			catch (Exception msg)
 			{
 				MessageBox.Show("Ett fel inträffade:", msg.ToString());
 				Application.Exit();
 			}
+
+			// Close after n seconds
+			await Task.Delay(TimeSpan.FromSeconds(2));
+			ReturnToEntryForm();
 		}
 		#endregion
 
 		#region Helper Methods
 
+		// Add new product to cart list
 		private void AddProductToCart(Product product)
 		{
 			// Save product to cart
@@ -307,9 +332,22 @@ namespace G3Systems
 				Ingredients = product.Ingredients
 			});
 
-			UpdateCart();
+			UpdateListBoxCart();
 		}
 
+		private void RemoveProductFromCart(Product product)
+		{
+			var dialogResult = MessageBox.Show($"Ta bort {product.ProductName}?", "", MessageBoxButtons.YesNo);
+
+			if (dialogResult == DialogResult.No)
+			{
+				return;
+			}
+
+			cart.Remove(product);
+		}
+
+		// Convert cart into parameter object array for database insert
 		private object[] GetInsertParameters(Order order)
 		{
 			var parameterList = new List<object>();
@@ -319,12 +357,19 @@ namespace G3Systems
 				if (product.Ingredients == null)
 				{
 					parameterList.Add(InsertParameters(order, product));
+					continue;
 				}
 
-				foreach (var ingredient in product.Ingredients)
-				{
-					parameterList.Add(InsertParameters(order, product, ingredient));
-				}
+				product.Ingredients.ForEach(ingredient => 
+					parameterList.Add(InsertParameters(
+						order,
+						product,
+						ingredient)));
+
+				//foreach (var ingredient in product.Ingredients)
+				//{
+				//	parameterList.Add(InsertParameters(order, product, ingredient));
+				//}
 			}
 
 			return parameterList.ToArray();
@@ -346,8 +391,8 @@ namespace G3Systems
 			ingredient.Quantity,
 		};
 
-		// Fill the bottom cart listbox with all products for display purposes
-		private void UpdateCart()
+		// Update the bottom cart listbox with all products for display purposes
+		private void UpdateListBoxCart()
 		{
 			listBoxCart.Items.Clear();
 
@@ -357,6 +402,75 @@ namespace G3Systems
 				{ Tag = p.ProductID; };
 			}
 		}
+
+		// Update gridview cart in customize tab
+		private void UpdateGridViewCart()
+		{
+			if (gridViewCart.DataSource != null)
+			{
+				gridViewCart.DataSource = null;
+			}
+
+			// Load cart
+			gridViewCart.DataSource = GetCart();
+		}
+
+		// Update ingredients gridviews in customize tab
+		private void UpdateIngredientGridView()
+		{
+			gridViewIngredients.DataSource = null;
+
+			if ((gridViewCart.SelectedRows.Count <= 0) ||
+				!(gridViewCart.SelectedRows[0].DataBoundItem is Product))
+			{
+				return;
+			}
+
+			var product = (Product)gridViewCart.SelectedRows[0].DataBoundItem;
+			gridViewIngredients.DataSource = product.Ingredients;
+
+			UpdateListBoxCart();
+		}
+
+		// Update gridviewcart in finished order tab
+		private void UpdateFinishCart()
+		{
+			gridViewFinishCart.DataSource = null;
+			gridViewFinishCart.DataSource = GetCart();
+			lblTotalPrice.Text = GetTotalPrice();
+			UpdateListBoxCart();
+		}
+
+		// Update list with all producttypes
+		private void LoadProductTypesListbox()
+		{
+			// Cast all producttypes enums to list
+			var values = Enum.GetValues(typeof(ProductType)).Cast<ProductType>().ToList();
+
+			// Add values to listbox in Extras tab
+			values.ForEach(type => listBoxProductTypes.Items.Add(type));
+
+			listBoxProductTypes.SelectedIndex = 0;
+		}
+
+		// Show order complete screen
+		private void ShowReceipt()
+		{
+			var dialogResult = MessageBox.Show("Visa kvitto?", "Betalning Godkänd", MessageBoxButtons.YesNo);
+
+			if (dialogResult == DialogResult.Yes)
+			{
+				MessageBox.Show(
+					string.Join("\n", cart.Select(p => p.ProductName)) +
+					GetTotalPrice(),
+					$"Order# {order.OrderID}\n");
+			}
+
+			tabControlMain.SelectedTab = tabReceipt;
+			labelQueue.Text = order.OrderID.ToString();
+		}
+
+		// Hide from tabs from selection
 		private void HideAllTabs()
 		{
 			tabControlMain.ItemSize = new Size(0, 1);
@@ -369,19 +483,13 @@ namespace G3Systems
 				tab.Text = "";
 			}
 		}
-		private void LoadProductTypesListboxes()
+
+		// Call when return to CustomerEntry when order is complete or cancelled
+		private void ReturnToEntryForm()
 		{
-			// Cast all Extras producttype enums to list and skip Pizza/Sallad
-			var values = Enum.GetValues(typeof(ProductType)).Cast<ProductType>().Skip(2).ToList();
-			// Add values to listbox in Extras tab
-			values.ForEach(type => listBoxExtras.Items.Add(type));
-
-			// Add producttypes to listbox in Products tab
-			listBoxProductTypes.Items.Add(ProductType.Pizza);
-			listBoxProductTypes.Items.Add(ProductType.Sallad);
-
-			listBoxExtras.SelectedIndex = 0;
-			listBoxProductTypes.SelectedIndex = 0;
+			var form = new CustomerEnter(order.ByTerminal);
+			form.Show();
+			this.Hide();
 		}
 		#endregion
 	}
