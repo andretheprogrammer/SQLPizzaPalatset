@@ -611,7 +611,7 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 
 	--Employee login
 		GO
-		CREATE PROC Proc_VerifyLogin
+		CREATE PROC Proc_GetEmployeeLogin
 			@Username varchar(20),
 			@Password varchar(20)
 		as
@@ -1759,7 +1759,7 @@ GO
 
 --baker
 --ger stations
-CREATE PROCEDURE GetPossibleStationsForEmployee @EmployeeID INT
+CREATE PROCEDURE Proc_GetPossibleStationsForEmployee @EmployeeID INT
 	AS
 	BEGIN
 
