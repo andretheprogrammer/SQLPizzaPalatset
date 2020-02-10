@@ -113,6 +113,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>G3SystemsDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="G3SystemsDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>G3SystemsDataSet1.xsd</DependentUpon>
+    </Compile>
     <Compile Include="InfoScreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -178,6 +183,17 @@
     </None>
     <None Include="G3SystemsDataSet.xss">
       <DependentUpon>G3SystemsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="G3SystemsDataSet1.xsc">
+      <DependentUpon>G3SystemsDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="G3SystemsDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>G3SystemsDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="G3SystemsDataSet1.xss">
+      <DependentUpon>G3SystemsDataSet1.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\TypeLib.Ingredient.datasource" />

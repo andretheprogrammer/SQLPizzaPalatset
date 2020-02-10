@@ -284,6 +284,61 @@ namespace SQLServer
 
         }
 
+        public async Task<ProductOrder> GetLockedPOByStation (int pStationid)
+        {
+            using (var connection = CreateConnection())
+            {
+                return (await connection.QueryAsync<ProductOrder>(
+                       sql: "Proc_POLockedByStation",
+                     param: new { @StationID = pStationid },
+                commandType: CommandType.StoredProcedure)).FirstOrDefault();
+            }
+        }
+
+        //Gives only one station
+        public async Task<Station> GetAssignedStation(int pEmployeeid)
+        {
+            using (var connection = CreateConnection())
+            {
+                return (await connection.QueryAsync<Station>(
+                       sql: "Proc_GetAssignedStation",
+                     param: new { @EmployeeID = pEmployeeid },
+                commandType: CommandType.StoredProcedure)).FirstOrDefault();
+            }
+        }
+
+        //Gives only one station
+        public async Task<Product> GetProductInfoFromPO(int pProductOrderId)
+        {
+            using (var connection = CreateConnection())
+            {
+                return (await connection.QueryAsync<Product>(
+                       sql: "Proc_GetProductInfoFromPO",
+                     param: new { @ProductOrderID = pProductOrderId},
+                commandType: CommandType.StoredProcedure)).FirstOrDefault();
+            }
+        }
+
+        public async Task<IEnumerable<Station>> GetPossibleStationsForEmployee(int pEmployeeid)
+        {
+            using (var connection = CreateConnection())
+            {
+                return (await connection.QueryAsync<Station>(
+                       sql: "Proc_GetPossibleStationsForEmployee",
+                     param: new { @EmployeeID = pEmployeeid },
+                commandType: CommandType.StoredProcedure));
+            }
+        }
+        public async Task AssignStationAsync(int pEmployeeid, int pStationid)
+        {
+            using (var connection = CreateConnection())
+            {
+                await connection.QueryAsync<Order>(
+                      sql: "Proc_SetEmployeeToStation",
+                    param: new { @EmployeeID = pEmployeeid, @Stationid = pStationid },
+               commandType: CommandType.StoredProcedure);
+            }
+        }
         public async Task UpdateEmployeeStatusAsync(Employee employee)
         {
             using (var connection = CreateConnection())
