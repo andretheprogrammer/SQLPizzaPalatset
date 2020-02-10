@@ -56,9 +56,6 @@ namespace G3Systems
 
 		private void PickProduct_FormClosed(object sender, FormClosedEventArgs e)
 		{
-			//var form = new CustomerEnter(order.ByTerminal);
-			//form.Show();
-			//this.Hide();
 			Application.Exit();
 		}
 		#endregion
@@ -489,8 +486,8 @@ namespace G3Systems
 		private void ReturnToEntryForm()
 		{
 			var form = new CustomerEnter(order.ByTerminal);
-			form.Show();
-			this.Hide();
+			this.Dispose();
+			form.ShowDialog();
 		}
 		#endregion
 	}

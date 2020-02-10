@@ -23,11 +23,9 @@ namespace G3Systems
 		private void NewOrderBtn_Click(object sender, EventArgs e)
 		{
 			var form = new PickProduct(_terminalID);
-			form.Show();
+			this.Dispose();
+			form.ShowDialog();
 			form.Text += $" {_terminalID}";
-			this.Hide();
-
-
 		}
 
 		private void CustomerEnter_FormClosed(object sender, FormClosedEventArgs e)

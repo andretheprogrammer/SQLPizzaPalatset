@@ -86,38 +86,39 @@ namespace G3Systems
 
 		private void SwitchForm(int selected)
 		{
+			this.Hide();
+
 			if (selected == 0)
 			{
 				var form = new Admin();
-				form.Show();
+				form.ShowDialog();
 			}
 			else if (selected == 1)
 			{
 				var form = new Cashier(user);
-				form.Show();
+				form.ShowDialog();
 			}
 			else if (selected == 2)
 			{
 				var form = new Baker(user);
-				form.Show();
+				form.ShowDialog();
 			}
 			else if (selected == 3)
 			{
 				var form = new InfoScreen();
-				form.Show();
+				form.ShowDialog();
 			}
 			else if (selected >= 4 && selected < 6)
 			{
 				var form = new CustomerEnter(selected - 3);
-				form.Show();
+				form.ShowDialog();
 				form.Text += $" {selected - 3}";
 			}
 			else
 			{
 				ShowErrorMessage("Inte implementerat");
+				this.Show();
 			}
-
-			this.Hide();
 		}
 
 		private async void Login_FormClosing(object sender, FormClosingEventArgs e)
