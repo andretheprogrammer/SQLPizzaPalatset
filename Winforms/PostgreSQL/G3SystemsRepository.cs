@@ -116,5 +116,30 @@ namespace PostgreSQL
         {
             throw new NotImplementedException();
         }
+
+        public Task<ProductOrder> GetLockedPOByStation(int pStationid)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Station> GetAssignedStation(int pEmployeeid)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Product> GetProductInfoFromPO(int pProductOrderId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<Station>> GetPossibleStationsForEmployee(int pEmployeeid)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task AssignStationAsync(int pEmployeeid, int pStationid)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

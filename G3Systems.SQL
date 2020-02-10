@@ -1759,7 +1759,7 @@ GO
 
 --baker
 --ger stations
-CREATE PROCEDURE GetPossibleStationsForEmployee @EmployeeID INT
+CREATE PROCEDURE Proc_GetPossibleStationsForEmployee @EmployeeID INT
 	AS
 	BEGIN
 
