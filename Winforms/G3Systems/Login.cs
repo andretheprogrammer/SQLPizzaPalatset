@@ -91,7 +91,7 @@ namespace G3Systems
 			if (selected == 0)
 			{
 				station = 7;
-				var form = new Admin();
+				var form = new Admin(user);
 				form.ShowDialog();
 			}
 			else if (selected == 1)

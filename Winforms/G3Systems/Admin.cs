@@ -7,53 +7,45 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TypeLib;
+using SQLServer;
+
 
 namespace G3Systems
 {
 	public partial class Admin : Form
 	{
-		public Admin()
+		private readonly IG3SystemsRepository _repo;
+		private Employee user;
+
+		public Admin(Employee user)
 		{
 			InitializeComponent();
-		}
-
-		private void splitContainer2_Panel2_Paint(object sender, PaintEventArgs e)
-		{
-
-		}
-
-		private void tabPage1_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
-		{
-
-		}
-
-		private void splitContainer4_SplitterMoved(object sender, SplitterEventArgs e)
-		{
-
+			this.user = user;
+			_repo = new G3SystemsRepository();
 		}
 
 		private void Admin_Load(object sender, EventArgs e)
 		{
-			// TODO: This line of code loads data into the 'g3SystemsDataSet1.Employees' table. You can move, or remove it, as needed.
-			this.employeesTableAdapter1.Fill(this.g3SystemsDataSet1.Employees);
-			// TODO: This line of code loads data into the 'g3SystemsDataSet.Employees' table. You can move, or remove it, as needed.
-			this.employeesTableAdapter.Fill(this.g3SystemsDataSet.Employees);
 
-		}
-
-		private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-		{
 
 		}
 
 		private void Admin_FormClosed(object sender, FormClosedEventArgs e)
 		{
 			Application.Exit();
+		}
+
+		private void dataGridViewEmployees_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyData == Keys.Enter)
+			{
+				//e.SuppressKeyPress = true;
+				//int row = dataGridViewEmployees.CurrentRow.Index;
+				//int col = dataGridViewEmployees.CurrentCell.ColumnIndex;
+
+				MessageBox.Show("Clicked");
+			}
 		}
 	}
 }
