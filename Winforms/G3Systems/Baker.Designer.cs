@@ -43,7 +43,6 @@
 			this.splitContainer9 = new System.Windows.Forms.SplitContainer();
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
 			this.lblPassword = new System.Windows.Forms.Label();
-			this.label2 = new System.Windows.Forms.Label();
 			this.lblAssignment = new System.Windows.Forms.Label();
 			this.label13 = new System.Windows.Forms.Label();
 			this.label15 = new System.Windows.Forms.Label();
@@ -54,6 +53,8 @@
 			this.label1 = new System.Windows.Forms.Label();
 			this.lbl_visible = new System.Windows.Forms.Label();
 			this.label23 = new System.Windows.Forms.Label();
+			this.pictureBox2 = new System.Windows.Forms.PictureBox();
+			this.label2 = new System.Windows.Forms.Label();
 			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
 			this.btnUnlocker = new System.Windows.Forms.Button();
 			this.label17 = new System.Windows.Forms.Label();
@@ -72,14 +73,15 @@
 			this.lbl_leftTitle = new System.Windows.Forms.Label();
 			this.lstbxStuffings = new System.Windows.Forms.ListBox();
 			this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+			this.lblLockedPO = new System.Windows.Forms.Label();
 			this.label25 = new System.Windows.Forms.Label();
-			this.productOrdersBindingSource = new System.Windows.Forms.BindingSource(this.components);
-			this.stuffingsBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.splitContainer6 = new System.Windows.Forms.SplitContainer();
 			this.splitContainer10 = new System.Windows.Forms.SplitContainer();
 			this.btn_Refresh = new System.Windows.Forms.Button();
 			this.btn_Lock = new System.Windows.Forms.Button();
 			this.btn_Finished = new System.Windows.Forms.Button();
+			this.productOrdersBindingSource = new System.Windows.Forms.BindingSource(this.components);
+			this.stuffingsBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.employeesBindingSource5 = new System.Windows.Forms.BindingSource(this.components);
 			this.employeesBindingSource3 = new System.Windows.Forms.BindingSource(this.components);
 			this.employeesBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
@@ -88,7 +90,6 @@
 			this.yODataSet1BindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.buildingsBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.employeesBindingSource4 = new System.Windows.Forms.BindingSource(this.components);
-			this.lblLockedPO = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -106,6 +107,7 @@
 			this.splitContainer9.Panel2.SuspendLayout();
 			this.splitContainer9.SuspendLayout();
 			this.tableLayoutPanel1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
 			this.tableLayoutPanel2.SuspendLayout();
 			this.panel3.SuspendLayout();
 			this.panel2.SuspendLayout();
@@ -119,8 +121,6 @@
 			this.tabPage3.SuspendLayout();
 			this.tableLayoutPanel3.SuspendLayout();
 			this.tableLayoutPanel4.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.productOrdersBindingSource)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.stuffingsBindingSource)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer6)).BeginInit();
 			this.splitContainer6.Panel1.SuspendLayout();
 			this.splitContainer6.Panel2.SuspendLayout();
@@ -129,6 +129,8 @@
 			this.splitContainer10.Panel1.SuspendLayout();
 			this.splitContainer10.Panel2.SuspendLayout();
 			this.splitContainer10.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.productOrdersBindingSource)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.stuffingsBindingSource)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.employeesBindingSource5)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.employeesBindingSource3)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.employeesBindingSource2)).BeginInit();
@@ -265,6 +267,7 @@
 			this.tabControl1.SelectedIndex = 0;
 			this.tabControl1.Size = new System.Drawing.Size(1251, 643);
 			this.tabControl1.TabIndex = 2;
+			this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
 			// 
 			// tabPage1
 			// 
@@ -300,10 +303,9 @@
 			// 
 			this.tableLayoutPanel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
 			this.tableLayoutPanel1.ColumnCount = 2;
-			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.65789F));
-			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 74.3421F));
+			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31.04213F));
+			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 68.95787F));
 			this.tableLayoutPanel1.Controls.Add(this.lblPassword, 0, 6);
-			this.tableLayoutPanel1.Controls.Add(this.label2, 0, 6);
 			this.tableLayoutPanel1.Controls.Add(this.lblAssignment, 1, 2);
 			this.tableLayoutPanel1.Controls.Add(this.label13, 0, 2);
 			this.tableLayoutPanel1.Controls.Add(this.label15, 1, 1);
@@ -314,19 +316,22 @@
 			this.tableLayoutPanel1.Controls.Add(this.label1, 0, 4);
 			this.tableLayoutPanel1.Controls.Add(this.lbl_visible, 1, 5);
 			this.tableLayoutPanel1.Controls.Add(this.label23, 0, 5);
+			this.tableLayoutPanel1.Controls.Add(this.pictureBox2, 0, 7);
+			this.tableLayoutPanel1.Controls.Add(this.label2, 1, 6);
 			this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tableLayoutPanel1.Enabled = false;
 			this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
 			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
 			this.tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(20, 20, 0, 0);
-			this.tableLayoutPanel1.RowCount = 7;
+			this.tableLayoutPanel1.RowCount = 8;
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 46.83544F));
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 53.16456F));
-			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 86F));
-			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 49F));
-			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 85F));
-			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 65F));
-			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 127F));
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 74F));
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 55F));
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 61F));
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 72F));
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 72F));
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 129F));
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
 			this.tableLayoutPanel1.Size = new System.Drawing.Size(471, 611);
 			this.tableLayoutPanel1.TabIndex = 7;
@@ -335,27 +340,17 @@
 			// 
 			this.lblPassword.AutoSize = true;
 			this.lblPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblPassword.Location = new System.Drawing.Point(23, 483);
+			this.lblPassword.Location = new System.Drawing.Point(23, 409);
 			this.lblPassword.Name = "lblPassword";
 			this.lblPassword.Size = new System.Drawing.Size(88, 18);
 			this.lblPassword.TabIndex = 15;
 			this.lblPassword.Text = "Password:";
 			// 
-			// label2
-			// 
-			this.label2.AutoSize = true;
-			this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label2.Location = new System.Drawing.Point(138, 483);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(62, 18);
-			this.label2.TabIndex = 14;
-			this.label2.Text = "??????";
-			// 
 			// lblAssignment
 			// 
 			this.lblAssignment.AutoSize = true;
 			this.lblAssignment.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblAssignment.Location = new System.Drawing.Point(138, 198);
+			this.lblAssignment.Location = new System.Drawing.Point(163, 147);
 			this.lblAssignment.Name = "lblAssignment";
 			this.lblAssignment.Size = new System.Drawing.Size(24, 18);
 			this.lblAssignment.TabIndex = 5;
@@ -365,7 +360,7 @@
 			// 
 			this.label13.AutoSize = true;
 			this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label13.Location = new System.Drawing.Point(23, 198);
+			this.label13.Location = new System.Drawing.Point(23, 147);
 			this.label13.Name = "label13";
 			this.label13.Size = new System.Drawing.Size(106, 36);
 			this.label13.TabIndex = 2;
@@ -375,7 +370,7 @@
 			// 
 			this.label15.AutoSize = true;
 			this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label15.Location = new System.Drawing.Point(138, 103);
+			this.label15.Location = new System.Drawing.Point(163, 79);
 			this.label15.Name = "label15";
 			this.label15.Size = new System.Drawing.Size(32, 18);
 			this.label15.TabIndex = 4;
@@ -395,7 +390,7 @@
 			// 
 			this.lbl_usrPname.AutoSize = true;
 			this.lbl_usrPname.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lbl_usrPname.Location = new System.Drawing.Point(138, 20);
+			this.lbl_usrPname.Location = new System.Drawing.Point(163, 20);
 			this.lbl_usrPname.Name = "lbl_usrPname";
 			this.lbl_usrPname.Size = new System.Drawing.Size(103, 18);
 			this.lbl_usrPname.TabIndex = 3;
@@ -405,7 +400,7 @@
 			// 
 			this.label10.AutoSize = true;
 			this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label10.Location = new System.Drawing.Point(23, 103);
+			this.label10.Location = new System.Drawing.Point(23, 79);
 			this.label10.Name = "label10";
 			this.label10.Size = new System.Drawing.Size(87, 18);
 			this.label10.TabIndex = 1;
@@ -415,7 +410,7 @@
 			// 
 			this.lbl_activated.AutoSize = true;
 			this.lbl_activated.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lbl_activated.Location = new System.Drawing.Point(138, 333);
+			this.lbl_activated.Location = new System.Drawing.Point(163, 276);
 			this.lbl_activated.Name = "lbl_activated";
 			this.lbl_activated.Size = new System.Drawing.Size(71, 18);
 			this.lbl_activated.TabIndex = 9;
@@ -425,7 +420,7 @@
 			// 
 			this.label1.AutoSize = true;
 			this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label1.Location = new System.Drawing.Point(23, 333);
+			this.label1.Location = new System.Drawing.Point(23, 276);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(76, 18);
 			this.label1.TabIndex = 11;
@@ -435,7 +430,7 @@
 			// 
 			this.lbl_visible.AutoSize = true;
 			this.lbl_visible.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lbl_visible.Location = new System.Drawing.Point(138, 418);
+			this.lbl_visible.Location = new System.Drawing.Point(163, 337);
 			this.lbl_visible.Name = "lbl_visible";
 			this.lbl_visible.Size = new System.Drawing.Size(71, 18);
 			this.lbl_visible.TabIndex = 10;
@@ -445,11 +440,31 @@
 			// 
 			this.label23.AutoSize = true;
 			this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label23.Location = new System.Drawing.Point(23, 418);
+			this.label23.Location = new System.Drawing.Point(23, 337);
 			this.label23.Name = "label23";
 			this.label23.Size = new System.Drawing.Size(57, 18);
 			this.label23.TabIndex = 13;
 			this.label23.Text = "Visible";
+			// 
+			// pictureBox2
+			// 
+			this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+			this.pictureBox2.Location = new System.Drawing.Point(23, 484);
+			this.pictureBox2.Name = "pictureBox2";
+			this.pictureBox2.Size = new System.Drawing.Size(134, 124);
+			this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+			this.pictureBox2.TabIndex = 1;
+			this.pictureBox2.TabStop = false;
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label2.Location = new System.Drawing.Point(163, 409);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(62, 18);
+			this.label2.TabIndex = 14;
+			this.label2.Text = "??????";
 			// 
 			// tableLayoutPanel2
 			// 
@@ -700,6 +715,16 @@
 			this.tableLayoutPanel4.Size = new System.Drawing.Size(851, 56);
 			this.tableLayoutPanel4.TabIndex = 4;
 			// 
+			// lblLockedPO
+			// 
+			this.lblLockedPO.AutoSize = true;
+			this.lblLockedPO.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblLockedPO.Location = new System.Drawing.Point(276, 0);
+			this.lblLockedPO.Name = "lblLockedPO";
+			this.lblLockedPO.Size = new System.Drawing.Size(388, 33);
+			this.lblLockedPO.TabIndex = 5;
+			this.lblLockedPO.Text = "LockedProductOrder: Pizza1";
+			// 
 			// label25
 			// 
 			this.label25.AutoSize = true;
@@ -782,16 +807,6 @@
 			this.btn_Finished.UseVisualStyleBackColor = false;
 			this.btn_Finished.Click += new System.EventHandler(this.btn_Finished_Click);
 			// 
-			// lblLockedPO
-			// 
-			this.lblLockedPO.AutoSize = true;
-			this.lblLockedPO.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblLockedPO.Location = new System.Drawing.Point(276, 0);
-			this.lblLockedPO.Name = "lblLockedPO";
-			this.lblLockedPO.Size = new System.Drawing.Size(388, 33);
-			this.lblLockedPO.TabIndex = 5;
-			this.lblLockedPO.Text = "LockedProductOrder: Pizza1";
-			// 
 			// Baker
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -822,6 +837,7 @@
 			this.splitContainer9.ResumeLayout(false);
 			this.tableLayoutPanel1.ResumeLayout(false);
 			this.tableLayoutPanel1.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
 			this.tableLayoutPanel2.ResumeLayout(false);
 			this.tableLayoutPanel2.PerformLayout();
 			this.panel3.ResumeLayout(false);
@@ -839,8 +855,6 @@
 			this.tableLayoutPanel3.PerformLayout();
 			this.tableLayoutPanel4.ResumeLayout(false);
 			this.tableLayoutPanel4.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.productOrdersBindingSource)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.stuffingsBindingSource)).EndInit();
 			this.splitContainer6.Panel1.ResumeLayout(false);
 			this.splitContainer6.Panel2.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer6)).EndInit();
@@ -849,6 +863,8 @@
 			this.splitContainer10.Panel2.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer10)).EndInit();
 			this.splitContainer10.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.productOrdersBindingSource)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.stuffingsBindingSource)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.employeesBindingSource5)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.employeesBindingSource3)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.employeesBindingSource2)).EndInit();
@@ -935,5 +951,6 @@
 		private System.Windows.Forms.Label label17;
 		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
 		private System.Windows.Forms.Label lblLockedPO;
+		private System.Windows.Forms.PictureBox pictureBox2;
 	}
 }

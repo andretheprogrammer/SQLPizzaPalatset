@@ -71,7 +71,7 @@ namespace G3Systems
 				btn_Lock.BackColor = Color.Yellow;
 				this.Lockedstate = true;
 				btnUnlocker.Enabled = true;
-
+				btnUnlocker.Text = "UNLOCK STATION - RELEASE PO";
 
 
 			}
@@ -181,6 +181,7 @@ namespace G3Systems
 				btn_Lock.Text = "LOCK";
 				btn_Lock.BackColor = Color.Beige;
 				btn_Lock.Enabled = true;
+				lstbxOpen.Enabled = true;
 			
 				repopulate_POList(pStation.InBuilding);
 				this.Lockedstate = false;
@@ -396,6 +397,15 @@ namespace G3Systems
 			await _repo.AssignStationAsync(myemployeeid, stationChoice);
 			lblAssignment.Text = station[1];
 			lblStationName.Text = station[1];
+
+			Station currentstation = (await _repo.GetAssignedStation(myemployeeid));
+			RefreshLockStatus(currentstation);
+
+		}
+
+		private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+		{
+
 		}
 	}
 }
