@@ -721,9 +721,9 @@
 			this.lblLockedPO.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lblLockedPO.Location = new System.Drawing.Point(276, 0);
 			this.lblLockedPO.Name = "lblLockedPO";
-			this.lblLockedPO.Size = new System.Drawing.Size(388, 33);
+			this.lblLockedPO.Size = new System.Drawing.Size(184, 33);
 			this.lblLockedPO.TabIndex = 5;
-			this.lblLockedPO.Text = "LockedProductOrder: Pizza1";
+			this.lblLockedPO.Text = "LockedOrder";
 			// 
 			// label25
 			// 
