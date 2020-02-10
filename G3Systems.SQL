@@ -606,7 +606,7 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 ------------------------------------------------------------------------
 --Procedure
 
-	--Login
+	--Employee login
 		GO
 		CREATE PROC Proc_VerifyLogin
 			@Username varchar(20),
@@ -619,6 +619,20 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 			AND Username = @Username 
 			AND [Password] = @Password
 		end
+		GO
+
+	--Update Employee
+		Create Proc Proc_UpdateEmployeeStatus
+			@EmployeeID int,
+			@LoggedIn bit,
+			@AssignedToStation int = null
+		AS
+		Begin
+			Update Employees
+			Set LoggedIn = @LoggedIn,
+				AssignedToStation = @AssignedToStation
+			Where EmployeeID = @EmployeeID;
+		End
 		GO
 
 	--Product Ingredients
@@ -656,7 +670,6 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 			End
 		GO
 
-
 		CREATE PROC Proc_InsertProductOrders
 			@OrderID int,
 			@ProductID int,
@@ -693,6 +706,23 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 		End
 		GO
 
+	--Update order
+		Create Proc Proc_UpdateOrderStatus
+			@OrderID int,
+			@Paid int = 0,
+			@Canceled int = 0,
+			@PickedUp int = 0,
+			@Returned int = 0
+		AS
+		Begin
+			Update Orders
+			Set Paid = @Paid,
+				Canceled = @Canceled,
+				PickedUp = @PickedUp,
+				Returned = @Returned
+			Where OrderID = @OrderID;
+		End
+		GO
 
 	--Procedures för att läggatill (eller tabort) whatever.. (en procedure för varje entitetstyp)
 	-- Kan bli hur många som helst här...
