@@ -169,7 +169,6 @@
 			this.lstbxFinished.Name = "lstbxFinished";
 			this.lstbxFinished.Size = new System.Drawing.Size(396, 366);
 			this.lstbxFinished.TabIndex = 1;
-			this.lstbxFinished.SelectedIndexChanged += new System.EventHandler(this.lstbxFinished_SelectedIndexChanged);
 			// 
 			// orderBindingSource
 			// 

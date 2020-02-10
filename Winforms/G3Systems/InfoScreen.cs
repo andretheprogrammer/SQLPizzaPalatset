@@ -48,15 +48,11 @@ namespace G3Systems
 			//this.view_ReadyForPickupOrdersTableAdapter.Fill(this.viewDatabaseinfoscrn.View_ReadyForPickupOrders);
 			//// TODO: This line of code loads data into the 'viewDatabaseinfoscrn.View_InfoScreenLeftColumn' table. You can move, or remove it, as needed.
 			//this.view_InfoScreenLeftColumnTableAdapter.Fill(this.viewDatabaseinfoscrn.View_InfoScreenLeftColumn);
-			this.ordersTableAdapter1.Fill(this.g3SystemsDataSet.Orders);
-			this.ordersTableAdapter.Fill(this.dataSet1.Orders);
 
 		}
 
 		private void button1_Click(object sender, EventArgs e)
 		{
-			ProcessingOrderGridView.Update();
-			ProcessingOrderGridView.Refresh();
 		}
 
 		private void InfoScreen_Load_1(object sender, EventArgs e)
