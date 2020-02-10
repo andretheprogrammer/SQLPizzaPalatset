@@ -16,6 +16,7 @@ namespace G3Systems
 	public partial class Login : Form
 	{
 		private readonly IG3SystemsRepository _repo;
+		// Get key string from App.config appsettings
 		private readonly string _postgreBackEnd = ConfigurationManager.AppSettings.Keys[0];
 		private Employee user;
 
@@ -58,7 +59,7 @@ namespace G3Systems
 				return;
 			}
 
-			await Task.Run(() => _repo.GetEmployeeTypesAsync(user));
+			await _repo.GetEmployeeTypesAsync(user);
 
 			// Block access if user has wrong type for selected form
 			if (!user.HasAccess(cbConnectTo.SelectedIndex))
