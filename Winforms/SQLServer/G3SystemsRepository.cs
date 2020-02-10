@@ -107,7 +107,7 @@ namespace SQLServer
             {
                 return (await connection.QueryAsync<Order>(
                       sql: "Proc_RightColumnInfoScreen",
-                    param: new { @BuildingID = id },
+                    param: new { BuildingID = id },
                commandType: CommandType.StoredProcedure));
             }
         }
@@ -117,7 +117,7 @@ namespace SQLServer
             {
                 return (await connection.QueryAsync<Order>(
                       sql: "Proc_LeftColumnInfoScreen",
-                    param: new { @BuildingID = id },
+                    param: new { BuildingID = id },
                commandType: CommandType.StoredProcedure)).ToList();
             }
         }
@@ -240,7 +240,7 @@ namespace SQLServer
             {
                 return (await connection.QueryAsync<Workload>(
                        sql: "Proc_OpenOrders",
-                     param: new { @BuildingID = pBuildingid },
+                     param: new { BuildingID = pBuildingid },
                 commandType: CommandType.StoredProcedure));
             }
 
@@ -251,7 +251,7 @@ namespace SQLServer
             {
                 return (await connection.QueryAsync<Ingredient>(
                        sql: "Proc_GetStuffings",
-                     param: new { @ProductOrderID = pProductOrderid },
+                     param: new { ProductOrderID = pProductOrderid },
                 commandType: CommandType.StoredProcedure));
             }
         }
@@ -263,7 +263,7 @@ namespace SQLServer
                 {
                     await connection.QueryAsync<Order>(
                           sql: "Proc_SetLockedByStation",
-                        param: new { @ProductOrderID = pProductOrderid, @StationID = pStationid },
+                        param: new { ProductOrderID = pProductOrderid, StationID = pStationid },
                    commandType: CommandType.StoredProcedure);
                 }
         }
@@ -278,10 +278,21 @@ namespace SQLServer
             {
                 await connection.QueryAsync<Order>(
                       sql: "Proc_SetProcessed",
-                    param: new { @ProductOrderID = pProductOrderid, @Processed = bit_from_bool },
+                    param: new { ProductOrderID = pProductOrderid, Processed = bit_from_bool },
                commandType: CommandType.StoredProcedure);
             }
 
+        }
+
+        public async Task UpdateEmployeeStatusAsync(Employee employee)
+        {
+            using (var connection = CreateConnection())
+            {
+                await connection.ExecuteAsync(
+                      sql: "Proc_UpdateEmployeeStatus",
+                    param: new { employee.EmployeeID, employee.LoggedIn, employee.AssignedToStation },
+               commandType: CommandType.StoredProcedure);
+            }
         }
     }
 }

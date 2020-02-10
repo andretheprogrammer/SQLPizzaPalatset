@@ -111,5 +111,10 @@ namespace PostgreSQL
         {
             throw new NotImplementedException();
         }
+
+        public Task UpdateEmployeeStatusAsync(Employee employee)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

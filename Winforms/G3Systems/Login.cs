@@ -69,6 +69,10 @@ namespace G3Systems
 				return;
 			}
 
+			user.LoggedIn = true;
+			user.AssignedToStation = 1;
+			await _repo.UpdateEmployeeStatusAsync(user);
+
 			MessageBox.Show($"Logged in as:\n{user.Username} ID: {user.EmployeeID}\n");
 			SwitchForm(cbConnectTo.SelectedIndex);
 		}
@@ -114,6 +118,14 @@ namespace G3Systems
 			}
 
 			this.Hide();
+		}
+
+		private async void Login_FormClosing(object sender, FormClosingEventArgs e)
+		{
+			MessageBox.Show("Loggar ut");
+			user.LoggedIn = false;
+			user.AssignedToStation = null;
+			await _repo.UpdateEmployeeStatusAsync(user);
 		}
 	}
 }

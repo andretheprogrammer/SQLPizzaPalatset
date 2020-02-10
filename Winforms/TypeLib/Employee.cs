@@ -15,6 +15,8 @@ namespace TypeLib
 
         public int EmployeeID { get; set; }
         public string Username { get; set; }
+        public bool LoggedIn { get; set; }
+        public int? AssignedToStation { get; set; }
 
         public List<EmployeeType> Types { get; set; }
 
