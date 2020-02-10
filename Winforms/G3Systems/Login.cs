@@ -16,8 +16,6 @@ namespace G3Systems
 	public partial class Login : Form
 	{
 		private readonly IG3SystemsRepository _repo;
-		// Get key string from App.config appsettings
-		private readonly string _postgreBackEnd = ConfigurationManager.AppSettings.Keys[0];
 		private Employee user;
 
 		public Login()
@@ -26,6 +24,9 @@ namespace G3Systems
 
 			try
 			{
+				// Get key string from App.config appsettings
+				string _postgreBackEnd = ConfigurationManager.AppSettings.Keys[0];
+
 				// Check if postgreSQL Back-End is set to true App.Config 
 				if (_postgreBackEnd.GetConfigSetting<bool>())
 				{
@@ -40,7 +41,7 @@ namespace G3Systems
 			}
 			catch
 			{
-				MessageBox.Show("Kunde ej etablera anslutning");
+				MessageBox.Show("Fel i App.config", "Error");
 				throw;
 			}
 

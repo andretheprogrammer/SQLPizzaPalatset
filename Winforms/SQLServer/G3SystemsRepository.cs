@@ -131,7 +131,7 @@ namespace SQLServer
                 {
                     try
                     {
-                        // Loop through object array parameters for each insert
+                        // Loops through object array parameters for each insert
                         await connection.ExecuteAsync(
                                 sql: "Proc_InsertProductOrders",
                               param: parameters,

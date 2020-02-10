@@ -462,6 +462,7 @@ namespace G3Systems
 			{
 				MessageBox.Show(
 					string.Join("\n", cart.Select(p => p.ProductName)) +
+					Environment.NewLine +
 					GetTotalPrice(),
 					$"Order# {order.OrderID}\n");
 			}
