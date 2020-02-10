@@ -140,7 +140,7 @@ CREATE TABLE Employees(
 	LoggedIn bit NOT NULL DEFAULT 0, 
 	Activated BIT NOT NULL DEFAULT 1,
 	Visible BIT NOT NULL DEFAULT 1,
-	AssignedToStation INT FOREIGN KEY REFERENCES Stations(StationID)
+	AssignedToStation INT NOT NULL DEFAULT 1 FOREIGN KEY REFERENCES Stations(StationID),
 	--Nycklar:
 
 	--Beräknade attribut nedan
@@ -417,6 +417,8 @@ CREATE TABLE Stuffings(
 	CONSTRAINT UC_POIngredient UNIQUE(ProductOrderID,IngredientID)
 	--
 	);
+
+--TA BORT DENNA???
 CREATE TABLE EmployeesHaveProductOrdersLockedInStations(
 	--ID INT IDENTIFIER(1,1) NOT NULL, 			--Onödigt skrot men standard att ha ID.
 	EmployeeID INT NOT NULL FOREIGN KEY REFERENCES Employees(EmployeeID),
@@ -432,6 +434,7 @@ CREATE TABLE EmployeesHaveProductOrdersLockedInStations(
 	-- Extra Begränsningar nedan
 	--
 	);
+
 CREATE TABLE TypeCanHaveIngredients(
 	ApprovedIngredient INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 	ProductTypeID INT NOT NULL FOREIGN KEY REFERENCES ProductTypes(ProductTypeID),
@@ -1638,7 +1641,7 @@ CREATE PROCEDURE Proc_OpenOrders  @BuildingID INT
 	GO
 
 --Baker
---Låser upp med @stationid=0
+--Låser upp med @stationid=0  . Ingen return tabell.
 CREATE PROCEDURE Proc_SetLockedByStation (@ProductOrderID Int, @StationID Int)
 	AS
 		BEGIN 
@@ -1661,6 +1664,7 @@ CREATE PROCEDURE Proc_SetLockedByStation (@ProductOrderID Int, @StationID Int)
 
 
 --Baker
+--Sätter PO till processed. returnar inget
 CREATE PROCEDURE Proc_SetProcessed (@ProductOrderID Int, @Processed bit)
 	AS
 		BEGIN 
@@ -1670,3 +1674,75 @@ CREATE PROCEDURE Proc_SetProcessed (@ProductOrderID Int, @Processed bit)
 		END
 	GO
 
+--Baker
+--Procedure to set employee to station - returnar inget.
+CREATE PROCEDURE Proc_SetEmployeeToStation (@EmployeeID Int, @StationID int)
+	AS
+	BEGIN 
+		UPDATE Employees
+		SET AssignedToStation = @StationID
+		WHERE EmployeeID = @EmployeeID;
+	END
+	GO
+
+--to show productorder locked by station
+--returnar tabell med en enda PO.  
+CREATE PROCEDURE Proc_POLockedByStation @StationID int
+	AS
+	BEGIN
+		SELECT *
+		FROM ProductOrders
+		WHERE LockedByStation = @StationID
+	END
+	GO
+
+--Baker
+--returnar en station
+CREATE PROCEDURE Proc_GetAssignedStation @EmployeeID int
+AS
+	SELECT *
+	FROM Stations
+	WHERE 
+		Stations.StationID in
+			(SELECT AssignedToStation 
+			FROM Employees
+			WHERE EmployeeID = @EmployeeID)
+	GO
+
+--baker
+--Returnerar produktinfo från productorder
+CREATE PROCEDURE Proc_GetProductInfoFromPO @ProductOrderID int
+	AS
+	BEGIN
+		SELECT *
+		FROM Products
+		WHERE
+			ProductID in
+			(
+			SELECT ProductID
+			FROM ProductOrders
+			WHERE ProductOrders.ProductOrderID= @ProductOrderID
+			);
+	END
+GO
+
+
+--baker
+--ger stations
+CREATE PROCEDURE GetPossibleStationsForEmployee @EmployeeID INT
+	AS
+	BEGIN
+
+	SELECT StationID, StationName
+	FROM Stations
+	WHERE StationID in (			
+		(SELECT 
+		a.StationTypeID 
+		FROM EmployeeTypeCanWorkInStationType AS a
+		WHERE 
+			a.EmployeeTypeID in 
+			(SELECT ET.EmployeeTypeID
+			FROM Employees AS E, EmployeeTypes as ET, EmployeesAreEmployeeTypes as ErET
+			WHERE E.EmployeeID = ErET.EmployeeID and ErET.EmployeeTypeID = ET.EmployeeTypeID and E.EmployeeID = @EmployeeID )))
+	END
+	GO		

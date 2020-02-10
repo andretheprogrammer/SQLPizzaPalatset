@@ -39,6 +39,10 @@ namespace G3Systems
 
 		private void Admin_Load(object sender, EventArgs e)
 		{
+			// TODO: This line of code loads data into the 'g3SystemsDataSet1.Employees' table. You can move, or remove it, as needed.
+			this.employeesTableAdapter1.Fill(this.g3SystemsDataSet1.Employees);
+			// TODO: This line of code loads data into the 'g3SystemsDataSet.Employees' table. You can move, or remove it, as needed.
+			this.employeesTableAdapter.Fill(this.g3SystemsDataSet.Employees);
 
 		}
 

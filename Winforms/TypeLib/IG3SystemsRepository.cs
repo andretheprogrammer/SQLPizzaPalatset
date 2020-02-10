@@ -21,19 +21,27 @@ namespace TypeLib
 
         Task GetEmployeeTypesAsync(Employee employee);
         
-        // InfoScreen
+        // InfoScreen - Hariz
         Task<IEnumerable<Order>> GetFinishedOrdersAsync(int id);
         Task<IEnumerable<Order>> GetInProcessOrderssAsync(int id);
-
-        //Cashier
+        
+        //Cashier - Hariz
         Task SetOrderPickedUpToAsync(int id, bool pickbit);
-
-        //Baker
+        
+        //Baker - Hariz
         //Obs Open ProductOrders. Only for baker.
         Task<IEnumerable<Workload>> GetOpenPOAsync(int pBuidlingid=1); //Byt workload till Object oom du måste
         Task<IEnumerable<Ingredient>> GetStuffingsAsync(int pProductOrderid);
         Task SetLockOnkPOAsync(int pProductOrderid,int pStationid);
         Task SetProcessedOnkPOAsync(int pProductOrderid, bool processed);
+        
+        //Stations - Hariz
+        Task<ProductOrder> GetLockedPOByStation(int pStationid);
+        Task<Station> GetAssignedStation(int pEmployeeid);
+        Task<Product> GetProductInfoFromPO(int pProductOrderId);
+
+        Task<IEnumerable<Station>> GetPossibleStationsForEmployee(int pEmployeeid);
+        Task AssignStationAsync(int pEmployeeid, int pStationid);
 
 
         //// ???????

@@ -17,7 +17,7 @@ namespace G3Systems
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 
-			Application.Run(new CustomerEnter(1));
+			Application.Run(new Login());
 
 
 		}
