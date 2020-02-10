@@ -107,7 +107,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </Compile>
-    <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="Extensions\ExtensionMethods.cs" />
     <Compile Include="G3SystemsDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
