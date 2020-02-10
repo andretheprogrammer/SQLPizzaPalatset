@@ -107,6 +107,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ExtensionMethods.cs" />
     <Compile Include="G3SystemsDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -196,6 +197,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PostgreSQL\PostgreSQL.csproj">
+      <Project>{2db1c1d0-82e8-4476-934b-b50fe906dd9c}</Project>
+      <Name>PostgreSQL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SQLServer\SQLServer.csproj">
       <Project>{d7c77c99-6486-4ce1-a904-76b0b5a4aa9f}</Project>
       <Name>SQLServer</Name>

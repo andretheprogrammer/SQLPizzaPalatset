@@ -20,7 +20,7 @@ namespace SQLServer
         public G3SystemsRepository()
         {
             // Gets connectionstring from App.config in G3Systems
-            _connString = ConfigurationManager.ConnectionStrings["PizzaDB"].ConnectionString;
+            _connString = ConfigurationManager.ConnectionStrings["mssql"].ConnectionString;
         }
 
         /// <summary>

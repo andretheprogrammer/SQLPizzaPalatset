@@ -8,7 +8,7 @@ namespace TypeLib
 {
     // TODO Dela upp repository?
     // TODO en repository för varje form?
-    public interface IG3SystemsRepository 
+    public interface IG3SystemsRepository
     {
         // Products
         Task<IEnumerable<Product>> GetProductsAsync(ProductType productType);
