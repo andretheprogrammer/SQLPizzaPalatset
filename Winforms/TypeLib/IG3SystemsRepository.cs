@@ -17,9 +17,13 @@ namespace TypeLib
         Task<IEnumerable<ProductOrder>> GetProductOrdersAsync();
 
         // Employees
+        Task<IEnumerable<Employee>> GetEmployeesAsync();
+
+        Task UpdateEmployeeAsync(Employee employee);
+
         Task<Employee> GetEmployeeLoginAsync(string username, string password);
 
-        Task GetEmployeeTypesAsync(Employee employee);
+        Task GetEmployeeTypesByIdAsync(Employee employee);
 
         Task UpdateEmployeeStatusAsync(Employee employee);
         

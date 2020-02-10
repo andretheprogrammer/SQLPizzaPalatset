@@ -58,6 +58,40 @@ namespace SQLServer
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public async Task<IEnumerable<Employee>> GetEmployeesAsync()
+        {
+            var sqlQuery = "Select * from Employees";
+
+            using (var connection = CreateConnection())
+            {
+                return await connection.QueryAsync<Employee>(sqlQuery);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="employee"></param>
+        /// <returns></returns>
+        public async Task UpdateEmployeeAsync(Employee employee)
+        {
+            using (var connection = CreateConnection())
+            {
+                await connection.ExecuteAsync(
+                    "Proc_UpdateEmployee",
+                    new {   employee.EmployeeID, 
+                            employee.Username, 
+                            employee.Password, 
+                            employee.LoggedIn, 
+                            employee.AssignedToStation },
+                    commandType: CommandType.StoredProcedure);
+            }
+        }
+
+        /// <summary>
         /// Get employee by matching username and password
         /// </summary>
         /// <param name="username"></param>
@@ -84,7 +118,7 @@ namespace SQLServer
         /// </summary>
         /// <param name="employee"></param>
         /// <returns></returns>
-        public async Task GetEmployeeTypesAsync(Employee employee)
+        public async Task GetEmployeeTypesByIdAsync(Employee employee)
         {
             var sqlQuery = "select EmployeeTypeID from EmployeesAreEmployeeTypes where EmployeeID = @EmployeeID";
 
@@ -97,7 +131,6 @@ namespace SQLServer
                 types.ForEach(t => employee.Types.Add(t));
             }
         }
-
 
         // Todo sätt summary kommentarer överallt
         // InfoScreen - Hariz

@@ -50,7 +50,7 @@
             this.tabPage8 = new System.Windows.Forms.TabPage();
             this.tabPage9 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.listViewLoggedInEmployees = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label3 = new System.Windows.Forms.Label();
@@ -58,9 +58,17 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.TabEmployees = new System.Windows.Forms.TabPage();
-            this.employeesBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.g3SystemsDataSet1BindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.g3SystemsDataSet1 = new G3Systems.G3SystemsDataSet1();
+            this.tabControl3 = new System.Windows.Forms.TabControl();
+            this.tabEditEmployees = new System.Windows.Forms.TabPage();
+            this.UpdateEmployeeBtn = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.tbPassword = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.tbUsername = new System.Windows.Forms.TextBox();
+            this.GetEmployeesBtn = new System.Windows.Forms.Button();
+            this.dataGridViewEmployees = new System.Windows.Forms.DataGridView();
+            this.employeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.TabProducts = new System.Windows.Forms.TabPage();
             this.tabControl4 = new System.Windows.Forms.TabControl();
             this.tabProdTypes = new System.Windows.Forms.TabPage();
@@ -186,6 +194,9 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.label7 = new System.Windows.Forms.Label();
+            this.employeesBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.g3SystemsDataSet1BindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.g3SystemsDataSet1 = new G3Systems.G3SystemsDataSet1();
             this.g3SystemsDataSet = new G3Systems.G3SystemsDataSet();
             this.g3SystemsDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataSet1 = new G3Systems.DataSet1();
@@ -195,17 +206,13 @@
             this.employeesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.employeesTableAdapter = new G3Systems.G3SystemsDataSetTableAdapters.EmployeesTableAdapter();
             this.employeesTableAdapter1 = new G3Systems.G3SystemsDataSet1TableAdapters.EmployeesTableAdapter();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.tabEditEmployees = new System.Windows.Forms.TabPage();
-            this.tabControl3 = new System.Windows.Forms.TabControl();
-            this.dataGridViewEmployees = new System.Windows.Forms.DataGridView();
-            this.employeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.employeeIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Password = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Selected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GetEmployeesBtn = new System.Windows.Forms.Button();
+            this.chkListBoxEmployeeType = new System.Windows.Forms.CheckedListBox();
+            this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -228,9 +235,10 @@
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.TabEmployees.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.employeesBindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.g3SystemsDataSet1BindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.g3SystemsDataSet1)).BeginInit();
+            this.tabControl3.SuspendLayout();
+            this.tabEditEmployees.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployees)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).BeginInit();
             this.TabProducts.SuspendLayout();
             this.tabControl4.SuspendLayout();
             this.tabProdTypes.SuspendLayout();
@@ -272,6 +280,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator3)).BeginInit();
             this.bindingNavigator3.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.employeesBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.g3SystemsDataSet1BindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.g3SystemsDataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.g3SystemsDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.g3SystemsDataSetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
@@ -279,10 +290,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.g3SystemsDataSetBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1BindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.employeesBindingSource)).BeginInit();
-            this.tabEditEmployees.SuspendLayout();
-            this.tabControl3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployees)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).BeginInit();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -437,7 +445,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.listView1);
+            this.groupBox1.Controls.Add(this.listViewLoggedInEmployees);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
@@ -449,35 +457,35 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Logged In Users";
             // 
-            // listView1
+            // listViewLoggedInEmployees
             // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.listViewLoggedInEmployees.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2});
-            this.listView1.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listViewLoggedInEmployees.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.listViewLoggedInEmployees.Dock = System.Windows.Forms.DockStyle.Fill;
             listViewGroup1.Header = "ListViewGroup";
             listViewGroup1.Name = "listViewGroup1";
             listViewGroup2.Header = "ListViewGroup";
             listViewGroup2.HeaderAlignment = System.Windows.Forms.HorizontalAlignment.Right;
             listViewGroup2.Name = "listViewGroup2";
-            this.listView1.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
+            this.listViewLoggedInEmployees.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
             listViewGroup1,
             listViewGroup2});
-            this.listView1.HideSelection = false;
-            this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            this.listViewLoggedInEmployees.HideSelection = false;
+            this.listViewLoggedInEmployees.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
             listViewItem1,
             listViewItem2,
             listViewItem3,
             listViewItem4,
             listViewItem5});
-            this.listView1.Location = new System.Drawing.Point(3, 16);
-            this.listView1.Name = "listView1";
-            this.listView1.ShowGroups = false;
-            this.listView1.Size = new System.Drawing.Size(226, 138);
-            this.listView1.TabIndex = 3;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.SmallIcon;
+            this.listViewLoggedInEmployees.Location = new System.Drawing.Point(3, 16);
+            this.listViewLoggedInEmployees.Name = "listViewLoggedInEmployees";
+            this.listViewLoggedInEmployees.ShowGroups = false;
+            this.listViewLoggedInEmployees.Size = new System.Drawing.Size(226, 138);
+            this.listViewLoggedInEmployees.TabIndex = 3;
+            this.listViewLoggedInEmployees.UseCompatibleStateImageBehavior = false;
+            this.listViewLoggedInEmployees.View = System.Windows.Forms.View.SmallIcon;
             // 
             // columnHeader1
             // 
@@ -541,20 +549,123 @@
             this.TabEmployees.Text = "Employees";
             this.TabEmployees.UseVisualStyleBackColor = true;
             // 
-            // employeesBindingSource1
+            // tabControl3
             // 
-            this.employeesBindingSource1.DataMember = "Employees";
-            this.employeesBindingSource1.DataSource = this.g3SystemsDataSet1BindingSource;
+            this.tabControl3.Controls.Add(this.tabEditEmployees);
+            this.tabControl3.Controls.Add(this.tabPage4);
+            this.tabControl3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl3.Location = new System.Drawing.Point(3, 3);
+            this.tabControl3.Name = "tabControl3";
+            this.tabControl3.SelectedIndex = 0;
+            this.tabControl3.Size = new System.Drawing.Size(734, 463);
+            this.tabControl3.TabIndex = 0;
             // 
-            // g3SystemsDataSet1BindingSource
+            // tabEditEmployees
             // 
-            this.g3SystemsDataSet1BindingSource.DataSource = this.g3SystemsDataSet1;
-            this.g3SystemsDataSet1BindingSource.Position = 0;
+            this.tabEditEmployees.Controls.Add(this.UpdateEmployeeBtn);
+            this.tabEditEmployees.Controls.Add(this.groupBox2);
+            this.tabEditEmployees.Controls.Add(this.GetEmployeesBtn);
+            this.tabEditEmployees.Controls.Add(this.dataGridViewEmployees);
+            this.tabEditEmployees.Location = new System.Drawing.Point(4, 22);
+            this.tabEditEmployees.Name = "tabEditEmployees";
+            this.tabEditEmployees.Padding = new System.Windows.Forms.Padding(3);
+            this.tabEditEmployees.Size = new System.Drawing.Size(726, 437);
+            this.tabEditEmployees.TabIndex = 0;
+            this.tabEditEmployees.Text = "Edit Employees";
+            this.tabEditEmployees.UseVisualStyleBackColor = true;
             // 
-            // g3SystemsDataSet1
+            // UpdateEmployeeBtn
             // 
-            this.g3SystemsDataSet1.DataSetName = "G3SystemsDataSet1";
-            this.g3SystemsDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.UpdateEmployeeBtn.Location = new System.Drawing.Point(590, 289);
+            this.UpdateEmployeeBtn.Name = "UpdateEmployeeBtn";
+            this.UpdateEmployeeBtn.Size = new System.Drawing.Size(89, 35);
+            this.UpdateEmployeeBtn.TabIndex = 6;
+            this.UpdateEmployeeBtn.Text = "Save";
+            this.UpdateEmployeeBtn.UseVisualStyleBackColor = true;
+            this.UpdateEmployeeBtn.Click += new System.EventHandler(this.UpdateEmployeeBtn_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(23, 89);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(56, 13);
+            this.label5.TabIndex = 5;
+            this.label5.Text = "Password:";
+            // 
+            // tbPassword
+            // 
+            this.tbPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbPassword.Location = new System.Drawing.Point(97, 84);
+            this.tbPassword.Name = "tbPassword";
+            this.tbPassword.Size = new System.Drawing.Size(148, 22);
+            this.tbPassword.TabIndex = 4;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(21, 48);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(58, 13);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Username:";
+            // 
+            // tbUsername
+            // 
+            this.tbUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbUsername.Location = new System.Drawing.Point(97, 43);
+            this.tbUsername.Name = "tbUsername";
+            this.tbUsername.Size = new System.Drawing.Size(148, 22);
+            this.tbUsername.TabIndex = 2;
+            // 
+            // GetEmployeesBtn
+            // 
+            this.GetEmployeesBtn.Location = new System.Drawing.Point(6, 291);
+            this.GetEmployeesBtn.Name = "GetEmployeesBtn";
+            this.GetEmployeesBtn.Size = new System.Drawing.Size(89, 35);
+            this.GetEmployeesBtn.TabIndex = 1;
+            this.GetEmployeesBtn.Text = "Get All";
+            this.GetEmployeesBtn.UseVisualStyleBackColor = true;
+            this.GetEmployeesBtn.Click += new System.EventHandler(this.GetEmployeesBtn_Click);
+            // 
+            // dataGridViewEmployees
+            // 
+            this.dataGridViewEmployees.AllowUserToAddRows = false;
+            this.dataGridViewEmployees.AllowUserToDeleteRows = false;
+            this.dataGridViewEmployees.AllowUserToResizeColumns = false;
+            this.dataGridViewEmployees.AllowUserToResizeRows = false;
+            this.dataGridViewEmployees.AutoGenerateColumns = false;
+            this.dataGridViewEmployees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewEmployees.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.employeeIDDataGridViewTextBoxColumn,
+            this.dataGridViewTextBoxColumn1,
+            this.Selected,
+            this.dataGridViewTextBoxColumn3});
+            this.dataGridViewEmployees.DataSource = this.employeeBindingSource;
+            this.dataGridViewEmployees.Location = new System.Drawing.Point(6, 3);
+            this.dataGridViewEmployees.MultiSelect = false;
+            this.dataGridViewEmployees.Name = "dataGridViewEmployees";
+            this.dataGridViewEmployees.RowHeadersVisible = false;
+            this.dataGridViewEmployees.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewEmployees.Size = new System.Drawing.Size(333, 280);
+            this.dataGridViewEmployees.TabIndex = 0;
+            this.dataGridViewEmployees.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewEmployees_CellContentClick);
+            this.dataGridViewEmployees.SelectionChanged += new System.EventHandler(this.dataGridViewEmployees_SelectionChanged);
+            // 
+            // employeeBindingSource
+            // 
+            this.employeeBindingSource.DataSource = typeof(TypeLib.Employee);
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(726, 437);
+            this.tabPage4.TabIndex = 2;
+            this.tabPage4.Text = "EmployeeType And Stations";
+            this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // TabProducts
             // 
@@ -1777,6 +1888,21 @@
             this.label7.TabIndex = 3;
             this.label7.Text = "To End date:";
             // 
+            // employeesBindingSource1
+            // 
+            this.employeesBindingSource1.DataMember = "Employees";
+            this.employeesBindingSource1.DataSource = this.g3SystemsDataSet1BindingSource;
+            // 
+            // g3SystemsDataSet1BindingSource
+            // 
+            this.g3SystemsDataSet1BindingSource.DataSource = this.g3SystemsDataSet1;
+            this.g3SystemsDataSet1BindingSource.Position = 0;
+            // 
+            // g3SystemsDataSet1
+            // 
+            this.g3SystemsDataSet1.DataSetName = "G3SystemsDataSet1";
+            this.g3SystemsDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // g3SystemsDataSet
             // 
             this.g3SystemsDataSet.DataSetName = "G3SystemsDataSet";
@@ -1820,60 +1946,20 @@
             // 
             this.employeesTableAdapter1.ClearBeforeFill = true;
             // 
-            // tabPage4
+            // groupBox2
             // 
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(726, 437);
-            this.tabPage4.TabIndex = 2;
-            this.tabPage4.Text = "EmployeeType And Stations";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // tabEditEmployees
-            // 
-            this.tabEditEmployees.Controls.Add(this.GetEmployeesBtn);
-            this.tabEditEmployees.Controls.Add(this.dataGridViewEmployees);
-            this.tabEditEmployees.Location = new System.Drawing.Point(4, 22);
-            this.tabEditEmployees.Name = "tabEditEmployees";
-            this.tabEditEmployees.Padding = new System.Windows.Forms.Padding(3);
-            this.tabEditEmployees.Size = new System.Drawing.Size(726, 437);
-            this.tabEditEmployees.TabIndex = 0;
-            this.tabEditEmployees.Text = "Edit Employees";
-            this.tabEditEmployees.UseVisualStyleBackColor = true;
-            // 
-            // tabControl3
-            // 
-            this.tabControl3.Controls.Add(this.tabEditEmployees);
-            this.tabControl3.Controls.Add(this.tabPage4);
-            this.tabControl3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl3.Location = new System.Drawing.Point(3, 3);
-            this.tabControl3.Name = "tabControl3";
-            this.tabControl3.SelectedIndex = 0;
-            this.tabControl3.Size = new System.Drawing.Size(734, 463);
-            this.tabControl3.TabIndex = 0;
-            // 
-            // dataGridViewEmployees
-            // 
-            this.dataGridViewEmployees.AutoGenerateColumns = false;
-            this.dataGridViewEmployees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewEmployees.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.employeeIDDataGridViewTextBoxColumn,
-            this.dataGridViewTextBoxColumn1,
-            this.Password,
-            this.dataGridViewCheckBoxColumn1,
-            this.dataGridViewTextBoxColumn3});
-            this.dataGridViewEmployees.DataSource = this.employeeBindingSource;
-            this.dataGridViewEmployees.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dataGridViewEmployees.Location = new System.Drawing.Point(6, 3);
-            this.dataGridViewEmployees.Name = "dataGridViewEmployees";
-            this.dataGridViewEmployees.RowHeadersVisible = false;
-            this.dataGridViewEmployees.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewEmployees.Size = new System.Drawing.Size(375, 280);
-            this.dataGridViewEmployees.TabIndex = 0;
-            // 
-            // employeeBindingSource
-            // 
-            this.employeeBindingSource.DataSource = typeof(TypeLib.Employee);
+            this.groupBox2.Controls.Add(this.label8);
+            this.groupBox2.Controls.Add(this.chkListBoxEmployeeType);
+            this.groupBox2.Controls.Add(this.tbUsername);
+            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Controls.Add(this.tbPassword);
+            this.groupBox2.Location = new System.Drawing.Point(406, 6);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(273, 277);
+            this.groupBox2.TabIndex = 7;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Edit userinfo";
             // 
             // employeeIDDataGridViewTextBoxColumn
             // 
@@ -1890,20 +1976,13 @@
             this.dataGridViewTextBoxColumn1.HeaderText = "Username";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             // 
-            // Password
+            // Selected
             // 
-            this.Password.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Password.HeaderText = "Password";
-            this.Password.Name = "Password";
-            this.Password.Width = 78;
-            // 
-            // dataGridViewCheckBoxColumn1
-            // 
-            this.dataGridViewCheckBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.dataGridViewCheckBoxColumn1.DataPropertyName = "LoggedIn";
-            this.dataGridViewCheckBoxColumn1.HeaderText = "LoggedIn";
-            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
-            this.dataGridViewCheckBoxColumn1.Width = 58;
+            this.Selected.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Selected.DataPropertyName = "LoggedIn";
+            this.Selected.HeaderText = "LoggedIn";
+            this.Selected.Name = "Selected";
+            this.Selected.Width = 58;
             // 
             // dataGridViewTextBoxColumn3
             // 
@@ -1913,14 +1992,25 @@
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             this.dataGridViewTextBoxColumn3.Width = 65;
             // 
-            // GetEmployeesBtn
+            // chkListBoxEmployeeType
             // 
-            this.GetEmployeesBtn.Location = new System.Drawing.Point(6, 291);
-            this.GetEmployeesBtn.Name = "GetEmployeesBtn";
-            this.GetEmployeesBtn.Size = new System.Drawing.Size(89, 35);
-            this.GetEmployeesBtn.TabIndex = 1;
-            this.GetEmployeesBtn.Text = "Get All";
-            this.GetEmployeesBtn.UseVisualStyleBackColor = true;
+            this.chkListBoxEmployeeType.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.chkListBoxEmployeeType.CheckOnClick = true;
+            this.chkListBoxEmployeeType.FormattingEnabled = true;
+            this.chkListBoxEmployeeType.Location = new System.Drawing.Point(97, 129);
+            this.chkListBoxEmployeeType.Name = "chkListBoxEmployeeType";
+            this.chkListBoxEmployeeType.Size = new System.Drawing.Size(148, 105);
+            this.chkListBoxEmployeeType.TabIndex = 6;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(40, 129);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(39, 13);
+            this.label8.TabIndex = 7;
+            this.label8.Text = "Types:";
             // 
             // Admin
             // 
@@ -1957,9 +2047,10 @@
             this.groupBox1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.TabEmployees.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.employeesBindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.g3SystemsDataSet1BindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.g3SystemsDataSet1)).EndInit();
+            this.tabControl3.ResumeLayout(false);
+            this.tabEditEmployees.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployees)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).EndInit();
             this.TabProducts.ResumeLayout(false);
             this.tabControl4.ResumeLayout(false);
             this.tabProdTypes.ResumeLayout(false);
@@ -2018,6 +2109,9 @@
             this.bindingNavigator3.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.employeesBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.g3SystemsDataSet1BindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.g3SystemsDataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.g3SystemsDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.g3SystemsDataSetBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).EndInit();
@@ -2025,10 +2119,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.g3SystemsDataSetBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1BindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.employeesBindingSource)).EndInit();
-            this.tabEditEmployees.ResumeLayout(false);
-            this.tabControl3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployees)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
 		}
@@ -2045,7 +2137,7 @@
 		private System.Windows.Forms.SplitContainer splitContainer3;
 		private System.Windows.Forms.GroupBox groupBox1;
 		private System.Windows.Forms.TabPage tabBuildings;
-		private System.Windows.Forms.ListView listView1;
+		private System.Windows.Forms.ListView listViewLoggedInEmployees;
 		private System.Windows.Forms.ColumnHeader columnHeader1;
 		private System.Windows.Forms.ColumnHeader columnHeader2;
 		private System.Windows.Forms.Label label3;
@@ -2225,12 +2317,19 @@
         private System.Windows.Forms.TabPage tabEditEmployees;
         private System.Windows.Forms.Button GetEmployeesBtn;
         private System.Windows.Forms.DataGridView dataGridViewEmployees;
-        private System.Windows.Forms.DataGridViewTextBoxColumn employeeIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Password;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.BindingSource employeeBindingSource;
         private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox tbPassword;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox tbUsername;
+        private System.Windows.Forms.Button UpdateEmployeeBtn;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn employeeIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Selected;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.CheckedListBox chkListBoxEmployeeType;
+        private System.Windows.Forms.Label label8;
     }
 }

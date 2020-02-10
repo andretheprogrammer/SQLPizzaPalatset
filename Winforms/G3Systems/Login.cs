@@ -60,7 +60,7 @@ namespace G3Systems
 				return;
 			}
 
-			await _repo.GetEmployeeTypesAsync(user);
+			await _repo.GetEmployeeTypesByIdAsync(user);
 
 			// Block access if user has wrong type for selected form
 			if (!user.HasAccess(cbConnectTo.SelectedIndex))
@@ -132,7 +132,7 @@ namespace G3Systems
 			{
 				MessageBox.Show("Loggar ut");
 				user.LoggedIn = false;
-				user.AssignedToStation = null;
+				user.AssignedToStation = 7;
 				await _repo.UpdateEmployeeStatusAsync(user);
 			}
 		}
