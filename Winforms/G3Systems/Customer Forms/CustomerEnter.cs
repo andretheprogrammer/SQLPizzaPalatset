@@ -12,21 +12,28 @@ namespace G3Systems
 {
 	public partial class CustomerEnter : Form
 	{
-		public CustomerEnter()
+		private readonly int _terminalID;
+
+		public CustomerEnter(int terminalID)
 		{
 			InitializeComponent();
+			_terminalID = terminalID;
 		}
 
 		private void NewOrderBtn_Click(object sender, EventArgs e)
 		{
-			var form = new PickProduct();
+			var form = new PickProduct(_terminalID);
 			form.Show();
+			form.Text += $" {_terminalID}";
 			this.Hide();
+
+
 		}
 
 		private void CustomerEnter_FormClosed(object sender, FormClosedEventArgs e)
 		{
 			Application.Exit();
+			
 		}
 	}
 }

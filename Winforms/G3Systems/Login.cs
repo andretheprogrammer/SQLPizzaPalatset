@@ -38,7 +38,7 @@ namespace G3Systems
 		private async void LoginBtn_Click(object sender, EventArgs e)
 		{
 			// Gets user if matching username and password exists
-			User = await _repo.EmployeeLoginAsync(tbUsername.Text, tbPassword.Text);
+			User = await _repo.GetEmployeeLoginAsync(tbUsername.Text, tbPassword.Text);
 
 			if (User is null)
 			{
@@ -76,13 +76,24 @@ namespace G3Systems
 			}
 			else if (selected == 1)
 			{
-				var form = new Cashier();
+				var form = new Cashier(User);
 				form.Show();
 			}
-			else if (selected >= 3 && selected < 6)
+			else if (selected == 2)
 			{
-				var form = new CustomerEnter();
+				var form = new Baker(User);
 				form.Show();
+			}
+			else if (selected == 3)
+			{
+				var form = new InfoScreen();
+				form.Show();
+			}
+			else if (selected >= 4 && selected < 6)
+			{
+				var form = new CustomerEnter(selected - 3);
+				form.Show();
+				form.Text += $" {selected - 3}";
 			}
 			else
 			{

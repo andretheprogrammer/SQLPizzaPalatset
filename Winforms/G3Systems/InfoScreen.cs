@@ -26,21 +26,21 @@ namespace G3Systems
 
 		}
 
-		private async void FinishedOrderTiming_Tick(object sender, EventArgs e)
-		{
-			IEnumerable<Order> orders= await _repo.GetOrdersAsync();
-			//ProcessingOrdersGrid.Clear();
-			//foreach (Order order in orders)
-			//{
-			//	ListViewItem columnInList = new ListViewItem();
-			//	columnInList.Tag = order.OrderId; //
-			//	columnInList.Text = order.OrderId.ToString();
-			//	//columnInList.SubItems.Add("second column");
-			//	ProcessingOrdersGrid.Items.Add(columnInList);
+		//private async void FinishedOrderTiming_Tick(object sender, EventArgs e)
+		//{
+		//	IEnumerable<Order> orders= await _repo.GetOrdersAsync();
+		//	ProcessingOrdersGrid.Clear();
+		//	foreach (Order order in orders)
+		//	{
+		//		ListViewItem columnInList = new ListViewItem();
+		//		columnInList.Tag = order.OrderId; //
+		//		columnInList.Text = order.OrderId.ToString();
+		//		//columnInList.SubItems.Add("second column");
+		//		ProcessingOrdersGrid.Items.Add(columnInList);
 				
-			//}
+		//	}
 			
-		}
+		//}
 
 		private void InfoScreen_Load(object sender, EventArgs e)
 		{
@@ -57,6 +57,38 @@ namespace G3Systems
 		{
 			ProcessingOrderGridView.Update();
 			ProcessingOrderGridView.Refresh();
+		}
+
+		private void InfoScreen_Load_1(object sender, EventArgs e)
+		{
+			Timer Screentimer = new Timer();
+			Screentimer.Interval = (2 * 1000); // 1 secs
+			Screentimer.Tick += new EventHandler(Screen_Tick);
+			Screentimer.Start();
+		}
+
+		private async void Screen_Tick(object sender, EventArgs e)
+		{
+			lstbxFinished.Items.Clear();
+			lstbxProcessing.Items.Clear();
+
+			List<Order> InProcessOrders = (await _repo.GetInProcessOrderssAsync(1)).ToList();
+			List<Order> finishedOrders = (await _repo.GetFinishedOrdersAsync(1)).ToList();
+
+			InProcessOrders.ForEach(a => lstbxProcessing.Items.Add(a.OrderID));
+			finishedOrders.ForEach(a => lstbxFinished.Items.Add(a.OrderID));
+
+
+		}
+
+		private void button000_click(object sender, EventArgs e)
+		{
+			// Skapa ny random terminal
+			Random rnd = new Random();
+			int terminalID = rnd.Next(1, 50);
+			var Form0 = new CustomerEnter(terminalID);
+			Form0.Text += $" {terminalID}";
+			Form0.ShowDialog();
 		}
 	}
 }

@@ -13,9 +13,9 @@ namespace TypeLib
     {
         Pizza = 1,
         Sallad,
-        IceCream,
-        FreshJuice,
-        Drinks,
-        Extras
+        Glass,
+        FärskJuice,
+        Dricka,
+        Övrigt
     }
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.CSharp;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
@@ -52,7 +53,7 @@ namespace SQLServer
 
             using (var connection = CreateConnection())
             {
-                return await connection.QueryAsync<Product>(sqlQuery, new { @ProductTypeID = productType });
+                return await connection.QueryAsync<Product>(sqlQuery, new { ProductTypeID = productType });
             }
         }
 
@@ -62,10 +63,8 @@ namespace SQLServer
         /// <param name="username"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        public async Task<Employee> EmployeeLoginAsync(string username, string password)
+        public async Task<Employee> GetEmployeeLoginAsync(string username, string password)
         {
-            var employee = new Employee();
-
             if (string.IsNullOrWhiteSpace(username + password))
             {
                 return null;
@@ -73,13 +72,11 @@ namespace SQLServer
 
             using (var connection = CreateConnection())
             {
-                employee = (await connection.QueryAsync<Employee>(
-                       sql: "spVerifyLogin",
-                     param: new { @Username = username, @Password = password },
+                return (await connection.QueryAsync<Employee>(
+                       sql: "Proc_VerifyLogin",
+                     param: new { Username = username, Password = password },
                commandType: CommandType.StoredProcedure)).FirstOrDefault();
             }
-
-            return employee;
         }
 
         /// <summary>
@@ -101,21 +98,96 @@ namespace SQLServer
             }
         }
 
-        public async Task<IEnumerable<Order>> GetOrdersAsync()
+
+        // Todo sätt summary kommentarer överallt
+        // InfoScreen - Hariz
+        public async Task<IEnumerable<Order>> GetFinishedOrdersAsync(int id)
         {
-            var sqlOrderQuery = "Select OrderID from Orders where Paid = 1 and PickedUp = 1";
             using (var connection = CreateConnection())
             {
-                return (await connection.QueryAsync<Order>(sqlOrderQuery)).ToList();
+                return (await connection.QueryAsync<Order>(
+                      sql: "Proc_RightColumnInfoScreen",
+                    param: new { @BuildingID = id },
+               commandType: CommandType.StoredProcedure));
+            }
+        }
+        public async Task<IEnumerable<Order>> GetInProcessOrderssAsync(int id)
+        {
+            using (var connection = CreateConnection())
+            {
+                return (await connection.QueryAsync<Order>(
+                      sql: "Proc_LeftColumnInfoScreen",
+                    param: new { @BuildingID = id },
+               commandType: CommandType.StoredProcedure)).ToList();
             }
         }
 
+        public async Task CreateProductOrdersAsync(object[] parameters)
+        {
+            using (var connection = CreateConnection())
+            {
+                // Wrap order data insert in transaction
+                using (var transaction = connection.BeginTransaction())
+                {
+                    try
+                    {
+                        // Loop through object array parameters for each insert
+                        await connection.ExecuteAsync(
+                                sql: "Proc_InsertProductOrders",
+                              param: parameters,
+                        commandType: CommandType.StoredProcedure,
+                        transaction: transaction);
 
+                        // Save if all inserts successfull
+                        transaction.Commit();
+                    }
+                    catch
+                    {
+                        // Undo inserts if error occured
+                        transaction.Rollback();
+                        throw;
+                    }
+                }
+            }
+        }
+        
+        // Create new order and return OrderID
+        public async Task<int> CreateNewOrderAsync(Order order)
+        {
+            var orderParam = new DynamicParameters();
+            orderParam.AddDynamicParams(new { TerminalID = order.ByTerminal });
+            orderParam.Add("OrderID",
+                    dbType: DbType.Int32,
+                 direction: ParameterDirection.Output);
 
+            using (var connection = CreateConnection())
+            {
+                await connection.ExecuteScalarAsync("Proc_NewOrder", 
+                                              param: orderParam, 
+                                        commandType: CommandType.StoredProcedure);
+            }
 
+            return orderParam.Get<int>("OrderID");
+        }
 
-
-
+        // Update order by OrderID
+        public async Task UpdateOrderStatusAsync(Order order)
+        {
+            using (var connection = CreateConnection())
+            {
+                await connection.ExecuteAsync(
+                        sql: "Proc_UpdateOrderStatus",
+                      param: new
+                      {
+                          order.OrderID,
+                          order.Paid,
+                          order.Canceled,
+                          order.PickedUp,
+                          order.Returned
+                      },
+                commandType: CommandType.StoredProcedure);
+            }
+        }
 
         // Ingredients
         public async Task<IEnumerable<Ingredient>> GetHaveIngredientsAsync(int id)
@@ -123,8 +195,8 @@ namespace SQLServer
             using (var connection = CreateConnection())
             {
                 return (await connection.QueryAsync<Ingredient>(
-                       sql: "spGetProductIngredients",
-                     param: new { @ProductID = id },
+                        sql: "Proc_GetProductHaveIngredients",
+                      param: new { ProductID = id },
                 commandType: CommandType.StoredProcedure));
             }
         }
@@ -134,10 +206,82 @@ namespace SQLServer
             using (var connection = CreateConnection())
             {
                 return (await connection.QueryAsync<Ingredient>(
-                       sql: "spGetProductCanHaveIngredients",
-                     param: new { @ProductID = id },
+                        sql: "Proc_GetProductCanHaveIngredients",
+                      param: new { ProductID = id },
                 commandType: CommandType.StoredProcedure));
             }
+        }
+
+        // Cashier  - Hariz
+        //Sätter picked up på en order.
+        public async Task SetOrderPickedUpToAsync(int id, bool pickbit)
+        {
+            //Konvertera bool till en int - - Inkapsla! Denna kod upprepas.
+            int bit_from_bool;
+            if (pickbit == true) bit_from_bool = 1;
+            else bit_from_bool = 0;
+
+            using (var connection = CreateConnection())
+            {
+                 await connection.QueryAsync<Order>(
+                       sql: "SetPickedUp",
+                     param: new { OrderID = id, PickedUp = bit_from_bool },
+                commandType: CommandType.StoredProcedure);
+            }   //Return signal of successs?
+
+
+        }
+
+        // Baker - Hariz
+        public async Task<IEnumerable<Workload>> GetOpenPOAsync(int pBuildingid)
+        {
+            //Vänstra listan på baker
+            using (var connection = CreateConnection())
+            {
+                return (await connection.QueryAsync<Workload>(
+                       sql: "Proc_OpenOrders",
+                     param: new { @BuildingID = pBuildingid },
+                commandType: CommandType.StoredProcedure));
+            }
+
+        }
+        public async Task<IEnumerable<Ingredient>> GetStuffingsAsync(int pProductOrderid)
+        {
+            using (var connection = CreateConnection())
+            {
+                return (await connection.QueryAsync<Ingredient>(
+                       sql: "Proc_GetStuffings",
+                     param: new { @ProductOrderID = pProductOrderid },
+                commandType: CommandType.StoredProcedure));
+            }
+        }
+
+        //Använd stationid =0 för att "låsa upp" productorder.
+        public async Task SetLockOnkPOAsync(int pProductOrderid, int pStationid)
+        {
+                using (var connection = CreateConnection())
+                {
+                    await connection.QueryAsync<Order>(
+                          sql: "Proc_SetLockedByStation",
+                        param: new { @ProductOrderID = pProductOrderid, @StationID = pStationid },
+                   commandType: CommandType.StoredProcedure);
+                }
+        }
+        public async Task SetProcessedOnkPOAsync(int pProductOrderid, bool pProcessed)
+        {
+       
+            int bit_from_bool;
+            if (pProcessed == true) bit_from_bool = 1;
+            else bit_from_bool = 0;
+
+            using (var connection = CreateConnection())
+            {
+                await connection.QueryAsync<Order>(
+                      sql: "Proc_SetProcessed",
+                    param: new { @ProductOrderID = pProductOrderid, @Processed = bit_from_bool },
+               commandType: CommandType.StoredProcedure);
+            }
+
         }
     }
 }
