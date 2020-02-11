@@ -142,7 +142,7 @@ CREATE TABLE Employees(
 	Visible BIT NOT NULL DEFAULT 1,
 	AssignedToStation INT NOT NULL DEFAULT 1 FOREIGN KEY REFERENCES Stations(StationID),
 	--Nycklar:
-		CONSTRAINT UC_EmployeeUsername UNIQUE Username, --Kandidatnyckel
+		CONSTRAINT UC_EmployeeUsername UNIQUE (Username) --Kandidatnyckel
 
 	--Beräknade attribut nedan
 	--
@@ -1474,7 +1474,6 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 		INSERT INTO ProductHaveIngredients(ProductID, IngredientID) VALUES (11,49);
 --Skapa Sample orders. 
 	GO
-
 	--Order 1
 		declare @TerminalID int;
 		declare @OrderID int;
@@ -1516,7 +1515,7 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 		    values (@ProductOrderID, 7, 1);
 		End
 		GO
-
+		GO
 	--Order 2
 		declare @TerminalID int;
 		declare @OrderID int;
@@ -1559,7 +1558,7 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 		    values (@ProductOrderID, 6, 1);
 		End
 		GO
-
+		GO
 	--Order 3
 		declare @TerminalID int;
 		declare @OrderID int;
@@ -1601,6 +1600,448 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 		    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
 		    values (@ProductOrderID, 2, 1);
 		End
+		GO
+
+	-- --Order4
+	-- 	declare @TerminalID int;
+	-- 	declare @OrderID int;
+	-- 	declare @ProductOrderID int;
+
+	-- 	select @TerminalID = TerminalID from Terminals where TerminalID = 2;
+	-- 	Begin
+	-- 	    insert into Orders (ByTerminal, Paid)
+	-- 	    values (@TerminalID, 1);
+	-- 	    select @OrderID = SCOPE_IDENTITY();
+	-- 	End
+
+	-- 	Begin
+	-- 	    insert into ProductOrders(ProductID, OrderID)
+	-- 	    values (7, @OrderID);
+	-- 	    select @ProductOrderID = SCOPE_IDENTITY();
+	-- 	End
+
+	-- 	Begin
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 6, 2);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 20, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 8, 1);
+	-- 	End
+
+	-- 	Begin
+	-- 	    insert into ProductOrders(ProductID, OrderID)
+	-- 	    values (1, @OrderID);
+	-- 	    select @ProductOrderID = SCOPE_IDENTITY();
+	-- 	End
+
+	-- 	Begin
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 6, 2);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 20, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 8, 1);
+	-- 	End
+	-- 	GO
+	-- --Order5
+	-- 	declare @TerminalID int;
+	-- 	declare @OrderID int;
+	-- 	declare @ProductOrderID int;
+
+	-- 	select @TerminalID = TerminalID from Terminals where TerminalID = 2;
+	-- 	Begin
+	-- 	    insert into Orders (ByTerminal, Paid)
+	-- 	    values (@TerminalID, 1);
+	-- 	    select @OrderID = SCOPE_IDENTITY();
+	-- 	End
+
+	-- 	Begin
+	-- 	    insert into ProductOrders(ProductID, OrderID)
+	-- 	    values (7, @OrderID);
+	-- 	    select @ProductOrderID = SCOPE_IDENTITY();
+	-- 	End
+
+	-- 	Begin
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 27, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 20, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 8, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 18, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 23, 1);
+	-- 	End
+
+	-- 	Begin
+	-- 	    insert into ProductOrders(ProductID, OrderID)
+	-- 	    values (5, @OrderID);
+	-- 	    select @ProductOrderID = SCOPE_IDENTITY();
+	-- 	End
+
+	-- 	Begin
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 10, 2);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 11, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 12, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 25, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 31, 1);
+	-- 	End
+	-- 	GO
+	-- --Order6
+	-- 	declare @TerminalID int;
+	-- 	declare @OrderID int;
+	-- 	declare @ProductOrderID int;
+
+	-- 	select @TerminalID = TerminalID from Terminals where TerminalID = 2;
+	-- 	Begin
+	-- 	    insert into Orders (ByTerminal, Paid)
+	-- 	    values (@TerminalID, 1);
+	-- 	    select @OrderID = SCOPE_IDENTITY();
+	-- 	End
+
+	-- 	Begin
+	-- 	    insert into ProductOrders(ProductID, OrderID)
+	-- 	    values (9, @OrderID);
+	-- 	    select @ProductOrderID = SCOPE_IDENTITY();
+	-- 	End
+
+	-- 	Begin
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 6, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 20, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 8, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 21, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 16, 1);
+	-- 	End
+
+	-- 	Begin
+	-- 	    insert into ProductOrders(ProductID, OrderID)
+	-- 	    values (3, @OrderID);
+	-- 	    select @ProductOrderID = SCOPE_IDENTITY();
+	-- 	End
+
+	-- 	Begin
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 6, 2);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 20, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 8, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 21, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 19, 1);
+	-- 	End
+	-- 	GO
+	-- --Order7
+	-- 	declare @TerminalID int;
+	-- 	declare @OrderID int;
+	-- 	declare @ProductOrderID int;
+
+	-- 	select @TerminalID = TerminalID from Terminals where TerminalID = 2;
+	-- 	Begin
+	-- 	    insert into Orders (ByTerminal, Paid)
+	-- 	    values (@TerminalID, 1);
+	-- 	    select @OrderID = SCOPE_IDENTITY();
+	-- 	End
+
+	-- 	Begin
+	-- 	    insert into ProductOrders(ProductID, OrderID)
+	-- 	    values (18, @OrderID);
+	-- 	    select @ProductOrderID = SCOPE_IDENTITY();
+	-- 	End
+
+	-- 	Begin
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 10, 5);
+		    
+	-- 	End
+
+	-- 	Begin
+	-- 	    insert into ProductOrders(ProductID, OrderID)
+	-- 	    values (10, @OrderID);
+	-- 	    select @ProductOrderID = SCOPE_IDENTITY();
+	-- 	End
+
+	-- 	Begin
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 6, 2);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 20, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 8, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 47, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 4, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 3, 1);
+	-- 	End
+	-- 	GO
+	-- --Order8
+	-- 	declare @TerminalID int;
+	-- 	declare @OrderID int;
+	-- 	declare @ProductOrderID int;
+
+	-- 	select @TerminalID = TerminalID from Terminals where TerminalID = 2;
+	-- 	Begin
+	-- 	    insert into Orders (ByTerminal, Paid)
+	-- 	    values (@TerminalID, 1);
+	-- 	    select @OrderID = SCOPE_IDENTITY();
+	-- 	End
+
+	-- 	Begin
+	-- 	    insert into ProductOrders(ProductID, OrderID)
+	-- 	    values (9, @OrderID);
+	-- 	    select @ProductOrderID = SCOPE_IDENTITY();
+	-- 	End
+
+	-- 	Begin
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 6, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 20, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 7, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 21, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 16, 1);
+		    
+	-- 	End
+
+	-- 	Begin
+	-- 	    insert into ProductOrders(ProductID, OrderID)
+	-- 	    values (6, @OrderID);
+	-- 	    select @ProductOrderID = SCOPE_IDENTITY();
+	-- 	End
+
+	-- 	Begin
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 10, 2);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 9, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 29, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 38, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 45, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 49, 2);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 47, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 36, 1);
+	-- 	End
+	-- 	Begin
+	-- 	    insert into ProductOrders(ProductID, OrderID)
+	-- 	    values (11, @OrderID);
+	-- 	    select @ProductOrderID = SCOPE_IDENTITY();
+	-- 	End
+
+	-- 	Begin
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 8, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 20, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 6, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 37, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 39, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 44, 2);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 47, 1);
+	-- 	End
+	-- 	Begin
+	-- 	    insert into ProductOrders(ProductID, OrderID)
+	-- 	    values (2, @OrderID);
+	-- 	    select @ProductOrderID = SCOPE_IDENTITY();
+	-- 	End
+
+	-- 	Begin
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 8, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 20, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 6, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 5, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 2, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 30, 2);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 49, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 34, 1);
+	-- 	End
+	-- 	GO
+	-- --Order9
+	-- 	Begin
+	-- 	    insert into ProductOrders(ProductID, OrderID)
+	-- 	    values (5, @OrderID);
+	-- 	    select @ProductOrderID = SCOPE_IDENTITY();
+	-- 	End
+
+	-- 	Begin
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 10, 2);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 11, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 12, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 25, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 31, 1);
+	-- 	End
+	-- 	declare @TerminalID int;
+	-- 	declare @OrderID int;
+	-- 	declare @ProductOrderID int;
+
+	-- 	select @TerminalID = TerminalID from Terminals where TerminalID = 2;
+	-- 	Begin
+	-- 	    insert into Orders (ByTerminal, Paid)
+	-- 	    values (@TerminalID, 1);
+	-- 	    select @OrderID = SCOPE_IDENTITY();
+	-- 	End
+
+	-- 	Begin
+	-- 	    insert into ProductOrders(ProductID, OrderID)
+	-- 	    values (7, @OrderID);
+	-- 	    select @ProductOrderID = SCOPE_IDENTITY();
+	-- 	End
+
+	-- 	Begin
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 27, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 20, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 8, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 18, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 23, 1);
+	-- 	End
+	-- 	GO
+	-- --Order10
+	-- 	Begin
+	-- 	    insert into ProductOrders(ProductID, OrderID)
+	-- 	    values (2, @OrderID);
+	-- 	    select @ProductOrderID = SCOPE_IDENTITY();
+	-- 	End
+
+	-- 	Begin
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 8, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 20, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 6, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 5, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 2, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 30, 2);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 49, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 34, 1);
+	-- 	End
+	-- 	GO
+	-- --Order11
+	-- 	Begin
+	-- 	    insert into ProductOrders(ProductID, OrderID)
+	-- 	    values (5, @OrderID);
+	-- 	    select @ProductOrderID = SCOPE_IDENTITY();
+	-- 	End
+	-- 	GO
+
+	-- 	Begin
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 10, 2);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 11, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 12, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 25, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 31, 1);
+	-- 	End
+	-- --Order12
+	-- 	Begin
+	-- 	    insert into ProductOrders(ProductID, OrderID)
+	-- 	    values (2, @OrderID);
+	-- 	    select @ProductOrderID = SCOPE_IDENTITY();
+	-- 	End
+
+	-- 	Begin
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 8, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 20, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 6, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 5, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 2, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 30, 2);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 49, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 34, 1);
+	-- 	End
+	-- 	Begin
+	-- 	    insert into ProductOrders(ProductID, OrderID)
+	-- 	    values (20, @OrderID);
+	-- 	    select @ProductOrderID = SCOPE_IDENTITY();
+	-- 	End
+	-- 	Begin
+	-- 	    insert into ProductOrders(ProductID, OrderID)
+	-- 	    values (6, @OrderID);
+	-- 	    select @ProductOrderID = SCOPE_IDENTITY();
+	-- 	End
+
+	-- 	Begin
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 10, 2);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 9, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 29, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 38, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 45, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 49, 2);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 47, 1);
+	-- 	    insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+	-- 	    values (@ProductOrderID, 36, 1);
+	-- 	End
+	-- 	GO
 
 --Sample Orders (några enklare orders utan stuffing details)
 INSERT INTO Orders(ByTerminal, Paid, Canceled, PickedUp, Returned) VALUES(2, 1, 0,1,0); -- Order4
@@ -1608,32 +2049,48 @@ INSERT INTO Orders(ByTerminal, Paid, Canceled, PickedUp, Returned) VALUES(2, 0, 
 INSERT INTO Orders(ByTerminal, Paid, Canceled, PickedUp, Returned) VALUES(2, 1, 0,0,1); -- Order6
 INSERT INTO Orders(ByTerminal, Paid, Canceled, PickedUp, Returned) VALUES(1, 1, 0,0,0); -- Order7
 INSERT INTO Orders(ByTerminal, Paid, Canceled, PickedUp, Returned) VALUES(1, 1, 0,0,0); -- Order8
-
+INSERT INTO Orders(ByTerminal, Paid, Canceled, PickedUp, Returned) VALUES(1, 0, 0,0,0); -- Order9
+INSERT INTO Orders(ByTerminal, Paid, Canceled, PickedUp, Returned) VALUES(2, 0, 1,0,0); -- Order10
+INSERT INTO Orders(ByTerminal, Paid, Canceled, PickedUp, Returned) VALUES(1, 1, 0,0,0); -- Order11
+INSERT INTO Orders(ByTerminal, Paid, Canceled, PickedUp, Returned) VALUES(2, 1, 0,0,0); -- Order12
+GO
 
 --OrderID4  (Paid, pickedup) (fully processed)
 INSERT INTO ProductOrders(ProductID, OrderID,Processed) VALUES(2, 4, 1);
 INSERT INTO ProductOrders(ProductID, OrderID,Processed) VALUES(2, 4, 1);
 INSERT INTO ProductOrders(ProductID, OrderID,Processed) VALUES(1, 4, 1);
 
+GO
 --OrderID5 (Canceled) (not proceessed)
 INSERT INTO ProductOrders(ProductID, OrderID,Processed) VALUES(2, 5, 0);
 INSERT INTO ProductOrders(ProductID, OrderID,Processed) VALUES(2, 5, 0);
 INSERT INTO ProductOrders(ProductID, OrderID,Processed) VALUES(2, 5, 0);
 
+GO
 --OrderID6 (Paid, returned) (fully processed)
 INSERT INTO ProductOrders(ProductID, OrderID,Processed) VALUES(2, 6, 1);
 INSERT INTO ProductOrders(ProductID, OrderID,Processed) VALUES(1, 6, 1);
-
+GO
 --Order7 (paid) (Fully Processed)
 INSERT INTO ProductOrders(ProductID, OrderID,Processed) VALUES(1, 7, 1);
 INSERT INTO ProductOrders(ProductID, OrderID,Processed) VALUES(1, 7, 1);
 INSERT INTO ProductOrders(ProductID, OrderID,Processed) VALUES(3, 7, 1);
-
+GO
 --Order8 (paid) (partially processed)
 INSERT INTO ProductOrders(ProductID, OrderID,Processed) VALUES(1, 8, 1);
 INSERT INTO ProductOrders(ProductID, OrderID,Processed) VALUES(1, 8, 0);
-GO
+--Order9 (not paid) (not processed)
+INSERT INTO ProductOrders(ProductID, OrderID,Processed) VALUES(5, 9, 0);
+INSERT INTO ProductOrders(ProductID, OrderID,Processed) VALUES(7, 9, 0);
+--Order10 (paid) (canceled)
+INSERT INTO ProductOrders(ProductID, OrderID,Processed) VALUES(2, 10, 0);
+--Order11 (paid) (not processed)
+INSERT INTO ProductOrders(ProductID, OrderID,Processed) VALUES(5, 11, 0);
+--Order12 (paid (partially processed))
+INSERT INTO ProductOrders(ProductID, OrderID,Processed) VALUES(2, 12, 1);
+INSERT INTO ProductOrders(ProductID, OrderID,Processed) VALUES(5, 12, 0);
 
+GO
 
 ------- Procedures för infoscreens
 CREATE PROCEDURE Proc_LeftColumnInfoScreen  @BuildingID INT
@@ -1852,37 +2309,37 @@ CREATE PROCEDURE Proc_GetPossibleStationsForEmployee @EmployeeID INT
 
 
 --Product CRUD
-CREATE PROCEDURE Proc_ProductSetCreate(
-	@action varchar(10), 
-	@ProductID int, 
-	@ProductTypeID Int,
-	@ProductName varchar(100),
-	@Description varchar(100),
-	@preptime int,
-	@baseprice int,
-	@activated bit,
-	@visible bit)
-	AS
-	IF @action= 'create'
-		BEGIN
-		INSERT INTO 
-			Products(ProductTypeID, ProductName, Description, preptime, baseprice, activated, visible) 
-				VALUES(@ProductTypeID ,@ProductName,@Description,@preptime, @baseprice ,@activated, @visible)
-		END
-	ELSE IF @action ='set'
-		BEGIN
-			UPDATE Products
-			SET 
-			ProductTypeID = @ProductTypeID,
-		  	ProductName =	@ProductName,
-		  	Description =	@Description,
-		  	preptime =	@preptime,
-		  	baseprice =	@baseprice,
-		  	activated =	@activated,
-		  	visible =	@visible
-			WHERE Products.ProductID = @ProductID
-		END
-	GO
+-- CREATE PROCEDURE Proc_ProductSetCreate(
+	-- 	@action varchar(10), 
+	-- 	@ProductID int, 
+	-- 	@ProductTypeID Int,
+	-- 	@ProductName varchar(100),
+	-- 	@Description varchar(100),
+	-- 	@preptime int,
+	-- 	@baseprice int,
+	-- 	@activated bit,
+	-- 	@visible bit)
+	-- 	AS
+	-- 	IF @action= 'create'
+	-- 		BEGIN
+	-- 		INSERT INTO 
+	-- 			Products(ProductTypeID, ProductName, Description, preptime, baseprice, activated, visible) 
+	-- 				VALUES(@ProductTypeID ,@ProductName,@Description,@preptime, @baseprice ,@activated, @visible)
+	-- 		END
+	-- 	ELSE IF @action ='set'
+	-- 		BEGIN
+	-- 			UPDATE Products
+	-- 			SET 
+	-- 			ProductTypeID = @ProductTypeID,
+	-- 		  	ProductName =	@ProductName,
+	-- 		  	Description =	@Description,
+	-- 		  	preptime =	@preptime,
+	-- 		  	baseprice =	@baseprice,
+	-- 		  	activated =	@activated,
+	-- 		  	visible =	@visible
+	-- 			WHERE Products.ProductID = @ProductID
+	-- 		END
+	-- 	GO
 CREATE PROCEDURE Proc_DeleteProduct(@ProductID int)
 	AS
 		BEGIN
@@ -1902,32 +2359,31 @@ CREATE PROCEDURE Proc_GetProducts(@ProductID int)
 	GO
 
 --Ingredient CRUD
-CREATE PROCEDURE Proc_IngredientSetCreate(
-	@action varchar(10), 
-	@IngredientID int, 
-	@IngredientName varchar(100),
-	@Price int,
-	@Activated int,
-	@Visible int)
-	AS
-	IF @action= 'create'
-		BEGIN
-		INSERT INTO 
-			Ingredients(IngredientID, IngredientName,Price,Activated, Visible) 
-				VALUES(@IngredientID,@IngredientName,@Price,@Activated,@Visible)
-		END
-	ELSE IF @action ='set'
-		BEGIN
-			UPDATE Ingredients
-			SET 
-			IngredientName = @IngredientName,
-			Price = @Price,
-			Activated = @Activated,
-			Visible = @Visible
-			WHERE IngredientID = @IngredientID
-		END
-	GO
-CREATE PROCEDURE Proc_GetIngredient @IngredientID int
+-- CREATE PROCEDURE Proc_IngredientSetCreate(
+	-- @IngredientID int, 
+	-- @IngredientName varchar(100),
+	-- @Price int,
+	-- @Activated int,
+	-- @Visible int)
+	-- AS
+	-- IF @IngredientID IS NULL
+	-- 	BEGIN
+	-- 	INSERT INTO 
+	-- 		Ingredients(IngredientID, IngredientName,Price,Activated, Visible) 
+	-- 			VALUES(@IngredientID,@IngredientName,@Price,@Activated,@Visible)
+	-- 	END
+	-- ELSE
+	-- 	BEGIN
+	-- 		UPDATE Ingredients
+	-- 		SET 
+	-- 		IngredientName = @IngredientName,
+	-- 		Price = @Price,
+	-- 		Activated = @Activated,
+	-- 		Visible = @Visible
+	-- 		WHERE IngredientID = @IngredientID
+	-- 	END
+	-- GO
+CREATE PROCEDURE Proc_DeleteIngredient @IngredientID int
 	AS
 		BEGIN
 			DELETE 
@@ -1935,7 +2391,7 @@ CREATE PROCEDURE Proc_GetIngredient @IngredientID int
 			WHERE IngredientID = @IngredientID
 		END
 	GO
-CREATE PROCEDURE Proc_DeleteIngredient @IngredientID int
+CREATE PROCEDURE Proc_GetIngredient @IngredientID int
 	AS
 		BEGIN
 			SELECT *
@@ -1953,17 +2409,17 @@ CREATE PROCEDURE Proc_ProductTypeSetCreate(
 	@Activated int,
 	@Visible int)
 	AS
-	IF @action= 'create'
+	IF @ProductTypeID IS NULL
 		BEGIN
 		INSERT INTO 
-			Ingredients(ProductTypeID, ProductTypeNAme, Activated, Visible) 
+			ProductTypes(ProductTypeID, ProductTypeName, Activated, Visible) 
 				VALUES(@ProductTypeID, @ProductTypeName, @Activated, @Visible)
 		END
-	ELSE IF @action ='set'
+	ELSE
 		BEGIN
-			UPDATE Ingredients
+			UPDATE ProductTypes
 			SET 
-			IngredientName = @ProductTypeName,
+			ProductTypeName = @ProductTypeName,
 			Activated = @Activated,
 			Visible = @Visible
 			WHERE ProductTypeID = @ProductTypeID
@@ -1976,12 +2432,12 @@ CREATE PROCEDURE Proc_DeleteProductType (@ProductTypeID int)
 			FROM ProductTypes 
 			WHERE ProductTypeID = @ProductTypeID
 		END
-CREATE PROCEDURE Proc_GetProductTypes()
+	GO
+CREATE PROCEDURE Proc_GetAllProductTypes
 	AS
 		BEGIN
 			SELECT *
 			FROM ProductTypes
-			WHERE ProductTypeID = @ProductTypeID
 		END
 
 	GO
@@ -1997,20 +2453,19 @@ CREATE PROCEDURE Proc_OrdersSetCreate(
 	@HappyCustomer bit,
 	@Returned bit,
 	@Activated bit,
-	@Visible bit,
+	@Visible bit
 	)
 	AS
-	IF OrderID IS NULL
+	IF @OrderID IS NULL
 		BEGIN
 		INSERT INTO 
-			Orders( OrderTypeID,  ByTerminal, Paid, Canceled,  PickedUp , ShowOnScreen,  HappyCustomer,  Returned,  Activated, Visible) 
-			VALUES(@OrderTypeID ,@ByTerminal,@Paid,@Canceled, @PickedUp ,@ShowOnScreen, @HappyCustomer, @Returned, @Activated,@Visible)
+			Orders( OrderID,  ByTerminal, Paid, Canceled,  PickedUp , ShowOnScreen,  HappyCustomer,  Returned,  Activated, Visible) 
+			VALUES(@OrderID ,@ByTerminal,@Paid,@Canceled, @PickedUp ,@ShowOnScreen, @HappyCustomer, @Returned, @Activated,@Visible)
 		END
 	ELSE 
 		BEGIN
 			UPDATE Orders
 			SET 
-			OrderTypeID = @OrderTypeID,
 		  	ByTerminal =	@ByTerminal,
 		  	Paid =	@Paid,
 		  	Canceled =	@Canceled,
@@ -2023,7 +2478,6 @@ CREATE PROCEDURE Proc_OrdersSetCreate(
 			WHERE Orders.OrderID = @OrderID
 		END
 	GO
-
 CREATE PROCEDURE Proc_ProductOrdersSetCreate(
 	@ProductOrderID int, 
 	@ProductID Int,
@@ -2031,26 +2485,25 @@ CREATE PROCEDURE Proc_ProductOrdersSetCreate(
 	@LockedByStation bit,
 	@Processed bit,
 	@Activated bit,
-	@Visible bit,
+	@Visible bit
 	)
 	AS
-	IF ProductOrderID IS NULL
+	IF @ProductOrderID IS NULL
 		BEGIN
 		INSERT INTO 
-			ProductOrders( ProductOrderTypeID, ProductID,  OrderID, LockedByStation,  Processed,  Activated,  Visible) 
-			VALUES(@ProductOrderTypeID ,	   @ProductID,@OrderID,@LockedByStation, @Processed ,@Activated, @Visible,)
+			ProductOrders( ProductOrderID, ProductID,  OrderID, LockedByStation,  Processed,  Activated,  Visible) 
+			VALUES(@ProductOrderID ,	   @ProductID,@OrderID,@LockedByStation, @Processed ,@Activated, @Visible)
 		END
 	ELSE 
 		BEGIN
 			UPDATE ProductOrders
 			SET 
-			ProductOrderTypeID = @ProductOrderTypeID,
 		  	ProductID =	@ProductID,
 		  	OrderID =	@OrderID,
 		  	LockedByStation =	@LockedByStation,
 		  	Processed =	@Processed,
 		  	Activated =	@Activated,
-		  	Visible =	@Visible,
+		  	Visible =	@Visible
 			WHERE ProductOrders.ProductOrderID = @ProductOrderID
 		END
 	GO

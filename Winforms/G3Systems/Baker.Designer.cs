@@ -216,7 +216,6 @@
 			this.lbl_username.Size = new System.Drawing.Size(126, 13);
 			this.lbl_username.TabIndex = 4;
 			this.lbl_username.Text = "username: Sara OConnor";
-			this.lbl_username.Click += new System.EventHandler(this.lbl_username_Click);
 			// 
 			// btn_LogOut
 			// 
@@ -261,7 +260,6 @@
 			this.tabControl1.SelectedIndex = 0;
 			this.tabControl1.Size = new System.Drawing.Size(1251, 643);
 			this.tabControl1.TabIndex = 2;
-			this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
 			// 
 			// tabPage1
 			// 
@@ -443,7 +441,6 @@
 			this.label17.TabIndex = 2;
 			this.label17.Text = "Is Station Locked to ProductOrder?";
 			this.label17.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			this.label17.Click += new System.EventHandler(this.label17_Click);
 			// 
 			// panel3
 			// 
@@ -844,21 +841,21 @@
 		private System.Windows.Forms.BindingSource employeesBindingSource4;
 		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
 		private System.Windows.Forms.BindingSource employeesBindingSource5;
-		private System.Windows.Forms.DataGridViewTextBoxColumn usernameDataGridViewTextBoxColumn;
-		private System.Windows.Forms.DataGridViewTextBoxColumn passwordDataGridViewTextBoxColumn;
-		private System.Windows.Forms.DataGridViewCheckBoxColumn loggedInDataGridViewCheckBoxColumn;
-		private System.Windows.Forms.DataGridViewTextBoxColumn usernameDataGridViewTextBoxColumn1;
-		private System.Windows.Forms.DataGridViewTextBoxColumn assignedToStationDataGridViewTextBoxColumn1;
+		//private System.Windows.Forms.DataGridViewTextBoxColumn usernameDataGridViewTextBoxColumn;
+		//private System.Windows.Forms.DataGridViewTextBoxColumn passwordDataGridViewTextBoxColumn;
+		//private System.Windows.Forms.DataGridViewCheckBoxColumn loggedInDataGridViewCheckBoxColumn;
+		//private System.Windows.Forms.DataGridViewTextBoxColumn usernameDataGridViewTextBoxColumn1;
+		//private System.Windows.Forms.DataGridViewTextBoxColumn assignedToStationDataGridViewTextBoxColumn1;
 		private System.Windows.Forms.Label label19;
 		private System.Windows.Forms.Button btnSwitcher;
-		private System.Windows.Forms.DataGridViewTextBoxColumn lumpDataGridViewTextBoxColumn1;
-		private System.Windows.Forms.DataGridViewTextBoxColumn ingredientDataGridViewTextBoxColumn1;
-		private System.Windows.Forms.DataGridViewTextBoxColumn antalDataGridViewTextBoxColumn1;
-		private System.Windows.Forms.DataGridViewTextBoxColumn productOrderDataGridViewTextBoxColumn1;
-		private System.Windows.Forms.DataGridViewTextBoxColumn lumpDataGridViewTextBoxColumn;
-		private System.Windows.Forms.DataGridViewTextBoxColumn ingredientDataGridViewTextBoxColumn;
-		private System.Windows.Forms.DataGridViewTextBoxColumn productOrderDataGridViewTextBoxColumn;
-		private System.Windows.Forms.DataGridViewTextBoxColumn antalDataGridViewTextBoxColumn;
+		//private System.Windows.Forms.DataGridViewTextBoxColumn lumpDataGridViewTextBoxColumn1;
+		//private System.Windows.Forms.DataGridViewTextBoxColumn ingredientDataGridViewTextBoxColumn1;
+		//private System.Windows.Forms.DataGridViewTextBoxColumn antalDataGridViewTextBoxColumn1;
+		//private System.Windows.Forms.DataGridViewTextBoxColumn productOrderDataGridViewTextBoxColumn1;
+		//private System.Windows.Forms.DataGridViewTextBoxColumn lumpDataGridViewTextBoxColumn;
+		//private System.Windows.Forms.DataGridViewTextBoxColumn ingredientDataGridViewTextBoxColumn;
+		//private System.Windows.Forms.DataGridViewTextBoxColumn productOrderDataGridViewTextBoxColumn;
+		//private System.Windows.Forms.DataGridViewTextBoxColumn antalDataGridViewTextBoxColumn;
 		private System.Windows.Forms.ListBox lstbxOpen;
 		private System.Windows.Forms.ListBox lstbxStuffings;
 		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;

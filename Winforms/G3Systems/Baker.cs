@@ -235,6 +235,8 @@ namespace G3Systems
 
 			lstbxStuffings.Items.Clear();
 
+			//Hårdkodat??
+			int building = 1;
 
 
 			repopulate_StuffingsList(pickedPO);
