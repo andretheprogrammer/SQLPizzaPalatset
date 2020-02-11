@@ -200,16 +200,17 @@ namespace G3Systems
 									(
 									new ListViewItem(  emp.Username)
 									); 
-				}
-
-				
+				}	
 			}
-
-
 
 		}
 
 		private void LogoutButton_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void button1_Click(object sender, EventArgs e)
 		{
 
 		}

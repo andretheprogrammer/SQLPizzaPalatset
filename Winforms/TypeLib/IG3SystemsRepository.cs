@@ -72,5 +72,10 @@ namespace TypeLib
 
         Task<IEnumerable<Ingredient>> GetCanHaveIngredientsAsync(int id);
 
+
+        //Admin
+        Task AddNewProduct(string name, int baseprice, string descr, int typeid , List<Ingredient> ingredientlist);
+        Task AddNewIngredient(string name, int baseprice);
+
     }
 }

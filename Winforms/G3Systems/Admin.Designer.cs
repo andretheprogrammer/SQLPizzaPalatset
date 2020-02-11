@@ -30,13 +30,13 @@
 		{
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Admin));
-			System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
-			System.Windows.Forms.ListViewGroup listViewGroup4 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Right);
-			System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem("Employee 1");
-			System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem("Employee 2");
-			System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem("Employee3");
-			System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem("Cashier1");
-			System.Windows.Forms.ListViewItem listViewItem10 = new System.Windows.Forms.ListViewItem("CAsheier2");
+			System.Windows.Forms.ListViewGroup listViewGroup7 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
+			System.Windows.Forms.ListViewGroup listViewGroup8 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Right);
+			System.Windows.Forms.ListViewItem listViewItem16 = new System.Windows.Forms.ListViewItem("Employee 1");
+			System.Windows.Forms.ListViewItem listViewItem17 = new System.Windows.Forms.ListViewItem("Employee 2");
+			System.Windows.Forms.ListViewItem listViewItem18 = new System.Windows.Forms.ListViewItem("Employee3");
+			System.Windows.Forms.ListViewItem listViewItem19 = new System.Windows.Forms.ListViewItem("Cashier1");
+			System.Windows.Forms.ListViewItem listViewItem20 = new System.Windows.Forms.ListViewItem("CAsheier2");
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.panel1 = new System.Windows.Forms.Panel();
@@ -170,6 +170,11 @@
 			this.basePriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
 			this.dataGridViewCheckBoxColumn2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+			this.label6 = new System.Windows.Forms.Label();
+			this.label7 = new System.Windows.Forms.Label();
+			this.textBox5 = new System.Windows.Forms.TextBox();
+			this.listBox1 = new System.Windows.Forms.ListBox();
+			this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -234,6 +239,7 @@
 			this.tabControl6.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.productOrdersBindingSource)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.productOrderBindingSource)).BeginInit();
+			this.tableLayoutPanel6.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// splitContainer1
@@ -397,21 +403,21 @@
             this.columnHeader2});
 			this.listViewLoggedInEmployees.Cursor = System.Windows.Forms.Cursors.Arrow;
 			this.listViewLoggedInEmployees.Dock = System.Windows.Forms.DockStyle.Fill;
-			listViewGroup3.Header = "ListViewGroup";
-			listViewGroup3.Name = "listViewGroup1";
-			listViewGroup4.Header = "ListViewGroup";
-			listViewGroup4.HeaderAlignment = System.Windows.Forms.HorizontalAlignment.Right;
-			listViewGroup4.Name = "listViewGroup2";
+			listViewGroup7.Header = "ListViewGroup";
+			listViewGroup7.Name = "listViewGroup1";
+			listViewGroup8.Header = "ListViewGroup";
+			listViewGroup8.HeaderAlignment = System.Windows.Forms.HorizontalAlignment.Right;
+			listViewGroup8.Name = "listViewGroup2";
 			this.listViewLoggedInEmployees.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup3,
-            listViewGroup4});
+            listViewGroup7,
+            listViewGroup8});
 			this.listViewLoggedInEmployees.HideSelection = false;
 			this.listViewLoggedInEmployees.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem6,
-            listViewItem7,
-            listViewItem8,
-            listViewItem9,
-            listViewItem10});
+            listViewItem16,
+            listViewItem17,
+            listViewItem18,
+            listViewItem19,
+            listViewItem20});
 			this.listViewLoggedInEmployees.Location = new System.Drawing.Point(3, 16);
 			this.listViewLoggedInEmployees.Name = "listViewLoggedInEmployees";
 			this.listViewLoggedInEmployees.ShowGroups = false;
@@ -787,25 +793,21 @@
 			// 
 			// groupBox3
 			// 
-			this.groupBox3.Controls.Add(this.label9);
-			this.groupBox3.Controls.Add(this.checkedListBox1);
-			this.groupBox3.Controls.Add(this.textBox1);
-			this.groupBox3.Controls.Add(this.label10);
-			this.groupBox3.Controls.Add(this.label11);
-			this.groupBox3.Controls.Add(this.textBox2);
+			this.groupBox3.Controls.Add(this.tableLayoutPanel6);
 			this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.groupBox3.Location = new System.Drawing.Point(452, 3);
 			this.groupBox3.Name = "groupBox3";
 			this.groupBox3.Size = new System.Drawing.Size(273, 403);
 			this.groupBox3.TabIndex = 7;
 			this.groupBox3.TabStop = false;
-			this.groupBox3.Text = "New user";
+			this.groupBox3.Text = "New Product";
 			// 
 			// label9
 			// 
+			this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label9.AutoSize = true;
 			this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label9.Location = new System.Drawing.Point(40, 129);
+			this.label9.Location = new System.Drawing.Point(38, 228);
 			this.label9.Name = "label9";
 			this.label9.Size = new System.Drawing.Size(39, 13);
 			this.label9.TabIndex = 7;
@@ -816,45 +818,47 @@
 			this.checkedListBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.checkedListBox1.CheckOnClick = true;
 			this.checkedListBox1.FormattingEnabled = true;
-			this.checkedListBox1.Location = new System.Drawing.Point(97, 157);
+			this.checkedListBox1.Location = new System.Drawing.Point(83, 307);
 			this.checkedListBox1.Name = "checkedListBox1";
-			this.checkedListBox1.Size = new System.Drawing.Size(148, 105);
+			this.checkedListBox1.Size = new System.Drawing.Size(128, 60);
 			this.checkedListBox1.TabIndex = 6;
 			// 
 			// textBox1
 			// 
 			this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.textBox1.Location = new System.Drawing.Point(97, 43);
+			this.textBox1.Location = new System.Drawing.Point(83, 3);
 			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(148, 22);
+			this.textBox1.Size = new System.Drawing.Size(128, 22);
 			this.textBox1.TabIndex = 2;
 			// 
 			// label10
 			// 
+			this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label10.AutoSize = true;
 			this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label10.Location = new System.Drawing.Point(23, 89);
+			this.label10.Location = new System.Drawing.Point(23, 76);
 			this.label10.Name = "label10";
-			this.label10.Size = new System.Drawing.Size(56, 13);
+			this.label10.Size = new System.Drawing.Size(54, 13);
 			this.label10.TabIndex = 5;
-			this.label10.Text = "Password:";
+			this.label10.Text = "Baseprice";
 			// 
 			// label11
 			// 
+			this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label11.AutoSize = true;
 			this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label11.Location = new System.Drawing.Point(21, 48);
+			this.label11.Location = new System.Drawing.Point(42, 0);
 			this.label11.Name = "label11";
-			this.label11.Size = new System.Drawing.Size(58, 13);
+			this.label11.Size = new System.Drawing.Size(35, 13);
 			this.label11.TabIndex = 3;
-			this.label11.Text = "Username:";
+			this.label11.Text = "Name";
 			// 
 			// textBox2
 			// 
 			this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.textBox2.Location = new System.Drawing.Point(97, 84);
+			this.textBox2.Location = new System.Drawing.Point(83, 79);
 			this.textBox2.Name = "textBox2";
-			this.textBox2.Size = new System.Drawing.Size(148, 22);
+			this.textBox2.Size = new System.Drawing.Size(53, 22);
 			this.textBox2.TabIndex = 4;
 			// 
 			// panel4
@@ -876,6 +880,7 @@
 			this.button1.TabIndex = 6;
 			this.button1.Text = "Save";
 			this.button1.UseVisualStyleBackColor = true;
+			this.button1.Click += new System.EventHandler(this.button1_Click);
 			// 
 			// panel5
 			// 
@@ -1263,16 +1268,16 @@
 			this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel9.Location = new System.Drawing.Point(3, 349);
 			this.panel9.Name = "panel9";
-			this.panel9.Padding = new System.Windows.Forms.Padding(0, 0, 0, 100);
+			this.panel9.Padding = new System.Windows.Forms.Padding(20);
 			this.panel9.Size = new System.Drawing.Size(728, 181);
 			this.panel9.TabIndex = 9;
 			// 
 			// GetAllOrdersBtn
 			// 
 			this.GetAllOrdersBtn.Dock = System.Windows.Forms.DockStyle.Left;
-			this.GetAllOrdersBtn.Location = new System.Drawing.Point(0, 0);
+			this.GetAllOrdersBtn.Location = new System.Drawing.Point(20, 20);
 			this.GetAllOrdersBtn.Name = "GetAllOrdersBtn";
-			this.GetAllOrdersBtn.Size = new System.Drawing.Size(100, 81);
+			this.GetAllOrdersBtn.Size = new System.Drawing.Size(100, 141);
 			this.GetAllOrdersBtn.TabIndex = 1;
 			this.GetAllOrdersBtn.Text = "Get All";
 			this.GetAllOrdersBtn.UseVisualStyleBackColor = true;
@@ -1284,7 +1289,7 @@
 			this.tabPage12.Location = new System.Drawing.Point(4, 22);
 			this.tabPage12.Name = "tabPage12";
 			this.tabPage12.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage12.Size = new System.Drawing.Size(732, 443);
+			this.tabPage12.Size = new System.Drawing.Size(740, 539);
 			this.tabPage12.TabIndex = 1;
 			this.tabPage12.Text = "ProductOrders";
 			this.tabPage12.UseVisualStyleBackColor = true;
@@ -1301,7 +1306,7 @@
 			this.tableLayoutPanel5.RowCount = 2;
 			this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 64.96519F));
 			this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35.0348F));
-			this.tableLayoutPanel5.Size = new System.Drawing.Size(726, 437);
+			this.tableLayoutPanel5.Size = new System.Drawing.Size(734, 533);
 			this.tableLayoutPanel5.TabIndex = 11;
 			// 
 			// dataGridViewPOrders
@@ -1331,7 +1336,7 @@
 			this.dataGridViewPOrders.Name = "dataGridViewPOrders";
 			this.dataGridViewPOrders.RowHeadersVisible = false;
 			this.dataGridViewPOrders.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.dataGridViewPOrders.Size = new System.Drawing.Size(720, 277);
+			this.dataGridViewPOrders.Size = new System.Drawing.Size(728, 340);
 			this.dataGridViewPOrders.TabIndex = 0;
 			// 
 			// ProductOrderID
@@ -1427,18 +1432,18 @@
 			// 
 			this.panel8.Controls.Add(this.GetAllProductOrdersBtn);
 			this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.panel8.Location = new System.Drawing.Point(3, 286);
+			this.panel8.Location = new System.Drawing.Point(3, 349);
 			this.panel8.Name = "panel8";
-			this.panel8.Padding = new System.Windows.Forms.Padding(0, 0, 0, 100);
-			this.panel8.Size = new System.Drawing.Size(720, 148);
+			this.panel8.Padding = new System.Windows.Forms.Padding(20);
+			this.panel8.Size = new System.Drawing.Size(728, 181);
 			this.panel8.TabIndex = 9;
 			// 
 			// GetAllProductOrdersBtn
 			// 
 			this.GetAllProductOrdersBtn.Dock = System.Windows.Forms.DockStyle.Left;
-			this.GetAllProductOrdersBtn.Location = new System.Drawing.Point(0, 0);
+			this.GetAllProductOrdersBtn.Location = new System.Drawing.Point(20, 20);
 			this.GetAllProductOrdersBtn.Name = "GetAllProductOrdersBtn";
-			this.GetAllProductOrdersBtn.Size = new System.Drawing.Size(100, 48);
+			this.GetAllProductOrdersBtn.Size = new System.Drawing.Size(100, 141);
 			this.GetAllProductOrdersBtn.TabIndex = 1;
 			this.GetAllProductOrdersBtn.Text = "Get All";
 			this.GetAllProductOrdersBtn.UseVisualStyleBackColor = true;
@@ -1587,6 +1592,72 @@
 			this.dataGridViewCheckBoxColumn2.HeaderText = "Visible";
 			this.dataGridViewCheckBoxColumn2.Name = "dataGridViewCheckBoxColumn2";
 			// 
+			// label6
+			// 
+			this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.label6.AutoSize = true;
+			this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label6.Location = new System.Drawing.Point(18, 304);
+			this.label6.Name = "label6";
+			this.label6.Size = new System.Drawing.Size(59, 13);
+			this.label6.TabIndex = 8;
+			this.label6.Text = "Ingredients";
+			// 
+			// label7
+			// 
+			this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.label7.AutoSize = true;
+			this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label7.Location = new System.Drawing.Point(17, 152);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(60, 13);
+			this.label7.TabIndex = 10;
+			this.label7.Text = "Description";
+			// 
+			// textBox5
+			// 
+			this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.textBox5.Location = new System.Drawing.Point(83, 155);
+			this.textBox5.Name = "textBox5";
+			this.textBox5.Size = new System.Drawing.Size(128, 22);
+			this.textBox5.TabIndex = 9;
+			// 
+			// listBox1
+			// 
+			this.listBox1.FormattingEnabled = true;
+			this.listBox1.Location = new System.Drawing.Point(83, 231);
+			this.listBox1.Name = "listBox1";
+			this.listBox1.Size = new System.Drawing.Size(128, 69);
+			this.listBox1.TabIndex = 11;
+			// 
+			// tableLayoutPanel6
+			// 
+			this.tableLayoutPanel6.ColumnCount = 2;
+			this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.33708F));
+			this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 69.66292F));
+			this.tableLayoutPanel6.Controls.Add(this.label6, 0, 4);
+			this.tableLayoutPanel6.Controls.Add(this.label7, 0, 2);
+			this.tableLayoutPanel6.Controls.Add(this.label9, 0, 3);
+			this.tableLayoutPanel6.Controls.Add(this.label11, 0, 0);
+			this.tableLayoutPanel6.Controls.Add(this.textBox1, 1, 0);
+			this.tableLayoutPanel6.Controls.Add(this.textBox5, 1, 2);
+			this.tableLayoutPanel6.Controls.Add(this.textBox2, 1, 1);
+			this.tableLayoutPanel6.Controls.Add(this.label10, 0, 1);
+			this.tableLayoutPanel6.Controls.Add(this.listBox1, 1, 3);
+			this.tableLayoutPanel6.Controls.Add(this.checkedListBox1, 1, 4);
+			this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 16);
+			this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+			this.tableLayoutPanel6.RightToLeft = System.Windows.Forms.RightToLeft.No;
+			this.tableLayoutPanel6.RowCount = 5;
+			this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+			this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+			this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+			this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+			this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+			this.tableLayoutPanel6.Size = new System.Drawing.Size(267, 384);
+			this.tableLayoutPanel6.TabIndex = 0;
+			// 
 			// Admin
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1638,7 +1709,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewProducts)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).EndInit();
 			this.groupBox3.ResumeLayout(false);
-			this.groupBox3.PerformLayout();
 			this.panel4.ResumeLayout(false);
 			this.panel5.ResumeLayout(false);
 			this.tabIngredients.ResumeLayout(false);
@@ -1667,6 +1737,8 @@
 			this.tabControl6.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.productOrdersBindingSource)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.productOrderBindingSource)).EndInit();
+			this.tableLayoutPanel6.ResumeLayout(false);
+			this.tableLayoutPanel6.PerformLayout();
 			this.ResumeLayout(false);
 
 		}
@@ -1835,5 +1907,10 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn basePriceDataGridViewTextBoxColumn;
 		private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
 		private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn2;
+		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
+		private System.Windows.Forms.Label label6;
+		private System.Windows.Forms.Label label7;
+		private System.Windows.Forms.ListBox listBox1;
+		private System.Windows.Forms.TextBox textBox5;
 	}
 }
