@@ -71,6 +71,7 @@
 			this.tbPassword = new System.Windows.Forms.TextBox();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.AddNewEmployeeBtn = new System.Windows.Forms.Button();
+			this.DeleteEmployeeBtn = new System.Windows.Forms.Button();
 			this.panel3 = new System.Windows.Forms.Panel();
 			this.GetEmployeesBtn = new System.Windows.Forms.Button();
 			this.TabProducts = new System.Windows.Forms.TabPage();
@@ -415,8 +416,8 @@
 			// listViewLoggedInEmployees
 			// 
 			this.listViewLoggedInEmployees.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2});
+			this.columnHeader1,
+			this.columnHeader2});
 			this.listViewLoggedInEmployees.Cursor = System.Windows.Forms.Cursors.Arrow;
 			this.listViewLoggedInEmployees.Dock = System.Windows.Forms.DockStyle.Fill;
 			listViewGroup1.Header = "ListViewGroup";
@@ -425,15 +426,15 @@
 			listViewGroup2.HeaderAlignment = System.Windows.Forms.HorizontalAlignment.Right;
 			listViewGroup2.Name = "listViewGroup2";
 			this.listViewLoggedInEmployees.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup1,
-            listViewGroup2});
+			listViewGroup1,
+			listViewGroup2});
 			this.listViewLoggedInEmployees.HideSelection = false;
 			this.listViewLoggedInEmployees.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2,
-            listViewItem3,
-            listViewItem4,
-            listViewItem5});
+			listViewItem1,
+			listViewItem2,
+			listViewItem3,
+			listViewItem4,
+			listViewItem5});
 			this.listViewLoggedInEmployees.Location = new System.Drawing.Point(3, 16);
 			this.listViewLoggedInEmployees.Name = "listViewLoggedInEmployees";
 			this.listViewLoggedInEmployees.ShowGroups = false;
@@ -545,16 +546,18 @@
 			// 
 			// dataGridViewEmployees
 			// 
+			this.dataGridViewEmployees.AllowUserToAddRows = false;
+			this.dataGridViewEmployees.AllowUserToDeleteRows = false;
 			this.dataGridViewEmployees.AllowUserToResizeColumns = false;
 			this.dataGridViewEmployees.AllowUserToResizeRows = false;
 			this.dataGridViewEmployees.AutoGenerateColumns = false;
 			this.dataGridViewEmployees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridViewEmployees.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.employeeIDDataGridViewTextBoxColumn,
-            this.Username,
-            this.Password,
-            this.Selected,
-            this.dataGridViewTextBoxColumn3});
+			this.employeeIDDataGridViewTextBoxColumn,
+			this.Username,
+			this.Password,
+			this.Selected,
+			this.dataGridViewTextBoxColumn3});
 			this.dataGridViewEmployees.DataSource = this.employeeBindingSource;
 			this.dataGridViewEmployees.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.dataGridViewEmployees.Location = new System.Drawing.Point(3, 3);
@@ -562,16 +565,54 @@
 			this.dataGridViewEmployees.Name = "dataGridViewEmployees";
 			this.dataGridViewEmployees.RowHeadersVisible = false;
 			this.dataGridViewEmployees.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.dataGridViewEmployees.Size = new System.Drawing.Size(413, 336);
+			this.dataGridViewEmployees.Size = new System.Drawing.Size(409, 273);
 			this.dataGridViewEmployees.TabIndex = 0;
 			this.dataGridViewEmployees.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewEmployees_CellEndEdit);
 			this.dataGridViewEmployees.SelectionChanged += new System.EventHandler(this.dataGridViewEmployees_SelectionChanged);
+			// 
+			// employeeIDDataGridViewTextBoxColumn
+			// 
+			this.employeeIDDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+			this.employeeIDDataGridViewTextBoxColumn.DataPropertyName = "EmployeeID";
+			this.employeeIDDataGridViewTextBoxColumn.HeaderText = "ID";
+			this.employeeIDDataGridViewTextBoxColumn.Name = "employeeIDDataGridViewTextBoxColumn";
+			this.employeeIDDataGridViewTextBoxColumn.ReadOnly = true;
+			this.employeeIDDataGridViewTextBoxColumn.Width = 43;
+			// 
+			// Username
+			// 
+			this.Username.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.Username.DataPropertyName = "Username";
+			this.Username.HeaderText = "Username";
+			this.Username.Name = "Username";
 			// 
 			// Password
 			// 
 			this.Password.DataPropertyName = "Password";
 			this.Password.HeaderText = "Password";
 			this.Password.Name = "Password";
+			// 
+			// Selected
+			// 
+			this.Selected.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+			this.Selected.DataPropertyName = "LoggedIn";
+			this.Selected.HeaderText = "LoggedIn";
+			this.Selected.Name = "Selected";
+			this.Selected.ReadOnly = true;
+			this.Selected.Width = 58;
+			// 
+			// dataGridViewTextBoxColumn3
+			// 
+			this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+			this.dataGridViewTextBoxColumn3.DataPropertyName = "AssignedToStation";
+			this.dataGridViewTextBoxColumn3.HeaderText = "Station";
+			this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+			this.dataGridViewTextBoxColumn3.ReadOnly = true;
+			this.dataGridViewTextBoxColumn3.Width = 65;
+			// 
+			// employeeBindingSource
+			// 
+			this.employeeBindingSource.DataSource = typeof(TypeLib.Employee);
 			// 
 			// groupBox2
 			// 
@@ -668,13 +709,25 @@
 			// 
 			// panel3
 			// 
+			this.panel3.Controls.Add(this.DeleteEmployeeBtn);
 			this.panel3.Controls.Add(this.GetEmployeesBtn);
 			this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.panel3.Location = new System.Drawing.Point(3, 345);
+			this.panel3.Location = new System.Drawing.Point(3, 282);
 			this.panel3.Name = "panel3";
 			this.panel3.Padding = new System.Windows.Forms.Padding(0, 0, 0, 100);
-			this.panel3.Size = new System.Drawing.Size(413, 179);
+			this.panel3.Size = new System.Drawing.Size(409, 146);
 			this.panel3.TabIndex = 9;
+			// 
+			// DeleteEmployeeBtn
+			// 
+			this.DeleteEmployeeBtn.Dock = System.Windows.Forms.DockStyle.Right;
+			this.DeleteEmployeeBtn.Location = new System.Drawing.Point(309, 0);
+			this.DeleteEmployeeBtn.Name = "DeleteEmployeeBtn";
+			this.DeleteEmployeeBtn.Size = new System.Drawing.Size(100, 46);
+			this.DeleteEmployeeBtn.TabIndex = 7;
+			this.DeleteEmployeeBtn.Text = "Delete";
+			this.DeleteEmployeeBtn.UseVisualStyleBackColor = true;
+			this.DeleteEmployeeBtn.Click += new System.EventHandler(this.DeleteEmployeeBtn_Click);
 			// 
 			// GetEmployeesBtn
 			// 
@@ -746,14 +799,14 @@
 			this.dataGridViewProducts.AutoGenerateColumns = false;
 			this.dataGridViewProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridViewProducts.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.productIDDataGridViewTextBoxColumn,
-            this.productTypeIDDataGridViewTextBoxColumn,
-            this.productNameDataGridViewTextBoxColumn,
-            this.descriptionDataGridViewTextBoxColumn,
-            this.prepTimeDataGridViewTextBoxColumn,
-            this.basePriceDataGridViewTextBoxColumn,
-            this.dataGridViewCheckBoxColumn1,
-            this.dataGridViewCheckBoxColumn2});
+			this.productIDDataGridViewTextBoxColumn,
+			this.productTypeIDDataGridViewTextBoxColumn,
+			this.productNameDataGridViewTextBoxColumn,
+			this.descriptionDataGridViewTextBoxColumn,
+			this.prepTimeDataGridViewTextBoxColumn,
+			this.basePriceDataGridViewTextBoxColumn,
+			this.dataGridViewCheckBoxColumn1,
+			this.dataGridViewCheckBoxColumn2});
 			this.dataGridViewProducts.DataSource = this.productBindingSource;
 			this.dataGridViewProducts.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.dataGridViewProducts.Location = new System.Drawing.Point(3, 3);
@@ -872,20 +925,20 @@
 			this.chbxlist_ingrs.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.chbxlist_ingrs.FormattingEnabled = true;
 			this.chbxlist_ingrs.Items.AddRange(new object[] {
-            "ingr1",
-            "ingr221",
-            "ingr26",
-            "ingr23",
-            "ingr35",
-            "rea",
-            "rfe",
-            "afe",
-            "af",
-            "efa",
-            "efawefawefawef",
-            "awef",
-            "aw",
-            "ef"});
+			"ingr1",
+			"ingr221",
+			"ingr26",
+			"ingr23",
+			"ingr35",
+			"rea",
+			"rfe",
+			"afe",
+			"af",
+			"efa",
+			"efawefawefawef",
+			"awef",
+			"aw",
+			"ef"});
 			this.chbxlist_ingrs.Location = new System.Drawing.Point(3, 3);
 			this.chbxlist_ingrs.Name = "chbxlist_ingrs";
 			this.chbxlist_ingrs.Size = new System.Drawing.Size(261, 124);
@@ -1000,12 +1053,12 @@
 			this.lstbx_types.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.lstbx_types.FormattingEnabled = true;
 			this.lstbx_types.Items.AddRange(new object[] {
-            "test",
-            "test",
-            "teat",
-            "est",
-            "eate",
-            "tet"});
+			"test",
+			"test",
+			"teat",
+			"est",
+			"eate",
+			"tet"});
 			this.lstbx_types.Location = new System.Drawing.Point(82, 87);
 			this.lstbx_types.Name = "lstbx_types";
 			this.lstbx_types.Size = new System.Drawing.Size(176, 124);
@@ -1130,11 +1183,11 @@
 			this.dataGridViewIngredients.AutoGenerateColumns = false;
 			this.dataGridViewIngredients.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridViewIngredients.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.IngredientID,
-            this.IngredientName,
-            this.Price,
-            this.Activated,
-            this.dataGridViewCheckBoxColumn4});
+			this.IngredientID,
+			this.IngredientName,
+			this.Price,
+			this.Activated,
+			this.dataGridViewCheckBoxColumn4});
 			this.dataGridViewIngredients.DataSource = this.ingredientBindingSource;
 			this.dataGridViewIngredients.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.dataGridViewIngredients.Location = new System.Drawing.Point(3, 3);
@@ -1284,16 +1337,16 @@
 			this.dataGridViewOrders.AutoGenerateColumns = false;
 			this.dataGridViewOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridViewOrders.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.OrderID,
-            this.ByTerminal,
-            this.Paid,
-            this.Canceled,
-            this.PickedUp,
-            this.ShowOnScreen,
-            this.HappyCustomer,
-            this.Returned,
-            this.dataGridViewCheckBoxColumn3,
-            this.dataGridViewCheckBoxColumn5});
+			this.OrderID,
+			this.ByTerminal,
+			this.Paid,
+			this.Canceled,
+			this.PickedUp,
+			this.ShowOnScreen,
+			this.HappyCustomer,
+			this.Returned,
+			this.dataGridViewCheckBoxColumn3,
+			this.dataGridViewCheckBoxColumn5});
 			this.dataGridViewOrders.DataSource = this.orderBindingSource;
 			this.dataGridViewOrders.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.dataGridViewOrders.Location = new System.Drawing.Point(3, 3);
@@ -1415,19 +1468,19 @@
 			this.dataGridViewPOrders.AutoGenerateColumns = false;
 			this.dataGridViewPOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridViewPOrders.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ProductOrderID,
-            this.ProductID,
-            this.dataGridViewTextBoxColumn1,
-            this.LockedByStation,
-            this.Processed,
-            this.dataGridViewCheckBoxColumn6,
-            this.Visible,
-            this.productOrderIDDataGridViewTextBoxColumn,
-            this.productIDDataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.processedDataGridViewCheckBoxColumn,
-            this.dataGridViewCheckBoxColumn7,
-            this.dataGridViewCheckBoxColumn8});
+			this.ProductOrderID,
+			this.ProductID,
+			this.dataGridViewTextBoxColumn1,
+			this.LockedByStation,
+			this.Processed,
+			this.dataGridViewCheckBoxColumn6,
+			this.Visible,
+			this.productOrderIDDataGridViewTextBoxColumn,
+			this.productIDDataGridViewTextBoxColumn1,
+			this.dataGridViewTextBoxColumn2,
+			this.processedDataGridViewCheckBoxColumn,
+			this.dataGridViewCheckBoxColumn7,
+			this.dataGridViewCheckBoxColumn8});
 			this.dataGridViewPOrders.DataSource = this.productOrderBindingSource1;
 			this.dataGridViewPOrders.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.dataGridViewPOrders.Location = new System.Drawing.Point(3, 3);
@@ -1916,90 +1969,90 @@
 		private System.Windows.Forms.DataGridViewCheckBoxColumn activatedDataGridViewCheckBoxColumn2;
 		private System.Windows.Forms.DataGridViewCheckBoxColumn visibleDataGridViewCheckBoxColumn2;
 		private System.Windows.Forms.DataGridViewCheckBoxColumn betaldDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.TabControl tabControl3;
-        private System.Windows.Forms.TabPage tabEditEmployees;
-        private System.Windows.Forms.Button GetEmployeesBtn;
-        private System.Windows.Forms.DataGridView dataGridViewEmployees;
-        private System.Windows.Forms.BindingSource employeeBindingSource;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox tbPassword;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox tbUsername;
-        private System.Windows.Forms.Button AddNewEmployeeBtn;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.CheckedListBox chkListBoxEmployeeType;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private System.Windows.Forms.DataGridView dataGridViewProducts;
-        private System.Windows.Forms.BindingSource productBindingSource;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.CheckedListBox chbxlist_ingrs;
-        private System.Windows.Forms.TextBox txtbx_PName;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox txtbx_bprice;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Button GetAllProductsBtn;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-        private System.Windows.Forms.DataGridView dataGridViewIngredients;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IngredientID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IngredientName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Price;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Activated;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn4;
-        private System.Windows.Forms.BindingSource ingredientBindingSource;
-        private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.Button GetAllIngredientsBtn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn employeeIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Username;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Password;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Selected;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.TabControl tabControl8;
-        private System.Windows.Forms.TabPage tabPage11;
-        private System.Windows.Forms.TabPage tabPage12;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.DataGridView dataGridViewOrders;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OrderID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ByTerminal;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Paid;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Canceled;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn PickedUp;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn ShowOnScreen;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn HappyCustomer;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Returned;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn3;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn5;
-        private System.Windows.Forms.BindingSource orderBindingSource;
-        private System.Windows.Forms.Panel panel9;
-        private System.Windows.Forms.Button GetAllOrdersBtn;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
-        private System.Windows.Forms.DataGridView dataGridViewPOrders;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProductOrderID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProductID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LockedByStation;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Processed;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn6;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Visible;
-        private System.Windows.Forms.BindingSource productOrderBindingSource1;
-        private System.Windows.Forms.Panel panel8;
-        private System.Windows.Forms.Button GetAllProductOrdersBtn;
-        private System.Windows.Forms.BindingSource productOrderBindingSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn productOrderIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn productIDDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn processedDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn7;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn8;
+		private System.Windows.Forms.TabControl tabControl3;
+		private System.Windows.Forms.TabPage tabEditEmployees;
+		private System.Windows.Forms.Button GetEmployeesBtn;
+		private System.Windows.Forms.DataGridView dataGridViewEmployees;
+		private System.Windows.Forms.BindingSource employeeBindingSource;
+		private System.Windows.Forms.Label label5;
+		private System.Windows.Forms.TextBox tbPassword;
+		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.TextBox tbUsername;
+		private System.Windows.Forms.Button AddNewEmployeeBtn;
+		private System.Windows.Forms.GroupBox groupBox2;
+		private System.Windows.Forms.CheckedListBox chkListBoxEmployeeType;
+		private System.Windows.Forms.Label label8;
+		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+		private System.Windows.Forms.Panel panel2;
+		private System.Windows.Forms.Panel panel3;
+		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+		private System.Windows.Forms.DataGridView dataGridViewProducts;
+		private System.Windows.Forms.BindingSource productBindingSource;
+		private System.Windows.Forms.GroupBox groupBox3;
+		private System.Windows.Forms.Label label9;
+		private System.Windows.Forms.CheckedListBox chbxlist_ingrs;
+		private System.Windows.Forms.TextBox txtbx_PName;
+		private System.Windows.Forms.Label label10;
+		private System.Windows.Forms.Label label11;
+		private System.Windows.Forms.TextBox txtbx_bprice;
+		private System.Windows.Forms.Panel panel4;
+		private System.Windows.Forms.Panel panel5;
+		private System.Windows.Forms.Button GetAllProductsBtn;
+		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+		private System.Windows.Forms.DataGridView dataGridViewIngredients;
+		private System.Windows.Forms.DataGridViewTextBoxColumn IngredientID;
+		private System.Windows.Forms.DataGridViewTextBoxColumn IngredientName;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Price;
+		private System.Windows.Forms.DataGridViewCheckBoxColumn Activated;
+		private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn4;
+		private System.Windows.Forms.BindingSource ingredientBindingSource;
+		private System.Windows.Forms.Panel panel6;
+		private System.Windows.Forms.Button button2;
+		private System.Windows.Forms.Panel panel7;
+		private System.Windows.Forms.Button GetAllIngredientsBtn;
+		private System.Windows.Forms.DataGridViewTextBoxColumn employeeIDDataGridViewTextBoxColumn;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Username;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Password;
+		private System.Windows.Forms.DataGridViewCheckBoxColumn Selected;
+		private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+		private System.Windows.Forms.TabControl tabControl8;
+		private System.Windows.Forms.TabPage tabPage11;
+		private System.Windows.Forms.TabPage tabPage12;
+		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+		private System.Windows.Forms.DataGridView dataGridViewOrders;
+		private System.Windows.Forms.DataGridViewTextBoxColumn OrderID;
+		private System.Windows.Forms.DataGridViewTextBoxColumn ByTerminal;
+		private System.Windows.Forms.DataGridViewCheckBoxColumn Paid;
+		private System.Windows.Forms.DataGridViewCheckBoxColumn Canceled;
+		private System.Windows.Forms.DataGridViewCheckBoxColumn PickedUp;
+		private System.Windows.Forms.DataGridViewCheckBoxColumn ShowOnScreen;
+		private System.Windows.Forms.DataGridViewCheckBoxColumn HappyCustomer;
+		private System.Windows.Forms.DataGridViewCheckBoxColumn Returned;
+		private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn3;
+		private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn5;
+		private System.Windows.Forms.BindingSource orderBindingSource;
+		private System.Windows.Forms.Panel panel9;
+		private System.Windows.Forms.Button GetAllOrdersBtn;
+		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
+		private System.Windows.Forms.DataGridView dataGridViewPOrders;
+		private System.Windows.Forms.DataGridViewTextBoxColumn ProductOrderID;
+		private System.Windows.Forms.DataGridViewTextBoxColumn ProductID;
+		private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+		private System.Windows.Forms.DataGridViewTextBoxColumn LockedByStation;
+		private System.Windows.Forms.DataGridViewCheckBoxColumn Processed;
+		private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn6;
+		private System.Windows.Forms.DataGridViewCheckBoxColumn Visible;
+		private System.Windows.Forms.BindingSource productOrderBindingSource1;
+		private System.Windows.Forms.Panel panel8;
+		private System.Windows.Forms.Button GetAllProductOrdersBtn;
+		private System.Windows.Forms.BindingSource productOrderBindingSource;
+		private System.Windows.Forms.DataGridViewTextBoxColumn productOrderIDDataGridViewTextBoxColumn;
+		private System.Windows.Forms.DataGridViewTextBoxColumn productIDDataGridViewTextBoxColumn1;
+		private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+		private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+		private System.Windows.Forms.DataGridViewCheckBoxColumn processedDataGridViewCheckBoxColumn;
+		private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn7;
+		private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn8;
 		private System.Windows.Forms.Timer timer1;
 		private System.Windows.Forms.DataGridViewTextBoxColumn productIDDataGridViewTextBoxColumn;
 		private System.Windows.Forms.DataGridViewTextBoxColumn productTypeIDDataGridViewTextBoxColumn;
@@ -2026,5 +2079,6 @@
 		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel10;
 		private System.Windows.Forms.Button btn_ResetProd;
 		private System.Windows.Forms.Button btn_saveProd;
+		private System.Windows.Forms.Button DeleteEmployeeBtn;
 	}
 }
