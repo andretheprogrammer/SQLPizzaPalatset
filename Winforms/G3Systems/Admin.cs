@@ -63,26 +63,90 @@ namespace G3Systems
 				return;
 			}
 
-			editEmployee.Username = tbUsername.Text;
-			editEmployee.Password = tbPassword.Text;
+			var parameters = new List<object>();
+			var newEmployee = new Employee
+			{
+				Username = tbUsername.Text,
+				Password = tbPassword.Text
+			};
 
-			await _repo.UpdateEmployeeAsync(editEmployee);
+			foreach (var item in chkListBoxEmployeeType.CheckedItems)
+			{
+				newEmployee.Types.Add((EmployeeType)item);
+			}
+
+			if (newEmployee.Types.Count <= 0)
+			{
+				MessageBox.Show("Add a type");
+				return;
+			}
+
+			newEmployee.Types.ForEach(type => parameters.Add(InsertParameters(newEmployee, type)));
+
+			try
+			{
+				await _repo.CreateNewEmployee(parameters.ToArray());
+			}
+			catch (System.Data.SqlClient.SqlException)
+			{
+				MessageBox.Show("Username already exist");
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.ToString());
+			}
+
+			ClearEmployeeTextBoxes();
+			GetEmployeesBtn_Click(sender, e);
+		}
+
+		private object InsertParameters(Employee employee, EmployeeType employeeType) => new
+		{
+			Username = employee.Username,
+			Password = employee.Password,
+			EmployeeTypeID = employeeType
+		};
+
+		private void ClearEmployeeTextBoxes()
+		{
+			tbUsername.Text = string.Empty;
+			tbPassword.Text = string.Empty;
+
+			for (int i = 0; i < chkListBoxEmployeeType.Items.Count; i++)
+			{
+				chkListBoxEmployeeType.SetItemCheckState(i, CheckState.Unchecked);
+			}
+		}
+
+		// Employee
+		private async void DeleteEmployeeBtn_Click(object sender, EventArgs e)
+		{
+			if (editEmployee == null ||
+				editEmployee.Types.Any(type => 
+				type == EmployeeType.Administrator))
+			{
+				MessageBox.Show("Can't delete that");
+				return;
+			}
+
+			await _repo.DeleteEmployeeAtId(editEmployee);
+
+			GetEmployeesBtn_Click(sender, e);
 		}
 
 		// Employees
-		private void dataGridViewEmployees_SelectionChanged(object sender, EventArgs e)
+		private async void dataGridViewEmployees_SelectionChanged(object sender, EventArgs e)
 		{
 			if ((dataGridViewEmployees.SelectedRows.Count <= 0))
 			{
-				//tbUsername.Text = "";
-				//tbPassword.Text = "";
 				return;
 			}
 
 			editEmployee = (Employee)dataGridViewEmployees.SelectedRows[0].DataBoundItem;
 
-			//tbUsername.Text = editEmployee.Username;
-			//tbPassword.Text = editEmployee.Password;
+			await _repo.GetEmployeeTypesByIdAsync(editEmployee);
+
+			ClearEmployeeTextBoxes();
 		}
 
 		// Employees
