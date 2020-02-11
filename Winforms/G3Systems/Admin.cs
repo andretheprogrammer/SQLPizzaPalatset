@@ -222,8 +222,18 @@ namespace G3Systems
 			txbxDescr.Text = "";
 			lstbx_types.ClearSelected();
 			chbxlist_ingrs.Items.Clear();
-			List<Ingredient> all_ingredients = await _repo.GetAllIngredients();
-			
-			}
+			List<Ingredient> all_ingredients = (await _repo.GetAllIngredientsAsync()).ToList();
+
+			all_ingredients.ForEach(a => chbxlist_ingrs.Items.Add(a.IngredientName));
+			;
+		}
+
+		private async void lstbx_types_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			var temp = lstbx_types.SelectedValue.ToString();
+			MessageBox.Show(temp);
+			//List<Ingredient> all_ingredients = (await _repo.GetAllowedIngredientsByPTypeAsync(selectedtype));
+
+		}
 	}
 }

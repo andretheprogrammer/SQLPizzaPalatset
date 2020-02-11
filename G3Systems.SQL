@@ -2528,8 +2528,8 @@ CREATE PROCEDURE Proc_AddIngredient (@Name varchar(100), @Price int)
 			INSERT INTO Ingredients(IngredientName, Price) VALUES (@Name, @Price)
 		END
 	GO
-CREATE PROCEDURE Proc_AllowedIngredientsByPType @ProductTypeID INT
-AS
+CREATE PROCEDURE Proc_GetAllowedIngredientsByPType @ProductTypeID INT
+	AS
 	SELECT *
 	FROM Ingredients
 	WHERE IngredientID in

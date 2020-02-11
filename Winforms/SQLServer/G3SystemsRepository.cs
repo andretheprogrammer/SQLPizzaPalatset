@@ -455,7 +455,7 @@ namespace SQLServer
             }
         }
 
-        public async Task AddNewProduct(string name, int baseprice, string descr, int typeid)
+        public async Task AddNewProductAsync(string name, int baseprice, string descr, int typeid)
         {
             using (var connection = CreateConnection())
             {
@@ -466,7 +466,7 @@ namespace SQLServer
             }
         }
 
-        public async Task AddNewIngredient(string name, int baseprice)
+        public async Task AddNewIngredientAsync(string name, int baseprice)
         {
             using (var connection = CreateConnection())
             {
@@ -477,7 +477,7 @@ namespace SQLServer
             }
         }
 
-        public async Task AddNewIngredientToProduct(int prodID, int ingrID)
+        public async Task AddNewIngredientToProductAsync(int prodID, int ingrID)
         {
             using (var connection = CreateConnection())
             {
@@ -488,7 +488,7 @@ namespace SQLServer
             }
         }
 
-        public async Task<IEnumerable<Ingredient>> GetAllIngredients()
+        public async Task<IEnumerable<Ingredient>> GetAllIngredientsAsync()
         {
             var sqlQuery = "select * from ingredients";
 
@@ -497,5 +497,20 @@ namespace SQLServer
                 return await connection.QueryAsync<Ingredient>(sqlQuery);
             }
         }
+
+        public async Task<IEnumerable<Ingredient>> GetAllowedIngredientsByPTypeAsync(int ProductTypeid)
+        {
+            using (var connection = CreateConnection())
+            {
+                return (await connection.QueryAsync<Ingredient>(
+                      sql: "Proc_GetAllowedIngredientsByPType",
+                    param: new { @ProductTypeID = ProductTypeid },
+               commandType: CommandType.StoredProcedure));
+            }
+        }
+
+
+
+
     }
 }
