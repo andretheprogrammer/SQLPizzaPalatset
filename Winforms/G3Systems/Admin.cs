@@ -50,6 +50,7 @@ namespace G3Systems
 		private async void GetEmployeesBtn_Click(object sender, EventArgs e)
 		{
 			dataGridViewEmployees.DataSource = await _repo.GetEmployeesAsync();
+		
 		}
 
 		// Employees
@@ -168,6 +169,49 @@ namespace G3Systems
 		private async void GetAllProductOrdersBtn_Click(object sender, EventArgs e)
 		{
 			dataGridViewPOrders.DataSource = await _repo.GetProductOrdersAsync();
+		}
+
+		private void timer1_Tick(object sender, EventArgs e)
+		{
+			listViewLoggedInEmployees.Items.Add(
+												new ListViewItem("HEY")
+												);
+			
+			
+			var yo = listViewLoggedInEmployees.Items;
+
+		}
+
+		private async void timer1_Tick_1(object sender, EventArgs e)
+		{
+
+			//Server sends too big list
+			//Make it send only logged in users. Not ALL users.
+			List<Employee> Loggedin = (await _repo.GetEmployeesAsync()).ToList();
+
+			listViewLoggedInEmployees.Items.Clear();
+
+			foreach(Employee emp in Loggedin)
+			{
+				
+				if (emp.LoggedIn == true)
+				{
+					listViewLoggedInEmployees.Items.Add
+									(
+									new ListViewItem(  emp.Username)
+									); 
+				}
+
+				
+			}
+
+
+
+		}
+
+		private void LogoutButton_Click(object sender, EventArgs e)
+		{
+
 		}
 	}
 }
