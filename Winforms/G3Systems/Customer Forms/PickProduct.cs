@@ -7,11 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Configuration;
+using G3Systems.Extensions;
 using TypeLib;
 using SQLServer;
+using PostgreSQL;
 
 namespace G3Systems
 {
+	/// <summary>
+	/// Customer terminal form for handling new orders
+	/// </summary>
 	public partial class PickProduct : Form
 	{
 		private readonly IG3SystemsRepository _repo;
@@ -20,16 +26,35 @@ namespace G3Systems
 
 		#region Form Load/Close
 
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="terminalID"></param>
 		public PickProduct(int terminalID)
 		{
 			InitializeComponent();
-			_repo = new G3SystemsRepository();
+
 			cart = new List<Product>();
 			order = new Order() { ByTerminal = terminalID, Paid = false };
+
+			try
+			{
+				// Get key string from App.config appsettings
+				string _postgreBackEnd = ConfigurationManager.AppSettings.Keys[0];
+
+				// Check if postgreSQL Back-End is set to true App.Config 
+				if (_postgreBackEnd.GetConfigSetting())
+				{
+					MessageBox.Show("PostgreSQL", "Connected");
+					//_repo = new PostgreSQL.G3SystemsRepository();
+				}
+				else
+				{
+					//MessageBox.Show("MSSQL", "Connected");
+					_repo = new SQLServer.G3SystemsRepository();
+				}
+			}
+			catch
+			{
+				MessageBox.Show("Fel i App.config", "Error");
+				throw;
+			}
 		}
 
 		// Get cart sorted by producttype
@@ -367,11 +392,6 @@ namespace G3Systems
 						order,
 						product,
 						ingredient)));
-
-				//foreach (var ingredient in product.Ingredients)
-				//{
-				//	parameterList.Add(InsertParameters(order, product, ingredient));
-				//}
 			}
 
 			return parameterList.ToArray();

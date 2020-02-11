@@ -96,6 +96,7 @@ namespace G3Systems
 			}
 
 			ClearEmployeeTextBoxes();
+			GetEmployeesBtn_Click(sender, e);
 		}
 
 		private object InsertParameters(Employee employee, EmployeeType employeeType) => new
@@ -117,7 +118,7 @@ namespace G3Systems
 		}
 
 		// Employee
-		private void DeleteEmployeeBtn_Click(object sender, EventArgs e)
+		private async void DeleteEmployeeBtn_Click(object sender, EventArgs e)
 		{
 			if (editEmployee == null ||
 				editEmployee.Types.Any(type => 
@@ -127,20 +128,24 @@ namespace G3Systems
 				return;
 			}
 
+			await _repo.DeleteEmployeeAtId(editEmployee);
 
+			GetEmployeesBtn_Click(sender, e);
 		}
 
 		// Employees
-		private void dataGridViewEmployees_SelectionChanged(object sender, EventArgs e)
+		private async void dataGridViewEmployees_SelectionChanged(object sender, EventArgs e)
 		{
 			if ((dataGridViewEmployees.SelectedRows.Count <= 0))
 			{
-				tbUsername.Text = "";
-				tbPassword.Text = "";
 				return;
 			}
 
 			editEmployee = (Employee)dataGridViewEmployees.SelectedRows[0].DataBoundItem;
+
+			await _repo.GetEmployeeTypesByIdAsync(editEmployee);
+
+			ClearEmployeeTextBoxes();
 		}
 
 		// Employees

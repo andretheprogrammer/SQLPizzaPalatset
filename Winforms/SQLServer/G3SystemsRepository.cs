@@ -108,7 +108,7 @@ namespace SQLServer
             using (var connection = CreateConnection())
             {
                 await connection.ExecuteAsync(
-                        sql: "Proc_CreateEmployee",
+                        sql: "Proc_CreateNewEmployee",
                       param: employeeParams,
                 commandType: CommandType.StoredProcedure
                         );
@@ -146,6 +146,21 @@ namespace SQLServer
                             employee.LoggedIn, 
                             employee.AssignedToStation },
                     commandType: CommandType.StoredProcedure);
+            }
+        }
+
+        /// <summary>
+        /// Delete selected employee by id
+        /// </summary>
+        /// <param name="employee"></param>
+        /// <returns></returns>
+        public async Task DeleteEmployeeAtId(Employee employee)
+        {
+            string sqlQuery = "delete from employees where EmployeeID = @EmployeeID";
+
+            using (var connection = CreateConnection())
+            {
+                await connection.ExecuteAsync(sqlQuery, new { employee.EmployeeID });
             }
         }
 

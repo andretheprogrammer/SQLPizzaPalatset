@@ -31,7 +31,9 @@ namespace TypeLib
         Task GetEmployeeTypesByIdAsync(Employee employee);
 
         Task UpdateEmployeeStatusAsync(Employee employee);
-        
+
+        Task DeleteEmployeeAtId(Employee employee);
+
         // InfoScreen - Hariz
         Task<IEnumerable<Order>> GetFinishedOrdersAsync(int id);
         Task<IEnumerable<Order>> GetInProcessOrderssAsync(int id);
