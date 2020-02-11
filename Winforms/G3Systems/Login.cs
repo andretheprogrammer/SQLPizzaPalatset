@@ -124,7 +124,6 @@ namespace G3Systems
 		{
 			if (user != null)
 			{
-				MessageBox.Show("Loggar ut");
 				user.LoggedIn = false;
 				await _repo.UpdateEmployeeStatusAsync(user);
 			}
