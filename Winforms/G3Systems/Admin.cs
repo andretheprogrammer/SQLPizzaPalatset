@@ -214,5 +214,16 @@ namespace G3Systems
 		{
 
 		}
+
+		private async void btn_ResetProd_Click(object sender, EventArgs e)
+		{
+			txtbx_PName.Text = "";
+			txtbx_bprice.Text = "";
+			txbxDescr.Text = "";
+			lstbx_types.ClearSelected();
+			chbxlist_ingrs.Items.Clear();
+			List<Ingredient> all_ingredients = await _repo.GetAllIngredients();
+			
+			}
 	}
 }

@@ -74,8 +74,10 @@ namespace TypeLib
 
 
         //Admin
-        Task AddNewProduct(string name, int baseprice, string descr, int typeid , List<Ingredient> ingredientlist);
+        Task AddNewProduct(string name, int baseprice, string descr, int typeid);
         Task AddNewIngredient(string name, int baseprice);
 
+        Task AddNewIngredientToProduct(int prodID, int ingrID);
+        Task<List<Ingredient>> GetAllIngredients();
     }
 }

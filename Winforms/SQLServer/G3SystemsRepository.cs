@@ -454,5 +454,40 @@ namespace SQLServer
                 return await connection.QueryAsync<Order>(sqlQuery);
             }
         }
+
+        public async Task AddNewProduct(string name, int baseprice, string descr, int typeid)
+        {
+            using (var connection = CreateConnection())
+            {
+                await connection.ExecuteAsync(
+                      sql: "Proc_AddProduct",
+                    param: new { name, baseprice, descr, typeid },
+               commandType: CommandType.StoredProcedure);
+            }
+        }
+
+        public async Task AddNewIngredient(string name, int baseprice)
+        {
+            using (var connection = CreateConnection())
+            {
+                await connection.ExecuteAsync(
+                      sql: "Proc_AddIngredient",
+                    param: new { name, baseprice },
+               commandType: CommandType.StoredProcedure);
+            }
+        }
+
+        public async Task AddNewIngredientToProduct(int prodID, int ingrID)
+        {
+            using (var connection = CreateConnection())
+            {
+                await connection.ExecuteAsync(
+                      sql: "Proc_AddIngredientToProduct",
+                    param: new { prodID, ingrID},
+               commandType: CommandType.StoredProcedure);
+            }
+        }
+
+
     }
 }

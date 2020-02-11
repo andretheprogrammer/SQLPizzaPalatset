@@ -2508,7 +2508,7 @@ CREATE PROCEDURE Proc_GetAllProductTypes
 	GO
 
 --AddIngredient CRUD
-CREATE PROCEDURE Proc_AddProduct(@ProductName varchar(30), @ProductTypeID int, @PrepTime int, @BasePrice int, @Description varchar(500))
+CREATE PROCEDURE Proc_AddProduct(@ProductName varchar(100), @ProductTypeID int, @PrepTime int, @BasePrice int, @Description varchar(500))
 	AS
 		BEGIN
 			INSERT INTO Products(ProductName, ProductTypeID, PrepTime, BasePrice, [Description]) 
@@ -2521,4 +2521,20 @@ CREATE PROCEDURE Proc_AddIngredientsToProduct (@ProductID INT, @IngredientID INT
 	INSERT INTO ProductHaveIngredients (ProductID ,IngredientID) 
 								VALUES (@ProductID ,@IngredientID)
 	END
+	GO
+CREATE PROCEDURE Proc_AddIngredient (@Name varchar(100), @Price int)
+	AS
+		BEGIN
+			INSERT INTO Ingredients(IngredientName, Price) VALUES (@Name, @Price)
+		END
+	GO
+CREATE PROCEDURE Proc_AllowedIngredientsByPType @ProductTypeID INT
+AS
+	SELECT *
+	FROM Ingredients
+	WHERE IngredientID in
+
+		(SELECT IngredientID
+		FROM TypeCanHaveIngredients 
+		WHERE ProductTypeID = @ProductTypeID )
 	GO
