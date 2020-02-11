@@ -61,12 +61,7 @@
             this.tabEditEmployees = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.dataGridViewEmployees = new System.Windows.Forms.DataGridView();
-            this.employeeIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Username = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Password = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Selected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.employeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label8 = new System.Windows.Forms.Label();
             this.chkListBoxEmployeeType = new System.Windows.Forms.CheckedListBox();
@@ -83,15 +78,6 @@
             this.tabProducts2 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.dataGridViewProducts = new System.Windows.Forms.DataGridView();
-            this.productIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productTypeIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.prepTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.basePriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewCheckBoxColumn2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label9 = new System.Windows.Forms.Label();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
@@ -110,8 +96,6 @@
             this.IngredientName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Activated = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewCheckBoxColumn4 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.ingredientBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label12 = new System.Windows.Forms.Label();
             this.checkedListBox2 = new System.Windows.Forms.CheckedListBox();
@@ -123,23 +107,11 @@
             this.button2 = new System.Windows.Forms.Button();
             this.panel7 = new System.Windows.Forms.Panel();
             this.GetAllIngredientsBtn = new System.Windows.Forms.Button();
-            this.tabBuildings = new System.Windows.Forms.TabPage();
-            this.tabControl5 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabControl6 = new System.Windows.Forms.TabControl();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.tabPage6 = new System.Windows.Forms.TabPage();
             this.tabOrders = new System.Windows.Forms.TabPage();
-            this.productOrdersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabControl8 = new System.Windows.Forms.TabControl();
             this.tabPage11 = new System.Windows.Forms.TabPage();
-            this.tabPage12 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.button4 = new System.Windows.Forms.Button();
-            this.orderBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dataGridViewOrders = new System.Windows.Forms.DataGridView();
             this.OrderID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ByTerminal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Paid = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -148,14 +120,11 @@
             this.ShowOnScreen = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.HappyCustomer = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Returned = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewCheckBoxColumn3 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewCheckBoxColumn5 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.GetAllOrdersBtn = new System.Windows.Forms.Button();
+            this.tabPage12 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.button3 = new System.Windows.Forms.Button();
-            this.productOrderBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.productOrderBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.dataGridViewPOrders = new System.Windows.Forms.DataGridView();
             this.ProductOrderID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProductID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -163,6 +132,44 @@
             this.Processed = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dataGridViewCheckBoxColumn6 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Visible = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.GetAllProductOrdersBtn = new System.Windows.Forms.Button();
+            this.tabBuildings = new System.Windows.Forms.TabPage();
+            this.tabControl5 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabControl6 = new System.Windows.Forms.TabControl();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.productOrdersBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.employeeIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Username = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Selected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.employeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.productIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.productTypeIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.productNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.prepTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.basePriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewCheckBoxColumn2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dataGridViewCheckBoxColumn4 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.ingredientBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dataGridViewCheckBoxColumn3 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewCheckBoxColumn5 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.orderBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.productOrderIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.productIDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.processedDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewCheckBoxColumn7 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewCheckBoxColumn8 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.productOrderBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.productOrderBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -189,7 +196,6 @@
             this.tabEditEmployees.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployees)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -198,35 +204,36 @@
             this.tabProducts2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProducts)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel5.SuspendLayout();
             this.tabIngredients.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewIngredients)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ingredientBindingSource)).BeginInit();
             this.groupBox4.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel7.SuspendLayout();
+            this.tabOrders.SuspendLayout();
+            this.tabControl8.SuspendLayout();
+            this.tabPage11.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOrders)).BeginInit();
+            this.panel9.SuspendLayout();
+            this.tabPage12.SuspendLayout();
+            this.tableLayoutPanel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPOrders)).BeginInit();
+            this.panel8.SuspendLayout();
             this.tabBuildings.SuspendLayout();
             this.tabControl5.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabControl6.SuspendLayout();
-            this.tabOrders.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productOrdersBindingSource)).BeginInit();
-            this.tabControl8.SuspendLayout();
-            this.tabPage11.SuspendLayout();
-            this.tabPage12.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.panel9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ingredientBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.orderBindingSource)).BeginInit();
-            this.tableLayoutPanel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            this.panel8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.productOrderBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productOrderBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productOrderBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -538,48 +545,11 @@
             this.dataGridViewEmployees.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewEmployees_CellEndEdit);
             this.dataGridViewEmployees.SelectionChanged += new System.EventHandler(this.dataGridViewEmployees_SelectionChanged);
             // 
-            // employeeIDDataGridViewTextBoxColumn
-            // 
-            this.employeeIDDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.employeeIDDataGridViewTextBoxColumn.DataPropertyName = "EmployeeID";
-            this.employeeIDDataGridViewTextBoxColumn.HeaderText = "ID";
-            this.employeeIDDataGridViewTextBoxColumn.Name = "employeeIDDataGridViewTextBoxColumn";
-            this.employeeIDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.employeeIDDataGridViewTextBoxColumn.Width = 43;
-            // 
-            // Username
-            // 
-            this.Username.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Username.DataPropertyName = "Username";
-            this.Username.HeaderText = "Username";
-            this.Username.Name = "Username";
-            // 
             // Password
             // 
             this.Password.DataPropertyName = "Password";
             this.Password.HeaderText = "Password";
             this.Password.Name = "Password";
-            // 
-            // Selected
-            // 
-            this.Selected.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Selected.DataPropertyName = "LoggedIn";
-            this.Selected.HeaderText = "LoggedIn";
-            this.Selected.Name = "Selected";
-            this.Selected.ReadOnly = true;
-            this.Selected.Width = 58;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "AssignedToStation";
-            this.dataGridViewTextBoxColumn3.HeaderText = "Station";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.Width = 65;
-            // 
-            // employeeBindingSource
-            // 
-            this.employeeBindingSource.DataSource = typeof(TypeLib.Employee);
             // 
             // groupBox2
             // 
@@ -670,9 +640,9 @@
             this.AddNewEmployeeBtn.Name = "AddNewEmployeeBtn";
             this.AddNewEmployeeBtn.Size = new System.Drawing.Size(100, 46);
             this.AddNewEmployeeBtn.TabIndex = 6;
-            this.AddNewEmployeeBtn.Text = "Save";
+            this.AddNewEmployeeBtn.Text = "Create New";
             this.AddNewEmployeeBtn.UseVisualStyleBackColor = true;
-            this.AddNewEmployeeBtn.Click += new System.EventHandler(this.UpdateEmployeeBtn_Click);
+            this.AddNewEmployeeBtn.Click += new System.EventHandler(this.AddNewEmployeeBtn_Click);
             // 
             // panel3
             // 
@@ -772,61 +742,6 @@
             this.dataGridViewProducts.TabIndex = 0;
             this.dataGridViewProducts.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewProducts_CellEndEdit);
             this.dataGridViewProducts.SelectionChanged += new System.EventHandler(this.dataGridViewProducts_SelectionChangedAsync);
-            // 
-            // productIDDataGridViewTextBoxColumn
-            // 
-            this.productIDDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.productIDDataGridViewTextBoxColumn.DataPropertyName = "ProductID";
-            this.productIDDataGridViewTextBoxColumn.HeaderText = "ProductID";
-            this.productIDDataGridViewTextBoxColumn.Name = "productIDDataGridViewTextBoxColumn";
-            this.productIDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.productIDDataGridViewTextBoxColumn.Width = 80;
-            // 
-            // productTypeIDDataGridViewTextBoxColumn
-            // 
-            this.productTypeIDDataGridViewTextBoxColumn.DataPropertyName = "ProductTypeID";
-            this.productTypeIDDataGridViewTextBoxColumn.HeaderText = "ProductTypeID";
-            this.productTypeIDDataGridViewTextBoxColumn.Name = "productTypeIDDataGridViewTextBoxColumn";
-            // 
-            // productNameDataGridViewTextBoxColumn
-            // 
-            this.productNameDataGridViewTextBoxColumn.DataPropertyName = "ProductName";
-            this.productNameDataGridViewTextBoxColumn.HeaderText = "ProductName";
-            this.productNameDataGridViewTextBoxColumn.Name = "productNameDataGridViewTextBoxColumn";
-            // 
-            // descriptionDataGridViewTextBoxColumn
-            // 
-            this.descriptionDataGridViewTextBoxColumn.DataPropertyName = "Description";
-            this.descriptionDataGridViewTextBoxColumn.HeaderText = "Description";
-            this.descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
-            // 
-            // prepTimeDataGridViewTextBoxColumn
-            // 
-            this.prepTimeDataGridViewTextBoxColumn.DataPropertyName = "PrepTime";
-            this.prepTimeDataGridViewTextBoxColumn.HeaderText = "PrepTime";
-            this.prepTimeDataGridViewTextBoxColumn.Name = "prepTimeDataGridViewTextBoxColumn";
-            // 
-            // basePriceDataGridViewTextBoxColumn
-            // 
-            this.basePriceDataGridViewTextBoxColumn.DataPropertyName = "BasePrice";
-            this.basePriceDataGridViewTextBoxColumn.HeaderText = "BasePrice";
-            this.basePriceDataGridViewTextBoxColumn.Name = "basePriceDataGridViewTextBoxColumn";
-            // 
-            // dataGridViewCheckBoxColumn1
-            // 
-            this.dataGridViewCheckBoxColumn1.DataPropertyName = "Activated";
-            this.dataGridViewCheckBoxColumn1.HeaderText = "Activated";
-            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
-            // 
-            // dataGridViewCheckBoxColumn2
-            // 
-            this.dataGridViewCheckBoxColumn2.DataPropertyName = "Visible";
-            this.dataGridViewCheckBoxColumn2.HeaderText = "Visible";
-            this.dataGridViewCheckBoxColumn2.Name = "dataGridViewCheckBoxColumn2";
-            // 
-            // productBindingSource
-            // 
-            this.productBindingSource.DataSource = typeof(TypeLib.Product);
             // 
             // groupBox3
             // 
@@ -1026,18 +941,6 @@
             this.Activated.Name = "Activated";
             this.Activated.Width = 58;
             // 
-            // dataGridViewCheckBoxColumn4
-            // 
-            this.dataGridViewCheckBoxColumn4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.dataGridViewCheckBoxColumn4.DataPropertyName = "Visible";
-            this.dataGridViewCheckBoxColumn4.HeaderText = "Visible";
-            this.dataGridViewCheckBoxColumn4.Name = "dataGridViewCheckBoxColumn4";
-            this.dataGridViewCheckBoxColumn4.Width = 43;
-            // 
-            // ingredientBindingSource
-            // 
-            this.ingredientBindingSource.DataSource = typeof(TypeLib.Ingredient);
-            // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.label12);
@@ -1151,6 +1054,285 @@
             this.GetAllIngredientsBtn.UseVisualStyleBackColor = true;
             this.GetAllIngredientsBtn.Click += new System.EventHandler(this.GetAllIngredientsBtn_Click);
             // 
+            // tabOrders
+            // 
+            this.tabOrders.Controls.Add(this.tabControl8);
+            this.tabOrders.Location = new System.Drawing.Point(4, 22);
+            this.tabOrders.Name = "tabOrders";
+            this.tabOrders.Size = new System.Drawing.Size(740, 469);
+            this.tabOrders.TabIndex = 5;
+            this.tabOrders.Text = "Orders";
+            this.tabOrders.UseVisualStyleBackColor = true;
+            // 
+            // tabControl8
+            // 
+            this.tabControl8.Controls.Add(this.tabPage11);
+            this.tabControl8.Controls.Add(this.tabPage12);
+            this.tabControl8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl8.Location = new System.Drawing.Point(0, 0);
+            this.tabControl8.Name = "tabControl8";
+            this.tabControl8.SelectedIndex = 0;
+            this.tabControl8.Size = new System.Drawing.Size(740, 469);
+            this.tabControl8.TabIndex = 3;
+            // 
+            // tabPage11
+            // 
+            this.tabPage11.Controls.Add(this.tableLayoutPanel1);
+            this.tabPage11.Location = new System.Drawing.Point(4, 22);
+            this.tabPage11.Name = "tabPage11";
+            this.tabPage11.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage11.Size = new System.Drawing.Size(732, 443);
+            this.tabPage11.TabIndex = 0;
+            this.tabPage11.Text = "Orders";
+            this.tabPage11.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 61.80556F));
+            this.tableLayoutPanel1.Controls.Add(this.dataGridViewOrders, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.panel9, 0, 1);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 64.96519F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35.0348F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(726, 437);
+            this.tableLayoutPanel1.TabIndex = 10;
+            // 
+            // dataGridViewOrders
+            // 
+            this.dataGridViewOrders.AllowUserToResizeColumns = false;
+            this.dataGridViewOrders.AllowUserToResizeRows = false;
+            this.dataGridViewOrders.AutoGenerateColumns = false;
+            this.dataGridViewOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewOrders.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.OrderID,
+            this.ByTerminal,
+            this.Paid,
+            this.Canceled,
+            this.PickedUp,
+            this.ShowOnScreen,
+            this.HappyCustomer,
+            this.Returned,
+            this.dataGridViewCheckBoxColumn3,
+            this.dataGridViewCheckBoxColumn5});
+            this.dataGridViewOrders.DataSource = this.orderBindingSource;
+            this.dataGridViewOrders.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewOrders.Location = new System.Drawing.Point(3, 3);
+            this.dataGridViewOrders.MultiSelect = false;
+            this.dataGridViewOrders.Name = "dataGridViewOrders";
+            this.dataGridViewOrders.RowHeadersVisible = false;
+            this.dataGridViewOrders.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewOrders.Size = new System.Drawing.Size(720, 277);
+            this.dataGridViewOrders.TabIndex = 0;
+            // 
+            // OrderID
+            // 
+            this.OrderID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.OrderID.DataPropertyName = "OrderID";
+            this.OrderID.HeaderText = "OrderID";
+            this.OrderID.Name = "OrderID";
+            this.OrderID.ReadOnly = true;
+            // 
+            // ByTerminal
+            // 
+            this.ByTerminal.DataPropertyName = "ByTerminal";
+            this.ByTerminal.HeaderText = "ByTerminal";
+            this.ByTerminal.Name = "ByTerminal";
+            this.ByTerminal.ReadOnly = true;
+            // 
+            // Paid
+            // 
+            this.Paid.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Paid.DataPropertyName = "Paid";
+            this.Paid.HeaderText = "Paid";
+            this.Paid.Name = "Paid";
+            // 
+            // Canceled
+            // 
+            this.Canceled.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Canceled.DataPropertyName = "Canceled";
+            this.Canceled.HeaderText = "Canceled";
+            this.Canceled.Name = "Canceled";
+            // 
+            // PickedUp
+            // 
+            this.PickedUp.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.PickedUp.DataPropertyName = "PickedUp";
+            this.PickedUp.HeaderText = "PickedUp";
+            this.PickedUp.Name = "PickedUp";
+            // 
+            // ShowOnScreen
+            // 
+            this.ShowOnScreen.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ShowOnScreen.DataPropertyName = "ShowOnScreen";
+            this.ShowOnScreen.HeaderText = "ShowOnScreen";
+            this.ShowOnScreen.Name = "ShowOnScreen";
+            // 
+            // HappyCustomer
+            // 
+            this.HappyCustomer.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.HappyCustomer.DataPropertyName = "HappyCustomer";
+            this.HappyCustomer.HeaderText = "HappyCustomer";
+            this.HappyCustomer.Name = "HappyCustomer";
+            // 
+            // Returned
+            // 
+            this.Returned.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Returned.DataPropertyName = "Returned";
+            this.Returned.HeaderText = "Returned";
+            this.Returned.Name = "Returned";
+            // 
+            // panel9
+            // 
+            this.panel9.Controls.Add(this.GetAllOrdersBtn);
+            this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel9.Location = new System.Drawing.Point(3, 286);
+            this.panel9.Name = "panel9";
+            this.panel9.Padding = new System.Windows.Forms.Padding(0, 0, 0, 100);
+            this.panel9.Size = new System.Drawing.Size(720, 148);
+            this.panel9.TabIndex = 9;
+            // 
+            // GetAllOrdersBtn
+            // 
+            this.GetAllOrdersBtn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.GetAllOrdersBtn.Location = new System.Drawing.Point(0, 0);
+            this.GetAllOrdersBtn.Name = "GetAllOrdersBtn";
+            this.GetAllOrdersBtn.Size = new System.Drawing.Size(100, 48);
+            this.GetAllOrdersBtn.TabIndex = 1;
+            this.GetAllOrdersBtn.Text = "Get All";
+            this.GetAllOrdersBtn.UseVisualStyleBackColor = true;
+            this.GetAllOrdersBtn.Click += new System.EventHandler(this.GetAllOrdersBtn_Click);
+            // 
+            // tabPage12
+            // 
+            this.tabPage12.Controls.Add(this.tableLayoutPanel5);
+            this.tabPage12.Location = new System.Drawing.Point(4, 22);
+            this.tabPage12.Name = "tabPage12";
+            this.tabPage12.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage12.Size = new System.Drawing.Size(732, 443);
+            this.tabPage12.TabIndex = 1;
+            this.tabPage12.Text = "ProductOrders";
+            this.tabPage12.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel5
+            // 
+            this.tableLayoutPanel5.ColumnCount = 1;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 61.80556F));
+            this.tableLayoutPanel5.Controls.Add(this.dataGridViewPOrders, 0, 0);
+            this.tableLayoutPanel5.Controls.Add(this.panel8, 0, 1);
+            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 2;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 64.96519F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35.0348F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(726, 437);
+            this.tableLayoutPanel5.TabIndex = 11;
+            // 
+            // dataGridViewPOrders
+            // 
+            this.dataGridViewPOrders.AllowUserToResizeColumns = false;
+            this.dataGridViewPOrders.AllowUserToResizeRows = false;
+            this.dataGridViewPOrders.AutoGenerateColumns = false;
+            this.dataGridViewPOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewPOrders.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ProductOrderID,
+            this.ProductID,
+            this.dataGridViewTextBoxColumn1,
+            this.LockedByStation,
+            this.Processed,
+            this.dataGridViewCheckBoxColumn6,
+            this.Visible,
+            this.productOrderIDDataGridViewTextBoxColumn,
+            this.productIDDataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn4,
+            this.processedDataGridViewCheckBoxColumn,
+            this.dataGridViewCheckBoxColumn7,
+            this.dataGridViewCheckBoxColumn8});
+            this.dataGridViewPOrders.DataSource = this.productOrderBindingSource1;
+            this.dataGridViewPOrders.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewPOrders.Location = new System.Drawing.Point(3, 3);
+            this.dataGridViewPOrders.MultiSelect = false;
+            this.dataGridViewPOrders.Name = "dataGridViewPOrders";
+            this.dataGridViewPOrders.RowHeadersVisible = false;
+            this.dataGridViewPOrders.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewPOrders.Size = new System.Drawing.Size(720, 277);
+            this.dataGridViewPOrders.TabIndex = 0;
+            // 
+            // ProductOrderID
+            // 
+            this.ProductOrderID.DataPropertyName = "ProductOrderID";
+            this.ProductOrderID.HeaderText = "ProductOrderID";
+            this.ProductOrderID.Name = "ProductOrderID";
+            this.ProductOrderID.ReadOnly = true;
+            // 
+            // ProductID
+            // 
+            this.ProductID.DataPropertyName = "ProductID";
+            this.ProductID.HeaderText = "ProductID";
+            this.ProductID.Name = "ProductID";
+            this.ProductID.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "OrderID";
+            this.dataGridViewTextBoxColumn1.HeaderText = "OrderID";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // LockedByStation
+            // 
+            this.LockedByStation.DataPropertyName = "LockedByStation";
+            this.LockedByStation.HeaderText = "LockedByStation";
+            this.LockedByStation.Name = "LockedByStation";
+            this.LockedByStation.ReadOnly = true;
+            // 
+            // Processed
+            // 
+            this.Processed.DataPropertyName = "Processed";
+            this.Processed.HeaderText = "Processed";
+            this.Processed.Name = "Processed";
+            this.Processed.ReadOnly = true;
+            // 
+            // dataGridViewCheckBoxColumn6
+            // 
+            this.dataGridViewCheckBoxColumn6.DataPropertyName = "Activated";
+            this.dataGridViewCheckBoxColumn6.HeaderText = "Activated";
+            this.dataGridViewCheckBoxColumn6.Name = "dataGridViewCheckBoxColumn6";
+            this.dataGridViewCheckBoxColumn6.ReadOnly = true;
+            // 
+            // Visible
+            // 
+            this.Visible.DataPropertyName = "Visible";
+            this.Visible.HeaderText = "Visible";
+            this.Visible.Name = "Visible";
+            this.Visible.ReadOnly = true;
+            // 
+            // panel8
+            // 
+            this.panel8.Controls.Add(this.GetAllProductOrdersBtn);
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel8.Location = new System.Drawing.Point(3, 286);
+            this.panel8.Name = "panel8";
+            this.panel8.Padding = new System.Windows.Forms.Padding(0, 0, 0, 100);
+            this.panel8.Size = new System.Drawing.Size(720, 148);
+            this.panel8.TabIndex = 9;
+            // 
+            // GetAllProductOrdersBtn
+            // 
+            this.GetAllProductOrdersBtn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.GetAllProductOrdersBtn.Location = new System.Drawing.Point(0, 0);
+            this.GetAllProductOrdersBtn.Name = "GetAllProductOrdersBtn";
+            this.GetAllProductOrdersBtn.Size = new System.Drawing.Size(100, 48);
+            this.GetAllProductOrdersBtn.TabIndex = 1;
+            this.GetAllProductOrdersBtn.Text = "Get All";
+            this.GetAllProductOrdersBtn.UseVisualStyleBackColor = true;
+            this.GetAllProductOrdersBtn.Click += new System.EventHandler(this.GetAllProductOrdersBtn_Click);
+            // 
             // tabBuildings
             // 
             this.tabBuildings.Controls.Add(this.tabControl5);
@@ -1225,171 +1407,109 @@
             this.tabPage6.Text = "StationTypes";
             this.tabPage6.UseVisualStyleBackColor = true;
             // 
-            // tabOrders
+            // employeeIDDataGridViewTextBoxColumn
             // 
-            this.tabOrders.Controls.Add(this.tabControl8);
-            this.tabOrders.Location = new System.Drawing.Point(4, 22);
-            this.tabOrders.Name = "tabOrders";
-            this.tabOrders.Size = new System.Drawing.Size(740, 469);
-            this.tabOrders.TabIndex = 5;
-            this.tabOrders.Text = "Orders";
-            this.tabOrders.UseVisualStyleBackColor = true;
+            this.employeeIDDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.employeeIDDataGridViewTextBoxColumn.DataPropertyName = "EmployeeID";
+            this.employeeIDDataGridViewTextBoxColumn.HeaderText = "ID";
+            this.employeeIDDataGridViewTextBoxColumn.Name = "employeeIDDataGridViewTextBoxColumn";
+            this.employeeIDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.employeeIDDataGridViewTextBoxColumn.Width = 43;
             // 
-            // tabControl8
+            // Username
             // 
-            this.tabControl8.Controls.Add(this.tabPage11);
-            this.tabControl8.Controls.Add(this.tabPage12);
-            this.tabControl8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl8.Location = new System.Drawing.Point(0, 0);
-            this.tabControl8.Name = "tabControl8";
-            this.tabControl8.SelectedIndex = 0;
-            this.tabControl8.Size = new System.Drawing.Size(740, 469);
-            this.tabControl8.TabIndex = 3;
+            this.Username.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Username.DataPropertyName = "Username";
+            this.Username.HeaderText = "Username";
+            this.Username.Name = "Username";
             // 
-            // tabPage11
+            // Selected
             // 
-            this.tabPage11.Controls.Add(this.tableLayoutPanel1);
-            this.tabPage11.Location = new System.Drawing.Point(4, 22);
-            this.tabPage11.Name = "tabPage11";
-            this.tabPage11.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage11.Size = new System.Drawing.Size(732, 443);
-            this.tabPage11.TabIndex = 0;
-            this.tabPage11.Text = "Orders";
-            this.tabPage11.UseVisualStyleBackColor = true;
+            this.Selected.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Selected.DataPropertyName = "LoggedIn";
+            this.Selected.HeaderText = "LoggedIn";
+            this.Selected.Name = "Selected";
+            this.Selected.ReadOnly = true;
+            this.Selected.Width = 58;
             // 
-            // tabPage12
+            // dataGridViewTextBoxColumn3
             // 
-            this.tabPage12.Controls.Add(this.tableLayoutPanel5);
-            this.tabPage12.Location = new System.Drawing.Point(4, 22);
-            this.tabPage12.Name = "tabPage12";
-            this.tabPage12.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage12.Size = new System.Drawing.Size(732, 443);
-            this.tabPage12.TabIndex = 1;
-            this.tabPage12.Text = "ProductOrders";
-            this.tabPage12.UseVisualStyleBackColor = true;
+            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "AssignedToStation";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Station";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.Width = 65;
             // 
-            // tableLayoutPanel1
+            // employeeBindingSource
             // 
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 61.80556F));
-            this.tableLayoutPanel1.Controls.Add(this.dataGridView1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.panel9, 0, 1);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 64.96519F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35.0348F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(726, 437);
-            this.tableLayoutPanel1.TabIndex = 10;
+            this.employeeBindingSource.DataSource = typeof(TypeLib.Employee);
             // 
-            // dataGridView1
+            // productIDDataGridViewTextBoxColumn
             // 
-            this.dataGridView1.AllowUserToResizeColumns = false;
-            this.dataGridView1.AllowUserToResizeRows = false;
-            this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.OrderID,
-            this.ByTerminal,
-            this.Paid,
-            this.Canceled,
-            this.PickedUp,
-            this.ShowOnScreen,
-            this.HappyCustomer,
-            this.Returned,
-            this.dataGridViewCheckBoxColumn3,
-            this.dataGridViewCheckBoxColumn5});
-            this.dataGridView1.DataSource = this.orderBindingSource;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 3);
-            this.dataGridView1.MultiSelect = false;
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(720, 277);
-            this.dataGridView1.TabIndex = 0;
+            this.productIDDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.productIDDataGridViewTextBoxColumn.DataPropertyName = "ProductID";
+            this.productIDDataGridViewTextBoxColumn.HeaderText = "ProductID";
+            this.productIDDataGridViewTextBoxColumn.Name = "productIDDataGridViewTextBoxColumn";
+            this.productIDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.productIDDataGridViewTextBoxColumn.Width = 80;
             // 
-            // panel9
+            // productTypeIDDataGridViewTextBoxColumn
             // 
-            this.panel9.Controls.Add(this.button4);
-            this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel9.Location = new System.Drawing.Point(3, 286);
-            this.panel9.Name = "panel9";
-            this.panel9.Padding = new System.Windows.Forms.Padding(0, 0, 0, 100);
-            this.panel9.Size = new System.Drawing.Size(720, 148);
-            this.panel9.TabIndex = 9;
+            this.productTypeIDDataGridViewTextBoxColumn.DataPropertyName = "ProductTypeID";
+            this.productTypeIDDataGridViewTextBoxColumn.HeaderText = "ProductTypeID";
+            this.productTypeIDDataGridViewTextBoxColumn.Name = "productTypeIDDataGridViewTextBoxColumn";
             // 
-            // button4
+            // productNameDataGridViewTextBoxColumn
             // 
-            this.button4.Dock = System.Windows.Forms.DockStyle.Left;
-            this.button4.Location = new System.Drawing.Point(0, 0);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(100, 48);
-            this.button4.TabIndex = 1;
-            this.button4.Text = "Get All";
-            this.button4.UseVisualStyleBackColor = true;
+            this.productNameDataGridViewTextBoxColumn.DataPropertyName = "ProductName";
+            this.productNameDataGridViewTextBoxColumn.HeaderText = "ProductName";
+            this.productNameDataGridViewTextBoxColumn.Name = "productNameDataGridViewTextBoxColumn";
             // 
-            // orderBindingSource
+            // descriptionDataGridViewTextBoxColumn
             // 
-            this.orderBindingSource.DataSource = typeof(TypeLib.Order);
+            this.descriptionDataGridViewTextBoxColumn.DataPropertyName = "Description";
+            this.descriptionDataGridViewTextBoxColumn.HeaderText = "Description";
+            this.descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
             // 
-            // OrderID
+            // prepTimeDataGridViewTextBoxColumn
             // 
-            this.OrderID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.OrderID.DataPropertyName = "OrderID";
-            this.OrderID.HeaderText = "OrderID";
-            this.OrderID.Name = "OrderID";
-            this.OrderID.ReadOnly = true;
+            this.prepTimeDataGridViewTextBoxColumn.DataPropertyName = "PrepTime";
+            this.prepTimeDataGridViewTextBoxColumn.HeaderText = "PrepTime";
+            this.prepTimeDataGridViewTextBoxColumn.Name = "prepTimeDataGridViewTextBoxColumn";
             // 
-            // ByTerminal
+            // basePriceDataGridViewTextBoxColumn
             // 
-            this.ByTerminal.DataPropertyName = "ByTerminal";
-            this.ByTerminal.HeaderText = "ByTerminal";
-            this.ByTerminal.Name = "ByTerminal";
-            this.ByTerminal.ReadOnly = true;
+            this.basePriceDataGridViewTextBoxColumn.DataPropertyName = "BasePrice";
+            this.basePriceDataGridViewTextBoxColumn.HeaderText = "BasePrice";
+            this.basePriceDataGridViewTextBoxColumn.Name = "basePriceDataGridViewTextBoxColumn";
             // 
-            // Paid
+            // dataGridViewCheckBoxColumn1
             // 
-            this.Paid.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Paid.DataPropertyName = "Paid";
-            this.Paid.HeaderText = "Paid";
-            this.Paid.Name = "Paid";
+            this.dataGridViewCheckBoxColumn1.DataPropertyName = "Activated";
+            this.dataGridViewCheckBoxColumn1.HeaderText = "Activated";
+            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
             // 
-            // Canceled
+            // dataGridViewCheckBoxColumn2
             // 
-            this.Canceled.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Canceled.DataPropertyName = "Canceled";
-            this.Canceled.HeaderText = "Canceled";
-            this.Canceled.Name = "Canceled";
+            this.dataGridViewCheckBoxColumn2.DataPropertyName = "Visible";
+            this.dataGridViewCheckBoxColumn2.HeaderText = "Visible";
+            this.dataGridViewCheckBoxColumn2.Name = "dataGridViewCheckBoxColumn2";
             // 
-            // PickedUp
+            // productBindingSource
             // 
-            this.PickedUp.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.PickedUp.DataPropertyName = "PickedUp";
-            this.PickedUp.HeaderText = "PickedUp";
-            this.PickedUp.Name = "PickedUp";
+            this.productBindingSource.DataSource = typeof(TypeLib.Product);
             // 
-            // ShowOnScreen
+            // dataGridViewCheckBoxColumn4
             // 
-            this.ShowOnScreen.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ShowOnScreen.DataPropertyName = "ShowOnScreen";
-            this.ShowOnScreen.HeaderText = "ShowOnScreen";
-            this.ShowOnScreen.Name = "ShowOnScreen";
+            this.dataGridViewCheckBoxColumn4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.dataGridViewCheckBoxColumn4.DataPropertyName = "Visible";
+            this.dataGridViewCheckBoxColumn4.HeaderText = "Visible";
+            this.dataGridViewCheckBoxColumn4.Name = "dataGridViewCheckBoxColumn4";
+            this.dataGridViewCheckBoxColumn4.Width = 43;
             // 
-            // HappyCustomer
+            // ingredientBindingSource
             // 
-            this.HappyCustomer.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.HappyCustomer.DataPropertyName = "HappyCustomer";
-            this.HappyCustomer.HeaderText = "HappyCustomer";
-            this.HappyCustomer.Name = "HappyCustomer";
-            // 
-            // Returned
-            // 
-            this.Returned.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Returned.DataPropertyName = "Returned";
-            this.Returned.HeaderText = "Returned";
-            this.Returned.Name = "Returned";
+            this.ingredientBindingSource.DataSource = typeof(TypeLib.Ingredient);
             // 
             // dataGridViewCheckBoxColumn3
             // 
@@ -1405,121 +1525,59 @@
             this.dataGridViewCheckBoxColumn5.HeaderText = "Visible";
             this.dataGridViewCheckBoxColumn5.Name = "dataGridViewCheckBoxColumn5";
             // 
-            // tableLayoutPanel5
+            // orderBindingSource
             // 
-            this.tableLayoutPanel5.ColumnCount = 1;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 61.80556F));
-            this.tableLayoutPanel5.Controls.Add(this.dataGridView2, 0, 0);
-            this.tableLayoutPanel5.Controls.Add(this.panel8, 0, 1);
-            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 2;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 64.96519F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35.0348F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(726, 437);
-            this.tableLayoutPanel5.TabIndex = 11;
+            this.orderBindingSource.DataSource = typeof(TypeLib.Order);
             // 
-            // dataGridView2
+            // productOrderIDDataGridViewTextBoxColumn
             // 
-            this.dataGridView2.AllowUserToResizeColumns = false;
-            this.dataGridView2.AllowUserToResizeRows = false;
-            this.dataGridView2.AutoGenerateColumns = false;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ProductOrderID,
-            this.ProductID,
-            this.dataGridViewTextBoxColumn1,
-            this.LockedByStation,
-            this.Processed,
-            this.dataGridViewCheckBoxColumn6,
-            this.Visible});
-            this.dataGridView2.DataSource = this.productOrderBindingSource1;
-            this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView2.Location = new System.Drawing.Point(3, 3);
-            this.dataGridView2.MultiSelect = false;
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.RowHeadersVisible = false;
-            this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView2.Size = new System.Drawing.Size(720, 277);
-            this.dataGridView2.TabIndex = 0;
+            this.productOrderIDDataGridViewTextBoxColumn.DataPropertyName = "ProductOrderID";
+            this.productOrderIDDataGridViewTextBoxColumn.HeaderText = "ProductOrderID";
+            this.productOrderIDDataGridViewTextBoxColumn.Name = "productOrderIDDataGridViewTextBoxColumn";
             // 
-            // panel8
+            // productIDDataGridViewTextBoxColumn1
             // 
-            this.panel8.Controls.Add(this.button3);
-            this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel8.Location = new System.Drawing.Point(3, 286);
-            this.panel8.Name = "panel8";
-            this.panel8.Padding = new System.Windows.Forms.Padding(0, 0, 0, 100);
-            this.panel8.Size = new System.Drawing.Size(720, 148);
-            this.panel8.TabIndex = 9;
+            this.productIDDataGridViewTextBoxColumn1.DataPropertyName = "ProductID";
+            this.productIDDataGridViewTextBoxColumn1.HeaderText = "ProductID";
+            this.productIDDataGridViewTextBoxColumn1.Name = "productIDDataGridViewTextBoxColumn1";
             // 
-            // button3
+            // dataGridViewTextBoxColumn2
             // 
-            this.button3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.button3.Location = new System.Drawing.Point(0, 0);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(100, 48);
-            this.button3.TabIndex = 1;
-            this.button3.Text = "Get All";
-            this.button3.UseVisualStyleBackColor = true;
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "OrderID";
+            this.dataGridViewTextBoxColumn2.HeaderText = "OrderID";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             // 
-            // productOrderBindingSource
+            // dataGridViewTextBoxColumn4
             // 
-            this.productOrderBindingSource.DataSource = typeof(TypeLib.ProductOrder);
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "LockedByStation";
+            this.dataGridViewTextBoxColumn4.HeaderText = "LockedByStation";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            // 
+            // processedDataGridViewCheckBoxColumn
+            // 
+            this.processedDataGridViewCheckBoxColumn.DataPropertyName = "Processed";
+            this.processedDataGridViewCheckBoxColumn.HeaderText = "Processed";
+            this.processedDataGridViewCheckBoxColumn.Name = "processedDataGridViewCheckBoxColumn";
+            // 
+            // dataGridViewCheckBoxColumn7
+            // 
+            this.dataGridViewCheckBoxColumn7.DataPropertyName = "Activated";
+            this.dataGridViewCheckBoxColumn7.HeaderText = "Activated";
+            this.dataGridViewCheckBoxColumn7.Name = "dataGridViewCheckBoxColumn7";
+            // 
+            // dataGridViewCheckBoxColumn8
+            // 
+            this.dataGridViewCheckBoxColumn8.DataPropertyName = "Visible";
+            this.dataGridViewCheckBoxColumn8.HeaderText = "Visible";
+            this.dataGridViewCheckBoxColumn8.Name = "dataGridViewCheckBoxColumn8";
             // 
             // productOrderBindingSource1
             // 
             this.productOrderBindingSource1.DataSource = typeof(TypeLib.ProductOrder);
             // 
-            // ProductOrderID
+            // productOrderBindingSource
             // 
-            this.ProductOrderID.DataPropertyName = "ProductOrderID";
-            this.ProductOrderID.HeaderText = "ProductOrderID";
-            this.ProductOrderID.Name = "ProductOrderID";
-            this.ProductOrderID.ReadOnly = true;
-            // 
-            // ProductID
-            // 
-            this.ProductID.DataPropertyName = "ProductID";
-            this.ProductID.HeaderText = "ProductID";
-            this.ProductID.Name = "ProductID";
-            this.ProductID.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "OrderID";
-            this.dataGridViewTextBoxColumn1.HeaderText = "OrderID";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // LockedByStation
-            // 
-            this.LockedByStation.DataPropertyName = "LockedByStation";
-            this.LockedByStation.HeaderText = "LockedByStation";
-            this.LockedByStation.Name = "LockedByStation";
-            this.LockedByStation.ReadOnly = true;
-            // 
-            // Processed
-            // 
-            this.Processed.DataPropertyName = "Processed";
-            this.Processed.HeaderText = "Processed";
-            this.Processed.Name = "Processed";
-            this.Processed.ReadOnly = true;
-            // 
-            // dataGridViewCheckBoxColumn6
-            // 
-            this.dataGridViewCheckBoxColumn6.DataPropertyName = "Activated";
-            this.dataGridViewCheckBoxColumn6.HeaderText = "Activated";
-            this.dataGridViewCheckBoxColumn6.Name = "dataGridViewCheckBoxColumn6";
-            this.dataGridViewCheckBoxColumn6.ReadOnly = true;
-            // 
-            // Visible
-            // 
-            this.Visible.DataPropertyName = "Visible";
-            this.Visible.HeaderText = "Visible";
-            this.Visible.Name = "Visible";
-            this.Visible.ReadOnly = true;
+            this.productOrderBindingSource.DataSource = typeof(TypeLib.ProductOrder);
             // 
             // Admin
             // 
@@ -1560,7 +1618,6 @@
             this.tabEditEmployees.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployees)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -1570,7 +1627,6 @@
             this.tabProducts2.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProducts)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.panel4.ResumeLayout(false);
@@ -1578,29 +1634,31 @@
             this.tabIngredients.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewIngredients)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ingredientBindingSource)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.panel6.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
+            this.tabOrders.ResumeLayout(false);
+            this.tabControl8.ResumeLayout(false);
+            this.tabPage11.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOrders)).EndInit();
+            this.panel9.ResumeLayout(false);
+            this.tabPage12.ResumeLayout(false);
+            this.tableLayoutPanel5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPOrders)).EndInit();
+            this.panel8.ResumeLayout(false);
             this.tabBuildings.ResumeLayout(false);
             this.tabControl5.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabControl6.ResumeLayout(false);
-            this.tabOrders.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.productOrdersBindingSource)).EndInit();
-            this.tabControl8.ResumeLayout(false);
-            this.tabPage11.ResumeLayout(false);
-            this.tabPage12.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.panel9.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ingredientBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.orderBindingSource)).EndInit();
-            this.tableLayoutPanel5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            this.panel8.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.productOrderBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productOrderBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productOrderBindingSource)).EndInit();
             this.ResumeLayout(false);
 
 		}
@@ -1734,7 +1792,7 @@
         private System.Windows.Forms.TabPage tabPage11;
         private System.Windows.Forms.TabPage tabPage12;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridViewOrders;
         private System.Windows.Forms.DataGridViewTextBoxColumn OrderID;
         private System.Windows.Forms.DataGridViewTextBoxColumn ByTerminal;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Paid;
@@ -1747,9 +1805,9 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn5;
         private System.Windows.Forms.BindingSource orderBindingSource;
         private System.Windows.Forms.Panel panel9;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button GetAllOrdersBtn;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView dataGridViewPOrders;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductOrderID;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductID;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
@@ -1759,7 +1817,14 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn Visible;
         private System.Windows.Forms.BindingSource productOrderBindingSource1;
         private System.Windows.Forms.Panel panel8;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button GetAllProductOrdersBtn;
         private System.Windows.Forms.BindingSource productOrderBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn productOrderIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn productIDDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn processedDataGridViewCheckBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn7;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn8;
     }
 }

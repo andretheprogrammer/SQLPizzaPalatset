@@ -20,6 +20,10 @@ namespace G3Systems
 
 		#region Form Load/Close
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="terminalID"></param>
 		public PickProduct(int terminalID)
 		{
 			InitializeComponent();
@@ -332,6 +336,7 @@ namespace G3Systems
 			UpdateListBoxCart();
 		}
 
+		// 
 		private void RemoveProductFromCart(Product product)
 		{
 			var dialogResult = MessageBox.Show($"Ta bort {product.ProductName}?", "", MessageBoxButtons.YesNo);
