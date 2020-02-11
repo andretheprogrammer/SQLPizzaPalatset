@@ -19,6 +19,7 @@ namespace G3Systems
 		private Employee user;
 		private Employee editEmployee;
 		private Product editProduct;
+		private Ingredient editIngredient;
 
 		public Admin(Employee user)
 		{
@@ -86,43 +87,63 @@ namespace G3Systems
 			}
 
 			dataGridViewEmployees.CommitEdit(DataGridViewDataErrorContexts.Commit);
-			await _repo.UpdateEmployeeAsync(editEmployee);
+			await _repo.UpdateEmployeeAsync(this.editEmployee);
 		}
 
 		private async void dataGridViewEmployees_CellEndEdit(object sender, DataGridViewCellEventArgs e)
 		{
-			if (editEmployee.EmployeeID == -1)
+			if (this.editEmployee.EmployeeID == -1)
 			{
 				return;
 			}
 
 			dataGridViewEmployees.CommitEdit(DataGridViewDataErrorContexts.Commit);
-			await _repo.UpdateEmployeeAsync(editEmployee);
+			await _repo.UpdateEmployeeAsync(this.editEmployee);
 		}
 
 		private async void dataGridViewProducts_CellEndEdit(object sender, DataGridViewCellEventArgs e)
 		{
-			if (editProduct.ProductID == -1)
+			if (this.editProduct.ProductID == -1)
 			{
 				return;
 			}
 
-			await _repo.UpdateCreateProduct(editProduct);
+			await _repo.UpdateCreateProduct(this.editProduct);
 		}
 
-		private async void dataGridViewProducts_SelectionChangedAsync(object sender, EventArgs e)
+		private void dataGridViewProducts_SelectionChangedAsync(object sender, EventArgs e)
 		{
 			if ((dataGridViewProducts.SelectedRows.Count <= 0))
 			{
 				return;
 			}
 
-			editProduct = (Product)dataGridViewProducts.SelectedRows[0].DataBoundItem;
+			this.editProduct = (Product)dataGridViewProducts.SelectedRows[0].DataBoundItem;
 		}
 
 		private async void GetAllProductsBtn_Click(object sender, EventArgs e)
 		{
 			dataGridViewProducts.DataSource = await _repo.GetProductsAsync();
+		}
+
+		private async void dataGridViewIngredients_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+		{
+			await _repo.UpdateCreateIngredient(this.editIngredient);
+		}
+
+		private async void GetAllIngredientsBtn_Click(object sender, EventArgs e)
+		{
+			dataGridViewIngredients.DataSource = await _repo.GetIngredients();
+		}
+
+		private void dataGridViewIngredients_SelectionChanged(object sender, EventArgs e)
+		{
+			if ((dataGridViewIngredients.SelectedRows.Count <= 0))
+			{
+				return;
+			}
+
+			this.editIngredient = (Ingredient)dataGridViewIngredients.SelectedRows[0].DataBoundItem;
 		}
 	}
 }

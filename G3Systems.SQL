@@ -638,6 +638,23 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 		End
 		GO
 
+		Create Proc Proc_UpdateEmployee
+			@EmployeeID int,
+			@Username varchar(20),
+			@Password varchar(20),
+			@LoggedIn bit,
+			@AssignedToStation int
+		AS
+		Begin
+			Update Employees
+			Set Username = @Username,
+				[Password] = @Password,
+				LoggedIn = @LoggedIn,
+				AssignedToStation = @AssignedToStation
+			Where EmployeeID = @EmployeeID;
+		End
+		GO
+
 	--Product Ingredients
 		Create proc Proc_GetProductHaveIngredients
 			@ProductID int
@@ -727,6 +744,62 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 		End
 		GO
 
+
+		Create PROCEDURE Proc_ProductSetCreate(
+			@ProductID int, 
+			@ProductTypeID Int,
+			@ProductName varchar(100),
+			@Description varchar(100),
+			@preptime int,
+			@baseprice int,
+			@activated bit,
+			@visible bit)
+			AS
+			IF @ProductID is null
+				BEGIN
+				INSERT INTO 
+					Products(ProductTypeID, ProductName, Description, preptime, baseprice, activated, visible) 
+						VALUES(@ProductTypeID ,@ProductName,@Description,@preptime, @baseprice ,@activated, @visible)
+				END
+			ELSE
+				BEGIN
+					UPDATE Products
+					SET 
+					ProductTypeID = @ProductTypeID,
+					ProductName =   @ProductName,
+					Description =   @Description,
+					preptime =  @preptime,
+					baseprice = @baseprice,
+					activated = @activated,
+					visible =   @visible
+					WHERE Products.ProductID = @ProductID
+				END
+			GO
+
+		CREATE PROCEDURE Proc_IngredientSetCreate(
+			@IngredientID int, 
+			@IngredientName varchar(100),
+			@Price int,
+			@Activated int,
+			@Visible int)
+		AS
+		IF @IngredientID is null
+			BEGIN
+			INSERT INTO 
+				Ingredients(IngredientID, IngredientName,Price,Activated, Visible) 
+					VALUES(@IngredientID,@IngredientName,@Price,@Activated,@Visible)
+			END
+		ELSE
+			BEGIN
+				UPDATE Ingredients
+				SET 
+				IngredientName = @IngredientName,
+				Price = @Price,
+				Activated = @Activated,
+				Visible = @Visible
+				WHERE IngredientID = @IngredientID
+			END
+		GO
 	--Procedures för att läggatill (eller tabort) whatever.. (en procedure för varje entitetstyp)
 	-- Kan bli hur många som helst här...
 

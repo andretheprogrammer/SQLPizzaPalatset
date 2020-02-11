@@ -255,6 +255,33 @@ namespace SQLServer
             }
         }
 
+        public async Task<IEnumerable<Ingredient>> GetIngredients()
+        {
+            var sqlQuery = "select * from ingredients;";
+
+            using (var connection = CreateConnection())
+            {
+                return await connection.QueryAsync<Ingredient>(sqlQuery);
+            }
+        }
+
+        public async Task UpdateCreateIngredient(Ingredient ingredient)
+        {
+            using (var connection = CreateConnection())
+            {
+                await connection.ExecuteAsync(
+                    sql: "Proc_IngredientSetCreate",
+                    param: new { 
+                        ingredient.IngredientID,
+                        ingredient.IngredientName, 
+                        ingredient.Price, 
+                        ingredient.Activated, 
+                        ingredient.Visible },
+                    commandType: CommandType.StoredProcedure);
+            }
+        }
+
+
         // Ingredients
         public async Task<IEnumerable<Ingredient>> GetHaveIngredientsAsync(int id)
         {

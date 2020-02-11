@@ -64,6 +64,10 @@ namespace TypeLib
 
 
         // Ingredients
+        Task<IEnumerable<Ingredient>> GetIngredients();
+
+        Task UpdateCreateIngredient(Ingredient ingredient);
+
         Task<IEnumerable<Ingredient>> GetHaveIngredientsAsync(int id);
 
         Task<IEnumerable<Ingredient>> GetCanHaveIngredientsAsync(int id);
