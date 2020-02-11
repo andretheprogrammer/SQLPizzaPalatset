@@ -488,6 +488,14 @@ namespace SQLServer
             }
         }
 
+        public async Task<IEnumerable<Ingredient>> GetAllIngredients()
+        {
+            var sqlQuery = "select * from ingredients";
 
+            using (var connection = CreateConnection())
+            {
+                return await connection.QueryAsync<Ingredient>(sqlQuery);
+            }
+        }
     }
 }
