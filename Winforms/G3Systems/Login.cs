@@ -22,28 +22,28 @@ namespace G3Systems
 		{
 			InitializeComponent();
 
-			try
-			{
-				// Get key string from App.config appsettings
-				string _postgreBackEnd = ConfigurationManager.AppSettings.Keys[0];
+			//try
+			//{
+			//	// Get key string from App.config appsettings
+			//	string _postgreBackEnd = ConfigurationManager.AppSettings.Keys[0];
 
-				// Check if postgreSQL Back-End is set to true App.Config 
-				if (_postgreBackEnd.GetConfigSetting<bool>())
-				{
-					MessageBox.Show("PostgreSQL", "Connected");
-					_repo = new PostgreSQL.G3SystemsRepository();
-				}
-				else
-				{
+			//	// Check if postgreSQL Back-End is set to true App.Config 
+			//	if (_postgreBackEnd.GetConfigSetting<bool>())
+			//	{
+			//		MessageBox.Show("PostgreSQL", "Connected");
+			//		_repo = new PostgreSQL.G3SystemsRepository();
+			//	}
+			//	else
+			//	{
 					MessageBox.Show("MSSQL", "Connected");
 					_repo = new SQLServer.G3SystemsRepository();
-				}
-			}
-			catch
-			{
-				MessageBox.Show("Fel i App.config", "Error");
-				throw;
-			}
+			//	}
+			//}
+			//catch
+			//{
+			//	MessageBox.Show("Fel i App.config", "Error");
+			//	throw;
+			//}
 
 			cbConnectTo.SelectedIndex = 0;
 		}
