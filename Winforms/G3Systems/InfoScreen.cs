@@ -21,38 +21,6 @@ namespace G3Systems
 			_repo = new G3SystemsRepository();
 		}
 
-		private void listView1_SelectedIndexChanged(object sender, EventArgs e)
-		{
-
-		}
-
-		//private async void FinishedOrderTiming_Tick(object sender, EventArgs e)
-		//{
-		//	IEnumerable<Order> orders= await _repo.GetOrdersAsync();
-		//	ProcessingOrdersGrid.Clear();
-		//	foreach (Order order in orders)
-		//	{
-		//		ListViewItem columnInList = new ListViewItem();
-		//		columnInList.Tag = order.OrderId; //
-		//		columnInList.Text = order.OrderId.ToString();
-		//		//columnInList.SubItems.Add("second column");
-		//		ProcessingOrdersGrid.Items.Add(columnInList);
-				
-		//	}
-			
-		//}
-
-		private void InfoScreen_Load(object sender, EventArgs e)
-		{
-
-
-		}
-
-		private void lstbxFinished_SelectedIndexChanged(object sender, EventArgs e)
-		{
-
-		}
-
 		private void InfoScreen_Load_1(object sender, EventArgs e)
 		{
 			Timer Screentimer = new Timer();
@@ -71,8 +39,6 @@ namespace G3Systems
 
 			InProcessOrders.ForEach(a => lstbxProcessing.Items.Add(a.OrderID));
 			finishedOrders.ForEach(a => lstbxFinished.Items.Add(a.OrderID));
-
-
 		}
 
 		private void button000_click(object sender, EventArgs e)
@@ -83,6 +49,13 @@ namespace G3Systems
 			var Form0 = new CustomerEnter(terminalID);
 			Form0.Text += $" {terminalID}";
 			Form0.ShowDialog();
+		}
+
+		private void InfoScreen_FormClosed(object sender, FormClosedEventArgs e)
+		{
+			var form = new Login();
+			this.Dispose();
+			form.ShowDialog();
 		}
 	}
 }

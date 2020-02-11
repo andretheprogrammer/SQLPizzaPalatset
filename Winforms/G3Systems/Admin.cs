@@ -41,7 +41,9 @@ namespace G3Systems
 
 		private void Admin_FormClosed(object sender, FormClosedEventArgs e)
 		{
-			Application.Exit();
+			var form = new Login();
+			this.Dispose();
+			form.ShowDialog();
 		}
 
 		private async void GetEmployeesBtn_Click(object sender, EventArgs e)

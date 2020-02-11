@@ -26,31 +26,11 @@ namespace G3Systems
 
 		}
 
-
-		private void toolStripComboBox1_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void toolStripContainer1_LeftToolStripPanel_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void toolStripStatusLabel1_Click(object sender, EventArgs e)
-		{
-
-		}
-
 		private void tabPage1_Click(object sender, EventArgs e)
 		{
 			this.WindowState = FormWindowState.Maximized;
 		}
 
-		private void statusStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-		{
-
-		}
 
 		private void tabPage1_Click_1(object sender, EventArgs e)
 		{
@@ -62,45 +42,14 @@ namespace G3Systems
 			this.WindowState = FormWindowState.Maximized;
 		}
 
-		private void bindingSource1_CurrentChanged(object sender, EventArgs e)
-		{
-
-		}
-
-		private void Form1_Load(object sender, EventArgs e)
-		{
-
-		}
-
-		private void dataGridView6_CellContentClick(object sender, DataGridViewCellEventArgs e)
-		{
-
-		}
-
-		private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-		{
-
-		}
-
-		private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
-		{
-
-		}
-
-		private void splitContainer5_Panel1_Paint(object sender, PaintEventArgs e)
-		{
-
-		}
-
 		private void Cashier_FormClosed(object sender, FormClosedEventArgs e)
 		{
-			Application.Exit();
+			Logout();
 		}
 
 
 		private async void btnPickedUp_Click(object sender, EventArgs e)
 		{
-			//
 			//int selectedindex = lstbxC_Finished.SelectedItems.IndexOf();
 			//int val = lstbxC_Finished.Ge
 
@@ -111,15 +60,6 @@ namespace G3Systems
 			}
 
 			btnRefresh.PerformClick();
-			
-		}
-
-
-
-
-		private void lstbxProcessing_SelectedIndexChanged(object sender, EventArgs e)
-		{
-
 		}
 
 		private async void btnRefresh_click(object sender, EventArgs e)
@@ -135,16 +75,16 @@ namespace G3Systems
 
 		}
 
-		//private void button3_Click(object sender, EventArgs e)
-		//{
-
-		//}
-
 		private void btn_LogOut_Click(object sender, EventArgs e)
 		{
+			Logout();
+		}
+
+		private void Logout()
+		{
 			var form = new Login();
-			form.Show();
-			this.Hide();
+			this.Dispose();
+			form.ShowDialog();
 		}
 	}
 }
