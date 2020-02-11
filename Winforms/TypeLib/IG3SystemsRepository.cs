@@ -11,7 +11,11 @@ namespace TypeLib
     public interface IG3SystemsRepository
     {
         // Products
+        Task<IEnumerable<Product>> GetProductsAsync();
+
         Task<IEnumerable<Product>> GetProductsAsync(ProductType productType);
+
+        Task UpdateCreateProduct(Product product);
 
         // TODO Delete om ej används
         Task<IEnumerable<ProductOrder>> GetProductOrdersAsync();

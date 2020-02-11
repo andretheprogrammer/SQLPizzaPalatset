@@ -60,56 +60,37 @@
             this.TabEmployees = new System.Windows.Forms.TabPage();
             this.tabControl3 = new System.Windows.Forms.TabControl();
             this.tabEditEmployees = new System.Windows.Forms.TabPage();
-            this.UpdateEmployeeBtn = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.tbPassword = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.tbUsername = new System.Windows.Forms.TextBox();
-            this.GetEmployeesBtn = new System.Windows.Forms.Button();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.dataGridViewEmployees = new System.Windows.Forms.DataGridView();
-            this.employeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.Password = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.chkListBoxEmployeeType = new System.Windows.Forms.CheckedListBox();
+            this.tbUsername = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.tbPassword = new System.Windows.Forms.TextBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.AddNewEmployeeBtn = new System.Windows.Forms.Button();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.GetEmployeesBtn = new System.Windows.Forms.Button();
             this.TabProducts = new System.Windows.Forms.TabPage();
             this.tabControl4 = new System.Windows.Forms.TabControl();
-            this.tabProdTypes = new System.Windows.Forms.TabPage();
-            this.bindingNavigator7 = new System.Windows.Forms.BindingNavigator(this.components);
-            this.bindingNavigatorAddNewItem6 = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorCountItem6 = new System.Windows.Forms.ToolStripLabel();
-            this.bindingNavigatorDeleteItem6 = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMoveFirstItem6 = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMovePreviousItem6 = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorSeparator18 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorPositionItem6 = new System.Windows.Forms.ToolStripTextBox();
-            this.bindingNavigatorSeparator19 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorMoveNextItem6 = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMoveLastItem6 = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorSeparator20 = new System.Windows.Forms.ToolStripSeparator();
             this.tabProducts2 = new System.Windows.Forms.TabPage();
-            this.bindingNavigator8 = new System.Windows.Forms.BindingNavigator(this.components);
-            this.bindingNavigatorAddNewItem7 = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorCountItem7 = new System.Windows.Forms.ToolStripLabel();
-            this.bindingNavigatorDeleteItem7 = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMoveFirstItem7 = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMovePreviousItem7 = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorSeparator21 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorPositionItem7 = new System.Windows.Forms.ToolStripTextBox();
-            this.bindingNavigatorSeparator22 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorMoveNextItem7 = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMoveLastItem7 = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorSeparator23 = new System.Windows.Forms.ToolStripSeparator();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.dataGridViewProducts = new System.Windows.Forms.DataGridView();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.GetAllProductsBtn = new System.Windows.Forms.Button();
             this.tabIngredients = new System.Windows.Forms.TabPage();
-            this.bindingNavigator9 = new System.Windows.Forms.BindingNavigator(this.components);
-            this.bindingNavigatorAddNewItem8 = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorCountItem8 = new System.Windows.Forms.ToolStripLabel();
-            this.bindingNavigatorDeleteItem8 = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMoveFirstItem8 = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMovePreviousItem8 = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorSeparator24 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorPositionItem8 = new System.Windows.Forms.ToolStripTextBox();
-            this.bindingNavigatorSeparator25 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorMoveNextItem8 = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMoveLastItem8 = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorSeparator26 = new System.Windows.Forms.ToolStripSeparator();
             this.tabBuildings = new System.Windows.Forms.TabPage();
             this.tabControl5 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -206,13 +187,39 @@
             this.employeesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.employeesTableAdapter = new G3Systems.G3SystemsDataSetTableAdapters.EmployeesTableAdapter();
             this.employeesTableAdapter1 = new G3Systems.G3SystemsDataSet1TableAdapters.EmployeesTableAdapter();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.employeeIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Username = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Selected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.chkListBoxEmployeeType = new System.Windows.Forms.CheckedListBox();
-            this.label8 = new System.Windows.Forms.Label();
+            this.employeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.productIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.productTypeIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.productNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.prepTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.basePriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewCheckBoxColumn2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.dataGridViewIngredients = new System.Windows.Forms.DataGridView();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.checkedListBox2 = new System.Windows.Forms.CheckedListBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.button3 = new System.Windows.Forms.Button();
+            this.ingredientBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.IngredientID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IngredientName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Activated = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewCheckBoxColumn4 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -237,19 +244,20 @@
             this.TabEmployees.SuspendLayout();
             this.tabControl3.SuspendLayout();
             this.tabEditEmployees.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployees)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).BeginInit();
+            this.groupBox2.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.TabProducts.SuspendLayout();
             this.tabControl4.SuspendLayout();
-            this.tabProdTypes.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator7)).BeginInit();
-            this.bindingNavigator7.SuspendLayout();
             this.tabProducts2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator8)).BeginInit();
-            this.bindingNavigator8.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProducts)).BeginInit();
+            this.groupBox3.SuspendLayout();
+            this.panel4.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.tabIngredients.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator9)).BeginInit();
-            this.bindingNavigator9.SuspendLayout();
             this.tabBuildings.SuspendLayout();
             this.tabControl5.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -290,7 +298,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.g3SystemsDataSetBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1BindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.employeesBindingSource)).BeginInit();
-            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
+            this.tableLayoutPanel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewIngredients)).BeginInit();
+            this.groupBox4.SuspendLayout();
+            this.panel6.SuspendLayout();
+            this.panel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ingredientBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -552,7 +567,6 @@
             // tabControl3
             // 
             this.tabControl3.Controls.Add(this.tabEditEmployees);
-            this.tabControl3.Controls.Add(this.tabPage4);
             this.tabControl3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl3.Location = new System.Drawing.Point(3, 3);
             this.tabControl3.Name = "tabControl3";
@@ -562,10 +576,7 @@
             // 
             // tabEditEmployees
             // 
-            this.tabEditEmployees.Controls.Add(this.UpdateEmployeeBtn);
-            this.tabEditEmployees.Controls.Add(this.groupBox2);
-            this.tabEditEmployees.Controls.Add(this.GetEmployeesBtn);
-            this.tabEditEmployees.Controls.Add(this.dataGridViewEmployees);
+            this.tabEditEmployees.Controls.Add(this.tableLayoutPanel2);
             this.tabEditEmployees.Location = new System.Drawing.Point(4, 22);
             this.tabEditEmployees.Name = "tabEditEmployees";
             this.tabEditEmployees.Padding = new System.Windows.Forms.Padding(3);
@@ -574,15 +585,98 @@
             this.tabEditEmployees.Text = "Edit Employees";
             this.tabEditEmployees.UseVisualStyleBackColor = true;
             // 
-            // UpdateEmployeeBtn
+            // tableLayoutPanel2
             // 
-            this.UpdateEmployeeBtn.Location = new System.Drawing.Point(590, 289);
-            this.UpdateEmployeeBtn.Name = "UpdateEmployeeBtn";
-            this.UpdateEmployeeBtn.Size = new System.Drawing.Size(89, 35);
-            this.UpdateEmployeeBtn.TabIndex = 6;
-            this.UpdateEmployeeBtn.Text = "Save";
-            this.UpdateEmployeeBtn.UseVisualStyleBackColor = true;
-            this.UpdateEmployeeBtn.Click += new System.EventHandler(this.UpdateEmployeeBtn_Click);
+            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 57.63889F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 42.36111F));
+            this.tableLayoutPanel2.Controls.Add(this.dataGridViewEmployees, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.groupBox2, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.panel2, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.panel3, 0, 1);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 2;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 64.96519F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35.0348F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(720, 431);
+            this.tableLayoutPanel2.TabIndex = 8;
+            // 
+            // dataGridViewEmployees
+            // 
+            this.dataGridViewEmployees.AllowUserToResizeColumns = false;
+            this.dataGridViewEmployees.AllowUserToResizeRows = false;
+            this.dataGridViewEmployees.AutoGenerateColumns = false;
+            this.dataGridViewEmployees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewEmployees.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.employeeIDDataGridViewTextBoxColumn,
+            this.Username,
+            this.Password,
+            this.Selected,
+            this.dataGridViewTextBoxColumn3});
+            this.dataGridViewEmployees.DataSource = this.employeeBindingSource;
+            this.dataGridViewEmployees.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewEmployees.Location = new System.Drawing.Point(3, 3);
+            this.dataGridViewEmployees.MultiSelect = false;
+            this.dataGridViewEmployees.Name = "dataGridViewEmployees";
+            this.dataGridViewEmployees.RowHeadersVisible = false;
+            this.dataGridViewEmployees.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewEmployees.Size = new System.Drawing.Size(409, 273);
+            this.dataGridViewEmployees.TabIndex = 0;
+            this.dataGridViewEmployees.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewEmployees_CellContentClick);
+            this.dataGridViewEmployees.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewEmployees_CellEndEdit);
+            this.dataGridViewEmployees.SelectionChanged += new System.EventHandler(this.dataGridViewEmployees_SelectionChanged);
+            // 
+            // Password
+            // 
+            this.Password.DataPropertyName = "Password";
+            this.Password.HeaderText = "Password";
+            this.Password.Name = "Password";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label8);
+            this.groupBox2.Controls.Add(this.chkListBoxEmployeeType);
+            this.groupBox2.Controls.Add(this.tbUsername);
+            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Controls.Add(this.tbPassword);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox2.Location = new System.Drawing.Point(418, 3);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(299, 273);
+            this.groupBox2.TabIndex = 7;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "New user";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(40, 129);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(39, 13);
+            this.label8.TabIndex = 7;
+            this.label8.Text = "Types:";
+            // 
+            // chkListBoxEmployeeType
+            // 
+            this.chkListBoxEmployeeType.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.chkListBoxEmployeeType.CheckOnClick = true;
+            this.chkListBoxEmployeeType.FormattingEnabled = true;
+            this.chkListBoxEmployeeType.Location = new System.Drawing.Point(97, 129);
+            this.chkListBoxEmployeeType.Name = "chkListBoxEmployeeType";
+            this.chkListBoxEmployeeType.Size = new System.Drawing.Size(148, 105);
+            this.chkListBoxEmployeeType.TabIndex = 6;
+            // 
+            // tbUsername
+            // 
+            this.tbUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbUsername.Location = new System.Drawing.Point(97, 43);
+            this.tbUsername.Name = "tbUsername";
+            this.tbUsername.Size = new System.Drawing.Size(148, 22);
+            this.tbUsername.TabIndex = 2;
             // 
             // label5
             // 
@@ -594,14 +688,6 @@
             this.label5.TabIndex = 5;
             this.label5.Text = "Password:";
             // 
-            // tbPassword
-            // 
-            this.tbPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbPassword.Location = new System.Drawing.Point(97, 84);
-            this.tbPassword.Name = "tbPassword";
-            this.tbPassword.Size = new System.Drawing.Size(148, 22);
-            this.tbPassword.TabIndex = 4;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -612,60 +698,55 @@
             this.label4.TabIndex = 3;
             this.label4.Text = "Username:";
             // 
-            // tbUsername
+            // tbPassword
             // 
-            this.tbUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbUsername.Location = new System.Drawing.Point(97, 43);
-            this.tbUsername.Name = "tbUsername";
-            this.tbUsername.Size = new System.Drawing.Size(148, 22);
-            this.tbUsername.TabIndex = 2;
+            this.tbPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbPassword.Location = new System.Drawing.Point(97, 84);
+            this.tbPassword.Name = "tbPassword";
+            this.tbPassword.Size = new System.Drawing.Size(148, 22);
+            this.tbPassword.TabIndex = 4;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.AddNewEmployeeBtn);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(418, 282);
+            this.panel2.Name = "panel2";
+            this.panel2.Padding = new System.Windows.Forms.Padding(0, 0, 0, 100);
+            this.panel2.Size = new System.Drawing.Size(299, 146);
+            this.panel2.TabIndex = 8;
+            // 
+            // AddNewEmployeeBtn
+            // 
+            this.AddNewEmployeeBtn.Dock = System.Windows.Forms.DockStyle.Right;
+            this.AddNewEmployeeBtn.Location = new System.Drawing.Point(199, 0);
+            this.AddNewEmployeeBtn.Name = "AddNewEmployeeBtn";
+            this.AddNewEmployeeBtn.Size = new System.Drawing.Size(100, 46);
+            this.AddNewEmployeeBtn.TabIndex = 6;
+            this.AddNewEmployeeBtn.Text = "Save";
+            this.AddNewEmployeeBtn.UseVisualStyleBackColor = true;
+            this.AddNewEmployeeBtn.Click += new System.EventHandler(this.UpdateEmployeeBtn_Click);
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.GetEmployeesBtn);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(3, 282);
+            this.panel3.Name = "panel3";
+            this.panel3.Padding = new System.Windows.Forms.Padding(0, 0, 0, 100);
+            this.panel3.Size = new System.Drawing.Size(409, 146);
+            this.panel3.TabIndex = 9;
             // 
             // GetEmployeesBtn
             // 
-            this.GetEmployeesBtn.Location = new System.Drawing.Point(6, 291);
+            this.GetEmployeesBtn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.GetEmployeesBtn.Location = new System.Drawing.Point(0, 0);
             this.GetEmployeesBtn.Name = "GetEmployeesBtn";
-            this.GetEmployeesBtn.Size = new System.Drawing.Size(89, 35);
+            this.GetEmployeesBtn.Size = new System.Drawing.Size(100, 46);
             this.GetEmployeesBtn.TabIndex = 1;
             this.GetEmployeesBtn.Text = "Get All";
             this.GetEmployeesBtn.UseVisualStyleBackColor = true;
             this.GetEmployeesBtn.Click += new System.EventHandler(this.GetEmployeesBtn_Click);
-            // 
-            // dataGridViewEmployees
-            // 
-            this.dataGridViewEmployees.AllowUserToAddRows = false;
-            this.dataGridViewEmployees.AllowUserToDeleteRows = false;
-            this.dataGridViewEmployees.AllowUserToResizeColumns = false;
-            this.dataGridViewEmployees.AllowUserToResizeRows = false;
-            this.dataGridViewEmployees.AutoGenerateColumns = false;
-            this.dataGridViewEmployees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewEmployees.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.employeeIDDataGridViewTextBoxColumn,
-            this.dataGridViewTextBoxColumn1,
-            this.Selected,
-            this.dataGridViewTextBoxColumn3});
-            this.dataGridViewEmployees.DataSource = this.employeeBindingSource;
-            this.dataGridViewEmployees.Location = new System.Drawing.Point(6, 3);
-            this.dataGridViewEmployees.MultiSelect = false;
-            this.dataGridViewEmployees.Name = "dataGridViewEmployees";
-            this.dataGridViewEmployees.RowHeadersVisible = false;
-            this.dataGridViewEmployees.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewEmployees.Size = new System.Drawing.Size(333, 280);
-            this.dataGridViewEmployees.TabIndex = 0;
-            this.dataGridViewEmployees.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewEmployees_CellContentClick);
-            this.dataGridViewEmployees.SelectionChanged += new System.EventHandler(this.dataGridViewEmployees_SelectionChanged);
-            // 
-            // employeeBindingSource
-            // 
-            this.employeeBindingSource.DataSource = typeof(TypeLib.Employee);
-            // 
-            // tabPage4
-            // 
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(726, 437);
-            this.tabPage4.TabIndex = 2;
-            this.tabPage4.Text = "EmployeeType And Stations";
-            this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // TabProducts
             // 
@@ -680,7 +761,6 @@
             // 
             // tabControl4
             // 
-            this.tabControl4.Controls.Add(this.tabProdTypes);
             this.tabControl4.Controls.Add(this.tabProducts2);
             this.tabControl4.Controls.Add(this.tabIngredients);
             this.tabControl4.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -690,134 +770,9 @@
             this.tabControl4.Size = new System.Drawing.Size(734, 463);
             this.tabControl4.TabIndex = 0;
             // 
-            // tabProdTypes
-            // 
-            this.tabProdTypes.Controls.Add(this.bindingNavigator7);
-            this.tabProdTypes.Location = new System.Drawing.Point(4, 22);
-            this.tabProdTypes.Name = "tabProdTypes";
-            this.tabProdTypes.Size = new System.Drawing.Size(726, 437);
-            this.tabProdTypes.TabIndex = 2;
-            this.tabProdTypes.Text = "ProductTypes";
-            this.tabProdTypes.UseVisualStyleBackColor = true;
-            // 
-            // bindingNavigator7
-            // 
-            this.bindingNavigator7.AddNewItem = this.bindingNavigatorAddNewItem6;
-            this.bindingNavigator7.CountItem = this.bindingNavigatorCountItem6;
-            this.bindingNavigator7.DeleteItem = this.bindingNavigatorDeleteItem6;
-            this.bindingNavigator7.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.bindingNavigator7.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.bindingNavigatorMoveFirstItem6,
-            this.bindingNavigatorMovePreviousItem6,
-            this.bindingNavigatorSeparator18,
-            this.bindingNavigatorPositionItem6,
-            this.bindingNavigatorCountItem6,
-            this.bindingNavigatorSeparator19,
-            this.bindingNavigatorMoveNextItem6,
-            this.bindingNavigatorMoveLastItem6,
-            this.bindingNavigatorSeparator20,
-            this.bindingNavigatorAddNewItem6,
-            this.bindingNavigatorDeleteItem6});
-            this.bindingNavigator7.Location = new System.Drawing.Point(0, 0);
-            this.bindingNavigator7.MoveFirstItem = this.bindingNavigatorMoveFirstItem6;
-            this.bindingNavigator7.MoveLastItem = this.bindingNavigatorMoveLastItem6;
-            this.bindingNavigator7.MoveNextItem = this.bindingNavigatorMoveNextItem6;
-            this.bindingNavigator7.MovePreviousItem = this.bindingNavigatorMovePreviousItem6;
-            this.bindingNavigator7.Name = "bindingNavigator7";
-            this.bindingNavigator7.PositionItem = this.bindingNavigatorPositionItem6;
-            this.bindingNavigator7.Size = new System.Drawing.Size(726, 27);
-            this.bindingNavigator7.TabIndex = 0;
-            this.bindingNavigator7.Text = "bindingNavigator7";
-            // 
-            // bindingNavigatorAddNewItem6
-            // 
-            this.bindingNavigatorAddNewItem6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorAddNewItem6.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem6.Image")));
-            this.bindingNavigatorAddNewItem6.Name = "bindingNavigatorAddNewItem6";
-            this.bindingNavigatorAddNewItem6.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem6.Size = new System.Drawing.Size(24, 24);
-            this.bindingNavigatorAddNewItem6.Text = "Add new";
-            // 
-            // bindingNavigatorCountItem6
-            // 
-            this.bindingNavigatorCountItem6.Name = "bindingNavigatorCountItem6";
-            this.bindingNavigatorCountItem6.Size = new System.Drawing.Size(35, 24);
-            this.bindingNavigatorCountItem6.Text = "of {0}";
-            this.bindingNavigatorCountItem6.ToolTipText = "Total number of items";
-            // 
-            // bindingNavigatorDeleteItem6
-            // 
-            this.bindingNavigatorDeleteItem6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorDeleteItem6.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem6.Image")));
-            this.bindingNavigatorDeleteItem6.Name = "bindingNavigatorDeleteItem6";
-            this.bindingNavigatorDeleteItem6.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem6.Size = new System.Drawing.Size(24, 24);
-            this.bindingNavigatorDeleteItem6.Text = "Delete";
-            // 
-            // bindingNavigatorMoveFirstItem6
-            // 
-            this.bindingNavigatorMoveFirstItem6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveFirstItem6.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem6.Image")));
-            this.bindingNavigatorMoveFirstItem6.Name = "bindingNavigatorMoveFirstItem6";
-            this.bindingNavigatorMoveFirstItem6.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveFirstItem6.Size = new System.Drawing.Size(24, 24);
-            this.bindingNavigatorMoveFirstItem6.Text = "Move first";
-            // 
-            // bindingNavigatorMovePreviousItem6
-            // 
-            this.bindingNavigatorMovePreviousItem6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMovePreviousItem6.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem6.Image")));
-            this.bindingNavigatorMovePreviousItem6.Name = "bindingNavigatorMovePreviousItem6";
-            this.bindingNavigatorMovePreviousItem6.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMovePreviousItem6.Size = new System.Drawing.Size(24, 24);
-            this.bindingNavigatorMovePreviousItem6.Text = "Move previous";
-            // 
-            // bindingNavigatorSeparator18
-            // 
-            this.bindingNavigatorSeparator18.Name = "bindingNavigatorSeparator18";
-            this.bindingNavigatorSeparator18.Size = new System.Drawing.Size(6, 27);
-            // 
-            // bindingNavigatorPositionItem6
-            // 
-            this.bindingNavigatorPositionItem6.AccessibleName = "Position";
-            this.bindingNavigatorPositionItem6.AutoSize = false;
-            this.bindingNavigatorPositionItem6.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.bindingNavigatorPositionItem6.Name = "bindingNavigatorPositionItem6";
-            this.bindingNavigatorPositionItem6.Size = new System.Drawing.Size(50, 23);
-            this.bindingNavigatorPositionItem6.Text = "0";
-            this.bindingNavigatorPositionItem6.ToolTipText = "Current position";
-            // 
-            // bindingNavigatorSeparator19
-            // 
-            this.bindingNavigatorSeparator19.Name = "bindingNavigatorSeparator19";
-            this.bindingNavigatorSeparator19.Size = new System.Drawing.Size(6, 27);
-            // 
-            // bindingNavigatorMoveNextItem6
-            // 
-            this.bindingNavigatorMoveNextItem6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveNextItem6.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem6.Image")));
-            this.bindingNavigatorMoveNextItem6.Name = "bindingNavigatorMoveNextItem6";
-            this.bindingNavigatorMoveNextItem6.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem6.Size = new System.Drawing.Size(24, 24);
-            this.bindingNavigatorMoveNextItem6.Text = "Move next";
-            // 
-            // bindingNavigatorMoveLastItem6
-            // 
-            this.bindingNavigatorMoveLastItem6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveLastItem6.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem6.Image")));
-            this.bindingNavigatorMoveLastItem6.Name = "bindingNavigatorMoveLastItem6";
-            this.bindingNavigatorMoveLastItem6.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveLastItem6.Size = new System.Drawing.Size(24, 24);
-            this.bindingNavigatorMoveLastItem6.Text = "Move last";
-            // 
-            // bindingNavigatorSeparator20
-            // 
-            this.bindingNavigatorSeparator20.Name = "bindingNavigatorSeparator20";
-            this.bindingNavigatorSeparator20.Size = new System.Drawing.Size(6, 27);
-            // 
             // tabProducts2
             // 
-            this.tabProducts2.Controls.Add(this.bindingNavigator8);
+            this.tabProducts2.Controls.Add(this.tableLayoutPanel3);
             this.tabProducts2.Location = new System.Drawing.Point(4, 22);
             this.tabProducts2.Name = "tabProducts2";
             this.tabProducts2.Padding = new System.Windows.Forms.Padding(3);
@@ -826,124 +781,167 @@
             this.tabProducts2.Text = "Products";
             this.tabProducts2.UseVisualStyleBackColor = true;
             // 
-            // bindingNavigator8
+            // tableLayoutPanel3
             // 
-            this.bindingNavigator8.AddNewItem = this.bindingNavigatorAddNewItem7;
-            this.bindingNavigator8.CountItem = this.bindingNavigatorCountItem7;
-            this.bindingNavigator8.DeleteItem = this.bindingNavigatorDeleteItem7;
-            this.bindingNavigator8.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.bindingNavigator8.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.bindingNavigatorMoveFirstItem7,
-            this.bindingNavigatorMovePreviousItem7,
-            this.bindingNavigatorSeparator21,
-            this.bindingNavigatorPositionItem7,
-            this.bindingNavigatorCountItem7,
-            this.bindingNavigatorSeparator22,
-            this.bindingNavigatorMoveNextItem7,
-            this.bindingNavigatorMoveLastItem7,
-            this.bindingNavigatorSeparator23,
-            this.bindingNavigatorAddNewItem7,
-            this.bindingNavigatorDeleteItem7});
-            this.bindingNavigator8.Location = new System.Drawing.Point(3, 3);
-            this.bindingNavigator8.MoveFirstItem = this.bindingNavigatorMoveFirstItem7;
-            this.bindingNavigator8.MoveLastItem = this.bindingNavigatorMoveLastItem7;
-            this.bindingNavigator8.MoveNextItem = this.bindingNavigatorMoveNextItem7;
-            this.bindingNavigator8.MovePreviousItem = this.bindingNavigatorMovePreviousItem7;
-            this.bindingNavigator8.Name = "bindingNavigator8";
-            this.bindingNavigator8.PositionItem = this.bindingNavigatorPositionItem7;
-            this.bindingNavigator8.Size = new System.Drawing.Size(720, 27);
-            this.bindingNavigator8.TabIndex = 0;
-            this.bindingNavigator8.Text = "bindingNavigator8";
+            this.tableLayoutPanel3.ColumnCount = 2;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 61.80556F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 38.19444F));
+            this.tableLayoutPanel3.Controls.Add(this.dataGridViewProducts, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.groupBox3, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.panel4, 1, 1);
+            this.tableLayoutPanel3.Controls.Add(this.panel5, 0, 1);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 2;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 64.96519F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35.0348F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(720, 431);
+            this.tableLayoutPanel3.TabIndex = 9;
             // 
-            // bindingNavigatorAddNewItem7
+            // dataGridViewProducts
             // 
-            this.bindingNavigatorAddNewItem7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorAddNewItem7.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem7.Image")));
-            this.bindingNavigatorAddNewItem7.Name = "bindingNavigatorAddNewItem7";
-            this.bindingNavigatorAddNewItem7.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem7.Size = new System.Drawing.Size(24, 24);
-            this.bindingNavigatorAddNewItem7.Text = "Add new";
+            this.dataGridViewProducts.AllowUserToResizeColumns = false;
+            this.dataGridViewProducts.AllowUserToResizeRows = false;
+            this.dataGridViewProducts.AutoGenerateColumns = false;
+            this.dataGridViewProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewProducts.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.productIDDataGridViewTextBoxColumn,
+            this.productTypeIDDataGridViewTextBoxColumn,
+            this.productNameDataGridViewTextBoxColumn,
+            this.descriptionDataGridViewTextBoxColumn,
+            this.prepTimeDataGridViewTextBoxColumn,
+            this.basePriceDataGridViewTextBoxColumn,
+            this.dataGridViewCheckBoxColumn1,
+            this.dataGridViewCheckBoxColumn2});
+            this.dataGridViewProducts.DataSource = this.productBindingSource;
+            this.dataGridViewProducts.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewProducts.Location = new System.Drawing.Point(3, 3);
+            this.dataGridViewProducts.MultiSelect = false;
+            this.dataGridViewProducts.Name = "dataGridViewProducts";
+            this.dataGridViewProducts.RowHeadersVisible = false;
+            this.dataGridViewProducts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewProducts.Size = new System.Drawing.Size(439, 273);
+            this.dataGridViewProducts.TabIndex = 0;
+            this.dataGridViewProducts.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewProducts_CellEndEdit);
+            this.dataGridViewProducts.SelectionChanged += new System.EventHandler(this.dataGridViewProducts_SelectionChangedAsync);
             // 
-            // bindingNavigatorCountItem7
+            // groupBox3
             // 
-            this.bindingNavigatorCountItem7.Name = "bindingNavigatorCountItem7";
-            this.bindingNavigatorCountItem7.Size = new System.Drawing.Size(35, 24);
-            this.bindingNavigatorCountItem7.Text = "of {0}";
-            this.bindingNavigatorCountItem7.ToolTipText = "Total number of items";
+            this.groupBox3.Controls.Add(this.label9);
+            this.groupBox3.Controls.Add(this.checkedListBox1);
+            this.groupBox3.Controls.Add(this.textBox1);
+            this.groupBox3.Controls.Add(this.label10);
+            this.groupBox3.Controls.Add(this.label11);
+            this.groupBox3.Controls.Add(this.textBox2);
+            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox3.Location = new System.Drawing.Point(448, 3);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(269, 273);
+            this.groupBox3.TabIndex = 7;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "New user";
             // 
-            // bindingNavigatorDeleteItem7
+            // label9
             // 
-            this.bindingNavigatorDeleteItem7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorDeleteItem7.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem7.Image")));
-            this.bindingNavigatorDeleteItem7.Name = "bindingNavigatorDeleteItem7";
-            this.bindingNavigatorDeleteItem7.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem7.Size = new System.Drawing.Size(24, 24);
-            this.bindingNavigatorDeleteItem7.Text = "Delete";
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(40, 129);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(39, 13);
+            this.label9.TabIndex = 7;
+            this.label9.Text = "Types:";
             // 
-            // bindingNavigatorMoveFirstItem7
+            // checkedListBox1
             // 
-            this.bindingNavigatorMoveFirstItem7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveFirstItem7.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem7.Image")));
-            this.bindingNavigatorMoveFirstItem7.Name = "bindingNavigatorMoveFirstItem7";
-            this.bindingNavigatorMoveFirstItem7.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveFirstItem7.Size = new System.Drawing.Size(24, 24);
-            this.bindingNavigatorMoveFirstItem7.Text = "Move first";
+            this.checkedListBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.checkedListBox1.CheckOnClick = true;
+            this.checkedListBox1.FormattingEnabled = true;
+            this.checkedListBox1.Location = new System.Drawing.Point(97, 129);
+            this.checkedListBox1.Name = "checkedListBox1";
+            this.checkedListBox1.Size = new System.Drawing.Size(148, 105);
+            this.checkedListBox1.TabIndex = 6;
             // 
-            // bindingNavigatorMovePreviousItem7
+            // textBox1
             // 
-            this.bindingNavigatorMovePreviousItem7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMovePreviousItem7.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem7.Image")));
-            this.bindingNavigatorMovePreviousItem7.Name = "bindingNavigatorMovePreviousItem7";
-            this.bindingNavigatorMovePreviousItem7.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMovePreviousItem7.Size = new System.Drawing.Size(24, 24);
-            this.bindingNavigatorMovePreviousItem7.Text = "Move previous";
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(97, 43);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(148, 22);
+            this.textBox1.TabIndex = 2;
             // 
-            // bindingNavigatorSeparator21
+            // label10
             // 
-            this.bindingNavigatorSeparator21.Name = "bindingNavigatorSeparator21";
-            this.bindingNavigatorSeparator21.Size = new System.Drawing.Size(6, 27);
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(23, 89);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(56, 13);
+            this.label10.TabIndex = 5;
+            this.label10.Text = "Password:";
             // 
-            // bindingNavigatorPositionItem7
+            // label11
             // 
-            this.bindingNavigatorPositionItem7.AccessibleName = "Position";
-            this.bindingNavigatorPositionItem7.AutoSize = false;
-            this.bindingNavigatorPositionItem7.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.bindingNavigatorPositionItem7.Name = "bindingNavigatorPositionItem7";
-            this.bindingNavigatorPositionItem7.Size = new System.Drawing.Size(50, 23);
-            this.bindingNavigatorPositionItem7.Text = "0";
-            this.bindingNavigatorPositionItem7.ToolTipText = "Current position";
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(21, 48);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(58, 13);
+            this.label11.TabIndex = 3;
+            this.label11.Text = "Username:";
             // 
-            // bindingNavigatorSeparator22
+            // textBox2
             // 
-            this.bindingNavigatorSeparator22.Name = "bindingNavigatorSeparator22";
-            this.bindingNavigatorSeparator22.Size = new System.Drawing.Size(6, 27);
+            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Location = new System.Drawing.Point(97, 84);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(148, 22);
+            this.textBox2.TabIndex = 4;
             // 
-            // bindingNavigatorMoveNextItem7
+            // panel4
             // 
-            this.bindingNavigatorMoveNextItem7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveNextItem7.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem7.Image")));
-            this.bindingNavigatorMoveNextItem7.Name = "bindingNavigatorMoveNextItem7";
-            this.bindingNavigatorMoveNextItem7.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem7.Size = new System.Drawing.Size(24, 24);
-            this.bindingNavigatorMoveNextItem7.Text = "Move next";
+            this.panel4.Controls.Add(this.button1);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(448, 282);
+            this.panel4.Name = "panel4";
+            this.panel4.Padding = new System.Windows.Forms.Padding(0, 0, 0, 100);
+            this.panel4.Size = new System.Drawing.Size(269, 146);
+            this.panel4.TabIndex = 8;
             // 
-            // bindingNavigatorMoveLastItem7
+            // button1
             // 
-            this.bindingNavigatorMoveLastItem7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveLastItem7.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem7.Image")));
-            this.bindingNavigatorMoveLastItem7.Name = "bindingNavigatorMoveLastItem7";
-            this.bindingNavigatorMoveLastItem7.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveLastItem7.Size = new System.Drawing.Size(24, 24);
-            this.bindingNavigatorMoveLastItem7.Text = "Move last";
+            this.button1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.button1.Location = new System.Drawing.Point(169, 0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(100, 46);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "Save";
+            this.button1.UseVisualStyleBackColor = true;
             // 
-            // bindingNavigatorSeparator23
+            // panel5
             // 
-            this.bindingNavigatorSeparator23.Name = "bindingNavigatorSeparator23";
-            this.bindingNavigatorSeparator23.Size = new System.Drawing.Size(6, 27);
+            this.panel5.Controls.Add(this.GetAllProductsBtn);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel5.Location = new System.Drawing.Point(3, 282);
+            this.panel5.Name = "panel5";
+            this.panel5.Padding = new System.Windows.Forms.Padding(0, 0, 0, 100);
+            this.panel5.Size = new System.Drawing.Size(439, 146);
+            this.panel5.TabIndex = 9;
+            // 
+            // GetAllProductsBtn
+            // 
+            this.GetAllProductsBtn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.GetAllProductsBtn.Location = new System.Drawing.Point(0, 0);
+            this.GetAllProductsBtn.Name = "GetAllProductsBtn";
+            this.GetAllProductsBtn.Size = new System.Drawing.Size(100, 46);
+            this.GetAllProductsBtn.TabIndex = 1;
+            this.GetAllProductsBtn.Text = "Get All";
+            this.GetAllProductsBtn.UseVisualStyleBackColor = true;
+            this.GetAllProductsBtn.Click += new System.EventHandler(this.GetAllProductsBtn_Click);
             // 
             // tabIngredients
             // 
-            this.tabIngredients.Controls.Add(this.bindingNavigator9);
+            this.tabIngredients.Controls.Add(this.tableLayoutPanel4);
             this.tabIngredients.Location = new System.Drawing.Point(4, 22);
             this.tabIngredients.Name = "tabIngredients";
             this.tabIngredients.Padding = new System.Windows.Forms.Padding(3);
@@ -951,121 +949,6 @@
             this.tabIngredients.TabIndex = 1;
             this.tabIngredients.Text = "Ingredients";
             this.tabIngredients.UseVisualStyleBackColor = true;
-            // 
-            // bindingNavigator9
-            // 
-            this.bindingNavigator9.AddNewItem = this.bindingNavigatorAddNewItem8;
-            this.bindingNavigator9.CountItem = this.bindingNavigatorCountItem8;
-            this.bindingNavigator9.DeleteItem = this.bindingNavigatorDeleteItem8;
-            this.bindingNavigator9.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.bindingNavigator9.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.bindingNavigatorMoveFirstItem8,
-            this.bindingNavigatorMovePreviousItem8,
-            this.bindingNavigatorSeparator24,
-            this.bindingNavigatorPositionItem8,
-            this.bindingNavigatorCountItem8,
-            this.bindingNavigatorSeparator25,
-            this.bindingNavigatorMoveNextItem8,
-            this.bindingNavigatorMoveLastItem8,
-            this.bindingNavigatorSeparator26,
-            this.bindingNavigatorAddNewItem8,
-            this.bindingNavigatorDeleteItem8});
-            this.bindingNavigator9.Location = new System.Drawing.Point(3, 3);
-            this.bindingNavigator9.MoveFirstItem = this.bindingNavigatorMoveFirstItem8;
-            this.bindingNavigator9.MoveLastItem = this.bindingNavigatorMoveLastItem8;
-            this.bindingNavigator9.MoveNextItem = this.bindingNavigatorMoveNextItem8;
-            this.bindingNavigator9.MovePreviousItem = this.bindingNavigatorMovePreviousItem8;
-            this.bindingNavigator9.Name = "bindingNavigator9";
-            this.bindingNavigator9.PositionItem = this.bindingNavigatorPositionItem8;
-            this.bindingNavigator9.Size = new System.Drawing.Size(720, 27);
-            this.bindingNavigator9.TabIndex = 0;
-            this.bindingNavigator9.Text = "bindingNavigator9";
-            // 
-            // bindingNavigatorAddNewItem8
-            // 
-            this.bindingNavigatorAddNewItem8.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorAddNewItem8.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem8.Image")));
-            this.bindingNavigatorAddNewItem8.Name = "bindingNavigatorAddNewItem8";
-            this.bindingNavigatorAddNewItem8.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem8.Size = new System.Drawing.Size(24, 24);
-            this.bindingNavigatorAddNewItem8.Text = "Add new";
-            // 
-            // bindingNavigatorCountItem8
-            // 
-            this.bindingNavigatorCountItem8.Name = "bindingNavigatorCountItem8";
-            this.bindingNavigatorCountItem8.Size = new System.Drawing.Size(35, 24);
-            this.bindingNavigatorCountItem8.Text = "of {0}";
-            this.bindingNavigatorCountItem8.ToolTipText = "Total number of items";
-            // 
-            // bindingNavigatorDeleteItem8
-            // 
-            this.bindingNavigatorDeleteItem8.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorDeleteItem8.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem8.Image")));
-            this.bindingNavigatorDeleteItem8.Name = "bindingNavigatorDeleteItem8";
-            this.bindingNavigatorDeleteItem8.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem8.Size = new System.Drawing.Size(24, 24);
-            this.bindingNavigatorDeleteItem8.Text = "Delete";
-            // 
-            // bindingNavigatorMoveFirstItem8
-            // 
-            this.bindingNavigatorMoveFirstItem8.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveFirstItem8.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem8.Image")));
-            this.bindingNavigatorMoveFirstItem8.Name = "bindingNavigatorMoveFirstItem8";
-            this.bindingNavigatorMoveFirstItem8.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveFirstItem8.Size = new System.Drawing.Size(24, 24);
-            this.bindingNavigatorMoveFirstItem8.Text = "Move first";
-            // 
-            // bindingNavigatorMovePreviousItem8
-            // 
-            this.bindingNavigatorMovePreviousItem8.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMovePreviousItem8.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem8.Image")));
-            this.bindingNavigatorMovePreviousItem8.Name = "bindingNavigatorMovePreviousItem8";
-            this.bindingNavigatorMovePreviousItem8.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMovePreviousItem8.Size = new System.Drawing.Size(24, 24);
-            this.bindingNavigatorMovePreviousItem8.Text = "Move previous";
-            // 
-            // bindingNavigatorSeparator24
-            // 
-            this.bindingNavigatorSeparator24.Name = "bindingNavigatorSeparator24";
-            this.bindingNavigatorSeparator24.Size = new System.Drawing.Size(6, 27);
-            // 
-            // bindingNavigatorPositionItem8
-            // 
-            this.bindingNavigatorPositionItem8.AccessibleName = "Position";
-            this.bindingNavigatorPositionItem8.AutoSize = false;
-            this.bindingNavigatorPositionItem8.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.bindingNavigatorPositionItem8.Name = "bindingNavigatorPositionItem8";
-            this.bindingNavigatorPositionItem8.Size = new System.Drawing.Size(50, 23);
-            this.bindingNavigatorPositionItem8.Text = "0";
-            this.bindingNavigatorPositionItem8.ToolTipText = "Current position";
-            // 
-            // bindingNavigatorSeparator25
-            // 
-            this.bindingNavigatorSeparator25.Name = "bindingNavigatorSeparator25";
-            this.bindingNavigatorSeparator25.Size = new System.Drawing.Size(6, 27);
-            // 
-            // bindingNavigatorMoveNextItem8
-            // 
-            this.bindingNavigatorMoveNextItem8.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveNextItem8.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem8.Image")));
-            this.bindingNavigatorMoveNextItem8.Name = "bindingNavigatorMoveNextItem8";
-            this.bindingNavigatorMoveNextItem8.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem8.Size = new System.Drawing.Size(24, 24);
-            this.bindingNavigatorMoveNextItem8.Text = "Move next";
-            // 
-            // bindingNavigatorMoveLastItem8
-            // 
-            this.bindingNavigatorMoveLastItem8.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveLastItem8.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem8.Image")));
-            this.bindingNavigatorMoveLastItem8.Name = "bindingNavigatorMoveLastItem8";
-            this.bindingNavigatorMoveLastItem8.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveLastItem8.Size = new System.Drawing.Size(24, 24);
-            this.bindingNavigatorMoveLastItem8.Text = "Move last";
-            // 
-            // bindingNavigatorSeparator26
-            // 
-            this.bindingNavigatorSeparator26.Name = "bindingNavigatorSeparator26";
-            this.bindingNavigatorSeparator26.Size = new System.Drawing.Size(6, 27);
             // 
             // tabBuildings
             // 
@@ -1946,35 +1829,21 @@
             // 
             this.employeesTableAdapter1.ClearBeforeFill = true;
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Controls.Add(this.chkListBoxEmployeeType);
-            this.groupBox2.Controls.Add(this.tbUsername);
-            this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Controls.Add(this.tbPassword);
-            this.groupBox2.Location = new System.Drawing.Point(406, 6);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(273, 277);
-            this.groupBox2.TabIndex = 7;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Edit userinfo";
-            // 
             // employeeIDDataGridViewTextBoxColumn
             // 
             this.employeeIDDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.employeeIDDataGridViewTextBoxColumn.DataPropertyName = "EmployeeID";
             this.employeeIDDataGridViewTextBoxColumn.HeaderText = "ID";
             this.employeeIDDataGridViewTextBoxColumn.Name = "employeeIDDataGridViewTextBoxColumn";
+            this.employeeIDDataGridViewTextBoxColumn.ReadOnly = true;
             this.employeeIDDataGridViewTextBoxColumn.Width = 43;
             // 
-            // dataGridViewTextBoxColumn1
+            // Username
             // 
-            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "Username";
-            this.dataGridViewTextBoxColumn1.HeaderText = "Username";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.Username.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Username.DataPropertyName = "Username";
+            this.Username.HeaderText = "Username";
+            this.Username.Name = "Username";
             // 
             // Selected
             // 
@@ -1992,25 +1861,261 @@
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             this.dataGridViewTextBoxColumn3.Width = 65;
             // 
-            // chkListBoxEmployeeType
+            // employeeBindingSource
             // 
-            this.chkListBoxEmployeeType.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.chkListBoxEmployeeType.CheckOnClick = true;
-            this.chkListBoxEmployeeType.FormattingEnabled = true;
-            this.chkListBoxEmployeeType.Location = new System.Drawing.Point(97, 129);
-            this.chkListBoxEmployeeType.Name = "chkListBoxEmployeeType";
-            this.chkListBoxEmployeeType.Size = new System.Drawing.Size(148, 105);
-            this.chkListBoxEmployeeType.TabIndex = 6;
+            this.employeeBindingSource.DataSource = typeof(TypeLib.Employee);
             // 
-            // label8
+            // productBindingSource
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(40, 129);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(39, 13);
-            this.label8.TabIndex = 7;
-            this.label8.Text = "Types:";
+            this.productBindingSource.DataSource = typeof(TypeLib.Product);
+            // 
+            // productIDDataGridViewTextBoxColumn
+            // 
+            this.productIDDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.productIDDataGridViewTextBoxColumn.DataPropertyName = "ProductID";
+            this.productIDDataGridViewTextBoxColumn.HeaderText = "ProductID";
+            this.productIDDataGridViewTextBoxColumn.Name = "productIDDataGridViewTextBoxColumn";
+            this.productIDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.productIDDataGridViewTextBoxColumn.Width = 80;
+            // 
+            // productTypeIDDataGridViewTextBoxColumn
+            // 
+            this.productTypeIDDataGridViewTextBoxColumn.DataPropertyName = "ProductTypeID";
+            this.productTypeIDDataGridViewTextBoxColumn.HeaderText = "ProductTypeID";
+            this.productTypeIDDataGridViewTextBoxColumn.Name = "productTypeIDDataGridViewTextBoxColumn";
+            this.productTypeIDDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // productNameDataGridViewTextBoxColumn
+            // 
+            this.productNameDataGridViewTextBoxColumn.DataPropertyName = "ProductName";
+            this.productNameDataGridViewTextBoxColumn.HeaderText = "ProductName";
+            this.productNameDataGridViewTextBoxColumn.Name = "productNameDataGridViewTextBoxColumn";
+            // 
+            // descriptionDataGridViewTextBoxColumn
+            // 
+            this.descriptionDataGridViewTextBoxColumn.DataPropertyName = "Description";
+            this.descriptionDataGridViewTextBoxColumn.HeaderText = "Description";
+            this.descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
+            // 
+            // prepTimeDataGridViewTextBoxColumn
+            // 
+            this.prepTimeDataGridViewTextBoxColumn.DataPropertyName = "PrepTime";
+            this.prepTimeDataGridViewTextBoxColumn.HeaderText = "PrepTime";
+            this.prepTimeDataGridViewTextBoxColumn.Name = "prepTimeDataGridViewTextBoxColumn";
+            // 
+            // basePriceDataGridViewTextBoxColumn
+            // 
+            this.basePriceDataGridViewTextBoxColumn.DataPropertyName = "BasePrice";
+            this.basePriceDataGridViewTextBoxColumn.HeaderText = "BasePrice";
+            this.basePriceDataGridViewTextBoxColumn.Name = "basePriceDataGridViewTextBoxColumn";
+            // 
+            // dataGridViewCheckBoxColumn1
+            // 
+            this.dataGridViewCheckBoxColumn1.DataPropertyName = "Activated";
+            this.dataGridViewCheckBoxColumn1.HeaderText = "Activated";
+            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
+            // 
+            // dataGridViewCheckBoxColumn2
+            // 
+            this.dataGridViewCheckBoxColumn2.DataPropertyName = "Visible";
+            this.dataGridViewCheckBoxColumn2.HeaderText = "Visible";
+            this.dataGridViewCheckBoxColumn2.Name = "dataGridViewCheckBoxColumn2";
+            // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.ColumnCount = 2;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 61.80556F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 38.19444F));
+            this.tableLayoutPanel4.Controls.Add(this.dataGridViewIngredients, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.groupBox4, 1, 0);
+            this.tableLayoutPanel4.Controls.Add(this.panel6, 1, 1);
+            this.tableLayoutPanel4.Controls.Add(this.panel7, 0, 1);
+            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 2;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 64.96519F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35.0348F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(720, 431);
+            this.tableLayoutPanel4.TabIndex = 10;
+            // 
+            // dataGridViewIngredients
+            // 
+            this.dataGridViewIngredients.AllowUserToResizeColumns = false;
+            this.dataGridViewIngredients.AllowUserToResizeRows = false;
+            this.dataGridViewIngredients.AutoGenerateColumns = false;
+            this.dataGridViewIngredients.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewIngredients.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.IngredientID,
+            this.IngredientName,
+            this.Price,
+            this.Activated,
+            this.dataGridViewCheckBoxColumn4});
+            this.dataGridViewIngredients.DataSource = this.ingredientBindingSource;
+            this.dataGridViewIngredients.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewIngredients.Location = new System.Drawing.Point(3, 3);
+            this.dataGridViewIngredients.MultiSelect = false;
+            this.dataGridViewIngredients.Name = "dataGridViewIngredients";
+            this.dataGridViewIngredients.RowHeadersVisible = false;
+            this.dataGridViewIngredients.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewIngredients.Size = new System.Drawing.Size(439, 273);
+            this.dataGridViewIngredients.TabIndex = 0;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.label12);
+            this.groupBox4.Controls.Add(this.checkedListBox2);
+            this.groupBox4.Controls.Add(this.textBox3);
+            this.groupBox4.Controls.Add(this.label13);
+            this.groupBox4.Controls.Add(this.label14);
+            this.groupBox4.Controls.Add(this.textBox4);
+            this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox4.Location = new System.Drawing.Point(448, 3);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(269, 273);
+            this.groupBox4.TabIndex = 7;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "New user";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(40, 129);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(39, 13);
+            this.label12.TabIndex = 7;
+            this.label12.Text = "Types:";
+            // 
+            // checkedListBox2
+            // 
+            this.checkedListBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.checkedListBox2.CheckOnClick = true;
+            this.checkedListBox2.FormattingEnabled = true;
+            this.checkedListBox2.Location = new System.Drawing.Point(97, 129);
+            this.checkedListBox2.Name = "checkedListBox2";
+            this.checkedListBox2.Size = new System.Drawing.Size(148, 105);
+            this.checkedListBox2.TabIndex = 6;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox3.Location = new System.Drawing.Point(97, 43);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(148, 22);
+            this.textBox3.TabIndex = 2;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(23, 89);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(56, 13);
+            this.label13.TabIndex = 5;
+            this.label13.Text = "Password:";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(21, 48);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(58, 13);
+            this.label14.TabIndex = 3;
+            this.label14.Text = "Username:";
+            // 
+            // textBox4
+            // 
+            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox4.Location = new System.Drawing.Point(97, 84);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(148, 22);
+            this.textBox4.TabIndex = 4;
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.button2);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel6.Location = new System.Drawing.Point(448, 282);
+            this.panel6.Name = "panel6";
+            this.panel6.Padding = new System.Windows.Forms.Padding(0, 0, 0, 100);
+            this.panel6.Size = new System.Drawing.Size(269, 146);
+            this.panel6.TabIndex = 8;
+            // 
+            // button2
+            // 
+            this.button2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.button2.Location = new System.Drawing.Point(169, 0);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(100, 46);
+            this.button2.TabIndex = 6;
+            this.button2.Text = "Save";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.button3);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel7.Location = new System.Drawing.Point(3, 282);
+            this.panel7.Name = "panel7";
+            this.panel7.Padding = new System.Windows.Forms.Padding(0, 0, 0, 100);
+            this.panel7.Size = new System.Drawing.Size(439, 146);
+            this.panel7.TabIndex = 9;
+            // 
+            // button3
+            // 
+            this.button3.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button3.Location = new System.Drawing.Point(0, 0);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(100, 46);
+            this.button3.TabIndex = 1;
+            this.button3.Text = "Get All";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // ingredientBindingSource
+            // 
+            this.ingredientBindingSource.DataSource = typeof(TypeLib.Ingredient);
+            // 
+            // IngredientID
+            // 
+            this.IngredientID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.IngredientID.DataPropertyName = "IngredientID";
+            this.IngredientID.HeaderText = "IngredientID";
+            this.IngredientID.Name = "IngredientID";
+            this.IngredientID.ReadOnly = true;
+            this.IngredientID.Width = 90;
+            // 
+            // IngredientName
+            // 
+            this.IngredientName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.IngredientName.DataPropertyName = "IngredientName";
+            this.IngredientName.HeaderText = "IngredientName";
+            this.IngredientName.Name = "IngredientName";
+            // 
+            // Price
+            // 
+            this.Price.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Price.DataPropertyName = "Price";
+            this.Price.HeaderText = "Price";
+            this.Price.Name = "Price";
+            this.Price.Width = 56;
+            // 
+            // Activated
+            // 
+            this.Activated.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Activated.DataPropertyName = "Activated";
+            this.Activated.HeaderText = "Activated";
+            this.Activated.Name = "Activated";
+            this.Activated.Width = 58;
+            // 
+            // dataGridViewCheckBoxColumn4
+            // 
+            this.dataGridViewCheckBoxColumn4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.dataGridViewCheckBoxColumn4.DataPropertyName = "Visible";
+            this.dataGridViewCheckBoxColumn4.HeaderText = "Visible";
+            this.dataGridViewCheckBoxColumn4.Name = "dataGridViewCheckBoxColumn4";
+            this.dataGridViewCheckBoxColumn4.Width = 43;
             // 
             // Admin
             // 
@@ -2049,25 +2154,22 @@
             this.TabEmployees.ResumeLayout(false);
             this.tabControl3.ResumeLayout(false);
             this.tabEditEmployees.ResumeLayout(false);
+            this.tableLayoutPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployees)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
             this.TabProducts.ResumeLayout(false);
             this.tabControl4.ResumeLayout(false);
-            this.tabProdTypes.ResumeLayout(false);
-            this.tabProdTypes.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator7)).EndInit();
-            this.bindingNavigator7.ResumeLayout(false);
-            this.bindingNavigator7.PerformLayout();
             this.tabProducts2.ResumeLayout(false);
-            this.tabProducts2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator8)).EndInit();
-            this.bindingNavigator8.ResumeLayout(false);
-            this.bindingNavigator8.PerformLayout();
+            this.tableLayoutPanel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProducts)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
             this.tabIngredients.ResumeLayout(false);
-            this.tabIngredients.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator9)).EndInit();
-            this.bindingNavigator9.ResumeLayout(false);
-            this.bindingNavigator9.PerformLayout();
             this.tabBuildings.ResumeLayout(false);
             this.tabControl5.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -2119,8 +2221,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.g3SystemsDataSetBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1BindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.employeesBindingSource)).EndInit();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).EndInit();
+            this.tableLayoutPanel4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewIngredients)).EndInit();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            this.panel6.ResumeLayout(false);
+            this.panel7.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ingredientBindingSource)).EndInit();
             this.ResumeLayout(false);
 
 		}
@@ -2158,7 +2267,6 @@
 		private System.Windows.Forms.DataGridViewCheckBoxColumn visibleDataGridViewCheckBoxColumn;
 		private System.Windows.Forms.DataGridViewTextBoxColumn assignedToStationDataGridViewTextBoxColumn;
 		private System.Windows.Forms.TabControl tabControl4;
-		private System.Windows.Forms.TabPage tabProdTypes;
 		private System.Windows.Forms.TabPage tabProducts2;
 		private System.Windows.Forms.TabPage tabIngredients;
 		private System.Windows.Forms.TabControl tabControl5;
@@ -2207,42 +2315,6 @@
 		private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem2;
 		private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator8;
 		private System.Windows.Forms.BindingSource productOrdersBindingSource;
-		private System.Windows.Forms.BindingNavigator bindingNavigator7;
-		private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem6;
-		private System.Windows.Forms.ToolStripLabel bindingNavigatorCountItem6;
-		private System.Windows.Forms.ToolStripButton bindingNavigatorDeleteItem6;
-		private System.Windows.Forms.ToolStripButton bindingNavigatorMoveFirstItem6;
-		private System.Windows.Forms.ToolStripButton bindingNavigatorMovePreviousItem6;
-		private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator18;
-		private System.Windows.Forms.ToolStripTextBox bindingNavigatorPositionItem6;
-		private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator19;
-		private System.Windows.Forms.ToolStripButton bindingNavigatorMoveNextItem6;
-		private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem6;
-		private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator20;
-		private System.Windows.Forms.BindingNavigator bindingNavigator8;
-		private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem7;
-		private System.Windows.Forms.ToolStripLabel bindingNavigatorCountItem7;
-		private System.Windows.Forms.ToolStripButton bindingNavigatorDeleteItem7;
-		private System.Windows.Forms.ToolStripButton bindingNavigatorMoveFirstItem7;
-		private System.Windows.Forms.ToolStripButton bindingNavigatorMovePreviousItem7;
-		private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator21;
-		private System.Windows.Forms.ToolStripTextBox bindingNavigatorPositionItem7;
-		private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator22;
-		private System.Windows.Forms.ToolStripButton bindingNavigatorMoveNextItem7;
-		private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem7;
-		private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator23;
-		private System.Windows.Forms.BindingNavigator bindingNavigator9;
-		private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem8;
-		private System.Windows.Forms.ToolStripLabel bindingNavigatorCountItem8;
-		private System.Windows.Forms.ToolStripButton bindingNavigatorDeleteItem8;
-		private System.Windows.Forms.ToolStripButton bindingNavigatorMoveFirstItem8;
-		private System.Windows.Forms.ToolStripButton bindingNavigatorMovePreviousItem8;
-		private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator24;
-		private System.Windows.Forms.ToolStripTextBox bindingNavigatorPositionItem8;
-		private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator25;
-		private System.Windows.Forms.ToolStripButton bindingNavigatorMoveNextItem8;
-		private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem8;
-		private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator26;
 		private System.Windows.Forms.BindingNavigator bindingNavigator11;
 		private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem10;
 		private System.Windows.Forms.ToolStripLabel bindingNavigatorCountItem10;
@@ -2318,18 +2390,62 @@
         private System.Windows.Forms.Button GetEmployeesBtn;
         private System.Windows.Forms.DataGridView dataGridViewEmployees;
         private System.Windows.Forms.BindingSource employeeBindingSource;
-        private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox tbPassword;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox tbUsername;
-        private System.Windows.Forms.Button UpdateEmployeeBtn;
+        private System.Windows.Forms.Button AddNewEmployeeBtn;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn employeeIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Selected;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.CheckedListBox chkListBoxEmployeeType;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn employeeIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Username;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Password;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Selected;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.DataGridView dataGridViewProducts;
+        private System.Windows.Forms.BindingSource productBindingSource;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.CheckedListBox checkedListBox1;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Button GetAllProductsBtn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn productIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn productTypeIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn productNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn descriptionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn prepTimeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn basePriceDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn2;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private System.Windows.Forms.DataGridView dataGridViewIngredients;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IngredientID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IngredientName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Price;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Activated;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn4;
+        private System.Windows.Forms.BindingSource ingredientBindingSource;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.CheckedListBox checkedListBox2;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Button button3;
     }
 }

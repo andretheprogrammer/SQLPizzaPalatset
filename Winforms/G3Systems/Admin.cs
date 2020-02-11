@@ -18,6 +18,7 @@ namespace G3Systems
 		private readonly IG3SystemsRepository _repo;
 		private Employee user;
 		private Employee editEmployee;
+		private Product editProduct;
 
 		public Admin(Employee user)
 		{
@@ -51,30 +52,30 @@ namespace G3Systems
 		{
 			if ((dataGridViewEmployees.SelectedRows.Count <= 0))
 			{
-				tbUsername.Text = "";
-				tbPassword.Text = "";
+				//tbUsername.Text = "";
+				//tbPassword.Text = "";
 				return;
 			}
 
 			editEmployee = (Employee)dataGridViewEmployees.SelectedRows[0].DataBoundItem;
 
-			tbUsername.Text = editEmployee.Username;
-			tbPassword.Text = editEmployee.Password;
+			//tbUsername.Text = editEmployee.Username;
+			//tbPassword.Text = editEmployee.Password;
 		}
 
 		private async void UpdateEmployeeBtn_Click(object sender, EventArgs e)
 		{
-			if (string.IsNullOrWhiteSpace(tbUsername.Text) ||
-				string.IsNullOrWhiteSpace(tbPassword.Text))
-			{
-				MessageBox.Show("Invalid input");
-				return;
-			}
+			//if (string.IsNullOrWhiteSpace(tbUsername.Text) ||
+			//	string.IsNullOrWhiteSpace(tbPassword.Text))
+			//{
+			//	MessageBox.Show("Invalid input");
+			//	return;
+			//}
 
-			editEmployee.Username = tbUsername.Text;
-			editEmployee.Password = tbPassword.Text;
+			//editEmployee.Username = tbUsername.Text;
+			//editEmployee.Password = tbPassword.Text;
 
-			await _repo.UpdateEmployeeAsync(editEmployee);
+			//await _repo.UpdateEmployeeAsync(editEmployee);
 		}
 
 		private async void dataGridViewEmployees_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -85,10 +86,43 @@ namespace G3Systems
 			}
 
 			dataGridViewEmployees.CommitEdit(DataGridViewDataErrorContexts.Commit);
-
-			editEmployee.LoggedIn = Convert.ToBoolean(dataGridViewEmployees.SelectedRows[0].Cells["Selected"].Value);
-
 			await _repo.UpdateEmployeeAsync(editEmployee);
+		}
+
+		private async void dataGridViewEmployees_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+		{
+			if (editEmployee.EmployeeID == -1)
+			{
+				return;
+			}
+
+			dataGridViewEmployees.CommitEdit(DataGridViewDataErrorContexts.Commit);
+			await _repo.UpdateEmployeeAsync(editEmployee);
+		}
+
+		private async void dataGridViewProducts_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+		{
+			if (editProduct.ProductID == -1)
+			{
+				return;
+			}
+
+			await _repo.UpdateCreateProduct(editProduct);
+		}
+
+		private async void dataGridViewProducts_SelectionChangedAsync(object sender, EventArgs e)
+		{
+			if ((dataGridViewProducts.SelectedRows.Count <= 0))
+			{
+				return;
+			}
+
+			editProduct = (Product)dataGridViewProducts.SelectedRows[0].DataBoundItem;
+		}
+
+		private async void GetAllProductsBtn_Click(object sender, EventArgs e)
+		{
+			dataGridViewProducts.DataSource = await _repo.GetProductsAsync();
 		}
 	}
 }

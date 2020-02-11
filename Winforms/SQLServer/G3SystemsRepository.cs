@@ -43,6 +43,20 @@ namespace SQLServer
         }
 
         /// <summary>
+        /// Get all products
+        /// </summary>
+        /// <returns></returns>
+        public async Task<IEnumerable<Product>> GetProductsAsync()
+        {
+            var sqlQuery = "Select * From Products";
+
+            using (var connection = CreateConnection())
+            {
+                return await connection.QueryAsync<Product>(sqlQuery);
+            }
+        }
+
+        /// <summary>
         /// Get all products and return chosen category by matching productType with productTypeID
         /// </summary>
         /// <param name="productType"></param>
@@ -54,6 +68,25 @@ namespace SQLServer
             using (var connection = CreateConnection())
             {
                 return await connection.QueryAsync<Product>(sqlQuery, new { ProductTypeID = productType });
+            }
+        }
+
+        public async Task UpdateCreateProduct(Product product)
+        {
+            using (var connection = CreateConnection())
+            {
+                await connection.ExecuteAsync(
+                    "Proc_ProductSetCreate", 
+                    new {
+                        product.ProductID,
+                        product.ProductTypeID,
+                        product.ProductName,
+                        product.Description,
+                        product.PrepTime,
+                        product.BasePrice,
+                        product.Activated,
+                        product.Visible },
+                        commandType: CommandType.StoredProcedure);
             }
         }
 
