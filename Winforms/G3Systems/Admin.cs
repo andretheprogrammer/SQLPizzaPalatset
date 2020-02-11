@@ -37,13 +37,18 @@ namespace G3Systems
 
 			// Add values to listbox in Extras tab
 			values.ForEach(type => chkListBoxEmployeeType.Items.Add(type));
+
+			// Load employees datagridview
+			GetEmployeesBtn_Click(sender, e);
 		}
 
 		private void Admin_FormClosed(object sender, FormClosedEventArgs e)
 		{
-			var form = new Login();
-			this.Dispose();
-			form.ShowDialog();
+			//var form = new Login();
+			//this.Dispose();
+			//form.ShowDialog();
+
+			Application.Exit();
 		}
 
 		// Employees
@@ -147,18 +152,6 @@ namespace G3Systems
 			await _repo.GetEmployeeTypesByIdAsync(editEmployee);
 
 			ClearEmployeeTextBoxes();
-		}
-
-		// Employees
-		private async void dataGridViewEmployees_CellContentClick(object sender, DataGridViewCellEventArgs e)
-		{
-			if (e.ColumnIndex != dataGridViewEmployees.Columns["Selected"].Index)
-			{
-				return;
-			}
-
-			dataGridViewEmployees.CommitEdit(DataGridViewDataErrorContexts.Commit);
-			await _repo.UpdateEmployeeAsync(this.editEmployee);
 		}
 
 		// Employees
