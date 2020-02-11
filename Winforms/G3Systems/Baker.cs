@@ -16,8 +16,8 @@ namespace G3Systems
 	public partial class Baker : Form
 	{
 
-		private Employee user;
 		private readonly IG3SystemsRepository _repo;
+		private Employee user;
 		
 		private bool Lockedstate = false;
 		private Station _station;
@@ -186,41 +186,6 @@ namespace G3Systems
 
 		}
 
-		private void splitContainer5_SplitterMoved(object sender, SplitterEventArgs e)
-		{
-
-		}
-
-		private void splitContainer3_SplitterMoved(object sender, SplitterEventArgs e)
-		{
-
-		}
-
-		private void fillByToolStripButton_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void fillByToolStripButton1_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void fillByToolStripButton2_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void fillByToolStripButton3_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void fillByToolStripButton_Click_1(object sender, EventArgs e)
-		{
-
-		}
-
 		private void btn_Logout_Click(object sender, EventArgs e)
 		{
 			var form = new Login();
@@ -315,10 +280,7 @@ namespace G3Systems
 
 				//RefreshLockStatus(currentstation);
 			}
-			finally
-			{
-			
-			}
+
 
 			int pickedStation = currentstation.StationID;
 
@@ -353,16 +315,6 @@ namespace G3Systems
 			repopulate_StuffingsList(currentstation.StationID);
 		}
 
-		private void lbl_username_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void label17_Click(object sender, EventArgs e)
-		{
-
-		}
-
 		private async void btnUnlocker_Click(object sender, EventArgs e)
 		{
 
@@ -395,9 +347,11 @@ namespace G3Systems
 
 		}
 
-		private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+		private void Baker_FormClosed(object sender, FormClosedEventArgs e)
 		{
-
+			var form = new Login();
+			this.Dispose();
+			form.ShowDialog();
 		}
 	}
 }

@@ -35,7 +35,7 @@ namespace G3Systems
 				}
 				else
 				{
-					MessageBox.Show("MSSQL", "Connected");
+					//MessageBox.Show("MSSQL", "Connected");
 					_repo = new SQLServer.G3SystemsRepository();
 			//	}
 			//}
@@ -69,7 +69,7 @@ namespace G3Systems
 				return;
 			}
 
-			MessageBox.Show($"Logged in as:\n{user.Username} ID: {user.EmployeeID}\n");
+			//MessageBox.Show($"Logged in as:\n{user.Username} ID: {user.EmployeeID}\n");
 			SwitchForm(cbConnectTo.SelectedIndex);
 			user.LoggedIn = true;
 
@@ -86,23 +86,19 @@ namespace G3Systems
 		private void SwitchForm(int selected)
 		{
 			this.Hide();
-			int? station = null;// Bättre om kopplar cbConnectTo dropdownlist till stations  
 
 			if (selected == 0)
 			{
-				station = 7;
 				var form = new Admin(user);
 				form.ShowDialog();
 			}
 			else if (selected == 1)
 			{
-				station = 4;
 				var form = new Cashier(user);
 				form.ShowDialog();
 			}
 			else if (selected == 2)
 			{
-				station = 2;
 				var form = new Baker(user);
 				form.ShowDialog();
 			}
@@ -122,8 +118,6 @@ namespace G3Systems
 				ShowErrorMessage("Inte implementerat");
 				this.Show();
 			}
-
-			user.AssignedToStation = station;
 		}
 
 		private async void Login_FormClosing(object sender, FormClosingEventArgs e)
@@ -132,9 +126,10 @@ namespace G3Systems
 			{
 				MessageBox.Show("Loggar ut");
 				user.LoggedIn = false;
-				user.AssignedToStation = 7;
 				await _repo.UpdateEmployeeStatusAsync(user);
 			}
+
+			Application.Exit();
 		}
 	}
 }

@@ -41,14 +41,34 @@ namespace G3Systems
 
 		private void Admin_FormClosed(object sender, FormClosedEventArgs e)
 		{
-			Application.Exit();
+			var form = new Login();
+			this.Dispose();
+			form.ShowDialog();
 		}
 
+		// Employees
 		private async void GetEmployeesBtn_Click(object sender, EventArgs e)
 		{
 			dataGridViewEmployees.DataSource = await _repo.GetEmployeesAsync();
 		}
 
+		// Employees
+		private async void AddNewEmployeeBtn_Click(object sender, EventArgs e)
+		{
+			if (string.IsNullOrWhiteSpace(tbUsername.Text) ||
+				string.IsNullOrWhiteSpace(tbPassword.Text))
+			{
+				MessageBox.Show("Invalid input");
+				return;
+			}
+
+			editEmployee.Username = tbUsername.Text;
+			editEmployee.Password = tbPassword.Text;
+
+			await _repo.UpdateEmployeeAsync(editEmployee);
+		}
+
+		// Employees
 		private void dataGridViewEmployees_SelectionChanged(object sender, EventArgs e)
 		{
 			if ((dataGridViewEmployees.SelectedRows.Count <= 0))
@@ -64,21 +84,7 @@ namespace G3Systems
 			//tbPassword.Text = editEmployee.Password;
 		}
 
-		private async void UpdateEmployeeBtn_Click(object sender, EventArgs e)
-		{
-			//if (string.IsNullOrWhiteSpace(tbUsername.Text) ||
-			//	string.IsNullOrWhiteSpace(tbPassword.Text))
-			//{
-			//	MessageBox.Show("Invalid input");
-			//	return;
-			//}
-
-			//editEmployee.Username = tbUsername.Text;
-			//editEmployee.Password = tbPassword.Text;
-
-			//await _repo.UpdateEmployeeAsync(editEmployee);
-		}
-
+		// Employees
 		private async void dataGridViewEmployees_CellContentClick(object sender, DataGridViewCellEventArgs e)
 		{
 			if (e.ColumnIndex != dataGridViewEmployees.Columns["Selected"].Index)
@@ -90,6 +96,7 @@ namespace G3Systems
 			await _repo.UpdateEmployeeAsync(this.editEmployee);
 		}
 
+		// Employees
 		private async void dataGridViewEmployees_CellEndEdit(object sender, DataGridViewCellEventArgs e)
 		{
 			if (this.editEmployee.EmployeeID == -1)
@@ -101,6 +108,7 @@ namespace G3Systems
 			await _repo.UpdateEmployeeAsync(this.editEmployee);
 		}
 
+		// Products
 		private async void dataGridViewProducts_CellEndEdit(object sender, DataGridViewCellEventArgs e)
 		{
 			if (this.editProduct.ProductID == -1)
@@ -111,6 +119,7 @@ namespace G3Systems
 			await _repo.UpdateCreateProduct(this.editProduct);
 		}
 
+		// Products
 		private void dataGridViewProducts_SelectionChangedAsync(object sender, EventArgs e)
 		{
 			if ((dataGridViewProducts.SelectedRows.Count <= 0))
@@ -121,21 +130,25 @@ namespace G3Systems
 			this.editProduct = (Product)dataGridViewProducts.SelectedRows[0].DataBoundItem;
 		}
 
+		// Products
 		private async void GetAllProductsBtn_Click(object sender, EventArgs e)
 		{
 			dataGridViewProducts.DataSource = await _repo.GetProductsAsync();
 		}
 
+		// Ingredients
 		private async void dataGridViewIngredients_CellEndEdit(object sender, DataGridViewCellEventArgs e)
 		{
 			await _repo.UpdateCreateIngredient(this.editIngredient);
 		}
 
+		// Ingredients
 		private async void GetAllIngredientsBtn_Click(object sender, EventArgs e)
 		{
 			dataGridViewIngredients.DataSource = await _repo.GetIngredients();
 		}
 
+		// Ingredients
 		private void dataGridViewIngredients_SelectionChanged(object sender, EventArgs e)
 		{
 			if ((dataGridViewIngredients.SelectedRows.Count <= 0))
@@ -144,6 +157,17 @@ namespace G3Systems
 			}
 
 			this.editIngredient = (Ingredient)dataGridViewIngredients.SelectedRows[0].DataBoundItem;
+		}
+
+		// Orders
+		private async void GetAllOrdersBtn_Click(object sender, EventArgs e)
+		{
+			dataGridViewOrders.DataSource = await _repo.GetOrdersAsync();
+		}
+
+		private async void GetAllProductOrdersBtn_Click(object sender, EventArgs e)
+		{
+			dataGridViewPOrders.DataSource = await _repo.GetProductOrdersAsync();
 		}
 	}
 }

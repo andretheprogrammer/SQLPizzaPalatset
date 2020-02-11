@@ -158,7 +158,6 @@
 			this.lstbxC_Processing.SelectionMode = System.Windows.Forms.SelectionMode.None;
 			this.lstbxC_Processing.Size = new System.Drawing.Size(364, 466);
 			this.lstbxC_Processing.TabIndex = 1;
-			this.lstbxC_Processing.SelectedIndexChanged += new System.EventHandler(this.lstbxProcessing_SelectedIndexChanged);
 			// 
 			// lstbxC_Finished
 			// 
@@ -302,7 +301,6 @@
 			this.Name = "Cashier";
 			this.Text = "G3Systems - Cashier";
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Cashier_FormClosed);
-			this.Load += new System.EventHandler(this.Form1_Load);
 			((System.ComponentModel.ISupportInitialize)(this.productOrdersBindingSource)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.ordersBindingSource1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.ordersBindingSource)).EndInit();

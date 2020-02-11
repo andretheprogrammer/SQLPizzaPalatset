@@ -17,7 +17,6 @@ namespace TypeLib
 
         Task UpdateCreateProduct(Product product);
 
-        // TODO Delete om ej används
         Task<IEnumerable<ProductOrder>> GetProductOrdersAsync();
 
         // Employees
@@ -52,16 +51,17 @@ namespace TypeLib
 
         Task<IEnumerable<Station>> GetPossibleStationsForEmployee(int pEmployeeid);
         Task AssignStationAsync(int pEmployeeid, int pStationid);
-
-
+                      
         // Order Create
         Task<int> CreateNewOrderAsync(Order order);
 
         Task CreateProductOrdersAsync(object[] parameters);
 
+        // Orders Read
+        Task<IEnumerable<Order>> GetOrdersAsync();
+
         // Order Update
         Task UpdateOrderStatusAsync(Order order);
-
 
         // Ingredients
         Task<IEnumerable<Ingredient>> GetIngredients();

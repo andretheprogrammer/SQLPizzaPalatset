@@ -422,6 +422,7 @@ namespace SQLServer
                 commandType: CommandType.StoredProcedure));
             }
         }
+
         public async Task AssignStationAsync(int pEmployeeid, int pStationid)
         {
             using (var connection = CreateConnection())
@@ -432,6 +433,7 @@ namespace SQLServer
                commandType: CommandType.StoredProcedure);
             }
         }
+
         public async Task UpdateEmployeeStatusAsync(Employee employee)
         {
             using (var connection = CreateConnection())
@@ -440,6 +442,16 @@ namespace SQLServer
                       sql: "Proc_UpdateEmployeeStatus",
                     param: new { employee.EmployeeID, employee.LoggedIn, employee.AssignedToStation },
                commandType: CommandType.StoredProcedure);
+            }
+        }
+
+        public async Task<IEnumerable<Order>> GetOrdersAsync()
+        {
+            var sqlQuery = "select * from orders";
+
+            using (var connection = CreateConnection())
+            {
+                return await connection.QueryAsync<Order>(sqlQuery);
             }
         }
     }
