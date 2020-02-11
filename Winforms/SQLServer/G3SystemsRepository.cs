@@ -140,7 +140,7 @@ namespace SQLServer
             using (var connection = CreateConnection())
             {
                 return (await connection.QueryAsync<Employee>(
-                       sql: "Proc_VerifyLogin",
+                       sql: "Proc_GetEmployeeLogin",
                      param: new { Username = username, Password = password },
                commandType: CommandType.StoredProcedure)).FirstOrDefault();
             }
