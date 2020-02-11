@@ -37,6 +37,7 @@
             System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("Employee3");
             System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("Cashier1");
             System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("CAsheier2");
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -77,6 +78,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.AddNewEmployeeBtn = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.DeleteEmployeeBtn = new System.Windows.Forms.Button();
             this.GetEmployeesBtn = new System.Windows.Forms.Button();
             this.TabProducts = new System.Windows.Forms.TabPage();
             this.tabControl4 = new System.Windows.Forms.TabControl();
@@ -169,7 +171,6 @@
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.productOrdersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.productOrderBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.DeleteEmployeeBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -522,8 +523,12 @@
             // 
             // dataGridViewEmployees
             // 
+            this.dataGridViewEmployees.AllowUserToAddRows = false;
+            this.dataGridViewEmployees.AllowUserToDeleteRows = false;
             this.dataGridViewEmployees.AllowUserToResizeColumns = false;
             this.dataGridViewEmployees.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dataGridViewEmployees.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewEmployees.AutoGenerateColumns = false;
             this.dataGridViewEmployees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewEmployees.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -541,7 +546,6 @@
             this.dataGridViewEmployees.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewEmployees.Size = new System.Drawing.Size(409, 273);
             this.dataGridViewEmployees.TabIndex = 0;
-            this.dataGridViewEmployees.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewEmployees_CellContentClick);
             this.dataGridViewEmployees.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewEmployees_CellEndEdit);
             this.dataGridViewEmployees.SelectionChanged += new System.EventHandler(this.dataGridViewEmployees_SelectionChanged);
             // 
@@ -582,6 +586,7 @@
             this.dataGridViewTextBoxColumn3.DataPropertyName = "AssignedToStation";
             this.dataGridViewTextBoxColumn3.HeaderText = "Station";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
             this.dataGridViewTextBoxColumn3.Width = 65;
             // 
             // employeeBindingSource
@@ -691,6 +696,17 @@
             this.panel3.Padding = new System.Windows.Forms.Padding(0, 0, 0, 100);
             this.panel3.Size = new System.Drawing.Size(409, 146);
             this.panel3.TabIndex = 9;
+            // 
+            // DeleteEmployeeBtn
+            // 
+            this.DeleteEmployeeBtn.Dock = System.Windows.Forms.DockStyle.Right;
+            this.DeleteEmployeeBtn.Location = new System.Drawing.Point(309, 0);
+            this.DeleteEmployeeBtn.Name = "DeleteEmployeeBtn";
+            this.DeleteEmployeeBtn.Size = new System.Drawing.Size(100, 46);
+            this.DeleteEmployeeBtn.TabIndex = 7;
+            this.DeleteEmployeeBtn.Text = "Delete";
+            this.DeleteEmployeeBtn.UseVisualStyleBackColor = true;
+            this.DeleteEmployeeBtn.Click += new System.EventHandler(this.DeleteEmployeeBtn_Click);
             // 
             // GetEmployeesBtn
             // 
@@ -1573,17 +1589,6 @@
             // 
             this.productOrderBindingSource.DataSource = typeof(TypeLib.ProductOrder);
             // 
-            // DeleteEmployeeBtn
-            // 
-            this.DeleteEmployeeBtn.Dock = System.Windows.Forms.DockStyle.Right;
-            this.DeleteEmployeeBtn.Location = new System.Drawing.Point(309, 0);
-            this.DeleteEmployeeBtn.Name = "DeleteEmployeeBtn";
-            this.DeleteEmployeeBtn.Size = new System.Drawing.Size(100, 46);
-            this.DeleteEmployeeBtn.TabIndex = 7;
-            this.DeleteEmployeeBtn.Text = "Delete";
-            this.DeleteEmployeeBtn.UseVisualStyleBackColor = true;
-            this.DeleteEmployeeBtn.Click += new System.EventHandler(this.DeleteEmployeeBtn_Click);
-            // 
             // Admin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1780,11 +1785,6 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Button GetAllIngredientsBtn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn employeeIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Username;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Password;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Selected;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn productIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn productTypeIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn productNameDataGridViewTextBoxColumn;
@@ -1832,5 +1832,10 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn7;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn8;
         private System.Windows.Forms.Button DeleteEmployeeBtn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn employeeIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Username;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Password;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Selected;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
     }
 }
