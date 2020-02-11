@@ -2401,7 +2401,7 @@ CREATE PROCEDURE Proc_GetIngredient @IngredientID int
 
 	GO
 
---ProductType CRUD
+--UpdateCRUD
 CREATE PROCEDURE Proc_ProductTypeSetCreate(
 	@action varchar(10), 
 	@ProductTypeID int, 
@@ -2425,24 +2425,6 @@ CREATE PROCEDURE Proc_ProductTypeSetCreate(
 			WHERE ProductTypeID = @ProductTypeID
 		END
 	GO
-CREATE PROCEDURE Proc_DeleteProductType (@ProductTypeID int)
-	AS
-		BEGIN
-			DELETE 
-			FROM ProductTypes 
-			WHERE ProductTypeID = @ProductTypeID
-		END
-	GO
-CREATE PROCEDURE Proc_GetAllProductTypes
-	AS
-		BEGIN
-			SELECT *
-			FROM ProductTypes
-		END
-
-	GO
-
-
 CREATE PROCEDURE Proc_OrdersSetCreate(
 	@OrderID int, 
 	@ByTerminal Int,
@@ -2508,3 +2490,35 @@ CREATE PROCEDURE Proc_ProductOrdersSetCreate(
 		END
 	GO
 
+CREATE PROCEDURE Proc_DeleteProductType (@ProductTypeID int)
+	AS
+		BEGIN
+			DELETE 
+			FROM ProductTypes 
+			WHERE ProductTypeID = @ProductTypeID
+		END
+	GO
+CREATE PROCEDURE Proc_GetAllProductTypes
+	AS
+		BEGIN
+			SELECT *
+			FROM ProductTypes
+		END
+
+	GO
+
+--AddIngredient CRUD
+CREATE PROCEDURE Proc_AddProduct(@ProductName varchar(30), @ProductTypeID int, @PrepTime int, @BasePrice int, @Description varchar(500))
+	AS
+		BEGIN
+			INSERT INTO Products(ProductName, ProductTypeID, PrepTime, BasePrice, [Description]) 
+			VALUES (@Productname, @ProductTypeID, @PrepTime, @BasePrice, @Description)
+		END
+	GO
+CREATE PROCEDURE Proc_AddIngredientsToProduct (@ProductID INT, @IngredientID INT)
+	AS
+	BEGIN
+	INSERT INTO ProductHaveIngredients (ProductID ,IngredientID) 
+								VALUES (@ProductID ,@IngredientID)
+	END
+	GO
