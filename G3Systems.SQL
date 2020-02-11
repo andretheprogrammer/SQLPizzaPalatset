@@ -225,8 +225,8 @@ CREATE TABLE Orders(
 	);
 CREATE TABLE EmployeesAreEmployeeTypes(
 	--Reference INT IDENTITY(1,1) NOT NULL,  -- N-N samband har "Reference" som kolumnheader istället för "ID"
-	EmployeeID INT NOT NULL FOREIGN KEY REFERENCES Employees(EmployeeID),
-	EmployeeTypeID INT NOT NULL FOREIGN KEY REFERENCES EmployeeTypes(EmployeeTypeID) ,
+	EmployeeID INT NOT NULL FOREIGN KEY REFERENCES Employees(EmployeeID) ON DELETE CASCADE,
+	EmployeeTypeID INT NOT NULL FOREIGN KEY REFERENCES EmployeeTypes(EmployeeTypeID) ON DELETE CASCADE,
 
 	--Nycklar
 	PRIMARY KEY (EmployeeID, EmployeeTypeID)
@@ -611,7 +611,7 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 --Procedure
 	--Create new employee transaction
 		GO
-		ALTER Proc [dbo].[Proc_CreateEmployee]
+		Create Proc Proc_CreateNewEmployee
 			@Username varchar(20),
 			@Password varchar(20),
 			@EmployeeTypeID int
