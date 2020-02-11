@@ -11,15 +11,23 @@ namespace TypeLib
     public interface IG3SystemsRepository
     {
         // Products
+        Task<IEnumerable<Product>> GetProductsAsync();
+
         Task<IEnumerable<Product>> GetProductsAsync(ProductType productType);
+
+        Task UpdateCreateProduct(Product product);
 
         // TODO Delete om ej används
         Task<IEnumerable<ProductOrder>> GetProductOrdersAsync();
 
         // Employees
+        Task<IEnumerable<Employee>> GetEmployeesAsync();
+
+        Task UpdateEmployeeAsync(Employee employee);
+
         Task<Employee> GetEmployeeLoginAsync(string username, string password);
 
-        Task GetEmployeeTypesAsync(Employee employee);
+        Task GetEmployeeTypesByIdAsync(Employee employee);
 
         Task UpdateEmployeeStatusAsync(Employee employee);
         
@@ -56,6 +64,10 @@ namespace TypeLib
 
 
         // Ingredients
+        Task<IEnumerable<Ingredient>> GetIngredients();
+
+        Task UpdateCreateIngredient(Ingredient ingredient);
+
         Task<IEnumerable<Ingredient>> GetHaveIngredientsAsync(int id);
 
         Task<IEnumerable<Ingredient>> GetCanHaveIngredientsAsync(int id);

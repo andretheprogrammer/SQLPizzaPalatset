@@ -42,19 +42,13 @@
 			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.splitContainer9 = new System.Windows.Forms.SplitContainer();
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-			this.lblPassword = new System.Windows.Forms.Label();
 			this.lblAssignment = new System.Windows.Forms.Label();
 			this.label13 = new System.Windows.Forms.Label();
-			this.label15 = new System.Windows.Forms.Label();
+			this.lblEmployee = new System.Windows.Forms.Label();
 			this.label8 = new System.Windows.Forms.Label();
 			this.lbl_usrPname = new System.Windows.Forms.Label();
 			this.label10 = new System.Windows.Forms.Label();
-			this.lbl_activated = new System.Windows.Forms.Label();
-			this.label1 = new System.Windows.Forms.Label();
-			this.lbl_visible = new System.Windows.Forms.Label();
-			this.label23 = new System.Windows.Forms.Label();
 			this.pictureBox2 = new System.Windows.Forms.PictureBox();
-			this.label2 = new System.Windows.Forms.Label();
 			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
 			this.btnUnlocker = new System.Windows.Forms.Button();
 			this.label17 = new System.Windows.Forms.Label();
@@ -305,19 +299,13 @@
 			this.tableLayoutPanel1.ColumnCount = 2;
 			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31.04213F));
 			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 68.95787F));
-			this.tableLayoutPanel1.Controls.Add(this.lblPassword, 0, 6);
 			this.tableLayoutPanel1.Controls.Add(this.lblAssignment, 1, 2);
 			this.tableLayoutPanel1.Controls.Add(this.label13, 0, 2);
-			this.tableLayoutPanel1.Controls.Add(this.label15, 1, 1);
+			this.tableLayoutPanel1.Controls.Add(this.lblEmployee, 1, 1);
 			this.tableLayoutPanel1.Controls.Add(this.label8, 0, 0);
 			this.tableLayoutPanel1.Controls.Add(this.lbl_usrPname, 1, 0);
 			this.tableLayoutPanel1.Controls.Add(this.label10, 0, 1);
-			this.tableLayoutPanel1.Controls.Add(this.lbl_activated, 1, 4);
-			this.tableLayoutPanel1.Controls.Add(this.label1, 0, 4);
-			this.tableLayoutPanel1.Controls.Add(this.lbl_visible, 1, 5);
-			this.tableLayoutPanel1.Controls.Add(this.label23, 0, 5);
 			this.tableLayoutPanel1.Controls.Add(this.pictureBox2, 0, 7);
-			this.tableLayoutPanel1.Controls.Add(this.label2, 1, 6);
 			this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tableLayoutPanel1.Enabled = false;
 			this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
@@ -335,16 +323,6 @@
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
 			this.tableLayoutPanel1.Size = new System.Drawing.Size(471, 611);
 			this.tableLayoutPanel1.TabIndex = 7;
-			// 
-			// lblPassword
-			// 
-			this.lblPassword.AutoSize = true;
-			this.lblPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblPassword.Location = new System.Drawing.Point(23, 409);
-			this.lblPassword.Name = "lblPassword";
-			this.lblPassword.Size = new System.Drawing.Size(88, 18);
-			this.lblPassword.TabIndex = 15;
-			this.lblPassword.Text = "Password:";
 			// 
 			// lblAssignment
 			// 
@@ -366,15 +344,15 @@
 			this.label13.TabIndex = 2;
 			this.label13.Text = "Assigned To Station";
 			// 
-			// label15
+			// lblEmployee
 			// 
-			this.label15.AutoSize = true;
-			this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label15.Location = new System.Drawing.Point(163, 79);
-			this.label15.Name = "label15";
-			this.label15.Size = new System.Drawing.Size(32, 18);
-			this.label15.TabIndex = 4;
-			this.label15.Text = "???";
+			this.lblEmployee.AutoSize = true;
+			this.lblEmployee.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblEmployee.Location = new System.Drawing.Point(163, 79);
+			this.lblEmployee.Name = "lblEmployee";
+			this.lblEmployee.Size = new System.Drawing.Size(32, 18);
+			this.lblEmployee.TabIndex = 4;
+			this.lblEmployee.Text = "???";
 			// 
 			// label8
 			// 
@@ -406,46 +384,6 @@
 			this.label10.TabIndex = 1;
 			this.label10.Text = "Employee:";
 			// 
-			// lbl_activated
-			// 
-			this.lbl_activated.AutoSize = true;
-			this.lbl_activated.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lbl_activated.Location = new System.Drawing.Point(163, 276);
-			this.lbl_activated.Name = "lbl_activated";
-			this.lbl_activated.Size = new System.Drawing.Size(71, 18);
-			this.lbl_activated.TabIndex = 9;
-			this.lbl_activated.Text = "???????";
-			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label1.Location = new System.Drawing.Point(23, 276);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(76, 18);
-			this.label1.TabIndex = 11;
-			this.label1.Text = "Activated";
-			// 
-			// lbl_visible
-			// 
-			this.lbl_visible.AutoSize = true;
-			this.lbl_visible.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lbl_visible.Location = new System.Drawing.Point(163, 337);
-			this.lbl_visible.Name = "lbl_visible";
-			this.lbl_visible.Size = new System.Drawing.Size(71, 18);
-			this.lbl_visible.TabIndex = 10;
-			this.lbl_visible.Text = "???????";
-			// 
-			// label23
-			// 
-			this.label23.AutoSize = true;
-			this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label23.Location = new System.Drawing.Point(23, 337);
-			this.label23.Name = "label23";
-			this.label23.Size = new System.Drawing.Size(57, 18);
-			this.label23.TabIndex = 13;
-			this.label23.Text = "Visible";
-			// 
 			// pictureBox2
 			// 
 			this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
@@ -455,16 +393,6 @@
 			this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 			this.pictureBox2.TabIndex = 1;
 			this.pictureBox2.TabStop = false;
-			// 
-			// label2
-			// 
-			this.label2.AutoSize = true;
-			this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label2.Location = new System.Drawing.Point(163, 409);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(62, 18);
-			this.label2.TabIndex = 14;
-			this.label2.Text = "??????";
 			// 
 			// tableLayoutPanel2
 			// 
@@ -902,7 +830,7 @@
 		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
 		private System.Windows.Forms.Label lblAssignment;
 		private System.Windows.Forms.Label label13;
-		private System.Windows.Forms.Label label15;
+		private System.Windows.Forms.Label lblEmployee;
 		private System.Windows.Forms.Label label8;
 		private System.Windows.Forms.Label lbl_usrPname;
 		private System.Windows.Forms.Label label10;
@@ -933,17 +861,11 @@
 		//private System.Windows.Forms.DataGridViewTextBoxColumn antalDataGridViewTextBoxColumn;
 		private System.Windows.Forms.ListBox lstbxOpen;
 		private System.Windows.Forms.ListBox lstbxStuffings;
-		private System.Windows.Forms.Label lbl_visible;
-		private System.Windows.Forms.Label lbl_activated;
-		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.Label label23;
 		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
 		private System.Windows.Forms.Label lbl_leftTitle;
 		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
 		private System.Windows.Forms.Label label25;
 		private System.Windows.Forms.Label lblStationName;
-		private System.Windows.Forms.Label lblPassword;
-		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Button btnUnlocker;
 		private System.Windows.Forms.Panel panel2;
 		private System.Windows.Forms.Panel panel3;

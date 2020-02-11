@@ -142,6 +142,7 @@ CREATE TABLE Employees(
 	Visible BIT NOT NULL DEFAULT 1,
 	AssignedToStation INT NOT NULL DEFAULT 1 FOREIGN KEY REFERENCES Stations(StationID),
 	--Nycklar:
+		CONSTRAINT UC_EmployeeUsername UNIQUE Username, --Kandidatnyckel
 
 	--Beräknade attribut nedan
 	--
@@ -611,12 +612,12 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 
 	--Employee login
 		GO
-		CREATE PROC Proc_VerifyLogin
+		CREATE PROC Proc_GetEmployeeLogin
 			@Username varchar(20),
 			@Password varchar(20)
 		as
 		begin
-			SELECT EmployeeID, Username FROM Employees WHERE
+			SELECT * FROM Employees WHERE
 			CAST(Username as varbinary(100)) = CAST(@Username as varbinary(100))
 			AND CAST([Password] as varbinary(100)) = CAST(@Password as varbinary(100))
 			AND Username = @Username 
@@ -633,6 +634,23 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 		Begin
 			Update Employees
 			Set LoggedIn = @LoggedIn,
+				AssignedToStation = @AssignedToStation
+			Where EmployeeID = @EmployeeID;
+		End
+		GO
+
+		Create Proc Proc_UpdateEmployee
+			@EmployeeID int,
+			@Username varchar(20),
+			@Password varchar(20),
+			@LoggedIn bit,
+			@AssignedToStation int
+		AS
+		Begin
+			Update Employees
+			Set Username = @Username,
+				[Password] = @Password,
+				LoggedIn = @LoggedIn,
 				AssignedToStation = @AssignedToStation
 			Where EmployeeID = @EmployeeID;
 		End
@@ -727,6 +745,62 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 		End
 		GO
 
+
+		Create PROCEDURE Proc_ProductSetCreate(
+			@ProductID int, 
+			@ProductTypeID Int,
+			@ProductName varchar(100),
+			@Description varchar(100),
+			@preptime int,
+			@baseprice int,
+			@activated bit,
+			@visible bit)
+			AS
+			IF @ProductID is null
+				BEGIN
+				INSERT INTO 
+					Products(ProductTypeID, ProductName, Description, preptime, baseprice, activated, visible) 
+						VALUES(@ProductTypeID ,@ProductName,@Description,@preptime, @baseprice ,@activated, @visible)
+				END
+			ELSE
+				BEGIN
+					UPDATE Products
+					SET 
+					ProductTypeID = @ProductTypeID,
+					ProductName =   @ProductName,
+					Description =   @Description,
+					preptime =  @preptime,
+					baseprice = @baseprice,
+					activated = @activated,
+					visible =   @visible
+					WHERE Products.ProductID = @ProductID
+				END
+			GO
+
+		CREATE PROCEDURE Proc_IngredientSetCreate(
+			@IngredientID int, 
+			@IngredientName varchar(100),
+			@Price int,
+			@Activated int,
+			@Visible int)
+		AS
+		IF @IngredientID is null
+			BEGIN
+			INSERT INTO 
+				Ingredients(IngredientID, IngredientName,Price,Activated, Visible) 
+					VALUES(@IngredientID,@IngredientName,@Price,@Activated,@Visible)
+			END
+		ELSE
+			BEGIN
+				UPDATE Ingredients
+				SET 
+				IngredientName = @IngredientName,
+				Price = @Price,
+				Activated = @Activated,
+				Visible = @Visible
+				WHERE IngredientID = @IngredientID
+			END
+		GO
 	--Procedures för att läggatill (eller tabort) whatever.. (en procedure för varje entitetstyp)
 	-- Kan bli hur många som helst här...
 
@@ -1729,7 +1803,7 @@ CREATE PROCEDURE Proc_POLockedByStation @StationID int
 --Baker
 --returnar en station
 CREATE PROCEDURE Proc_GetAssignedStation @EmployeeID int
-AS
+	AS
 	SELECT *
 	FROM Stations
 	WHERE 
@@ -1754,8 +1828,7 @@ CREATE PROCEDURE Proc_GetProductInfoFromPO @ProductOrderID int
 			WHERE ProductOrders.ProductOrderID= @ProductOrderID
 			);
 	END
-GO
-
+	GO
 
 --baker
 --ger stations
@@ -1776,3 +1849,209 @@ CREATE PROCEDURE Proc_GetPossibleStationsForEmployee @EmployeeID INT
 			WHERE E.EmployeeID = ErET.EmployeeID and ErET.EmployeeTypeID = ET.EmployeeTypeID and E.EmployeeID = @EmployeeID )))
 	END
 	GO		
+
+
+--Product CRUD
+CREATE PROCEDURE Proc_ProductSetCreate(
+	@action varchar(10), 
+	@ProductID int, 
+	@ProductTypeID Int,
+	@ProductName varchar(100),
+	@Description varchar(100),
+	@preptime int,
+	@baseprice int,
+	@activated bit,
+	@visible bit)
+	AS
+	IF @action= 'create'
+		BEGIN
+		INSERT INTO 
+			Products(ProductTypeID, ProductName, Description, preptime, baseprice, activated, visible) 
+				VALUES(@ProductTypeID ,@ProductName,@Description,@preptime, @baseprice ,@activated, @visible)
+		END
+	ELSE IF @action ='set'
+		BEGIN
+			UPDATE Products
+			SET 
+			ProductTypeID = @ProductTypeID,
+		  	ProductName =	@ProductName,
+		  	Description =	@Description,
+		  	preptime =	@preptime,
+		  	baseprice =	@baseprice,
+		  	activated =	@activated,
+		  	visible =	@visible
+			WHERE Products.ProductID = @ProductID
+		END
+	GO
+CREATE PROCEDURE Proc_DeleteProduct(@ProductID int)
+	AS
+		BEGIN
+			DELETE 
+			FROM Products 
+			WHERE Products.ProductID = @ProductID
+		END
+	GO
+CREATE PROCEDURE Proc_GetProducts(@ProductID int)
+	AS
+		BEGIN
+			SELECT *
+			FROM Products
+			WHERE Products.ProductID = @ProductID
+		END
+
+	GO
+
+--Ingredient CRUD
+CREATE PROCEDURE Proc_IngredientSetCreate(
+	@action varchar(10), 
+	@IngredientID int, 
+	@IngredientName varchar(100),
+	@Price int,
+	@Activated int,
+	@Visible int)
+	AS
+	IF @action= 'create'
+		BEGIN
+		INSERT INTO 
+			Ingredients(IngredientID, IngredientName,Price,Activated, Visible) 
+				VALUES(@IngredientID,@IngredientName,@Price,@Activated,@Visible)
+		END
+	ELSE IF @action ='set'
+		BEGIN
+			UPDATE Ingredients
+			SET 
+			IngredientName = @IngredientName,
+			Price = @Price,
+			Activated = @Activated,
+			Visible = @Visible
+			WHERE IngredientID = @IngredientID
+		END
+	GO
+CREATE PROCEDURE Proc_GetIngredient @IngredientID int
+	AS
+		BEGIN
+			DELETE 
+			FROM Ingredients 
+			WHERE IngredientID = @IngredientID
+		END
+	GO
+CREATE PROCEDURE Proc_DeleteIngredient @IngredientID int
+	AS
+		BEGIN
+			SELECT *
+			FROM Ingredients
+			WHERE IngredientID = @IngredientID
+		END
+
+	GO
+
+--ProductType CRUD
+CREATE PROCEDURE Proc_ProductTypeSetCreate(
+	@action varchar(10), 
+	@ProductTypeID int, 
+	@ProductTypeName varchar(100),
+	@Activated int,
+	@Visible int)
+	AS
+	IF @action= 'create'
+		BEGIN
+		INSERT INTO 
+			Ingredients(ProductTypeID, ProductTypeNAme, Activated, Visible) 
+				VALUES(@ProductTypeID, @ProductTypeName, @Activated, @Visible)
+		END
+	ELSE IF @action ='set'
+		BEGIN
+			UPDATE Ingredients
+			SET 
+			IngredientName = @ProductTypeName,
+			Activated = @Activated,
+			Visible = @Visible
+			WHERE ProductTypeID = @ProductTypeID
+		END
+	GO
+CREATE PROCEDURE Proc_DeleteProductType (@ProductTypeID int)
+	AS
+		BEGIN
+			DELETE 
+			FROM ProductTypes 
+			WHERE ProductTypeID = @ProductTypeID
+		END
+CREATE PROCEDURE Proc_GetProductTypes()
+	AS
+		BEGIN
+			SELECT *
+			FROM ProductTypes
+			WHERE ProductTypeID = @ProductTypeID
+		END
+
+	GO
+
+
+CREATE PROCEDURE Proc_OrdersSetCreate(
+	@OrderID int, 
+	@ByTerminal Int,
+	@Paid bit,
+	@Canceled bit,
+	@PickedUp bit,
+	@ShowOnScreen bit,
+	@HappyCustomer bit,
+	@Returned bit,
+	@Activated bit,
+	@Visible bit,
+	)
+	AS
+	IF OrderID IS NULL
+		BEGIN
+		INSERT INTO 
+			Orders( OrderTypeID,  ByTerminal, Paid, Canceled,  PickedUp , ShowOnScreen,  HappyCustomer,  Returned,  Activated, Visible) 
+			VALUES(@OrderTypeID ,@ByTerminal,@Paid,@Canceled, @PickedUp ,@ShowOnScreen, @HappyCustomer, @Returned, @Activated,@Visible)
+		END
+	ELSE 
+		BEGIN
+			UPDATE Orders
+			SET 
+			OrderTypeID = @OrderTypeID,
+		  	ByTerminal =	@ByTerminal,
+		  	Paid =	@Paid,
+		  	Canceled =	@Canceled,
+		  	PickedUp =	@PickedUp,
+		  	ShowOnScreen =	@ShowOnScreen,
+		  	HappyCustomer =	@HappyCustomer,
+		  	Returned = @Returned,
+		  	Activated = @Activated,
+		  	Visible = @Visible
+			WHERE Orders.OrderID = @OrderID
+		END
+	GO
+
+CREATE PROCEDURE Proc_ProductOrdersSetCreate(
+	@ProductOrderID int, 
+	@ProductID Int,
+	@OrderID bit,
+	@LockedByStation bit,
+	@Processed bit,
+	@Activated bit,
+	@Visible bit,
+	)
+	AS
+	IF ProductOrderID IS NULL
+		BEGIN
+		INSERT INTO 
+			ProductOrders( ProductOrderTypeID, ProductID,  OrderID, LockedByStation,  Processed,  Activated,  Visible) 
+			VALUES(@ProductOrderTypeID ,	   @ProductID,@OrderID,@LockedByStation, @Processed ,@Activated, @Visible,)
+		END
+	ELSE 
+		BEGIN
+			UPDATE ProductOrders
+			SET 
+			ProductOrderTypeID = @ProductOrderTypeID,
+		  	ProductID =	@ProductID,
+		  	OrderID =	@OrderID,
+		  	LockedByStation =	@LockedByStation,
+		  	Processed =	@Processed,
+		  	Activated =	@Activated,
+		  	Visible =	@Visible,
+			WHERE ProductOrders.ProductOrderID = @ProductOrderID
+		END
+	GO
+

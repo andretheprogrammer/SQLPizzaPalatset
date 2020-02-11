@@ -10,7 +10,7 @@ using Npgsql;
 
 namespace PostgreSQL
 {
-    public class G3SystemsRepository : IG3SystemsRepository
+    public class G3SystemsRepository //: IG3SystemsRepository
     {
         private readonly string _connString;
 
@@ -113,31 +113,6 @@ namespace PostgreSQL
         }
 
         public Task UpdateEmployeeStatusAsync(Employee employee)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<ProductOrder> GetLockedPOByStation(int pStationid)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Station> GetAssignedStation(int pEmployeeid)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Product> GetProductInfoFromPO(int pProductOrderId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<Station>> GetPossibleStationsForEmployee(int pEmployeeid)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task AssignStationAsync(int pEmployeeid, int pStationid)
         {
             throw new NotImplementedException();
         }
