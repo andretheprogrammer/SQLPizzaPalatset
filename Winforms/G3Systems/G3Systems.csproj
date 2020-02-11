@@ -107,7 +107,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </Compile>
-    <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="Extensions\ExtensionMethods.cs" />
     <Compile Include="G3SystemsDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -196,6 +196,7 @@
       <DependentUpon>G3SystemsDataSet1.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\TypeLib.Employee.datasource" />
     <None Include="Properties\DataSources\TypeLib.Ingredient.datasource" />
     <None Include="Properties\DataSources\TypeLib.Order.datasource" />
     <None Include="Properties\DataSources\TypeLib.Product.datasource" />

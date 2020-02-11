@@ -11,16 +11,18 @@ namespace G3Systems.Extensions
     {
         /// <summary>
         /// Read string in value="" from appsettings in App.Config and convert to required type
+        /// <appSettings><add key="" value=""/></appSettings>
         /// </summary>
-        public static T GetConfigSetting<T>(this string key, T defaultValue = default) where T : IConvertible
+        public static bool GetConfigSetting(this string key)
         {
             string val = ConfigurationManager.AppSettings[key] ?? "";
-            T result = defaultValue;
+            bool result = false; 
             if (!string.IsNullOrEmpty(val))
             {
-                T typeDefault = default;
-                result = (T)Convert.ChangeType(val, typeDefault.GetTypeCode());
+                bool typeDefault = default;
+                result = (bool)Convert.ChangeType(val, typeDefault.GetTypeCode());
             }
+            // Return false if key is empty
             return result;
         }
     }

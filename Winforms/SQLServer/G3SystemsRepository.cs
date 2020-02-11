@@ -43,6 +43,20 @@ namespace SQLServer
         }
 
         /// <summary>
+        /// Get all products
+        /// </summary>
+        /// <returns></returns>
+        public async Task<IEnumerable<Product>> GetProductsAsync()
+        {
+            var sqlQuery = "Select * From Products";
+
+            using (var connection = CreateConnection())
+            {
+                return await connection.QueryAsync<Product>(sqlQuery);
+            }
+        }
+
+        /// <summary>
         /// Get all products and return chosen category by matching productType with productTypeID
         /// </summary>
         /// <param name="productType"></param>
@@ -54,6 +68,59 @@ namespace SQLServer
             using (var connection = CreateConnection())
             {
                 return await connection.QueryAsync<Product>(sqlQuery, new { ProductTypeID = productType });
+            }
+        }
+
+        public async Task UpdateCreateProduct(Product product)
+        {
+            using (var connection = CreateConnection())
+            {
+                await connection.ExecuteAsync(
+                    "Proc_ProductSetCreate", 
+                    new {
+                        product.ProductID,
+                        product.ProductTypeID,
+                        product.ProductName,
+                        product.Description,
+                        product.PrepTime,
+                        product.BasePrice,
+                        product.Activated,
+                        product.Visible },
+                        commandType: CommandType.StoredProcedure);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public async Task<IEnumerable<Employee>> GetEmployeesAsync()
+        {
+            var sqlQuery = "Select * from Employees";
+
+            using (var connection = CreateConnection())
+            {
+                return await connection.QueryAsync<Employee>(sqlQuery);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="employee"></param>
+        /// <returns></returns>
+        public async Task UpdateEmployeeAsync(Employee employee)
+        {
+            using (var connection = CreateConnection())
+            {
+                await connection.ExecuteAsync(
+                    "Proc_UpdateEmployee",
+                    new {   employee.EmployeeID, 
+                            employee.Username, 
+                            employee.Password, 
+                            employee.LoggedIn, 
+                            employee.AssignedToStation },
+                    commandType: CommandType.StoredProcedure);
             }
         }
 
@@ -84,7 +151,7 @@ namespace SQLServer
         /// </summary>
         /// <param name="employee"></param>
         /// <returns></returns>
-        public async Task GetEmployeeTypesAsync(Employee employee)
+        public async Task GetEmployeeTypesByIdAsync(Employee employee)
         {
             var sqlQuery = "select EmployeeTypeID from EmployeesAreEmployeeTypes where EmployeeID = @EmployeeID";
 
@@ -97,7 +164,6 @@ namespace SQLServer
                 types.ForEach(t => employee.Types.Add(t));
             }
         }
-
 
         // Todo sätt summary kommentarer överallt
         // InfoScreen - Hariz
@@ -188,6 +254,33 @@ namespace SQLServer
                 commandType: CommandType.StoredProcedure);
             }
         }
+
+        public async Task<IEnumerable<Ingredient>> GetIngredients()
+        {
+            var sqlQuery = "select * from ingredients;";
+
+            using (var connection = CreateConnection())
+            {
+                return await connection.QueryAsync<Ingredient>(sqlQuery);
+            }
+        }
+
+        public async Task UpdateCreateIngredient(Ingredient ingredient)
+        {
+            using (var connection = CreateConnection())
+            {
+                await connection.ExecuteAsync(
+                    sql: "Proc_IngredientSetCreate",
+                    param: new { 
+                        ingredient.IngredientID,
+                        ingredient.IngredientName, 
+                        ingredient.Price, 
+                        ingredient.Activated, 
+                        ingredient.Visible },
+                    commandType: CommandType.StoredProcedure);
+            }
+        }
+
 
         // Ingredients
         public async Task<IEnumerable<Ingredient>> GetHaveIngredientsAsync(int id)

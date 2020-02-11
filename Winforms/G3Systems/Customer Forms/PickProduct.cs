@@ -143,7 +143,7 @@ namespace G3Systems
 			try
 			{
 				var type = (ProductType)listBoxProductTypes.SelectedItem;
-				gridViewProducts.DataSource = await _repo.GetProductsAsync(type);
+				gridViewProducts.DataSource = (await _repo.GetProductsAsync(type));
 			}
 			catch (Exception msg)
 			{

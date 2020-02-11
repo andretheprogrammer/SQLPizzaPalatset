@@ -27,14 +27,14 @@ namespace G3Systems
 			//	// Get key string from App.config appsettings
 			//	string _postgreBackEnd = ConfigurationManager.AppSettings.Keys[0];
 
-			//	// Check if postgreSQL Back-End is set to true App.Config 
-			//	if (_postgreBackEnd.GetConfigSetting<bool>())
-			//	{
-			//		MessageBox.Show("PostgreSQL", "Connected");
-			//		_repo = new PostgreSQL.G3SystemsRepository();
-			//	}
-			//	else
-			//	{
+				// Check if postgreSQL Back-End is set to true App.Config 
+				if (_postgreBackEnd.GetConfigSetting<bool>())
+				{
+					MessageBox.Show("PostgreSQL", "Connected");
+					_repo = new PostgreSQL.G3SystemsRepository();
+				}
+				else
+				{
 					MessageBox.Show("MSSQL", "Connected");
 					_repo = new SQLServer.G3SystemsRepository();
 			//	}
@@ -60,7 +60,7 @@ namespace G3Systems
 				return;
 			}
 
-			await _repo.GetEmployeeTypesAsync(user);
+			await _repo.GetEmployeeTypesByIdAsync(user);
 
 			// Block access if user has wrong type for selected form
 			if (!user.HasAccess(cbConnectTo.SelectedIndex))
@@ -69,12 +69,11 @@ namespace G3Systems
 				return;
 			}
 
-			user.LoggedIn = true;
-			user.AssignedToStation = 1;
-			await _repo.UpdateEmployeeStatusAsync(user);
-
 			MessageBox.Show($"Logged in as:\n{user.Username} ID: {user.EmployeeID}\n");
 			SwitchForm(cbConnectTo.SelectedIndex);
+			user.LoggedIn = true;
+
+			await _repo.UpdateEmployeeStatusAsync(user);
 		}
 
 		private void ShowErrorMessage(string msg)
@@ -87,19 +86,23 @@ namespace G3Systems
 		private void SwitchForm(int selected)
 		{
 			this.Hide();
+			int? station = null;// Bättre om kopplar cbConnectTo dropdownlist till stations  
 
 			if (selected == 0)
 			{
-				var form = new Admin();
+				station = 7;
+				var form = new Admin(user);
 				form.ShowDialog();
 			}
 			else if (selected == 1)
 			{
+				station = 4;
 				var form = new Cashier(user);
 				form.ShowDialog();
 			}
 			else if (selected == 2)
 			{
+				station = 2;
 				var form = new Baker(user);
 				form.ShowDialog();
 			}
@@ -119,14 +122,19 @@ namespace G3Systems
 				ShowErrorMessage("Inte implementerat");
 				this.Show();
 			}
+
+			user.AssignedToStation = station;
 		}
 
 		private async void Login_FormClosing(object sender, FormClosingEventArgs e)
 		{
-			MessageBox.Show("Loggar ut");
-			user.LoggedIn = false;
-			user.AssignedToStation = null;
-			await _repo.UpdateEmployeeStatusAsync(user);
+			if (user != null)
+			{
+				MessageBox.Show("Loggar ut");
+				user.LoggedIn = false;
+				user.AssignedToStation = 7;
+				await _repo.UpdateEmployeeStatusAsync(user);
+			}
 		}
 	}
 }
