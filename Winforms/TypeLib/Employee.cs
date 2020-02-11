@@ -25,9 +25,6 @@ namespace TypeLib
 
         public bool HasAccess(int station)
         {
-            // TODO Implementera enum för Stations/Stationtypes i ComboBox ?
-            // Implementera Employeetypecanworkinstationtype ?
-
             if (Types.Any(type => type == EmployeeType.Administrator))
             {
                 return true;
@@ -36,7 +33,7 @@ namespace TypeLib
             {
                 return true;
             }
-            else if (station == 2 && Types.Any(type => type == EmployeeType.Pizzabaker))
+            else if (station == 2) //&& Types.Any(type => type == EmployeeType.Pizzabaker))
             {
                 return true;
             }
