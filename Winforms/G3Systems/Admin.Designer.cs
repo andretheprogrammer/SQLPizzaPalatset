@@ -30,13 +30,13 @@
 		{
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Admin));
-			System.Windows.Forms.ListViewGroup listViewGroup11 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
-			System.Windows.Forms.ListViewGroup listViewGroup12 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Right);
-			System.Windows.Forms.ListViewItem listViewItem26 = new System.Windows.Forms.ListViewItem("Employee 1");
-			System.Windows.Forms.ListViewItem listViewItem27 = new System.Windows.Forms.ListViewItem("Employee 2");
-			System.Windows.Forms.ListViewItem listViewItem28 = new System.Windows.Forms.ListViewItem("Employee3");
-			System.Windows.Forms.ListViewItem listViewItem29 = new System.Windows.Forms.ListViewItem("Cashier1");
-			System.Windows.Forms.ListViewItem listViewItem30 = new System.Windows.Forms.ListViewItem("CAsheier2");
+			System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
+			System.Windows.Forms.ListViewGroup listViewGroup4 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Right);
+			System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem("Employee 1");
+			System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem("Employee 2");
+			System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem("Employee3");
+			System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem("Cashier1");
+			System.Windows.Forms.ListViewItem listViewItem10 = new System.Windows.Forms.ListViewItem("CAsheier2");
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.panel1 = new System.Windows.Forms.Panel();
@@ -83,14 +83,6 @@
 			this.tabProducts2 = new System.Windows.Forms.TabPage();
 			this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
 			this.dataGridViewProducts = new System.Windows.Forms.DataGridView();
-			this.productIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.productTypeIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.productNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.prepTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.basePriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-			this.dataGridViewCheckBoxColumn2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
 			this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
 			this.label9 = new System.Windows.Forms.Label();
@@ -170,6 +162,14 @@
 			this.productOrdersBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.productOrderBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.timer1 = new System.Windows.Forms.Timer(this.components);
+			this.productIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.productTypeIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.productNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.prepTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.basePriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+			this.dataGridViewCheckBoxColumn2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -251,8 +251,8 @@
 			// splitContainer1.Panel2
 			// 
 			this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-			this.splitContainer1.Size = new System.Drawing.Size(984, 614);
-			this.splitContainer1.SplitterDistance = 115;
+			this.splitContainer1.Size = new System.Drawing.Size(994, 731);
+			this.splitContainer1.SplitterDistance = 136;
 			this.splitContainer1.TabIndex = 0;
 			// 
 			// pictureBox1
@@ -269,9 +269,9 @@
 			// 
 			this.panel1.Controls.Add(this.splitContainer4);
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-			this.panel1.Location = new System.Drawing.Point(784, 0);
+			this.panel1.Location = new System.Drawing.Point(794, 0);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(200, 115);
+			this.panel1.Size = new System.Drawing.Size(200, 136);
 			this.panel1.TabIndex = 4;
 			// 
 			// splitContainer4
@@ -286,8 +286,8 @@
 			this.splitContainer4.Panel1.Controls.Add(this.flowLayoutPanel1);
 			this.splitContainer4.Panel1.Enabled = false;
 			this.splitContainer4.Panel1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-			this.splitContainer4.Size = new System.Drawing.Size(200, 115);
-			this.splitContainer4.SplitterDistance = 55;
+			this.splitContainer4.Size = new System.Drawing.Size(200, 136);
+			this.splitContainer4.SplitterDistance = 65;
 			this.splitContainer4.TabIndex = 0;
 			// 
 			// flowLayoutPanel1
@@ -298,7 +298,7 @@
 			this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
 			this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
 			this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-			this.flowLayoutPanel1.Size = new System.Drawing.Size(200, 55);
+			this.flowLayoutPanel1.Size = new System.Drawing.Size(200, 65);
 			this.flowLayoutPanel1.TabIndex = 0;
 			// 
 			// usrnLabel
@@ -334,8 +334,8 @@
 			// splitContainer2.Panel2
 			// 
 			this.splitContainer2.Panel2.Controls.Add(this.tabControl1);
-			this.splitContainer2.Size = new System.Drawing.Size(984, 495);
-			this.splitContainer2.SplitterDistance = 232;
+			this.splitContainer2.Size = new System.Drawing.Size(994, 591);
+			this.splitContainer2.SplitterDistance = 234;
 			this.splitContainer2.TabIndex = 0;
 			// 
 			// splitContainer3
@@ -352,8 +352,8 @@
 			// splitContainer3.Panel2
 			// 
 			this.splitContainer3.Panel2.Controls.Add(this.groupBox1);
-			this.splitContainer3.Size = new System.Drawing.Size(232, 495);
-			this.splitContainer3.SplitterDistance = 334;
+			this.splitContainer3.Size = new System.Drawing.Size(234, 591);
+			this.splitContainer3.SplitterDistance = 398;
 			this.splitContainer3.TabIndex = 0;
 			// 
 			// tabControl2
@@ -363,7 +363,7 @@
 			this.tabControl2.Location = new System.Drawing.Point(0, 0);
 			this.tabControl2.Name = "tabControl2";
 			this.tabControl2.SelectedIndex = 0;
-			this.tabControl2.Size = new System.Drawing.Size(232, 334);
+			this.tabControl2.Size = new System.Drawing.Size(234, 398);
 			this.tabControl2.TabIndex = 0;
 			// 
 			// tabPage8
@@ -371,7 +371,7 @@
 			this.tabPage8.Location = new System.Drawing.Point(4, 22);
 			this.tabPage8.Name = "tabPage8";
 			this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage8.Size = new System.Drawing.Size(224, 308);
+			this.tabPage8.Size = new System.Drawing.Size(226, 372);
 			this.tabPage8.TabIndex = 0;
 			this.tabPage8.Text = "tabPage8";
 			this.tabPage8.UseVisualStyleBackColor = true;
@@ -385,7 +385,7 @@
 			this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.groupBox1.Location = new System.Drawing.Point(0, 0);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(232, 157);
+			this.groupBox1.Size = new System.Drawing.Size(234, 189);
 			this.groupBox1.TabIndex = 0;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Logged In Users";
@@ -397,25 +397,25 @@
             this.columnHeader2});
 			this.listViewLoggedInEmployees.Cursor = System.Windows.Forms.Cursors.Arrow;
 			this.listViewLoggedInEmployees.Dock = System.Windows.Forms.DockStyle.Fill;
-			listViewGroup11.Header = "ListViewGroup";
-			listViewGroup11.Name = "listViewGroup1";
-			listViewGroup12.Header = "ListViewGroup";
-			listViewGroup12.HeaderAlignment = System.Windows.Forms.HorizontalAlignment.Right;
-			listViewGroup12.Name = "listViewGroup2";
+			listViewGroup3.Header = "ListViewGroup";
+			listViewGroup3.Name = "listViewGroup1";
+			listViewGroup4.Header = "ListViewGroup";
+			listViewGroup4.HeaderAlignment = System.Windows.Forms.HorizontalAlignment.Right;
+			listViewGroup4.Name = "listViewGroup2";
 			this.listViewLoggedInEmployees.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup11,
-            listViewGroup12});
+            listViewGroup3,
+            listViewGroup4});
 			this.listViewLoggedInEmployees.HideSelection = false;
 			this.listViewLoggedInEmployees.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem26,
-            listViewItem27,
-            listViewItem28,
-            listViewItem29,
-            listViewItem30});
+            listViewItem6,
+            listViewItem7,
+            listViewItem8,
+            listViewItem9,
+            listViewItem10});
 			this.listViewLoggedInEmployees.Location = new System.Drawing.Point(3, 16);
 			this.listViewLoggedInEmployees.Name = "listViewLoggedInEmployees";
 			this.listViewLoggedInEmployees.ShowGroups = false;
-			this.listViewLoggedInEmployees.Size = new System.Drawing.Size(226, 138);
+			this.listViewLoggedInEmployees.Size = new System.Drawing.Size(228, 170);
 			this.listViewLoggedInEmployees.TabIndex = 3;
 			this.listViewLoggedInEmployees.UseCompatibleStateImageBehavior = false;
 			this.listViewLoggedInEmployees.View = System.Windows.Forms.View.SmallIcon;
@@ -468,7 +468,7 @@
 			this.tabControl1.Multiline = true;
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(748, 495);
+			this.tabControl1.Size = new System.Drawing.Size(756, 591);
 			this.tabControl1.TabIndex = 0;
 			// 
 			// TabEmployees
@@ -477,7 +477,7 @@
 			this.TabEmployees.Location = new System.Drawing.Point(4, 22);
 			this.TabEmployees.Name = "TabEmployees";
 			this.TabEmployees.Padding = new System.Windows.Forms.Padding(3);
-			this.TabEmployees.Size = new System.Drawing.Size(740, 469);
+			this.TabEmployees.Size = new System.Drawing.Size(748, 565);
 			this.TabEmployees.TabIndex = 0;
 			this.TabEmployees.Text = "Employees";
 			this.TabEmployees.UseVisualStyleBackColor = true;
@@ -489,7 +489,7 @@
 			this.tabControl3.Location = new System.Drawing.Point(3, 3);
 			this.tabControl3.Name = "tabControl3";
 			this.tabControl3.SelectedIndex = 0;
-			this.tabControl3.Size = new System.Drawing.Size(734, 463);
+			this.tabControl3.Size = new System.Drawing.Size(742, 559);
 			this.tabControl3.TabIndex = 0;
 			// 
 			// tabEditEmployees
@@ -498,7 +498,7 @@
 			this.tabEditEmployees.Location = new System.Drawing.Point(4, 22);
 			this.tabEditEmployees.Name = "tabEditEmployees";
 			this.tabEditEmployees.Padding = new System.Windows.Forms.Padding(3);
-			this.tabEditEmployees.Size = new System.Drawing.Size(726, 437);
+			this.tabEditEmployees.Size = new System.Drawing.Size(734, 533);
 			this.tabEditEmployees.TabIndex = 0;
 			this.tabEditEmployees.Text = "Edit Employees";
 			this.tabEditEmployees.UseVisualStyleBackColor = true;
@@ -518,7 +518,7 @@
 			this.tableLayoutPanel2.RowCount = 2;
 			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 64.96519F));
 			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35.0348F));
-			this.tableLayoutPanel2.Size = new System.Drawing.Size(720, 431);
+			this.tableLayoutPanel2.Size = new System.Drawing.Size(728, 527);
 			this.tableLayoutPanel2.TabIndex = 8;
 			// 
 			// dataGridViewEmployees
@@ -540,7 +540,7 @@
 			this.dataGridViewEmployees.Name = "dataGridViewEmployees";
 			this.dataGridViewEmployees.RowHeadersVisible = false;
 			this.dataGridViewEmployees.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.dataGridViewEmployees.Size = new System.Drawing.Size(409, 273);
+			this.dataGridViewEmployees.Size = new System.Drawing.Size(413, 336);
 			this.dataGridViewEmployees.TabIndex = 0;
 			this.dataGridViewEmployees.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewEmployees_CellContentClick);
 			this.dataGridViewEmployees.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewEmployees_CellEndEdit);
@@ -598,9 +598,9 @@
 			this.groupBox2.Controls.Add(this.label4);
 			this.groupBox2.Controls.Add(this.tbPassword);
 			this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.groupBox2.Location = new System.Drawing.Point(418, 3);
+			this.groupBox2.Location = new System.Drawing.Point(422, 3);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(299, 273);
+			this.groupBox2.Size = new System.Drawing.Size(303, 336);
 			this.groupBox2.TabIndex = 7;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "New user";
@@ -665,18 +665,18 @@
 			// 
 			this.panel2.Controls.Add(this.AddNewEmployeeBtn);
 			this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.panel2.Location = new System.Drawing.Point(418, 282);
+			this.panel2.Location = new System.Drawing.Point(422, 345);
 			this.panel2.Name = "panel2";
 			this.panel2.Padding = new System.Windows.Forms.Padding(0, 0, 0, 100);
-			this.panel2.Size = new System.Drawing.Size(299, 146);
+			this.panel2.Size = new System.Drawing.Size(303, 179);
 			this.panel2.TabIndex = 8;
 			// 
 			// AddNewEmployeeBtn
 			// 
 			this.AddNewEmployeeBtn.Dock = System.Windows.Forms.DockStyle.Right;
-			this.AddNewEmployeeBtn.Location = new System.Drawing.Point(199, 0);
+			this.AddNewEmployeeBtn.Location = new System.Drawing.Point(203, 0);
 			this.AddNewEmployeeBtn.Name = "AddNewEmployeeBtn";
-			this.AddNewEmployeeBtn.Size = new System.Drawing.Size(100, 46);
+			this.AddNewEmployeeBtn.Size = new System.Drawing.Size(100, 79);
 			this.AddNewEmployeeBtn.TabIndex = 6;
 			this.AddNewEmployeeBtn.Text = "Create New";
 			this.AddNewEmployeeBtn.UseVisualStyleBackColor = true;
@@ -686,10 +686,10 @@
 			// 
 			this.panel3.Controls.Add(this.GetEmployeesBtn);
 			this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.panel3.Location = new System.Drawing.Point(3, 282);
+			this.panel3.Location = new System.Drawing.Point(3, 345);
 			this.panel3.Name = "panel3";
 			this.panel3.Padding = new System.Windows.Forms.Padding(0, 0, 0, 100);
-			this.panel3.Size = new System.Drawing.Size(409, 146);
+			this.panel3.Size = new System.Drawing.Size(413, 179);
 			this.panel3.TabIndex = 9;
 			// 
 			// GetEmployeesBtn
@@ -697,7 +697,7 @@
 			this.GetEmployeesBtn.Dock = System.Windows.Forms.DockStyle.Left;
 			this.GetEmployeesBtn.Location = new System.Drawing.Point(0, 0);
 			this.GetEmployeesBtn.Name = "GetEmployeesBtn";
-			this.GetEmployeesBtn.Size = new System.Drawing.Size(100, 46);
+			this.GetEmployeesBtn.Size = new System.Drawing.Size(100, 79);
 			this.GetEmployeesBtn.TabIndex = 1;
 			this.GetEmployeesBtn.Text = "Get All";
 			this.GetEmployeesBtn.UseVisualStyleBackColor = true;
@@ -709,7 +709,7 @@
 			this.TabProducts.Location = new System.Drawing.Point(4, 22);
 			this.TabProducts.Name = "TabProducts";
 			this.TabProducts.Padding = new System.Windows.Forms.Padding(3);
-			this.TabProducts.Size = new System.Drawing.Size(740, 469);
+			this.TabProducts.Size = new System.Drawing.Size(748, 565);
 			this.TabProducts.TabIndex = 1;
 			this.TabProducts.Text = "Products";
 			this.TabProducts.UseVisualStyleBackColor = true;
@@ -722,7 +722,7 @@
 			this.tabControl4.Location = new System.Drawing.Point(3, 3);
 			this.tabControl4.Name = "tabControl4";
 			this.tabControl4.SelectedIndex = 0;
-			this.tabControl4.Size = new System.Drawing.Size(734, 463);
+			this.tabControl4.Size = new System.Drawing.Size(742, 559);
 			this.tabControl4.TabIndex = 0;
 			// 
 			// tabProducts2
@@ -731,7 +731,7 @@
 			this.tabProducts2.Location = new System.Drawing.Point(4, 22);
 			this.tabProducts2.Name = "tabProducts2";
 			this.tabProducts2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabProducts2.Size = new System.Drawing.Size(726, 437);
+			this.tabProducts2.Size = new System.Drawing.Size(734, 533);
 			this.tabProducts2.TabIndex = 0;
 			this.tabProducts2.Text = "Products";
 			this.tabProducts2.UseVisualStyleBackColor = true;
@@ -749,9 +749,9 @@
 			this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 3);
 			this.tableLayoutPanel3.Name = "tableLayoutPanel3";
 			this.tableLayoutPanel3.RowCount = 2;
-			this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 64.96519F));
-			this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35.0348F));
-			this.tableLayoutPanel3.Size = new System.Drawing.Size(720, 431);
+			this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 77.72622F));
+			this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22.27378F));
+			this.tableLayoutPanel3.Size = new System.Drawing.Size(728, 527);
 			this.tableLayoutPanel3.TabIndex = 9;
 			// 
 			// dataGridViewProducts
@@ -776,61 +776,10 @@
 			this.dataGridViewProducts.Name = "dataGridViewProducts";
 			this.dataGridViewProducts.RowHeadersVisible = false;
 			this.dataGridViewProducts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.dataGridViewProducts.Size = new System.Drawing.Size(439, 273);
+			this.dataGridViewProducts.Size = new System.Drawing.Size(443, 403);
 			this.dataGridViewProducts.TabIndex = 0;
 			this.dataGridViewProducts.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewProducts_CellEndEdit);
 			this.dataGridViewProducts.SelectionChanged += new System.EventHandler(this.dataGridViewProducts_SelectionChangedAsync);
-			// 
-			// productIDDataGridViewTextBoxColumn
-			// 
-			this.productIDDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-			this.productIDDataGridViewTextBoxColumn.DataPropertyName = "ProductID";
-			this.productIDDataGridViewTextBoxColumn.HeaderText = "ProductID";
-			this.productIDDataGridViewTextBoxColumn.Name = "productIDDataGridViewTextBoxColumn";
-			this.productIDDataGridViewTextBoxColumn.ReadOnly = true;
-			this.productIDDataGridViewTextBoxColumn.Width = 80;
-			// 
-			// productTypeIDDataGridViewTextBoxColumn
-			// 
-			this.productTypeIDDataGridViewTextBoxColumn.DataPropertyName = "ProductTypeID";
-			this.productTypeIDDataGridViewTextBoxColumn.HeaderText = "ProductTypeID";
-			this.productTypeIDDataGridViewTextBoxColumn.Name = "productTypeIDDataGridViewTextBoxColumn";
-			// 
-			// productNameDataGridViewTextBoxColumn
-			// 
-			this.productNameDataGridViewTextBoxColumn.DataPropertyName = "ProductName";
-			this.productNameDataGridViewTextBoxColumn.HeaderText = "ProductName";
-			this.productNameDataGridViewTextBoxColumn.Name = "productNameDataGridViewTextBoxColumn";
-			// 
-			// descriptionDataGridViewTextBoxColumn
-			// 
-			this.descriptionDataGridViewTextBoxColumn.DataPropertyName = "Description";
-			this.descriptionDataGridViewTextBoxColumn.HeaderText = "Description";
-			this.descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
-			// 
-			// prepTimeDataGridViewTextBoxColumn
-			// 
-			this.prepTimeDataGridViewTextBoxColumn.DataPropertyName = "PrepTime";
-			this.prepTimeDataGridViewTextBoxColumn.HeaderText = "PrepTime";
-			this.prepTimeDataGridViewTextBoxColumn.Name = "prepTimeDataGridViewTextBoxColumn";
-			// 
-			// basePriceDataGridViewTextBoxColumn
-			// 
-			this.basePriceDataGridViewTextBoxColumn.DataPropertyName = "BasePrice";
-			this.basePriceDataGridViewTextBoxColumn.HeaderText = "BasePrice";
-			this.basePriceDataGridViewTextBoxColumn.Name = "basePriceDataGridViewTextBoxColumn";
-			// 
-			// dataGridViewCheckBoxColumn1
-			// 
-			this.dataGridViewCheckBoxColumn1.DataPropertyName = "Activated";
-			this.dataGridViewCheckBoxColumn1.HeaderText = "Activated";
-			this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
-			// 
-			// dataGridViewCheckBoxColumn2
-			// 
-			this.dataGridViewCheckBoxColumn2.DataPropertyName = "Visible";
-			this.dataGridViewCheckBoxColumn2.HeaderText = "Visible";
-			this.dataGridViewCheckBoxColumn2.Name = "dataGridViewCheckBoxColumn2";
 			// 
 			// productBindingSource
 			// 
@@ -845,9 +794,9 @@
 			this.groupBox3.Controls.Add(this.label11);
 			this.groupBox3.Controls.Add(this.textBox2);
 			this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.groupBox3.Location = new System.Drawing.Point(448, 3);
+			this.groupBox3.Location = new System.Drawing.Point(452, 3);
 			this.groupBox3.Name = "groupBox3";
-			this.groupBox3.Size = new System.Drawing.Size(269, 273);
+			this.groupBox3.Size = new System.Drawing.Size(273, 403);
 			this.groupBox3.TabIndex = 7;
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "New user";
@@ -867,7 +816,7 @@
 			this.checkedListBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.checkedListBox1.CheckOnClick = true;
 			this.checkedListBox1.FormattingEnabled = true;
-			this.checkedListBox1.Location = new System.Drawing.Point(97, 129);
+			this.checkedListBox1.Location = new System.Drawing.Point(97, 157);
 			this.checkedListBox1.Name = "checkedListBox1";
 			this.checkedListBox1.Size = new System.Drawing.Size(148, 105);
 			this.checkedListBox1.TabIndex = 6;
@@ -912,18 +861,18 @@
 			// 
 			this.panel4.Controls.Add(this.button1);
 			this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.panel4.Location = new System.Drawing.Point(448, 282);
+			this.panel4.Location = new System.Drawing.Point(452, 412);
 			this.panel4.Name = "panel4";
-			this.panel4.Padding = new System.Windows.Forms.Padding(0, 0, 0, 100);
-			this.panel4.Size = new System.Drawing.Size(269, 146);
+			this.panel4.Padding = new System.Windows.Forms.Padding(20);
+			this.panel4.Size = new System.Drawing.Size(273, 112);
 			this.panel4.TabIndex = 8;
 			// 
 			// button1
 			// 
-			this.button1.Dock = System.Windows.Forms.DockStyle.Right;
-			this.button1.Location = new System.Drawing.Point(169, 0);
+			this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.button1.Location = new System.Drawing.Point(20, 20);
 			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(100, 46);
+			this.button1.Size = new System.Drawing.Size(233, 72);
 			this.button1.TabIndex = 6;
 			this.button1.Text = "Save";
 			this.button1.UseVisualStyleBackColor = true;
@@ -932,18 +881,18 @@
 			// 
 			this.panel5.Controls.Add(this.GetAllProductsBtn);
 			this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.panel5.Location = new System.Drawing.Point(3, 282);
+			this.panel5.Location = new System.Drawing.Point(3, 412);
 			this.panel5.Name = "panel5";
-			this.panel5.Padding = new System.Windows.Forms.Padding(0, 0, 0, 100);
-			this.panel5.Size = new System.Drawing.Size(439, 146);
+			this.panel5.Padding = new System.Windows.Forms.Padding(20);
+			this.panel5.Size = new System.Drawing.Size(443, 112);
 			this.panel5.TabIndex = 9;
 			// 
 			// GetAllProductsBtn
 			// 
-			this.GetAllProductsBtn.Dock = System.Windows.Forms.DockStyle.Left;
-			this.GetAllProductsBtn.Location = new System.Drawing.Point(0, 0);
+			this.GetAllProductsBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.GetAllProductsBtn.Location = new System.Drawing.Point(20, 20);
 			this.GetAllProductsBtn.Name = "GetAllProductsBtn";
-			this.GetAllProductsBtn.Size = new System.Drawing.Size(100, 46);
+			this.GetAllProductsBtn.Size = new System.Drawing.Size(403, 72);
 			this.GetAllProductsBtn.TabIndex = 1;
 			this.GetAllProductsBtn.Text = "Get All";
 			this.GetAllProductsBtn.UseVisualStyleBackColor = true;
@@ -955,7 +904,7 @@
 			this.tabIngredients.Location = new System.Drawing.Point(4, 22);
 			this.tabIngredients.Name = "tabIngredients";
 			this.tabIngredients.Padding = new System.Windows.Forms.Padding(3);
-			this.tabIngredients.Size = new System.Drawing.Size(726, 437);
+			this.tabIngredients.Size = new System.Drawing.Size(734, 533);
 			this.tabIngredients.TabIndex = 1;
 			this.tabIngredients.Text = "Ingredients";
 			this.tabIngredients.UseVisualStyleBackColor = true;
@@ -973,9 +922,9 @@
 			this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 3);
 			this.tableLayoutPanel4.Name = "tableLayoutPanel4";
 			this.tableLayoutPanel4.RowCount = 2;
-			this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 64.96519F));
-			this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35.0348F));
-			this.tableLayoutPanel4.Size = new System.Drawing.Size(720, 431);
+			this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 75.71158F));
+			this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 24.28843F));
+			this.tableLayoutPanel4.Size = new System.Drawing.Size(728, 527);
 			this.tableLayoutPanel4.TabIndex = 10;
 			// 
 			// dataGridViewIngredients
@@ -997,7 +946,7 @@
 			this.dataGridViewIngredients.Name = "dataGridViewIngredients";
 			this.dataGridViewIngredients.RowHeadersVisible = false;
 			this.dataGridViewIngredients.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.dataGridViewIngredients.Size = new System.Drawing.Size(439, 273);
+			this.dataGridViewIngredients.Size = new System.Drawing.Size(443, 393);
 			this.dataGridViewIngredients.TabIndex = 0;
 			this.dataGridViewIngredients.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewIngredients_CellEndEdit);
 			this.dataGridViewIngredients.SelectionChanged += new System.EventHandler(this.dataGridViewIngredients_SelectionChanged);
@@ -1055,9 +1004,9 @@
 			this.groupBox4.Controls.Add(this.label14);
 			this.groupBox4.Controls.Add(this.textBox4);
 			this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.groupBox4.Location = new System.Drawing.Point(448, 3);
+			this.groupBox4.Location = new System.Drawing.Point(452, 3);
 			this.groupBox4.Name = "groupBox4";
-			this.groupBox4.Size = new System.Drawing.Size(269, 273);
+			this.groupBox4.Size = new System.Drawing.Size(273, 393);
 			this.groupBox4.TabIndex = 7;
 			this.groupBox4.TabStop = false;
 			this.groupBox4.Text = "New user";
@@ -1122,18 +1071,18 @@
 			// 
 			this.panel6.Controls.Add(this.button2);
 			this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.panel6.Location = new System.Drawing.Point(448, 282);
+			this.panel6.Location = new System.Drawing.Point(452, 402);
 			this.panel6.Name = "panel6";
-			this.panel6.Padding = new System.Windows.Forms.Padding(0, 0, 0, 100);
-			this.panel6.Size = new System.Drawing.Size(269, 146);
+			this.panel6.Padding = new System.Windows.Forms.Padding(20);
+			this.panel6.Size = new System.Drawing.Size(273, 122);
 			this.panel6.TabIndex = 8;
 			// 
 			// button2
 			// 
-			this.button2.Dock = System.Windows.Forms.DockStyle.Right;
-			this.button2.Location = new System.Drawing.Point(169, 0);
+			this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.button2.Location = new System.Drawing.Point(20, 20);
 			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(100, 46);
+			this.button2.Size = new System.Drawing.Size(233, 82);
 			this.button2.TabIndex = 6;
 			this.button2.Text = "Save";
 			this.button2.UseVisualStyleBackColor = true;
@@ -1142,18 +1091,18 @@
 			// 
 			this.panel7.Controls.Add(this.GetAllIngredientsBtn);
 			this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.panel7.Location = new System.Drawing.Point(3, 282);
+			this.panel7.Location = new System.Drawing.Point(3, 402);
 			this.panel7.Name = "panel7";
-			this.panel7.Padding = new System.Windows.Forms.Padding(0, 0, 0, 100);
-			this.panel7.Size = new System.Drawing.Size(439, 146);
+			this.panel7.Padding = new System.Windows.Forms.Padding(20);
+			this.panel7.Size = new System.Drawing.Size(443, 122);
 			this.panel7.TabIndex = 9;
 			// 
 			// GetAllIngredientsBtn
 			// 
-			this.GetAllIngredientsBtn.Dock = System.Windows.Forms.DockStyle.Left;
-			this.GetAllIngredientsBtn.Location = new System.Drawing.Point(0, 0);
+			this.GetAllIngredientsBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.GetAllIngredientsBtn.Location = new System.Drawing.Point(20, 20);
 			this.GetAllIngredientsBtn.Name = "GetAllIngredientsBtn";
-			this.GetAllIngredientsBtn.Size = new System.Drawing.Size(100, 46);
+			this.GetAllIngredientsBtn.Size = new System.Drawing.Size(403, 82);
 			this.GetAllIngredientsBtn.TabIndex = 1;
 			this.GetAllIngredientsBtn.Text = "Get All";
 			this.GetAllIngredientsBtn.UseVisualStyleBackColor = true;
@@ -1164,7 +1113,7 @@
 			this.tabOrders.Controls.Add(this.tabControl8);
 			this.tabOrders.Location = new System.Drawing.Point(4, 22);
 			this.tabOrders.Name = "tabOrders";
-			this.tabOrders.Size = new System.Drawing.Size(740, 469);
+			this.tabOrders.Size = new System.Drawing.Size(748, 565);
 			this.tabOrders.TabIndex = 5;
 			this.tabOrders.Text = "Orders";
 			this.tabOrders.UseVisualStyleBackColor = true;
@@ -1177,7 +1126,7 @@
 			this.tabControl8.Location = new System.Drawing.Point(0, 0);
 			this.tabControl8.Name = "tabControl8";
 			this.tabControl8.SelectedIndex = 0;
-			this.tabControl8.Size = new System.Drawing.Size(740, 469);
+			this.tabControl8.Size = new System.Drawing.Size(748, 565);
 			this.tabControl8.TabIndex = 3;
 			// 
 			// tabPage11
@@ -1186,7 +1135,7 @@
 			this.tabPage11.Location = new System.Drawing.Point(4, 22);
 			this.tabPage11.Name = "tabPage11";
 			this.tabPage11.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage11.Size = new System.Drawing.Size(732, 443);
+			this.tabPage11.Size = new System.Drawing.Size(740, 539);
 			this.tabPage11.TabIndex = 0;
 			this.tabPage11.Text = "Orders";
 			this.tabPage11.UseVisualStyleBackColor = true;
@@ -1203,7 +1152,7 @@
 			this.tableLayoutPanel1.RowCount = 2;
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 64.96519F));
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35.0348F));
-			this.tableLayoutPanel1.Size = new System.Drawing.Size(726, 437);
+			this.tableLayoutPanel1.Size = new System.Drawing.Size(734, 533);
 			this.tableLayoutPanel1.TabIndex = 10;
 			// 
 			// dataGridViewOrders
@@ -1230,7 +1179,7 @@
 			this.dataGridViewOrders.Name = "dataGridViewOrders";
 			this.dataGridViewOrders.RowHeadersVisible = false;
 			this.dataGridViewOrders.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.dataGridViewOrders.Size = new System.Drawing.Size(720, 277);
+			this.dataGridViewOrders.Size = new System.Drawing.Size(728, 340);
 			this.dataGridViewOrders.TabIndex = 0;
 			// 
 			// OrderID
@@ -1312,10 +1261,10 @@
 			// 
 			this.panel9.Controls.Add(this.GetAllOrdersBtn);
 			this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.panel9.Location = new System.Drawing.Point(3, 286);
+			this.panel9.Location = new System.Drawing.Point(3, 349);
 			this.panel9.Name = "panel9";
 			this.panel9.Padding = new System.Windows.Forms.Padding(0, 0, 0, 100);
-			this.panel9.Size = new System.Drawing.Size(720, 148);
+			this.panel9.Size = new System.Drawing.Size(728, 181);
 			this.panel9.TabIndex = 9;
 			// 
 			// GetAllOrdersBtn
@@ -1323,7 +1272,7 @@
 			this.GetAllOrdersBtn.Dock = System.Windows.Forms.DockStyle.Left;
 			this.GetAllOrdersBtn.Location = new System.Drawing.Point(0, 0);
 			this.GetAllOrdersBtn.Name = "GetAllOrdersBtn";
-			this.GetAllOrdersBtn.Size = new System.Drawing.Size(100, 48);
+			this.GetAllOrdersBtn.Size = new System.Drawing.Size(100, 81);
 			this.GetAllOrdersBtn.TabIndex = 1;
 			this.GetAllOrdersBtn.Text = "Get All";
 			this.GetAllOrdersBtn.UseVisualStyleBackColor = true;
@@ -1501,7 +1450,7 @@
 			this.tabBuildings.Location = new System.Drawing.Point(4, 22);
 			this.tabBuildings.Name = "tabBuildings";
 			this.tabBuildings.Padding = new System.Windows.Forms.Padding(3);
-			this.tabBuildings.Size = new System.Drawing.Size(740, 469);
+			this.tabBuildings.Size = new System.Drawing.Size(748, 565);
 			this.tabBuildings.TabIndex = 4;
 			this.tabBuildings.Text = "Buildings";
 			this.tabBuildings.UseVisualStyleBackColor = true;
@@ -1514,7 +1463,7 @@
 			this.tabControl5.Location = new System.Drawing.Point(3, 3);
 			this.tabControl5.Name = "tabControl5";
 			this.tabControl5.SelectedIndex = 0;
-			this.tabControl5.Size = new System.Drawing.Size(734, 463);
+			this.tabControl5.Size = new System.Drawing.Size(742, 559);
 			this.tabControl5.TabIndex = 0;
 			// 
 			// tabPage1
@@ -1522,7 +1471,7 @@
 			this.tabPage1.Location = new System.Drawing.Point(4, 22);
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(726, 437);
+			this.tabPage1.Size = new System.Drawing.Size(734, 533);
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "Edit Buildings";
 			this.tabPage1.UseVisualStyleBackColor = true;
@@ -1579,11 +1528,70 @@
 			this.timer1.Interval = 1000;
 			this.timer1.Tick += new System.EventHandler(this.timer1_Tick_1);
 			// 
+			// productIDDataGridViewTextBoxColumn
+			// 
+			this.productIDDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.productIDDataGridViewTextBoxColumn.DataPropertyName = "ProductID";
+			this.productIDDataGridViewTextBoxColumn.HeaderText = "ProductID";
+			this.productIDDataGridViewTextBoxColumn.Name = "productIDDataGridViewTextBoxColumn";
+			this.productIDDataGridViewTextBoxColumn.ReadOnly = true;
+			// 
+			// productTypeIDDataGridViewTextBoxColumn
+			// 
+			this.productTypeIDDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.productTypeIDDataGridViewTextBoxColumn.DataPropertyName = "ProductTypeID";
+			this.productTypeIDDataGridViewTextBoxColumn.HeaderText = "ProductTypeID";
+			this.productTypeIDDataGridViewTextBoxColumn.Name = "productTypeIDDataGridViewTextBoxColumn";
+			// 
+			// productNameDataGridViewTextBoxColumn
+			// 
+			this.productNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+			this.productNameDataGridViewTextBoxColumn.DataPropertyName = "ProductName";
+			this.productNameDataGridViewTextBoxColumn.HeaderText = "ProductName";
+			this.productNameDataGridViewTextBoxColumn.Name = "productNameDataGridViewTextBoxColumn";
+			this.productNameDataGridViewTextBoxColumn.Width = 97;
+			// 
+			// descriptionDataGridViewTextBoxColumn
+			// 
+			this.descriptionDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+			this.descriptionDataGridViewTextBoxColumn.DataPropertyName = "Description";
+			this.descriptionDataGridViewTextBoxColumn.HeaderText = "Description";
+			this.descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
+			this.descriptionDataGridViewTextBoxColumn.Width = 85;
+			// 
+			// prepTimeDataGridViewTextBoxColumn
+			// 
+			this.prepTimeDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.prepTimeDataGridViewTextBoxColumn.DataPropertyName = "PrepTime";
+			this.prepTimeDataGridViewTextBoxColumn.HeaderText = "PrepTime";
+			this.prepTimeDataGridViewTextBoxColumn.Name = "prepTimeDataGridViewTextBoxColumn";
+			// 
+			// basePriceDataGridViewTextBoxColumn
+			// 
+			this.basePriceDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.basePriceDataGridViewTextBoxColumn.DataPropertyName = "BasePrice";
+			this.basePriceDataGridViewTextBoxColumn.HeaderText = "BasePrice";
+			this.basePriceDataGridViewTextBoxColumn.Name = "basePriceDataGridViewTextBoxColumn";
+			// 
+			// dataGridViewCheckBoxColumn1
+			// 
+			this.dataGridViewCheckBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.dataGridViewCheckBoxColumn1.DataPropertyName = "Activated";
+			this.dataGridViewCheckBoxColumn1.HeaderText = "Activated";
+			this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
+			// 
+			// dataGridViewCheckBoxColumn2
+			// 
+			this.dataGridViewCheckBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.dataGridViewCheckBoxColumn2.DataPropertyName = "Visible";
+			this.dataGridViewCheckBoxColumn2.HeaderText = "Visible";
+			this.dataGridViewCheckBoxColumn2.Name = "dataGridViewCheckBoxColumn2";
+			// 
 			// Admin
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(984, 614);
+			this.ClientSize = new System.Drawing.Size(994, 731);
 			this.Controls.Add(this.splitContainer1);
 			this.MinimumSize = new System.Drawing.Size(699, 398);
 			this.Name = "Admin";
@@ -1780,14 +1788,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Password;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Selected;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn productIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn productTypeIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn productNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn descriptionDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn prepTimeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn basePriceDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn2;
         private System.Windows.Forms.TabControl tabControl8;
         private System.Windows.Forms.TabPage tabPage11;
         private System.Windows.Forms.TabPage tabPage12;
@@ -1827,5 +1827,13 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn7;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn8;
 		private System.Windows.Forms.Timer timer1;
+		private System.Windows.Forms.DataGridViewTextBoxColumn productIDDataGridViewTextBoxColumn;
+		private System.Windows.Forms.DataGridViewTextBoxColumn productTypeIDDataGridViewTextBoxColumn;
+		private System.Windows.Forms.DataGridViewTextBoxColumn productNameDataGridViewTextBoxColumn;
+		private System.Windows.Forms.DataGridViewTextBoxColumn descriptionDataGridViewTextBoxColumn;
+		private System.Windows.Forms.DataGridViewTextBoxColumn prepTimeDataGridViewTextBoxColumn;
+		private System.Windows.Forms.DataGridViewTextBoxColumn basePriceDataGridViewTextBoxColumn;
+		private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
+		private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn2;
 	}
 }
