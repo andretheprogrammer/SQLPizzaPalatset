@@ -11,7 +11,7 @@ namespace TypeLib
         public int ProductOrderID { get; set; }
         public int ProductID { get; set; }
         public int OrderID { get; set; }
-        public int LockedByStation { get; set; }
+        public int LockedByStationID { get; set; }
         public bool Processed { get; set; }
         public bool Activated { get; set; }
         public bool Visible { get; set; }

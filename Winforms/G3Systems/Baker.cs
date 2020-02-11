@@ -31,10 +31,6 @@ namespace G3Systems
 			lbl_username.Text = user.Username;
 			lbl_usrPname.Text = user.Username;
 
-			//Todo: hårdkodat här. Fixa så den visar riktigt värde.
-			lbl_activated.Text = "True";
-			lbl_visible.Text = "True";
-			lblPassword.Text = "";
 
 		}
 
@@ -46,8 +42,7 @@ namespace G3Systems
 
 		private async void btn_Lock_click(object sender, EventArgs e)
 		{
-			int myemployeeid = 1; // HÅRDKODAT FIXA MED INLOGGNING!
-			Station currentstation = (await _repo.GetAssignedStation(myemployeeid));
+			Station currentstation = (await _repo.GetAssignedStation(user.EmployeeID));
 
 			if (noSelections()) { return; }
 			
@@ -119,10 +114,8 @@ namespace G3Systems
 		//do stuff here when form loads
 		private async void Baker_Load(object sender, EventArgs e)
 		{
-			//Hårdkodad userid ------- FIX THIS ASAP 
-			//Initialize
-			int myemployeeid = 4;
-			Station currentstation = (await _repo.GetAssignedStation(myemployeeid));
+
+			Station currentstation = (await _repo.GetAssignedStation(user.EmployeeID));
 
 			lblStationName.Text = currentstation.StationName;
 			//Refresh
@@ -130,10 +123,13 @@ namespace G3Systems
 			RefreshLockStatus(currentstation);
 
 			lstbxPossibleStations.Items.Clear();
-			List<Station> poissibleStations = (await _repo.GetPossibleStationsForEmployee(myemployeeid)).ToList();
+			List<Station> poissibleStations = (await _repo.GetPossibleStationsForEmployee(user.EmployeeID)).ToList();
 			poissibleStations.ForEach(a => lstbxPossibleStations.Items.Add(a.StationID + ": " + a.StationName));
-			lblAssignment.Text = "GET THIS ON FORMLOAD";
+			lblAssignment.Text = currentstation.StationName;
 
+			lblEmployee.Text = "";
+			//user.Types.ForEach(a => lblEmployee.Text += " | " + a);
+			lblEmployee.Text = string.Join(" | ", user.Types);
 		}
 
 		private async void RefreshLockStatus(Station pStation){
@@ -210,8 +206,7 @@ namespace G3Systems
 			lstbxOpen.Items.Clear();
 			lstbxStuffings.Items.Clear();
 
-			int myemployeeid = 1; // HÅRDKODAT FIXA MED INLOGGNING!
-			Station currentstation = (await _repo.GetAssignedStation(myemployeeid));
+			Station currentstation = (await _repo.GetAssignedStation(user.EmployeeID));
 
 			//Inkapsla
 			ProductOrder lockedPOs = await _repo.GetLockedPOByStation(currentstation.StationID);
@@ -240,8 +235,6 @@ namespace G3Systems
 
 			lstbxStuffings.Items.Clear();
 
-			//Hårdkodat??
-			int building = 1;
 
 
 			repopulate_StuffingsList(pickedPO);
@@ -264,8 +257,7 @@ namespace G3Systems
 		private async void btn_Finished_Click(object sender, EventArgs e)
 		{
 
-			int myemployeeid = 1; // HÅRDKODAT FIXA MED INLOGGNING!
-			Station currentstation = (await _repo.GetAssignedStation(myemployeeid));
+			Station currentstation = (await _repo.GetAssignedStation(user.EmployeeID));
 
 
 			lstbxOpen.Enabled = true;
@@ -326,8 +318,7 @@ namespace G3Systems
 
 			//This unlocks the station! 
 
-			int myemployeeid = 1; // HÅRDKODAT FIXA MED INLOGGNING!
-			Station currentstation = (await _repo.GetAssignedStation(myemployeeid));
+			Station currentstation = (await _repo.GetAssignedStation(user.EmployeeID));
 
 			ProductOrder PO = await _repo.GetLockedPOByStation(currentstation.StationID);
 			await _repo.SetLockOnkPOAsync(PO.ProductOrderID, 0);
@@ -342,15 +333,14 @@ namespace G3Systems
 
 		private async void btnSwitcher_Click(object sender, EventArgs e)
 		{
-			int myemployeeid = 1;
 
 			string[] station = (lstbxPossibleStations.SelectedItems[0]).ToString().Split(':');
 			int stationChoice = Int32.Parse(station[0]);
-			await _repo.AssignStationAsync(myemployeeid, stationChoice);
+			await _repo.AssignStationAsync(user.EmployeeID, stationChoice);
 			lblAssignment.Text = station[1];
 			lblStationName.Text = station[1];
 
-			Station currentstation = (await _repo.GetAssignedStation(myemployeeid));
+			Station currentstation = (await _repo.GetAssignedStation(user.EmployeeID));
 			RefreshLockStatus(currentstation);
 
 		}
