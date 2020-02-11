@@ -35,7 +35,7 @@ namespace G3Systems
 				}
 				else
 				{
-					MessageBox.Show("MSSQL", "Connected");
+					//MessageBox.Show("MSSQL", "Connected");
 					_repo = new SQLServer.G3SystemsRepository();
 				}
 			}
@@ -69,7 +69,7 @@ namespace G3Systems
 				return;
 			}
 
-			MessageBox.Show($"Logged in as:\n{user.Username} ID: {user.EmployeeID}\n");
+			//MessageBox.Show($"Logged in as:\n{user.Username} ID: {user.EmployeeID}\n");
 			SwitchForm(cbConnectTo.SelectedIndex);
 			user.LoggedIn = true;
 
