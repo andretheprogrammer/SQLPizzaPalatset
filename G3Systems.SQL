@@ -134,7 +134,7 @@ CREATE TABLE Stations(
 CREATE TABLE Employees(
 	EmployeeID INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
 
-	Username VARCHAR(20) NOT NULL,
+	Username VARCHAR(20) NOT NULL UNIQUE,
 	[Password] VARCHAR(20) NOT NULL DEFAULT ROUND(RAND() * 100000, 0), 
 	
 	LoggedIn bit NOT NULL DEFAULT 0, 
@@ -609,6 +609,46 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 	-- View över "Parents" för särskild "menynod"
 ------------------------------------------------------------------------
 --Procedure
+	--Create new employee transaction
+		GO
+		ALTER Proc [dbo].[Proc_CreateEmployee]
+			@Username varchar(20),
+			@Password varchar(20),
+			@EmployeeTypeID int
+		AS
+		Begin
+			Begin Transaction;
+			Save Transaction SavePoint;
+			Begin Try
+				declare @EmployeeID int;
+
+				Select @EmployeeID = EmployeeID 
+				From Employees
+				Where @Username = Username 
+				AND @Password = [Password]
+				AND EmployeeID = (Select Max(EmployeeID) from Employees);
+
+				if @EmployeeID is null
+				Begin
+					insert into Employees (Username, [Password])
+					values (@Username, @Password);
+					select @EmployeeID = SCOPE_IDENTITY();
+				End
+
+				Begin
+					insert into EmployeesAreEmployeeTypes (EmployeeID, EmployeeTypeID)
+					values (@EmployeeID, @EmployeeTypeID);
+				End
+				Commit Transaction
+			End Try
+			Begin Catch
+				if (@@TRANCOUNT > 0)
+					Begin
+						Rollback Transaction SavePoint;
+					End
+			End Catch
+		End
+		GO
 
 	--Employee login
 		GO

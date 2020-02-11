@@ -36,9 +36,11 @@ namespace SQLServer
 
         public async Task<IEnumerable<ProductOrder>> GetProductOrdersAsync()
         {
+            var sqlQuery = "Select * from ProductOrders";
+
             using (var connection = CreateConnection())
             {
-                return await connection.QueryAsync<ProductOrder>("Select * from ProductOrders");
+                return await connection.QueryAsync<ProductOrder>(sqlQuery);
             }
         }
 
@@ -71,6 +73,11 @@ namespace SQLServer
             }
         }
 
+        /// <summary>
+        /// Update if product exists Else create new product
+        /// </summary>
+        /// <param name="product"></param>
+        /// <returns></returns>
         public async Task UpdateCreateProduct(Product product)
         {
             using (var connection = CreateConnection())
@@ -86,12 +93,30 @@ namespace SQLServer
                         product.BasePrice,
                         product.Activated,
                         product.Visible },
-                        commandType: CommandType.StoredProcedure);
+                        commandType: CommandType.StoredProcedure
+                        );
             }
         }
 
         /// <summary>
-        /// 
+        /// Insert new employee and its employeetypes
+        /// </summary>
+        /// <param name="employee"></param>
+        /// <returns></returns>
+        public async Task CreateNewEmployee(object[] employeeParams)
+        {
+            using (var connection = CreateConnection())
+            {
+                await connection.ExecuteAsync(
+                        sql: "Proc_CreateEmployee",
+                      param: employeeParams,
+                commandType: CommandType.StoredProcedure
+                        );
+            }
+        }
+
+        /// <summary>
+        /// Get all employees
         /// </summary>
         /// <returns></returns>
         public async Task<IEnumerable<Employee>> GetEmployeesAsync()
@@ -105,7 +130,7 @@ namespace SQLServer
         }
 
         /// <summary>
-        /// 
+        /// Update employee properties
         /// </summary>
         /// <param name="employee"></param>
         /// <returns></returns>

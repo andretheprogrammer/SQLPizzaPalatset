@@ -34,12 +34,6 @@ namespace G3Systems
 
 		}
 
-		// TODO Rensa bort all skräp kod här tack. Utan att programmet kraschar
-		private void splitContainer4_Panel2_Paint(object sender, PaintEventArgs e)
-		{
-
-		}
-
 		private async void btn_Lock_click(object sender, EventArgs e)
 		{
 			Station currentstation = (await _repo.GetAssignedStation(user.EmployeeID));

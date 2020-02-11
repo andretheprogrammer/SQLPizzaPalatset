@@ -20,6 +20,8 @@ namespace TypeLib
         Task<IEnumerable<ProductOrder>> GetProductOrdersAsync();
 
         // Employees
+        Task CreateNewEmployee(object[] parameters);
+
         Task<IEnumerable<Employee>> GetEmployeesAsync();
 
         Task UpdateEmployeeAsync(Employee employee);

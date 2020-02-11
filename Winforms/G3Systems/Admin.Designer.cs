@@ -61,7 +61,12 @@
             this.tabEditEmployees = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.dataGridViewEmployees = new System.Windows.Forms.DataGridView();
+            this.employeeIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Username = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Password = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Selected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.employeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label8 = new System.Windows.Forms.Label();
             this.chkListBoxEmployeeType = new System.Windows.Forms.CheckedListBox();
@@ -78,6 +83,15 @@
             this.tabProducts2 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.dataGridViewProducts = new System.Windows.Forms.DataGridView();
+            this.productIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.productTypeIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.productNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.prepTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.basePriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewCheckBoxColumn2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label9 = new System.Windows.Forms.Label();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
@@ -96,6 +110,8 @@
             this.IngredientName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Activated = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewCheckBoxColumn4 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.ingredientBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label12 = new System.Windows.Forms.Label();
             this.checkedListBox2 = new System.Windows.Forms.CheckedListBox();
@@ -120,6 +136,9 @@
             this.ShowOnScreen = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.HappyCustomer = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Returned = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewCheckBoxColumn3 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewCheckBoxColumn5 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.orderBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel9 = new System.Windows.Forms.Panel();
             this.GetAllOrdersBtn = new System.Windows.Forms.Button();
             this.tabPage12 = new System.Windows.Forms.TabPage();
@@ -132,6 +151,13 @@
             this.Processed = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dataGridViewCheckBoxColumn6 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Visible = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.productOrderIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.productIDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.processedDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewCheckBoxColumn7 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewCheckBoxColumn8 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.productOrderBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.panel8 = new System.Windows.Forms.Panel();
             this.GetAllProductOrdersBtn = new System.Windows.Forms.Button();
             this.tabBuildings = new System.Windows.Forms.TabPage();
@@ -142,34 +168,8 @@
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.productOrdersBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.employeeIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Username = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Selected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.employeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.productIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productTypeIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.prepTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.basePriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewCheckBoxColumn2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataGridViewCheckBoxColumn4 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.ingredientBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataGridViewCheckBoxColumn3 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewCheckBoxColumn5 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.orderBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.productOrderIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productIDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.processedDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewCheckBoxColumn7 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewCheckBoxColumn8 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.productOrderBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.productOrderBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.DeleteEmployeeBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -196,6 +196,7 @@
             this.tabEditEmployees.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployees)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -204,12 +205,14 @@
             this.tabProducts2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProducts)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel5.SuspendLayout();
             this.tabIngredients.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewIngredients)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ingredientBindingSource)).BeginInit();
             this.groupBox4.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel7.SuspendLayout();
@@ -218,21 +221,18 @@
             this.tabPage11.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOrders)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.orderBindingSource)).BeginInit();
             this.panel9.SuspendLayout();
             this.tabPage12.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPOrders)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productOrderBindingSource1)).BeginInit();
             this.panel8.SuspendLayout();
             this.tabBuildings.SuspendLayout();
             this.tabControl5.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabControl6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productOrdersBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ingredientBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.orderBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productOrderBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productOrderBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -545,11 +545,48 @@
             this.dataGridViewEmployees.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewEmployees_CellEndEdit);
             this.dataGridViewEmployees.SelectionChanged += new System.EventHandler(this.dataGridViewEmployees_SelectionChanged);
             // 
+            // employeeIDDataGridViewTextBoxColumn
+            // 
+            this.employeeIDDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.employeeIDDataGridViewTextBoxColumn.DataPropertyName = "EmployeeID";
+            this.employeeIDDataGridViewTextBoxColumn.HeaderText = "ID";
+            this.employeeIDDataGridViewTextBoxColumn.Name = "employeeIDDataGridViewTextBoxColumn";
+            this.employeeIDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.employeeIDDataGridViewTextBoxColumn.Width = 43;
+            // 
+            // Username
+            // 
+            this.Username.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Username.DataPropertyName = "Username";
+            this.Username.HeaderText = "Username";
+            this.Username.Name = "Username";
+            // 
             // Password
             // 
             this.Password.DataPropertyName = "Password";
             this.Password.HeaderText = "Password";
             this.Password.Name = "Password";
+            // 
+            // Selected
+            // 
+            this.Selected.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Selected.DataPropertyName = "LoggedIn";
+            this.Selected.HeaderText = "LoggedIn";
+            this.Selected.Name = "Selected";
+            this.Selected.ReadOnly = true;
+            this.Selected.Width = 58;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "AssignedToStation";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Station";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.Width = 65;
+            // 
+            // employeeBindingSource
+            // 
+            this.employeeBindingSource.DataSource = typeof(TypeLib.Employee);
             // 
             // groupBox2
             // 
@@ -640,12 +677,13 @@
             this.AddNewEmployeeBtn.Name = "AddNewEmployeeBtn";
             this.AddNewEmployeeBtn.Size = new System.Drawing.Size(100, 46);
             this.AddNewEmployeeBtn.TabIndex = 6;
-            this.AddNewEmployeeBtn.Text = "Create New";
+            this.AddNewEmployeeBtn.Text = "Save";
             this.AddNewEmployeeBtn.UseVisualStyleBackColor = true;
             this.AddNewEmployeeBtn.Click += new System.EventHandler(this.AddNewEmployeeBtn_Click);
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.DeleteEmployeeBtn);
             this.panel3.Controls.Add(this.GetEmployeesBtn);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(3, 282);
@@ -742,6 +780,61 @@
             this.dataGridViewProducts.TabIndex = 0;
             this.dataGridViewProducts.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewProducts_CellEndEdit);
             this.dataGridViewProducts.SelectionChanged += new System.EventHandler(this.dataGridViewProducts_SelectionChangedAsync);
+            // 
+            // productIDDataGridViewTextBoxColumn
+            // 
+            this.productIDDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.productIDDataGridViewTextBoxColumn.DataPropertyName = "ProductID";
+            this.productIDDataGridViewTextBoxColumn.HeaderText = "ProductID";
+            this.productIDDataGridViewTextBoxColumn.Name = "productIDDataGridViewTextBoxColumn";
+            this.productIDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.productIDDataGridViewTextBoxColumn.Width = 80;
+            // 
+            // productTypeIDDataGridViewTextBoxColumn
+            // 
+            this.productTypeIDDataGridViewTextBoxColumn.DataPropertyName = "ProductTypeID";
+            this.productTypeIDDataGridViewTextBoxColumn.HeaderText = "ProductTypeID";
+            this.productTypeIDDataGridViewTextBoxColumn.Name = "productTypeIDDataGridViewTextBoxColumn";
+            // 
+            // productNameDataGridViewTextBoxColumn
+            // 
+            this.productNameDataGridViewTextBoxColumn.DataPropertyName = "ProductName";
+            this.productNameDataGridViewTextBoxColumn.HeaderText = "ProductName";
+            this.productNameDataGridViewTextBoxColumn.Name = "productNameDataGridViewTextBoxColumn";
+            // 
+            // descriptionDataGridViewTextBoxColumn
+            // 
+            this.descriptionDataGridViewTextBoxColumn.DataPropertyName = "Description";
+            this.descriptionDataGridViewTextBoxColumn.HeaderText = "Description";
+            this.descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
+            // 
+            // prepTimeDataGridViewTextBoxColumn
+            // 
+            this.prepTimeDataGridViewTextBoxColumn.DataPropertyName = "PrepTime";
+            this.prepTimeDataGridViewTextBoxColumn.HeaderText = "PrepTime";
+            this.prepTimeDataGridViewTextBoxColumn.Name = "prepTimeDataGridViewTextBoxColumn";
+            // 
+            // basePriceDataGridViewTextBoxColumn
+            // 
+            this.basePriceDataGridViewTextBoxColumn.DataPropertyName = "BasePrice";
+            this.basePriceDataGridViewTextBoxColumn.HeaderText = "BasePrice";
+            this.basePriceDataGridViewTextBoxColumn.Name = "basePriceDataGridViewTextBoxColumn";
+            // 
+            // dataGridViewCheckBoxColumn1
+            // 
+            this.dataGridViewCheckBoxColumn1.DataPropertyName = "Activated";
+            this.dataGridViewCheckBoxColumn1.HeaderText = "Activated";
+            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
+            // 
+            // dataGridViewCheckBoxColumn2
+            // 
+            this.dataGridViewCheckBoxColumn2.DataPropertyName = "Visible";
+            this.dataGridViewCheckBoxColumn2.HeaderText = "Visible";
+            this.dataGridViewCheckBoxColumn2.Name = "dataGridViewCheckBoxColumn2";
+            // 
+            // productBindingSource
+            // 
+            this.productBindingSource.DataSource = typeof(TypeLib.Product);
             // 
             // groupBox3
             // 
@@ -940,6 +1033,18 @@
             this.Activated.HeaderText = "Activated";
             this.Activated.Name = "Activated";
             this.Activated.Width = 58;
+            // 
+            // dataGridViewCheckBoxColumn4
+            // 
+            this.dataGridViewCheckBoxColumn4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.dataGridViewCheckBoxColumn4.DataPropertyName = "Visible";
+            this.dataGridViewCheckBoxColumn4.HeaderText = "Visible";
+            this.dataGridViewCheckBoxColumn4.Name = "dataGridViewCheckBoxColumn4";
+            this.dataGridViewCheckBoxColumn4.Width = 43;
+            // 
+            // ingredientBindingSource
+            // 
+            this.ingredientBindingSource.DataSource = typeof(TypeLib.Ingredient);
             // 
             // groupBox4
             // 
@@ -1185,6 +1290,24 @@
             this.Returned.HeaderText = "Returned";
             this.Returned.Name = "Returned";
             // 
+            // dataGridViewCheckBoxColumn3
+            // 
+            this.dataGridViewCheckBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewCheckBoxColumn3.DataPropertyName = "Activated";
+            this.dataGridViewCheckBoxColumn3.HeaderText = "Activated";
+            this.dataGridViewCheckBoxColumn3.Name = "dataGridViewCheckBoxColumn3";
+            // 
+            // dataGridViewCheckBoxColumn5
+            // 
+            this.dataGridViewCheckBoxColumn5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewCheckBoxColumn5.DataPropertyName = "Visible";
+            this.dataGridViewCheckBoxColumn5.HeaderText = "Visible";
+            this.dataGridViewCheckBoxColumn5.Name = "dataGridViewCheckBoxColumn5";
+            // 
+            // orderBindingSource
+            // 
+            this.orderBindingSource.DataSource = typeof(TypeLib.Order);
+            // 
             // panel9
             // 
             this.panel9.Controls.Add(this.GetAllOrdersBtn);
@@ -1249,7 +1372,6 @@
             this.productOrderIDDataGridViewTextBoxColumn,
             this.productIDDataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn4,
             this.processedDataGridViewCheckBoxColumn,
             this.dataGridViewCheckBoxColumn7,
             this.dataGridViewCheckBoxColumn8});
@@ -1311,6 +1433,46 @@
             this.Visible.HeaderText = "Visible";
             this.Visible.Name = "Visible";
             this.Visible.ReadOnly = true;
+            // 
+            // productOrderIDDataGridViewTextBoxColumn
+            // 
+            this.productOrderIDDataGridViewTextBoxColumn.DataPropertyName = "ProductOrderID";
+            this.productOrderIDDataGridViewTextBoxColumn.HeaderText = "ProductOrderID";
+            this.productOrderIDDataGridViewTextBoxColumn.Name = "productOrderIDDataGridViewTextBoxColumn";
+            // 
+            // productIDDataGridViewTextBoxColumn1
+            // 
+            this.productIDDataGridViewTextBoxColumn1.DataPropertyName = "ProductID";
+            this.productIDDataGridViewTextBoxColumn1.HeaderText = "ProductID";
+            this.productIDDataGridViewTextBoxColumn1.Name = "productIDDataGridViewTextBoxColumn1";
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "OrderID";
+            this.dataGridViewTextBoxColumn2.HeaderText = "OrderID";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            // 
+            // processedDataGridViewCheckBoxColumn
+            // 
+            this.processedDataGridViewCheckBoxColumn.DataPropertyName = "Processed";
+            this.processedDataGridViewCheckBoxColumn.HeaderText = "Processed";
+            this.processedDataGridViewCheckBoxColumn.Name = "processedDataGridViewCheckBoxColumn";
+            // 
+            // dataGridViewCheckBoxColumn7
+            // 
+            this.dataGridViewCheckBoxColumn7.DataPropertyName = "Activated";
+            this.dataGridViewCheckBoxColumn7.HeaderText = "Activated";
+            this.dataGridViewCheckBoxColumn7.Name = "dataGridViewCheckBoxColumn7";
+            // 
+            // dataGridViewCheckBoxColumn8
+            // 
+            this.dataGridViewCheckBoxColumn8.DataPropertyName = "Visible";
+            this.dataGridViewCheckBoxColumn8.HeaderText = "Visible";
+            this.dataGridViewCheckBoxColumn8.Name = "dataGridViewCheckBoxColumn8";
+            // 
+            // productOrderBindingSource1
+            // 
+            this.productOrderBindingSource1.DataSource = typeof(TypeLib.ProductOrder);
             // 
             // panel8
             // 
@@ -1407,177 +1569,20 @@
             this.tabPage6.Text = "StationTypes";
             this.tabPage6.UseVisualStyleBackColor = true;
             // 
-            // employeeIDDataGridViewTextBoxColumn
-            // 
-            this.employeeIDDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.employeeIDDataGridViewTextBoxColumn.DataPropertyName = "EmployeeID";
-            this.employeeIDDataGridViewTextBoxColumn.HeaderText = "ID";
-            this.employeeIDDataGridViewTextBoxColumn.Name = "employeeIDDataGridViewTextBoxColumn";
-            this.employeeIDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.employeeIDDataGridViewTextBoxColumn.Width = 43;
-            // 
-            // Username
-            // 
-            this.Username.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Username.DataPropertyName = "Username";
-            this.Username.HeaderText = "Username";
-            this.Username.Name = "Username";
-            // 
-            // Selected
-            // 
-            this.Selected.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Selected.DataPropertyName = "LoggedIn";
-            this.Selected.HeaderText = "LoggedIn";
-            this.Selected.Name = "Selected";
-            this.Selected.ReadOnly = true;
-            this.Selected.Width = 58;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "AssignedToStation";
-            this.dataGridViewTextBoxColumn3.HeaderText = "Station";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.Width = 65;
-            // 
-            // employeeBindingSource
-            // 
-            this.employeeBindingSource.DataSource = typeof(TypeLib.Employee);
-            // 
-            // productIDDataGridViewTextBoxColumn
-            // 
-            this.productIDDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.productIDDataGridViewTextBoxColumn.DataPropertyName = "ProductID";
-            this.productIDDataGridViewTextBoxColumn.HeaderText = "ProductID";
-            this.productIDDataGridViewTextBoxColumn.Name = "productIDDataGridViewTextBoxColumn";
-            this.productIDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.productIDDataGridViewTextBoxColumn.Width = 80;
-            // 
-            // productTypeIDDataGridViewTextBoxColumn
-            // 
-            this.productTypeIDDataGridViewTextBoxColumn.DataPropertyName = "ProductTypeID";
-            this.productTypeIDDataGridViewTextBoxColumn.HeaderText = "ProductTypeID";
-            this.productTypeIDDataGridViewTextBoxColumn.Name = "productTypeIDDataGridViewTextBoxColumn";
-            // 
-            // productNameDataGridViewTextBoxColumn
-            // 
-            this.productNameDataGridViewTextBoxColumn.DataPropertyName = "ProductName";
-            this.productNameDataGridViewTextBoxColumn.HeaderText = "ProductName";
-            this.productNameDataGridViewTextBoxColumn.Name = "productNameDataGridViewTextBoxColumn";
-            // 
-            // descriptionDataGridViewTextBoxColumn
-            // 
-            this.descriptionDataGridViewTextBoxColumn.DataPropertyName = "Description";
-            this.descriptionDataGridViewTextBoxColumn.HeaderText = "Description";
-            this.descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
-            // 
-            // prepTimeDataGridViewTextBoxColumn
-            // 
-            this.prepTimeDataGridViewTextBoxColumn.DataPropertyName = "PrepTime";
-            this.prepTimeDataGridViewTextBoxColumn.HeaderText = "PrepTime";
-            this.prepTimeDataGridViewTextBoxColumn.Name = "prepTimeDataGridViewTextBoxColumn";
-            // 
-            // basePriceDataGridViewTextBoxColumn
-            // 
-            this.basePriceDataGridViewTextBoxColumn.DataPropertyName = "BasePrice";
-            this.basePriceDataGridViewTextBoxColumn.HeaderText = "BasePrice";
-            this.basePriceDataGridViewTextBoxColumn.Name = "basePriceDataGridViewTextBoxColumn";
-            // 
-            // dataGridViewCheckBoxColumn1
-            // 
-            this.dataGridViewCheckBoxColumn1.DataPropertyName = "Activated";
-            this.dataGridViewCheckBoxColumn1.HeaderText = "Activated";
-            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
-            // 
-            // dataGridViewCheckBoxColumn2
-            // 
-            this.dataGridViewCheckBoxColumn2.DataPropertyName = "Visible";
-            this.dataGridViewCheckBoxColumn2.HeaderText = "Visible";
-            this.dataGridViewCheckBoxColumn2.Name = "dataGridViewCheckBoxColumn2";
-            // 
-            // productBindingSource
-            // 
-            this.productBindingSource.DataSource = typeof(TypeLib.Product);
-            // 
-            // dataGridViewCheckBoxColumn4
-            // 
-            this.dataGridViewCheckBoxColumn4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.dataGridViewCheckBoxColumn4.DataPropertyName = "Visible";
-            this.dataGridViewCheckBoxColumn4.HeaderText = "Visible";
-            this.dataGridViewCheckBoxColumn4.Name = "dataGridViewCheckBoxColumn4";
-            this.dataGridViewCheckBoxColumn4.Width = 43;
-            // 
-            // ingredientBindingSource
-            // 
-            this.ingredientBindingSource.DataSource = typeof(TypeLib.Ingredient);
-            // 
-            // dataGridViewCheckBoxColumn3
-            // 
-            this.dataGridViewCheckBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewCheckBoxColumn3.DataPropertyName = "Activated";
-            this.dataGridViewCheckBoxColumn3.HeaderText = "Activated";
-            this.dataGridViewCheckBoxColumn3.Name = "dataGridViewCheckBoxColumn3";
-            // 
-            // dataGridViewCheckBoxColumn5
-            // 
-            this.dataGridViewCheckBoxColumn5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewCheckBoxColumn5.DataPropertyName = "Visible";
-            this.dataGridViewCheckBoxColumn5.HeaderText = "Visible";
-            this.dataGridViewCheckBoxColumn5.Name = "dataGridViewCheckBoxColumn5";
-            // 
-            // orderBindingSource
-            // 
-            this.orderBindingSource.DataSource = typeof(TypeLib.Order);
-            // 
-            // productOrderIDDataGridViewTextBoxColumn
-            // 
-            this.productOrderIDDataGridViewTextBoxColumn.DataPropertyName = "ProductOrderID";
-            this.productOrderIDDataGridViewTextBoxColumn.HeaderText = "ProductOrderID";
-            this.productOrderIDDataGridViewTextBoxColumn.Name = "productOrderIDDataGridViewTextBoxColumn";
-            // 
-            // productIDDataGridViewTextBoxColumn1
-            // 
-            this.productIDDataGridViewTextBoxColumn1.DataPropertyName = "ProductID";
-            this.productIDDataGridViewTextBoxColumn1.HeaderText = "ProductID";
-            this.productIDDataGridViewTextBoxColumn1.Name = "productIDDataGridViewTextBoxColumn1";
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "OrderID";
-            this.dataGridViewTextBoxColumn2.HeaderText = "OrderID";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "LockedByStation";
-            this.dataGridViewTextBoxColumn4.HeaderText = "LockedByStation";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            // 
-            // processedDataGridViewCheckBoxColumn
-            // 
-            this.processedDataGridViewCheckBoxColumn.DataPropertyName = "Processed";
-            this.processedDataGridViewCheckBoxColumn.HeaderText = "Processed";
-            this.processedDataGridViewCheckBoxColumn.Name = "processedDataGridViewCheckBoxColumn";
-            // 
-            // dataGridViewCheckBoxColumn7
-            // 
-            this.dataGridViewCheckBoxColumn7.DataPropertyName = "Activated";
-            this.dataGridViewCheckBoxColumn7.HeaderText = "Activated";
-            this.dataGridViewCheckBoxColumn7.Name = "dataGridViewCheckBoxColumn7";
-            // 
-            // dataGridViewCheckBoxColumn8
-            // 
-            this.dataGridViewCheckBoxColumn8.DataPropertyName = "Visible";
-            this.dataGridViewCheckBoxColumn8.HeaderText = "Visible";
-            this.dataGridViewCheckBoxColumn8.Name = "dataGridViewCheckBoxColumn8";
-            // 
-            // productOrderBindingSource1
-            // 
-            this.productOrderBindingSource1.DataSource = typeof(TypeLib.ProductOrder);
-            // 
             // productOrderBindingSource
             // 
             this.productOrderBindingSource.DataSource = typeof(TypeLib.ProductOrder);
+            // 
+            // DeleteEmployeeBtn
+            // 
+            this.DeleteEmployeeBtn.Dock = System.Windows.Forms.DockStyle.Right;
+            this.DeleteEmployeeBtn.Location = new System.Drawing.Point(309, 0);
+            this.DeleteEmployeeBtn.Name = "DeleteEmployeeBtn";
+            this.DeleteEmployeeBtn.Size = new System.Drawing.Size(100, 46);
+            this.DeleteEmployeeBtn.TabIndex = 7;
+            this.DeleteEmployeeBtn.Text = "Delete";
+            this.DeleteEmployeeBtn.UseVisualStyleBackColor = true;
+            this.DeleteEmployeeBtn.Click += new System.EventHandler(this.DeleteEmployeeBtn_Click);
             // 
             // Admin
             // 
@@ -1618,6 +1623,7 @@
             this.tabEditEmployees.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployees)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -1627,6 +1633,7 @@
             this.tabProducts2.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProducts)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.panel4.ResumeLayout(false);
@@ -1634,6 +1641,7 @@
             this.tabIngredients.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewIngredients)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ingredientBindingSource)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.panel6.ResumeLayout(false);
@@ -1643,21 +1651,18 @@
             this.tabPage11.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOrders)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.orderBindingSource)).EndInit();
             this.panel9.ResumeLayout(false);
             this.tabPage12.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPOrders)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productOrderBindingSource1)).EndInit();
             this.panel8.ResumeLayout(false);
             this.tabBuildings.ResumeLayout(false);
             this.tabControl5.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabControl6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.productOrdersBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ingredientBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.orderBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productOrderBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productOrderBindingSource)).EndInit();
             this.ResumeLayout(false);
 
@@ -1826,5 +1831,6 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn processedDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn7;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn8;
+        private System.Windows.Forms.Button DeleteEmployeeBtn;
     }
 }
