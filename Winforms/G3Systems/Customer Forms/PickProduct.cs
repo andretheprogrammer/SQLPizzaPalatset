@@ -8,10 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
-using G3Systems.Extensions;
 using TypeLib;
-using SQLServer;
-using PostgreSQL;
+using G3Systems.Extensions;
 
 namespace G3Systems
 {

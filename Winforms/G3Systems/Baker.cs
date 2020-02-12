@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Configuration;
 using TypeLib;
-using SQLServer;
-
+using G3Systems.Extensions;
 
 namespace G3Systems
 {
@@ -26,12 +26,33 @@ namespace G3Systems
 		public Baker(Employee puser)
 		{
 			InitializeComponent();
-			_repo = new G3SystemsRepository();
+
 			user = puser;
 			lbl_username.Text = user.Username;
 			lbl_usrPname.Text = user.Username;
 
+			try
+			{
+				// Get key string from App.config appsettings
+				string _postgreBackEnd = ConfigurationManager.AppSettings.Keys[0];
 
+				// Check if postgreSQL Back-End is set to true App.Config 
+				if (_postgreBackEnd.GetConfigSetting())
+				{
+					MessageBox.Show("PostgreSQL", "Connected");
+					//_repo = new PostgreSQL.G3SystemsRepository();
+				}
+				else
+				{
+					//MessageBox.Show("MSSQL", "Connected");
+					_repo = new SQLServer.G3SystemsRepository();
+				}
+			}
+			catch
+			{
+				MessageBox.Show("Fel i App.config", "Error");
+				throw;
+			}
 		}
 
 		private async void btn_Lock_click(object sender, EventArgs e)

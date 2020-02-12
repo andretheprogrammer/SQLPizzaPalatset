@@ -7,18 +7,41 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Configuration;
 using TypeLib;
-using SQLServer;
+using G3Systems.Extensions;
 
 namespace G3Systems
 {
 	public partial class InfoScreen : Form
 	{
 		private readonly IG3SystemsRepository _repo;
+
 		public InfoScreen()
 		{
 			InitializeComponent();
-			_repo = new G3SystemsRepository();
+			try
+			{
+				// Get key string from App.config appsettings
+				string _postgreBackEnd = ConfigurationManager.AppSettings.Keys[0];
+
+				// Check if postgreSQL Back-End is set to true App.Config 
+				if (_postgreBackEnd.GetConfigSetting())
+				{
+					MessageBox.Show("PostgreSQL", "Connected");
+					//_repo = new PostgreSQL.G3SystemsRepository();
+				}
+				else
+				{
+					//MessageBox.Show("MSSQL", "Connected");
+					_repo = new SQLServer.G3SystemsRepository();
+				}
+			}
+			catch
+			{
+				MessageBox.Show("Fel i App.config", "Error");
+				throw;
+			}
 		}
 
 		private void InfoScreen_Load_1(object sender, EventArgs e)
