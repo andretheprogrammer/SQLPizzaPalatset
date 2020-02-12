@@ -31,7 +31,7 @@ namespace G3Systems
 				if (_postgreBackEnd.GetConfigSetting())
 				{
 					MessageBox.Show("PostgreSQL", "Connected");
-					//_repo = new PostgreSQL.G3SystemsRepository();
+					_repo = new PostgreSQL.G3SystemsRepository();
 				}
 				else
 				{
