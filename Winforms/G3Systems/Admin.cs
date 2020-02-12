@@ -317,8 +317,9 @@ namespace G3Systems
 		private async void btn_saveProd_Click(object sender, EventArgs e)
 		{
 			
-		//GET ROW PRODUCT ID!!
-			//dataGridViewProducts.SelectedRows[0];
+			//Fetcha allting i formuläret.
+
+			//Spara i databasen
 			
 			
 			//Refresh ProductList
@@ -394,12 +395,23 @@ namespace G3Systems
 
 		private void dataGridViewProducts_RowEnter(object sender, DataGridViewCellEventArgs e)
 		{
-		//Update ingredientlist now
+			MessageBox.Show("ROW ENTERED!");
+
+			//Fetcha allt
+			//1: fetcha produktens type.
+			//2: fetcha vilka ingredients produkten har - Proc_ProductCanHaveIngredients
+			//3: fetcha vilka ingredients produkten kan ha -Proc_ProductHasIngredients
+
+			//Placera allt
+			//1:a markera selected type på listan
+			//2:a visa alla möjliga ingredienser för produkten i chklistan
+			//3:a checka för ingredienser som produkten HAR nu ingredients
+
 		}
 
 		private void dataGridViewProducts_RowLeave(object sender, DataGridViewCellEventArgs e)
 		{
-		//Disable everything
+			chbxlist_ingrs.Enabled = false;
 		}
 
 		private void dataGridViewProducts_DataError(object sender, DataGridViewDataErrorEventArgs e)
@@ -422,5 +434,10 @@ namespace G3Systems
 			}
 			catch(Exception){ MessageBox.Show("Failed importing Ingredient. Please try again."); }
 			}
+
+		private void tableLayoutPanel4_Paint(object sender, PaintEventArgs e)
+		{
+
+		}
 	}
 }
