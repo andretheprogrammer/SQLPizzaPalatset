@@ -41,17 +41,18 @@ namespace G3Systems
 			// Load employees datagridview
 			GetEmployeesBtn_Click(sender, e);
 
-			
 			lstbx_types.Items.Clear();
 			lstboxAddtype.Items.Clear();
-			
-			//Todo Enums till class
-			foreach (var i in Enum.GetNames(typeof(ProductType)))
-			{
-				lstbx_types.Items.Add(i);
-				lstboxAddtype.Items.Add(i);
-			}
+
+			// Cast producttypes enums to list
+			var types = Enum.GetValues(typeof(ProductType)).Cast<ProductType>().ToList();
+			// Edit products page listbox
+			types.ForEach(type => lstbx_types.Items.Add(type));
+			// New products page listbox
+			types.ForEach(type => lstboxAddtype.Items.Add(type));
+
 		}
+
 		private void Admin_FormClosed(object sender, FormClosedEventArgs e)
 		{
 			//var form = new Login();
@@ -65,7 +66,6 @@ namespace G3Systems
 		private async void GetEmployeesBtn_Click(object sender, EventArgs e)
 		{
 			dataGridViewEmployees.DataSource = await _repo.GetEmployeesAsync();
-		
 		}
 
 		// Employees - Add new employee with selected types
@@ -144,6 +144,7 @@ namespace G3Systems
 			if (editEmployee.EmployeeID == 1)
 			{
 				MessageBox.Show("Can't delete superadmin");
+				return;
 			}
 
 			await _repo.DeleteEmployeeAtId(editEmployee);
@@ -298,14 +299,16 @@ namespace G3Systems
 
 		private async void lstbx_types_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			int temp = lstbx_types.SelectedIndex + 1;
-
-			List<Ingredient> allowed_ingredients = (await _repo.GetAllowedIngredientsByPTypeAsync(temp)).ToList();
-
-			//chbxlist_ingrs.Items.Clear();
-			//allowed_ingredients.ForEach(a => chbxlist_ingrs.Items.Add(a.IngredientID + " : " + a.IngredientName));
 			((ListBox)chbxlist_ingrs).DataSource = null;
-			((ListBox)chbxlist_ingrs).DataSource = allowed_ingredients;
+
+			if (editProduct == null)
+			{
+				return;
+			}
+
+			editProduct.ProductTypeID = (ProductType)lstbx_types.SelectedItem;
+			
+			((ListBox)chbxlist_ingrs).DataSource = await _repo.GetAllowedIngredientsByPTypeAsync(editProduct.ProductTypeID);
 			((ListBox)chbxlist_ingrs).DisplayMember = "IngredientName";
 			((ListBox)chbxlist_ingrs).ValueMember = "IngredientID";
 		}
@@ -313,6 +316,11 @@ namespace G3Systems
 
 		private async void btn_saveProd_Click(object sender, EventArgs e)
 		{
+			if (editProduct == null)
+			{ 
+				return;
+			}
+
 			editProduct.Ingredients = new List<Ingredient>();
 			//var ingredients = new List<Ingredient>();
 			//Fetcha allting i formuläret.
@@ -321,12 +329,8 @@ namespace G3Systems
 				editProduct.Ingredients.Add((Ingredient)ingredient);
 			}
 
-			if (editProduct.Ingredients.Count <= 0)
-			{
-				MessageBox.Show("Select ingredients");
-				return;
-			}
 			//Spara i databasen
+			await _repo.UpdateCreateProduct(editProduct);
 
 			await _repo.DeleteIngredientsByProductId(editProduct);
 
@@ -362,28 +366,41 @@ namespace G3Systems
 
 		private async void BtnAddProduct_Click(object sender, EventArgs e)
 		{
-			try {
-				//Might cause increase in ID on failed insert.
-
-				//Fix: Potential TRANSACTION HERE. 
-				string name = txtboxaddname.Text;
-				int baseprice = Int32.Parse(txtboxaddprice.Text);
-				string descr = txtboxadddescr.Text;
-			
-				//Todo Convert Enum to Class
-				int selectedType = lstboxAddtype.SelectedIndex + 1;
-
-			
-
-				await _repo.AddNewProductAsync(name, selectedType, baseprice, descr);
-				MessageBox.Show("Product: " + name + " was added!");
-
-				txtboxaddname.Text = "";
-				txtboxaddprice.Text = "";
-				txtboxadddescr.Text = "";
+			if (string.IsNullOrWhiteSpace(txtboxaddname.Text) ||
+				lstboxAddtype.SelectedIndex <= 0)
+			{
+				return;
 			}
-			catch(Exception){ MessageBox.Show("ERROR. Could not import product - Try Again."); }
 
+			int price = 0;
+
+			if (!int.TryParse(txtboxaddprice.Text, out price))
+			{
+				MessageBox.Show("Price must be a number");
+				return;
+			}
+
+			var newProduct = new Product()
+			{
+				ProductTypeID = (ProductType)lstboxAddtype.SelectedIndex,
+				ProductName = txtboxaddname.Text,
+				BasePrice = price,
+				Description = txtboxadddescr.Text
+			};
+
+			try
+			{
+				await _repo.AddNewProductAsync(newProduct);
+				MessageBox.Show("Product: " + newProduct.ProductName + " was added!");
+			}
+			catch
+			{ 
+				MessageBox.Show("ERROR. Could not import product - Try Again."); 
+			}
+
+			txtboxaddname.Text = "";
+			txtboxaddprice.Text = "";
+			txtboxadddescr.Text = "";
 		}
 
 		private void dataGridViewProducts_DataError(object sender, DataGridViewDataErrorEventArgs e)
@@ -395,9 +412,10 @@ namespace G3Systems
 		{
 			int price = 0;
 
-			if (!int.TryParse(txbxAddIngPrice.Text, out price))
+			if (string.IsNullOrWhiteSpace(txbxAddIngName.Text) ||
+				!int.TryParse(txbxAddIngPrice.Text, out price))
 			{
-				MessageBox.Show("Price must be a number");
+				MessageBox.Show("Invalid input");
 				return;
 			}
 

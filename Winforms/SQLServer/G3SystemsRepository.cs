@@ -512,13 +512,13 @@ namespace SQLServer
             }
         }
 
-        public async Task AddNewProductAsync(string name, int typeid, int baseprice, string descr )
+        public async Task AddNewProductAsync(Product product)
         {
             using (var connection = CreateConnection())
             {
                 await connection.ExecuteAsync(
                       sql: "Proc_AddProduct",
-                    param: new { ProductName = name, ProductTypeID = typeid, BasePrice=baseprice, Description= descr},
+                    param: new { product.ProductName, product.ProductTypeID, product.BasePrice, product.Description},
                commandType: CommandType.StoredProcedure);
             }
         }
@@ -567,13 +567,13 @@ namespace SQLServer
         /// </summary>
         /// <param name="ProductTypeid"></param>
         /// <returns></returns>
-        public async Task<IEnumerable<Ingredient>> GetAllowedIngredientsByPTypeAsync(int ProductTypeid)
+        public async Task<IEnumerable<Ingredient>> GetAllowedIngredientsByPTypeAsync(ProductType type)
         {
             using (var connection = CreateConnection())
             {
                 return (await connection.QueryAsync<Ingredient>(
                       sql: "Proc_GetAllowedIngredientsByPType",
-                    param: new { ProductTypeID = ProductTypeid },
+                    param: new { ProductTypeID = type },
                commandType: CommandType.StoredProcedure));
             }
         }

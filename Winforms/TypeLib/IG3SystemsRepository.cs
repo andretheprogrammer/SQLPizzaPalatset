@@ -78,7 +78,7 @@ namespace TypeLib
 
 
         //Admin
-        Task AddNewProductAsync(string name, int typeid, int baseprice, string descr);
+        Task AddNewProductAsync(Product product);
 
         Task AddNewIngredientAsync(Ingredient ingredient);
 
@@ -86,7 +86,7 @@ namespace TypeLib
 
         Task<IEnumerable<Ingredient>> GetAllIngredientsAsync();
 
-        Task<IEnumerable<Ingredient>> GetAllowedIngredientsByPTypeAsync(int id);
+        Task<IEnumerable<Ingredient>> GetAllowedIngredientsByPTypeAsync(ProductType type);
 
         Task DeleteIngredientsByProductId(Product product);
     }
