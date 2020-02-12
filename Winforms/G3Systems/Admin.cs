@@ -395,7 +395,7 @@ namespace G3Systems
 
 		private void dataGridViewProducts_RowEnter(object sender, DataGridViewCellEventArgs e)
 		{
-			MessageBox.Show("ROW ENTERED!");
+			MessageBox.Show("refresha checkboxlista!");
 
 			//Fetcha allt
 			//1: fetcha produktens type.

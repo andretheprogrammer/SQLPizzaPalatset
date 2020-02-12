@@ -2593,7 +2593,7 @@ CREATE PROCEDURE Proc_DeleteIngredientsForProduct @ProductID int
 	GO
 
 --Kan Ha
-CREATE PROCEDURE ProductCanHaveIngredients @ProductID INT
+CREATE PROCEDURE Proc_ProductCanHaveIngredients @ProductID INT
 	AS
 	BEGIN
 	SELECT *
@@ -2607,7 +2607,7 @@ CREATE PROCEDURE ProductCanHaveIngredients @ProductID INT
 	GO
 
 --HAR
-CREATE PROCEDURE ProductHasIngredients @ProductID INT
+CREATE PROCEDURE Proc_ProductHasIngredients @ProductID INT
 	AS
 	BEGIN
 	SELECT *
