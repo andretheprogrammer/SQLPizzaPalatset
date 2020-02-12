@@ -282,7 +282,9 @@ namespace G3Systems
 
 			//Server sends too big list
 			//Make it send only logged in users. Not ALL users.
-			List<Employee> Loggedin = (await _repo.GetEmployeesAsync()).ToList();
+			List<Employee> Loggedin = new List<Employee>();
+				
+			Loggedin = (await _repo.GetEmployeesAsync()).ToList();
 
 			listViewLoggedInEmployees.Items.Clear();
 

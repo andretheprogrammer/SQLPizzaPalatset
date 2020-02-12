@@ -121,7 +121,7 @@ namespace PostgreSQL
         /// <returns></returns>
         public async Task<IEnumerable<Employee>> GetEmployeesAsync()
         {
-            var sqlQuery = "Select * from Employees";
+            var sqlQuery = "select * from public.employees";
 
             using (var connection = CreateConnection())
             {
@@ -136,6 +136,7 @@ namespace PostgreSQL
         /// <returns></returns>
         public async Task UpdateEmployeeAsync(Employee employee)
         {
+            var sqlQuery = "update employees";
             using (var connection = CreateConnection())
             {
                 await connection.ExecuteAsync(
@@ -184,7 +185,7 @@ namespace PostgreSQL
             {
                 return (await connection.QueryAsync<Employee>(
                        sql: "Proc_GetEmployeeLogin",
-                     param: new { Username = username, Password = password },
+                     param: new { p_username = username, p_password = password },
                commandType: CommandType.StoredProcedure)).FirstOrDefault();
             }
         }
