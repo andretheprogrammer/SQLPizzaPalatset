@@ -40,8 +40,18 @@ namespace G3Systems
 
 			// Load employees datagridview
 			GetEmployeesBtn_Click(sender, e);
-		}
 
+			
+			lstbx_types.Items.Clear();
+			lstboxAddtype.Items.Clear();
+			
+			//Todo Enums till class
+			foreach (var i in Enum.GetNames(typeof(ProductType)))
+			{
+				lstbx_types.Items.Add(i);
+				lstboxAddtype.Items.Add(i);
+			}
+		}
 		private void Admin_FormClosed(object sender, FormClosedEventArgs e)
 		{
 			//var form = new Login();
@@ -276,22 +286,159 @@ namespace G3Systems
 
 		private async void btn_ResetProd_Click(object sender, EventArgs e)
 		{
-			txtbx_PName.Text = "";
-			txtbx_bprice.Text = "";
-			txbxDescr.Text = "";
+
 			lstbx_types.ClearSelected();
 			chbxlist_ingrs.Items.Clear();
 			List<Ingredient> all_ingredients = (await _repo.GetAllIngredientsAsync()).ToList();
 
 			all_ingredients.ForEach(a => chbxlist_ingrs.Items.Add(a.IngredientName));
-			;
+			
+			//Refresh productlist
+			dataGridViewProducts.DataSource = await _repo.GetProductsAsync();
 		}
 
 		private async void lstbx_types_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			var temp = lstbx_types.SelectedValue.ToString();
-			MessageBox.Show(temp);
-			//List<Ingredient> all_ingredients = (await _repo.GetAllowedIngredientsByPTypeAsync(selectedtype));
+			int temp = lstbx_types.SelectedIndex + 1;
+			//MessageBox.Show(temp);
+			List<Ingredient> allowed_ingredients = (await _repo.GetAllowedIngredientsByPTypeAsync(temp)).ToList();
+
+			chbxlist_ingrs.Items.Clear();
+			allowed_ingredients.ForEach(a => chbxlist_ingrs.Items.Add(a.IngredientID + " : " + a.IngredientName));
+
+
+
+
+		}
+
+		private void chbxlist_ingrs_SelectedIndexChanged(object sender, EventArgs e)
+		{
+
+		}
+
+		private async void btn_saveProd_Click(object sender, EventArgs e)
+		{
+			
+			//Fetcha allting i formuläret.
+
+			//Spara i databasen
+			
+			
+			//Refresh ProductList
+			dataGridViewProducts.DataSource = await _repo.GetProductsAsync();
+
+		}
+
+		private void Clearform()
+		{
+
+			//Todo Convert Enum to Class
+			lstbx_types.ClearSelected();
+
+		}
+
+		//private void btnAddProduct_Click_1(object sender, EventArgs e)
+		//{
+		//	//A:
+		//	//Create empty product first
+		//	string name = txtbx_PName.Text;
+		//	int baseprice = Int32.Parse(txtbx_bprice.Text);
+		//	string descr = txbxDescr.Text;
+		//	//Todo Convert Enum to Class
+		//	int selectedType = lstbx_types.SelectedIndex + 1;
+
+		//	await _repo.AddNewProductAsync(name, selectedType, baseprice, descr);
+
+		//	//B:
+		//	//Add all its ingredients then
+		//	var pickedIngredients = chbxlist_ingrs.CheckedItems; //list with "23 : Myingredient"
+		//														 //_repo.AddNewIngredientToProductAsync();
+
+		//}
+
+		private void button1_Click_1(object sender, EventArgs e)
+		{
+			txtboxaddname.Text = "";
+			txtboxaddprice.Text = "";
+			txtboxadddescr.Text = "";
+		}
+
+
+		private async void BtnAddProduct_Click(object sender, EventArgs e)
+		{
+			try {
+				//Might cause increase in ID on failed insert.
+
+				//Fix: Potential TRANSACTION HERE. 
+				string name = txtboxaddname.Text;
+				int baseprice = Int32.Parse(txtboxaddprice.Text);
+				string descr = txtboxadddescr.Text;
+			
+				//Todo Convert Enum to Class
+				int selectedType = lstboxAddtype.SelectedIndex + 1;
+
+			
+
+				await _repo.AddNewProductAsync(name, selectedType, baseprice, descr);
+				MessageBox.Show("Product: " + name + " was added!");
+
+				txtboxaddname.Text = "";
+				txtboxaddprice.Text = "";
+				txtboxadddescr.Text = "";
+			}
+			catch(Exception){ MessageBox.Show("ERROR. Could not import product - Try Again."); }
+
+		}
+
+		private void dataGridViewProducts_CellEnter(object sender, DataGridViewCellEventArgs e)
+		{
+			chbxlist_ingrs.Enabled = true;
+		}
+
+		private void dataGridViewProducts_RowEnter(object sender, DataGridViewCellEventArgs e)
+		{
+			MessageBox.Show("refresha checkboxlista!");
+
+			//Fetcha allt
+			//1: fetcha produktens type.
+			//2: fetcha vilka ingredients produkten har - Proc_ProductCanHaveIngredients
+			//3: fetcha vilka ingredients produkten kan ha -Proc_ProductHasIngredients
+
+			//Placera allt
+			//1:a markera selected type på listan
+			//2:a visa alla möjliga ingredienser för produkten i chklistan
+			//3:a checka för ingredienser som produkten HAR nu ingredients
+
+		}
+
+		private void dataGridViewProducts_RowLeave(object sender, DataGridViewCellEventArgs e)
+		{
+			chbxlist_ingrs.Enabled = false;
+		}
+
+		private void dataGridViewProducts_DataError(object sender, DataGridViewDataErrorEventArgs e)
+		{
+			MessageBox.Show("Unallowed edit");
+		}
+
+		private async void btn_AddIngredient_Click(object sender, EventArgs e)
+		{	
+
+
+						// FUNGERAR EJ !!!!
+						// ATT LÄGGA TILL INGREDIENT
+			try { 
+			string name = txbxAddIngName.Text;
+			int price = Int32.Parse(txbxAddIngPrice.Text);
+			await _repo.AddNewIngredientAsync(name, price);
+			MessageBox.Show("Successfully added new ingredient!");
+			
+			}
+			catch(Exception){ MessageBox.Show("Failed importing Ingredient. Please try again."); }
+			}
+
+		private void tableLayoutPanel4_Paint(object sender, PaintEventArgs e)
+		{
 
 		}
 	}
