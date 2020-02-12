@@ -40,8 +40,13 @@ namespace G3Systems
 
 			// Load employees datagridview
 			GetEmployeesBtn_Click(sender, e);
-		}
 
+			lstbx_types.Items.Clear();
+			foreach (var i in Enum.GetNames(typeof(ProductType)))
+			{
+				lstbx_types.Items.Add(i);
+			}
+		}
 		private void Admin_FormClosed(object sender, FormClosedEventArgs e)
 		{
 			//var form = new Login();
@@ -287,9 +292,26 @@ namespace G3Systems
 
 		private async void lstbx_types_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			var temp = lstbx_types.SelectedValue.ToString();
-			MessageBox.Show(temp);
-			//List<Ingredient> all_ingredients = (await _repo.GetAllowedIngredientsByPTypeAsync(selectedtype));
+			int temp = lstbx_types.SelectedIndex + 1;
+			//MessageBox.Show(temp);
+			List<Ingredient> allowed_ingredients = (await _repo.GetAllowedIngredientsByPTypeAsync(temp)).ToList();
+
+			chbxlist_ingrs.Items.Clear();
+			allowed_ingredients.ForEach(a => chbxlist_ingrs.Items.Add(a.IngredientID + " : " + a.IngredientName));
+
+
+
+
+		}
+
+		private void chbxlist_ingrs_SelectedIndexChanged(object sender, EventArgs e)
+		{
+
+		}
+
+		private void btn_saveProd_Click(object sender, EventArgs e)
+		{
+			var hej = chbxlist_ingrs.CheckedItems;
 
 		}
 	}
