@@ -282,24 +282,22 @@ namespace G3Systems
 
 			//Server sends too big list
 			//Make it send only logged in users. Not ALL users.
-			List<Employee> Loggedin = new List<Employee>();
-				
-			Loggedin = (await _repo.GetEmployeesAsync()).ToList();
+
+			var Loggedin = (await _repo.GetEmployeesAsync()).ToList();
 
 			listViewLoggedInEmployees.Items.Clear();
 
-			foreach(Employee emp in Loggedin)
+			foreach (Employee emp in Loggedin)
 			{
-				
+
 				if (emp.LoggedIn == true)
 				{
 					listViewLoggedInEmployees.Items.Add
 									(
-									new ListViewItem(  emp.Username)
-									); 
-				}	
+									new ListViewItem(emp.Username)
+									);
+				}
 			}
-
 		}
 
 		private void LogoutButton_Click(object sender, EventArgs e)

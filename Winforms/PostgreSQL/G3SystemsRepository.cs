@@ -136,11 +136,12 @@ namespace PostgreSQL
         /// <returns></returns>
         public async Task UpdateEmployeeAsync(Employee employee)
         {
-            var sqlQuery = "update employees";
+            var sqlQuery = "update employees set username = @username, password = @password, loggedin = false, assignedtostation = @assignedtostation where employeeid = @employeeid";
+
             using (var connection = CreateConnection())
             {
                 await connection.ExecuteAsync(
-                    "Proc_UpdateEmployee",
+                    sqlQuery,
                     new
                     {
                         employee.EmployeeID,
@@ -148,8 +149,7 @@ namespace PostgreSQL
                         employee.Password,
                         employee.LoggedIn,
                         employee.AssignedToStation
-                    },
-                    commandType: CommandType.StoredProcedure);
+                    });
             }
         }
 
@@ -160,7 +160,7 @@ namespace PostgreSQL
         /// <returns></returns>
         public async Task DeleteEmployeeAtId(Employee employee)
         {
-            string sqlQuery = "delete from employees where EmployeeID = @EmployeeID";
+            string sqlQuery = "delete from employees where employeeID = @employeeid";
 
             using (var connection = CreateConnection())
             {
