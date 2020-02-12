@@ -30,13 +30,13 @@
 		{
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Admin));
-			System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
-			System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Right);
-			System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Employee 1");
-			System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("Employee 2");
-			System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("Employee3");
-			System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("Cashier1");
-			System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("CAsheier2");
+			System.Windows.Forms.ListViewGroup listViewGroup5 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
+			System.Windows.Forms.ListViewGroup listViewGroup6 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Right);
+			System.Windows.Forms.ListViewItem listViewItem11 = new System.Windows.Forms.ListViewItem("Employee 1");
+			System.Windows.Forms.ListViewItem listViewItem12 = new System.Windows.Forms.ListViewItem("Employee 2");
+			System.Windows.Forms.ListViewItem listViewItem13 = new System.Windows.Forms.ListViewItem("Employee3");
+			System.Windows.Forms.ListViewItem listViewItem14 = new System.Windows.Forms.ListViewItem("Cashier1");
+			System.Windows.Forms.ListViewItem listViewItem15 = new System.Windows.Forms.ListViewItem("CAsheier2");
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.panel1 = new System.Windows.Forms.Panel();
@@ -71,8 +71,8 @@
 			this.tbPassword = new System.Windows.Forms.TextBox();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.AddNewEmployeeBtn = new System.Windows.Forms.Button();
-			this.DeleteEmployeeBtn = new System.Windows.Forms.Button();
 			this.panel3 = new System.Windows.Forms.Panel();
+			this.DeleteEmployeeBtn = new System.Windows.Forms.Button();
 			this.GetEmployeesBtn = new System.Windows.Forms.Button();
 			this.TabProducts = new System.Windows.Forms.TabPage();
 			this.tabControl4 = new System.Windows.Forms.TabControl();
@@ -144,13 +144,6 @@
 			this.Visible = new System.Windows.Forms.DataGridViewCheckBoxColumn();
 			this.panel8 = new System.Windows.Forms.Panel();
 			this.GetAllProductOrdersBtn = new System.Windows.Forms.Button();
-			this.tabBuildings = new System.Windows.Forms.TabPage();
-			this.tabControl5 = new System.Windows.Forms.TabControl();
-			this.tabPage1 = new System.Windows.Forms.TabPage();
-			this.tabPage2 = new System.Windows.Forms.TabPage();
-			this.tabControl6 = new System.Windows.Forms.TabControl();
-			this.tabPage5 = new System.Windows.Forms.TabPage();
-			this.tabPage6 = new System.Windows.Forms.TabPage();
 			this.productOrdersBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.timer1 = new System.Windows.Forms.Timer(this.components);
 			this.employeeIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -180,6 +173,7 @@
 			this.dataGridViewCheckBoxColumn8 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
 			this.productOrderBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
 			this.productOrderBindingSource = new System.Windows.Forms.BindingSource(this.components);
+			this.label6 = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -200,6 +194,7 @@
 			this.splitContainer3.Panel2.SuspendLayout();
 			this.splitContainer3.SuspendLayout();
 			this.tabControl2.SuspendLayout();
+			this.tabPage8.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.tabControl1.SuspendLayout();
 			this.TabEmployees.SuspendLayout();
@@ -239,10 +234,6 @@
 			this.tableLayoutPanel5.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewPOrders)).BeginInit();
 			this.panel8.SuspendLayout();
-			this.tabBuildings.SuspendLayout();
-			this.tabControl5.SuspendLayout();
-			this.tabPage2.SuspendLayout();
-			this.tabControl6.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.productOrdersBindingSource)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
@@ -261,6 +252,7 @@
 			// 
 			// splitContainer1.Panel1
 			// 
+			this.splitContainer1.Panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
 			this.splitContainer1.Panel1.Controls.Add(this.pictureBox1);
 			this.splitContainer1.Panel1.Controls.Add(this.panel1);
 			// 
@@ -391,6 +383,7 @@
 			// 
 			// tabPage8
 			// 
+			this.tabPage8.Controls.Add(this.label6);
 			this.tabPage8.Location = new System.Drawing.Point(4, 22);
 			this.tabPage8.Name = "tabPage8";
 			this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
@@ -416,25 +409,25 @@
 			// listViewLoggedInEmployees
 			// 
 			this.listViewLoggedInEmployees.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-			this.columnHeader1,
-			this.columnHeader2});
+            this.columnHeader1,
+            this.columnHeader2});
 			this.listViewLoggedInEmployees.Cursor = System.Windows.Forms.Cursors.Arrow;
 			this.listViewLoggedInEmployees.Dock = System.Windows.Forms.DockStyle.Fill;
-			listViewGroup1.Header = "ListViewGroup";
-			listViewGroup1.Name = "listViewGroup1";
-			listViewGroup2.Header = "ListViewGroup";
-			listViewGroup2.HeaderAlignment = System.Windows.Forms.HorizontalAlignment.Right;
-			listViewGroup2.Name = "listViewGroup2";
+			listViewGroup5.Header = "ListViewGroup";
+			listViewGroup5.Name = "listViewGroup1";
+			listViewGroup6.Header = "ListViewGroup";
+			listViewGroup6.HeaderAlignment = System.Windows.Forms.HorizontalAlignment.Right;
+			listViewGroup6.Name = "listViewGroup2";
 			this.listViewLoggedInEmployees.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-			listViewGroup1,
-			listViewGroup2});
+            listViewGroup5,
+            listViewGroup6});
 			this.listViewLoggedInEmployees.HideSelection = false;
 			this.listViewLoggedInEmployees.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-			listViewItem1,
-			listViewItem2,
-			listViewItem3,
-			listViewItem4,
-			listViewItem5});
+            listViewItem11,
+            listViewItem12,
+            listViewItem13,
+            listViewItem14,
+            listViewItem15});
 			this.listViewLoggedInEmployees.Location = new System.Drawing.Point(3, 16);
 			this.listViewLoggedInEmployees.Name = "listViewLoggedInEmployees";
 			this.listViewLoggedInEmployees.ShowGroups = false;
@@ -485,7 +478,6 @@
 			this.tabControl1.Controls.Add(this.TabEmployees);
 			this.tabControl1.Controls.Add(this.TabProducts);
 			this.tabControl1.Controls.Add(this.tabOrders);
-			this.tabControl1.Controls.Add(this.tabBuildings);
 			this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tabControl1.Location = new System.Drawing.Point(0, 0);
 			this.tabControl1.Multiline = true;
@@ -553,11 +545,11 @@
 			this.dataGridViewEmployees.AutoGenerateColumns = false;
 			this.dataGridViewEmployees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridViewEmployees.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-			this.employeeIDDataGridViewTextBoxColumn,
-			this.Username,
-			this.Password,
-			this.Selected,
-			this.dataGridViewTextBoxColumn3});
+            this.employeeIDDataGridViewTextBoxColumn,
+            this.Username,
+            this.Password,
+            this.Selected,
+            this.dataGridViewTextBoxColumn3});
 			this.dataGridViewEmployees.DataSource = this.employeeBindingSource;
 			this.dataGridViewEmployees.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.dataGridViewEmployees.Location = new System.Drawing.Point(3, 3);
@@ -565,54 +557,16 @@
 			this.dataGridViewEmployees.Name = "dataGridViewEmployees";
 			this.dataGridViewEmployees.RowHeadersVisible = false;
 			this.dataGridViewEmployees.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.dataGridViewEmployees.Size = new System.Drawing.Size(409, 273);
+			this.dataGridViewEmployees.Size = new System.Drawing.Size(413, 336);
 			this.dataGridViewEmployees.TabIndex = 0;
 			this.dataGridViewEmployees.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewEmployees_CellEndEdit);
 			this.dataGridViewEmployees.SelectionChanged += new System.EventHandler(this.dataGridViewEmployees_SelectionChanged);
-			// 
-			// employeeIDDataGridViewTextBoxColumn
-			// 
-			this.employeeIDDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-			this.employeeIDDataGridViewTextBoxColumn.DataPropertyName = "EmployeeID";
-			this.employeeIDDataGridViewTextBoxColumn.HeaderText = "ID";
-			this.employeeIDDataGridViewTextBoxColumn.Name = "employeeIDDataGridViewTextBoxColumn";
-			this.employeeIDDataGridViewTextBoxColumn.ReadOnly = true;
-			this.employeeIDDataGridViewTextBoxColumn.Width = 43;
-			// 
-			// Username
-			// 
-			this.Username.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.Username.DataPropertyName = "Username";
-			this.Username.HeaderText = "Username";
-			this.Username.Name = "Username";
 			// 
 			// Password
 			// 
 			this.Password.DataPropertyName = "Password";
 			this.Password.HeaderText = "Password";
 			this.Password.Name = "Password";
-			// 
-			// Selected
-			// 
-			this.Selected.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-			this.Selected.DataPropertyName = "LoggedIn";
-			this.Selected.HeaderText = "LoggedIn";
-			this.Selected.Name = "Selected";
-			this.Selected.ReadOnly = true;
-			this.Selected.Width = 58;
-			// 
-			// dataGridViewTextBoxColumn3
-			// 
-			this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-			this.dataGridViewTextBoxColumn3.DataPropertyName = "AssignedToStation";
-			this.dataGridViewTextBoxColumn3.HeaderText = "Station";
-			this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-			this.dataGridViewTextBoxColumn3.ReadOnly = true;
-			this.dataGridViewTextBoxColumn3.Width = 65;
-			// 
-			// employeeBindingSource
-			// 
-			this.employeeBindingSource.DataSource = typeof(TypeLib.Employee);
 			// 
 			// groupBox2
 			// 
@@ -712,18 +666,18 @@
 			this.panel3.Controls.Add(this.DeleteEmployeeBtn);
 			this.panel3.Controls.Add(this.GetEmployeesBtn);
 			this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.panel3.Location = new System.Drawing.Point(3, 282);
+			this.panel3.Location = new System.Drawing.Point(3, 345);
 			this.panel3.Name = "panel3";
 			this.panel3.Padding = new System.Windows.Forms.Padding(0, 0, 0, 100);
-			this.panel3.Size = new System.Drawing.Size(409, 146);
+			this.panel3.Size = new System.Drawing.Size(413, 179);
 			this.panel3.TabIndex = 9;
 			// 
 			// DeleteEmployeeBtn
 			// 
 			this.DeleteEmployeeBtn.Dock = System.Windows.Forms.DockStyle.Right;
-			this.DeleteEmployeeBtn.Location = new System.Drawing.Point(309, 0);
+			this.DeleteEmployeeBtn.Location = new System.Drawing.Point(313, 0);
 			this.DeleteEmployeeBtn.Name = "DeleteEmployeeBtn";
-			this.DeleteEmployeeBtn.Size = new System.Drawing.Size(100, 46);
+			this.DeleteEmployeeBtn.Size = new System.Drawing.Size(100, 79);
 			this.DeleteEmployeeBtn.TabIndex = 7;
 			this.DeleteEmployeeBtn.Text = "Delete";
 			this.DeleteEmployeeBtn.UseVisualStyleBackColor = true;
@@ -799,14 +753,14 @@
 			this.dataGridViewProducts.AutoGenerateColumns = false;
 			this.dataGridViewProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridViewProducts.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-			this.productIDDataGridViewTextBoxColumn,
-			this.productTypeIDDataGridViewTextBoxColumn,
-			this.productNameDataGridViewTextBoxColumn,
-			this.descriptionDataGridViewTextBoxColumn,
-			this.prepTimeDataGridViewTextBoxColumn,
-			this.basePriceDataGridViewTextBoxColumn,
-			this.dataGridViewCheckBoxColumn1,
-			this.dataGridViewCheckBoxColumn2});
+            this.productIDDataGridViewTextBoxColumn,
+            this.productTypeIDDataGridViewTextBoxColumn,
+            this.productNameDataGridViewTextBoxColumn,
+            this.descriptionDataGridViewTextBoxColumn,
+            this.prepTimeDataGridViewTextBoxColumn,
+            this.basePriceDataGridViewTextBoxColumn,
+            this.dataGridViewCheckBoxColumn1,
+            this.dataGridViewCheckBoxColumn2});
 			this.dataGridViewProducts.DataSource = this.productBindingSource;
 			this.dataGridViewProducts.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.dataGridViewProducts.Location = new System.Drawing.Point(3, 3);
@@ -925,20 +879,20 @@
 			this.chbxlist_ingrs.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.chbxlist_ingrs.FormattingEnabled = true;
 			this.chbxlist_ingrs.Items.AddRange(new object[] {
-			"ingr1",
-			"ingr221",
-			"ingr26",
-			"ingr23",
-			"ingr35",
-			"rea",
-			"rfe",
-			"afe",
-			"af",
-			"efa",
-			"efawefawefawef",
-			"awef",
-			"aw",
-			"ef"});
+            "ingr1",
+            "ingr221",
+            "ingr26",
+            "ingr23",
+            "ingr35",
+            "rea",
+            "rfe",
+            "afe",
+            "af",
+            "efa",
+            "efawefawefawef",
+            "awef",
+            "aw",
+            "ef"});
 			this.chbxlist_ingrs.Location = new System.Drawing.Point(3, 3);
 			this.chbxlist_ingrs.Name = "chbxlist_ingrs";
 			this.chbxlist_ingrs.Size = new System.Drawing.Size(261, 124);
@@ -1053,12 +1007,12 @@
 			this.lstbx_types.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.lstbx_types.FormattingEnabled = true;
 			this.lstbx_types.Items.AddRange(new object[] {
-			"test",
-			"test",
-			"teat",
-			"est",
-			"eate",
-			"tet"});
+            "test",
+            "test",
+            "teat",
+            "est",
+            "eate",
+            "tet"});
 			this.lstbx_types.Location = new System.Drawing.Point(82, 87);
 			this.lstbx_types.Name = "lstbx_types";
 			this.lstbx_types.Size = new System.Drawing.Size(176, 124);
@@ -1183,11 +1137,11 @@
 			this.dataGridViewIngredients.AutoGenerateColumns = false;
 			this.dataGridViewIngredients.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridViewIngredients.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-			this.IngredientID,
-			this.IngredientName,
-			this.Price,
-			this.Activated,
-			this.dataGridViewCheckBoxColumn4});
+            this.IngredientID,
+            this.IngredientName,
+            this.Price,
+            this.Activated,
+            this.dataGridViewCheckBoxColumn4});
 			this.dataGridViewIngredients.DataSource = this.ingredientBindingSource;
 			this.dataGridViewIngredients.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.dataGridViewIngredients.Location = new System.Drawing.Point(3, 3);
@@ -1337,16 +1291,16 @@
 			this.dataGridViewOrders.AutoGenerateColumns = false;
 			this.dataGridViewOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridViewOrders.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-			this.OrderID,
-			this.ByTerminal,
-			this.Paid,
-			this.Canceled,
-			this.PickedUp,
-			this.ShowOnScreen,
-			this.HappyCustomer,
-			this.Returned,
-			this.dataGridViewCheckBoxColumn3,
-			this.dataGridViewCheckBoxColumn5});
+            this.OrderID,
+            this.ByTerminal,
+            this.Paid,
+            this.Canceled,
+            this.PickedUp,
+            this.ShowOnScreen,
+            this.HappyCustomer,
+            this.Returned,
+            this.dataGridViewCheckBoxColumn3,
+            this.dataGridViewCheckBoxColumn5});
 			this.dataGridViewOrders.DataSource = this.orderBindingSource;
 			this.dataGridViewOrders.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.dataGridViewOrders.Location = new System.Drawing.Point(3, 3);
@@ -1468,19 +1422,19 @@
 			this.dataGridViewPOrders.AutoGenerateColumns = false;
 			this.dataGridViewPOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridViewPOrders.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-			this.ProductOrderID,
-			this.ProductID,
-			this.dataGridViewTextBoxColumn1,
-			this.LockedByStation,
-			this.Processed,
-			this.dataGridViewCheckBoxColumn6,
-			this.Visible,
-			this.productOrderIDDataGridViewTextBoxColumn,
-			this.productIDDataGridViewTextBoxColumn1,
-			this.dataGridViewTextBoxColumn2,
-			this.processedDataGridViewCheckBoxColumn,
-			this.dataGridViewCheckBoxColumn7,
-			this.dataGridViewCheckBoxColumn8});
+            this.ProductOrderID,
+            this.ProductID,
+            this.dataGridViewTextBoxColumn1,
+            this.LockedByStation,
+            this.Processed,
+            this.dataGridViewCheckBoxColumn6,
+            this.Visible,
+            this.productOrderIDDataGridViewTextBoxColumn,
+            this.productIDDataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.processedDataGridViewCheckBoxColumn,
+            this.dataGridViewCheckBoxColumn7,
+            this.dataGridViewCheckBoxColumn8});
 			this.dataGridViewPOrders.DataSource = this.productOrderBindingSource1;
 			this.dataGridViewPOrders.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.dataGridViewPOrders.Location = new System.Drawing.Point(3, 3);
@@ -1561,80 +1515,6 @@
 			this.GetAllProductOrdersBtn.UseVisualStyleBackColor = true;
 			this.GetAllProductOrdersBtn.Click += new System.EventHandler(this.GetAllProductOrdersBtn_Click);
 			// 
-			// tabBuildings
-			// 
-			this.tabBuildings.Controls.Add(this.tabControl5);
-			this.tabBuildings.Location = new System.Drawing.Point(4, 22);
-			this.tabBuildings.Name = "tabBuildings";
-			this.tabBuildings.Padding = new System.Windows.Forms.Padding(3);
-			this.tabBuildings.Size = new System.Drawing.Size(748, 565);
-			this.tabBuildings.TabIndex = 4;
-			this.tabBuildings.Text = "Buildings";
-			this.tabBuildings.UseVisualStyleBackColor = true;
-			// 
-			// tabControl5
-			// 
-			this.tabControl5.Controls.Add(this.tabPage1);
-			this.tabControl5.Controls.Add(this.tabPage2);
-			this.tabControl5.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.tabControl5.Location = new System.Drawing.Point(3, 3);
-			this.tabControl5.Name = "tabControl5";
-			this.tabControl5.SelectedIndex = 0;
-			this.tabControl5.Size = new System.Drawing.Size(742, 559);
-			this.tabControl5.TabIndex = 0;
-			// 
-			// tabPage1
-			// 
-			this.tabPage1.Location = new System.Drawing.Point(4, 22);
-			this.tabPage1.Name = "tabPage1";
-			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(734, 533);
-			this.tabPage1.TabIndex = 0;
-			this.tabPage1.Text = "Edit Buildings";
-			this.tabPage1.UseVisualStyleBackColor = true;
-			// 
-			// tabPage2
-			// 
-			this.tabPage2.Controls.Add(this.tabControl6);
-			this.tabPage2.Location = new System.Drawing.Point(4, 22);
-			this.tabPage2.Name = "tabPage2";
-			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage2.Size = new System.Drawing.Size(734, 533);
-			this.tabPage2.TabIndex = 1;
-			this.tabPage2.Text = "Edit Stations";
-			this.tabPage2.UseVisualStyleBackColor = true;
-			// 
-			// tabControl6
-			// 
-			this.tabControl6.Controls.Add(this.tabPage5);
-			this.tabControl6.Controls.Add(this.tabPage6);
-			this.tabControl6.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.tabControl6.Location = new System.Drawing.Point(3, 3);
-			this.tabControl6.Name = "tabControl6";
-			this.tabControl6.SelectedIndex = 0;
-			this.tabControl6.Size = new System.Drawing.Size(728, 527);
-			this.tabControl6.TabIndex = 0;
-			// 
-			// tabPage5
-			// 
-			this.tabPage5.Location = new System.Drawing.Point(4, 22);
-			this.tabPage5.Name = "tabPage5";
-			this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage5.Size = new System.Drawing.Size(720, 501);
-			this.tabPage5.TabIndex = 0;
-			this.tabPage5.Text = "Stations";
-			this.tabPage5.UseVisualStyleBackColor = true;
-			// 
-			// tabPage6
-			// 
-			this.tabPage6.Location = new System.Drawing.Point(4, 22);
-			this.tabPage6.Name = "tabPage6";
-			this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage6.Size = new System.Drawing.Size(720, 501);
-			this.tabPage6.TabIndex = 1;
-			this.tabPage6.Text = "StationTypes";
-			this.tabPage6.UseVisualStyleBackColor = true;
-			// 
 			// timer1
 			// 
 			this.timer1.Enabled = true;
@@ -1672,6 +1552,7 @@
 			this.dataGridViewTextBoxColumn3.DataPropertyName = "AssignedToStation";
 			this.dataGridViewTextBoxColumn3.HeaderText = "Station";
 			this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+			this.dataGridViewTextBoxColumn3.ReadOnly = true;
 			this.dataGridViewTextBoxColumn3.Width = 65;
 			// 
 			// employeeBindingSource
@@ -1815,6 +1696,16 @@
 			// 
 			this.productOrderBindingSource.DataSource = typeof(TypeLib.ProductOrder);
 			// 
+			// label6
+			// 
+			this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
+			this.label6.AutoSize = true;
+			this.label6.Location = new System.Drawing.Point(44, 52);
+			this.label6.Name = "label6";
+			this.label6.Size = new System.Drawing.Size(118, 13);
+			this.label6.TabIndex = 0;
+			this.label6.Text = "Welcome Administrator:";
+			// 
 			// Admin
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1847,6 +1738,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
 			this.splitContainer3.ResumeLayout(false);
 			this.tabControl2.ResumeLayout(false);
+			this.tabPage8.ResumeLayout(false);
+			this.tabPage8.PerformLayout();
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
 			this.tabControl1.ResumeLayout(false);
@@ -1891,10 +1784,6 @@
 			this.tableLayoutPanel5.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewPOrders)).EndInit();
 			this.panel8.ResumeLayout(false);
-			this.tabBuildings.ResumeLayout(false);
-			this.tabControl5.ResumeLayout(false);
-			this.tabPage2.ResumeLayout(false);
-			this.tabControl6.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.productOrdersBindingSource)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).EndInit();
@@ -1917,7 +1806,6 @@
 		private System.Windows.Forms.Label usrnLabel;
 		private System.Windows.Forms.SplitContainer splitContainer3;
 		private System.Windows.Forms.GroupBox groupBox1;
-		private System.Windows.Forms.TabPage tabBuildings;
 		private System.Windows.Forms.ListView listViewLoggedInEmployees;
 		private System.Windows.Forms.ColumnHeader columnHeader1;
 		private System.Windows.Forms.ColumnHeader columnHeader2;
@@ -1940,12 +1828,6 @@
 		private System.Windows.Forms.TabControl tabControl4;
 		private System.Windows.Forms.TabPage tabProducts2;
 		private System.Windows.Forms.TabPage tabIngredients;
-		private System.Windows.Forms.TabControl tabControl5;
-		private System.Windows.Forms.TabPage tabPage1;
-		private System.Windows.Forms.TabPage tabPage2;
-		private System.Windows.Forms.TabControl tabControl6;
-		private System.Windows.Forms.TabPage tabPage5;
-		private System.Windows.Forms.TabPage tabPage6;
 		private System.Windows.Forms.TabPage tabOrders;
 		private System.Windows.Forms.DataGridViewTextBoxColumn orderIdDataGridViewTextBoxColumn;
 		private System.Windows.Forms.DataGridViewTextBoxColumn byTerminalDataGridViewTextBoxColumn;
@@ -2080,5 +1962,6 @@
 		private System.Windows.Forms.Button btn_ResetProd;
 		private System.Windows.Forms.Button btn_saveProd;
 		private System.Windows.Forms.Button DeleteEmployeeBtn;
+		private System.Windows.Forms.Label label6;
 	}
 }
