@@ -264,7 +264,9 @@ namespace G3Systems
 
 		private void LogoutButton_Click(object sender, EventArgs e)
 		{
-
+			var form = new Login();
+			this.Dispose();
+			form.ShowDialog();
 		}
 
 		private void button1_Click(object sender, EventArgs e)
