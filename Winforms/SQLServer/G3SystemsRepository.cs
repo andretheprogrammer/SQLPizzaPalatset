@@ -378,6 +378,12 @@ namespace SQLServer
             }
 
         }
+       
+        /// <summary>
+        /// Returns all the stuffings for a Product Order
+        /// </summary>
+        /// <param name="pProductOrderid"></param>
+        /// <returns></returns>
         public async Task<IEnumerable<Ingredient>> GetStuffingsAsync(int pProductOrderid)
         {
             using (var connection = CreateConnection())
@@ -400,6 +406,13 @@ namespace SQLServer
                    commandType: CommandType.StoredProcedure);
                 }
         }
+       
+        /// <summary>
+        /// Marks a Product Order as Processed
+        /// </summary>
+        /// <param name="pProductOrderid"></param>
+        /// <param name="pProcessed"></param>
+        /// <returns></returns>
         public async Task SetProcessedOnkPOAsync(int pProductOrderid, bool pProcessed)
         {
        
@@ -440,7 +453,11 @@ namespace SQLServer
             }
         }
 
-        //Gives only one station
+        /// <summary>
+        /// Returns the details for a ProductOrder record.
+        /// </summary>
+        /// <param name="pProductOrderId"></param>
+        /// <returns></returns>
         public async Task<Product> GetProductInfoFromPO(int pProductOrderId)
         {
             using (var connection = CreateConnection())
@@ -506,14 +523,24 @@ namespace SQLServer
             }
         }
 
+        //public async Task AddNewIngredientAsync(string name, int baseprice)
+        //{
+        //    using (var connection = CreateConnection())
+        //    {
+        //        await connection.ExecuteAsync(
+        //              sql: "Proc_AddIngredient",
+        //            param: new { Name=name, Price=baseprice },
+        //       commandType: CommandType.StoredProcedure);
+        //    }
+        //}
+
         public async Task AddNewIngredientAsync(string name, int baseprice)
         {
+            string sqlQuery = "insert into ingredients(IngredientName, Price) values (@Name, @Price)";
+
             using (var connection = CreateConnection())
             {
-                await connection.ExecuteAsync(
-                      sql: "Proc_AddIngredient",
-                    param: new { name, baseprice },
-               commandType: CommandType.StoredProcedure);
+                await connection.ExecuteAsync(sqlQuery, new { name, baseprice });
             }
         }
 
@@ -541,6 +568,10 @@ namespace SQLServer
             }
         }
 
+        /// <summary>
+        /// Returns all the ingredients in the entire database
+        /// </summary>
+        /// <returns></returns>
         public async Task<IEnumerable<Ingredient>> GetAllIngredientsAsync()
         {
             var sqlQuery = "select * from ingredients";
@@ -551,6 +582,11 @@ namespace SQLServer
             }
         }
 
+        /// <summary>
+        /// Returns the Ingredients that are allowed by a Product Type
+        /// </summary>
+        /// <param name="ProductTypeid"></param>
+        /// <returns></returns>
         public async Task<IEnumerable<Ingredient>> GetAllowedIngredientsByPTypeAsync(int ProductTypeid)
         {
             using (var connection = CreateConnection())

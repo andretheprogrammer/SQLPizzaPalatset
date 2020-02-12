@@ -407,12 +407,18 @@ namespace G3Systems
 			MessageBox.Show("Unallowed edit");
 		}
 
-		private async void button2_Click(object sender, EventArgs e)
+		private async void btn_AddIngredient_Click(object sender, EventArgs e)
 		{	
+
+
+						// FUNGERAR EJ !!!!
+						// ATT LÄGGA TILL INGREDIENT
 			try { 
 			string name = txbxAddIngName.Text;
 			int price = Int32.Parse(txbxAddIngPrice.Text);
 			await _repo.AddNewIngredientAsync(name, price);
+			MessageBox.Show("Successfully added new ingredient!");
+			
 			}
 			catch(Exception){ MessageBox.Show("Failed importing Ingredient. Please try again."); }
 			}

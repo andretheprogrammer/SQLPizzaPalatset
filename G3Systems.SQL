@@ -2559,7 +2559,7 @@ CREATE PROCEDURE Proc_AddProduct(@ProductName varchar(100),
 			VALUES (@Productname, @ProductTypeID, @PrepTime, @BasePrice, @Description)
 		END
 	GO
-CREATE PROCEDURE Proc_AddIngredientsToProduct (@ProductID INT, @IngredientID INT)
+CREATE PROCEDURE Proc_AddIngredientToProduct (@ProductID INT, @IngredientID INT)
 	AS
 	BEGIN
 	INSERT INTO ProductHaveIngredients (ProductID ,IngredientID) 
@@ -2583,9 +2583,39 @@ CREATE PROCEDURE Proc_GetAllowedIngredientsByPType @ProductTypeID INT
 		WHERE ProductTypeID = @ProductTypeID )
 	GO
 
+
+
 CREATE PROCEDURE Proc_DeleteIngredientsForProduct @ProductID int
 	AS
 	DELETE
 	FROM ProductHaveIngredients
 	WHERE ProductID = @ProductID
+	GO
+
+--Kan Ha
+CREATE PROCEDURE ProductCanHaveIngredients @ProductID INT
+	AS
+	BEGIN
+	SELECT *
+	FROM Ingredients
+	WHERE IngredientID in
+			(SELECT IngredientID
+			FROM ProductCanHaveIngredients
+			WHERE ProductID = @ProductID
+			)
+	END
+	GO
+
+--HAR
+CREATE PROCEDURE ProductHasIngredients @ProductID INT
+	AS
+	BEGIN
+	SELECT *
+	FROM Ingredients
+	WHERE IngredientID in
+			(SELECT IngredientID
+			FROM ProductHaveIngredients
+			WHERE ProductID = @ProductID
+			)
+	END
 	GO
