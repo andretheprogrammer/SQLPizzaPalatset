@@ -495,13 +495,13 @@ namespace SQLServer
             }
         }
 
-        public async Task AddNewProductAsync(string name, int baseprice, string descr, int typeid)
+        public async Task AddNewProductAsync(string name, int typeid, int baseprice, string descr )
         {
             using (var connection = CreateConnection())
             {
                 await connection.ExecuteAsync(
                       sql: "Proc_AddProduct",
-                    param: new { name, baseprice, descr, typeid },
+                    param: new { ProductName = name, ProductTypeID = typeid, BasePrice=baseprice, Description= descr},
                commandType: CommandType.StoredProcedure);
             }
         }
@@ -528,6 +528,19 @@ namespace SQLServer
             }
         }
 
+        public async Task AddMultipleNewIngredientsToProductAsync(int prodID, List<int> IngredientIDs)
+        {
+            using (var connection = CreateConnection())
+            {
+
+                foreach (int id in IngredientIDs)
+                {
+                    await AddNewIngredientToProductAsync(prodID, id);
+
+                }
+            }
+        }
+
         public async Task<IEnumerable<Ingredient>> GetAllIngredientsAsync()
         {
             var sqlQuery = "select * from ingredients";
@@ -548,8 +561,6 @@ namespace SQLServer
                commandType: CommandType.StoredProcedure));
             }
         }
-
-
 
 
     }

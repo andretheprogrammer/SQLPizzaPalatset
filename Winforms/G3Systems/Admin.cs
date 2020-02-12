@@ -41,10 +41,15 @@ namespace G3Systems
 			// Load employees datagridview
 			GetEmployeesBtn_Click(sender, e);
 
+			
 			lstbx_types.Items.Clear();
+			lstboxAddtype.Items.Clear();
+			
+			//Todo Enums till class
 			foreach (var i in Enum.GetNames(typeof(ProductType)))
 			{
 				lstbx_types.Items.Add(i);
+				lstboxAddtype.Items.Add(i);
 			}
 		}
 		private void Admin_FormClosed(object sender, FormClosedEventArgs e)
@@ -279,15 +284,15 @@ namespace G3Systems
 
 		private async void btn_ResetProd_Click(object sender, EventArgs e)
 		{
-			txtbx_PName.Text = "";
-			txtbx_bprice.Text = "";
-			txbxDescr.Text = "";
+
 			lstbx_types.ClearSelected();
 			chbxlist_ingrs.Items.Clear();
 			List<Ingredient> all_ingredients = (await _repo.GetAllIngredientsAsync()).ToList();
 
 			all_ingredients.ForEach(a => chbxlist_ingrs.Items.Add(a.IngredientName));
-			;
+			
+			//Refresh productlist
+			dataGridViewProducts.DataSource = await _repo.GetProductsAsync();
 		}
 
 		private async void lstbx_types_SelectedIndexChanged(object sender, EventArgs e)
@@ -309,10 +314,107 @@ namespace G3Systems
 
 		}
 
-		private void btn_saveProd_Click(object sender, EventArgs e)
+		private async void btn_saveProd_Click(object sender, EventArgs e)
 		{
-			var hej = chbxlist_ingrs.CheckedItems;
+			
+		//GET ROW PRODUCT ID!!
+			//dataGridViewProducts.SelectedRows[0];
+			
+			
+			//Refresh ProductList
+			dataGridViewProducts.DataSource = await _repo.GetProductsAsync();
 
 		}
+
+		private void Clearform()
+		{
+
+			//Todo Convert Enum to Class
+			lstbx_types.ClearSelected();
+
+		}
+
+		//private void btnAddProduct_Click_1(object sender, EventArgs e)
+		//{
+		//	//A:
+		//	//Create empty product first
+		//	string name = txtbx_PName.Text;
+		//	int baseprice = Int32.Parse(txtbx_bprice.Text);
+		//	string descr = txbxDescr.Text;
+		//	//Todo Convert Enum to Class
+		//	int selectedType = lstbx_types.SelectedIndex + 1;
+
+		//	await _repo.AddNewProductAsync(name, selectedType, baseprice, descr);
+
+		//	//B:
+		//	//Add all its ingredients then
+		//	var pickedIngredients = chbxlist_ingrs.CheckedItems; //list with "23 : Myingredient"
+		//														 //_repo.AddNewIngredientToProductAsync();
+
+		//}
+
+		private void button1_Click_1(object sender, EventArgs e)
+		{
+			txtboxaddname.Text = "";
+			txtboxaddprice.Text = "";
+			txtboxadddescr.Text = "";
+		}
+
+
+		private async void BtnAddProduct_Click(object sender, EventArgs e)
+		{
+			try {
+				//Might cause increase in ID on failed insert.
+
+				//Fix: Potential TRANSACTION HERE. 
+				string name = txtboxaddname.Text;
+				int baseprice = Int32.Parse(txtboxaddprice.Text);
+				string descr = txtboxadddescr.Text;
+			
+				//Todo Convert Enum to Class
+				int selectedType = lstboxAddtype.SelectedIndex + 1;
+
+			
+
+				await _repo.AddNewProductAsync(name, selectedType, baseprice, descr);
+				MessageBox.Show("Product: " + name + " was added!");
+
+				txtboxaddname.Text = "";
+				txtboxaddprice.Text = "";
+				txtboxadddescr.Text = "";
+			}
+			catch(Exception){ MessageBox.Show("ERROR. Could not import product - Try Again."); }
+
+		}
+
+		private void dataGridViewProducts_CellEnter(object sender, DataGridViewCellEventArgs e)
+		{
+			chbxlist_ingrs.Enabled = true;
+		}
+
+		private void dataGridViewProducts_RowEnter(object sender, DataGridViewCellEventArgs e)
+		{
+		//Update ingredientlist now
+		}
+
+		private void dataGridViewProducts_RowLeave(object sender, DataGridViewCellEventArgs e)
+		{
+		//Disable everything
+		}
+
+		private void dataGridViewProducts_DataError(object sender, DataGridViewDataErrorEventArgs e)
+		{
+			MessageBox.Show("Unallowed edit");
+		}
+
+		private async void button2_Click(object sender, EventArgs e)
+		{	
+			try { 
+			string name = txbxAddIngName.Text;
+			int price = Int32.Parse(txbxAddIngPrice.Text);
+			await _repo.AddNewIngredientAsync(name, price);
+			}
+			catch(Exception){ MessageBox.Show("Failed importing Ingredient. Please try again."); }
+			}
 	}
 }
