@@ -523,47 +523,27 @@ namespace SQLServer
             }
         }
 
-        //public async Task AddNewIngredientAsync(string name, int baseprice)
-        //{
-        //    using (var connection = CreateConnection())
-        //    {
-        //        await connection.ExecuteAsync(
-        //              sql: "Proc_AddIngredient",
-        //            param: new { Name=name, Price=baseprice },
-        //       commandType: CommandType.StoredProcedure);
-        //    }
-        //}
-
-        public async Task AddNewIngredientAsync(string name, int baseprice)
-        {
-            string sqlQuery = "insert into ingredients(IngredientName, Price) values (@Name, @Price)";
-
-            using (var connection = CreateConnection())
-            {
-                await connection.ExecuteAsync(sqlQuery, new { name, baseprice });
-            }
-        }
-
-        public async Task AddNewIngredientToProductAsync(int prodID, int ingrID)
+        public async Task AddNewIngredientAsync(Ingredient ingredient)
         {
             using (var connection = CreateConnection())
             {
                 await connection.ExecuteAsync(
-                      sql: "Proc_AddIngredientToProduct",
-                    param: new { prodID, ingrID},
+                      sql: "Proc_AddIngredient",
+                    param: new { Name = ingredient.IngredientName, Price = ingredient.Price },
                commandType: CommandType.StoredProcedure);
             }
         }
 
-        public async Task AddMultipleNewIngredientsToProductAsync(int prodID, List<int> IngredientIDs)
+        public async Task AddNewIngredientToProductAsync(Product product)
         {
             using (var connection = CreateConnection())
             {
-
-                foreach (int id in IngredientIDs)
+                foreach (var ingredient in product.Ingredients)
                 {
-                    await AddNewIngredientToProductAsync(prodID, id);
-
+                    await connection.ExecuteAsync(
+                          sql: "Proc_AddIngredientToProduct",
+                        param: new { product.ProductID, ingredient.IngredientID },
+                   commandType: CommandType.StoredProcedure);
                 }
             }
         }
@@ -593,11 +573,20 @@ namespace SQLServer
             {
                 return (await connection.QueryAsync<Ingredient>(
                       sql: "Proc_GetAllowedIngredientsByPType",
-                    param: new { @ProductTypeID = ProductTypeid },
+                    param: new { ProductTypeID = ProductTypeid },
                commandType: CommandType.StoredProcedure));
             }
         }
 
-
+        public async Task DeleteIngredientsByProductId(Product product)
+        {
+            using (var connection = CreateConnection())
+            {
+                await connection.ExecuteAsync(
+                      sql: "Proc_DeleteIngredientsForProduct",
+                    param: new { product.ProductID },
+               commandType: CommandType.StoredProcedure);
+            }
+        }
     }
 }

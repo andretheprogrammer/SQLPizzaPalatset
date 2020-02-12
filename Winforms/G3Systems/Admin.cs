@@ -61,14 +61,14 @@ namespace G3Systems
 			Application.Exit();
 		}
 
-		// Employees
+		// Employees - Get employees and bind to datagrid
 		private async void GetEmployeesBtn_Click(object sender, EventArgs e)
 		{
 			dataGridViewEmployees.DataSource = await _repo.GetEmployeesAsync();
 		
 		}
 
-		// Employees
+		// Employees - Add new employee with selected types
 		private async void AddNewEmployeeBtn_Click(object sender, EventArgs e)
 		{
 			if (string.IsNullOrWhiteSpace(tbUsername.Text) ||
@@ -133,15 +133,17 @@ namespace G3Systems
 			}
 		}
 
-		// Employee
+		// Employees - Delete selected employee
 		private async void DeleteEmployeeBtn_Click(object sender, EventArgs e)
 		{
-			if (editEmployee == null ||
-				editEmployee.Types.Any(type => 
-				type == EmployeeType.Administrator))
+			if (editEmployee == null)
 			{
-				MessageBox.Show("Can't delete that");
 				return;
+			}
+
+			if (editEmployee.EmployeeID == 1)
+			{
+				MessageBox.Show("Can't delete superadmin");
 			}
 
 			await _repo.DeleteEmployeeAtId(editEmployee);
@@ -149,7 +151,7 @@ namespace G3Systems
 			GetEmployeesBtn_Click(sender, e);
 		}
 
-		// Employees
+		// Employees - Link selected employee to editEmployee
 		private async void dataGridViewEmployees_SelectionChanged(object sender, EventArgs e)
 		{
 			if ((dataGridViewEmployees.SelectedRows.Count <= 0))
@@ -164,7 +166,7 @@ namespace G3Systems
 			ClearEmployeeTextBoxes();
 		}
 
-		// Employees
+		// Employees - Confirm edit directly in datagrid
 		private async void dataGridViewEmployees_CellEndEdit(object sender, DataGridViewCellEventArgs e)
 		{
 			if (this.editEmployee.EmployeeID == -1)
@@ -196,6 +198,8 @@ namespace G3Systems
 			}
 
 			this.editProduct = (Product)dataGridViewProducts.SelectedRows[0].DataBoundItem;
+
+			lstbx_types.SelectedIndex = (int)editProduct.ProductTypeID - 1;
 		}
 
 		// Products
@@ -279,11 +283,6 @@ namespace G3Systems
 			form.ShowDialog();
 		}
 
-		private void button1_Click(object sender, EventArgs e)
-		{
-
-		}
-
 		private async void btn_ResetProd_Click(object sender, EventArgs e)
 		{
 
@@ -300,61 +299,58 @@ namespace G3Systems
 		private async void lstbx_types_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			int temp = lstbx_types.SelectedIndex + 1;
-			//MessageBox.Show(temp);
+
 			List<Ingredient> allowed_ingredients = (await _repo.GetAllowedIngredientsByPTypeAsync(temp)).ToList();
 
-			chbxlist_ingrs.Items.Clear();
-			allowed_ingredients.ForEach(a => chbxlist_ingrs.Items.Add(a.IngredientID + " : " + a.IngredientName));
-
-
-
-
+			//chbxlist_ingrs.Items.Clear();
+			//allowed_ingredients.ForEach(a => chbxlist_ingrs.Items.Add(a.IngredientID + " : " + a.IngredientName));
+			((ListBox)chbxlist_ingrs).DataSource = null;
+			((ListBox)chbxlist_ingrs).DataSource = allowed_ingredients;
+			((ListBox)chbxlist_ingrs).DisplayMember = "IngredientName";
+			((ListBox)chbxlist_ingrs).ValueMember = "IngredientID";
 		}
 
-		private void chbxlist_ingrs_SelectedIndexChanged(object sender, EventArgs e)
-		{
-
-		}
 
 		private async void btn_saveProd_Click(object sender, EventArgs e)
 		{
-			
+			editProduct.Ingredients = new List<Ingredient>();
+			//var ingredients = new List<Ingredient>();
 			//Fetcha allting i formuläret.
+			foreach (var ingredient in chbxlist_ingrs.CheckedItems)
+			{
+				editProduct.Ingredients.Add((Ingredient)ingredient);
+			}
 
+			if (editProduct.Ingredients.Count <= 0)
+			{
+				MessageBox.Show("Select ingredients");
+				return;
+			}
 			//Spara i databasen
-			
-			
-			//Refresh ProductList
-			dataGridViewProducts.DataSource = await _repo.GetProductsAsync();
 
+			await _repo.DeleteIngredientsByProductId(editProduct);
+
+			await _repo.AddNewIngredientToProductAsync(editProduct);
+
+			//Refresh ProductList
+			GetAllProductsBtn_Click(sender, e);
+			ClearIngredientsChkbxList();
+		}
+
+		private void ClearIngredientsChkbxList()
+		{
+
+			for (int i = 0; i < chbxlist_ingrs.Items.Count; i++)
+			{
+				chbxlist_ingrs.SetItemCheckState(i, CheckState.Unchecked);
+			}
 		}
 
 		private void Clearform()
 		{
-
-			//Todo Convert Enum to Class
 			lstbx_types.ClearSelected();
-
 		}
 
-		//private void btnAddProduct_Click_1(object sender, EventArgs e)
-		//{
-		//	//A:
-		//	//Create empty product first
-		//	string name = txtbx_PName.Text;
-		//	int baseprice = Int32.Parse(txtbx_bprice.Text);
-		//	string descr = txbxDescr.Text;
-		//	//Todo Convert Enum to Class
-		//	int selectedType = lstbx_types.SelectedIndex + 1;
-
-		//	await _repo.AddNewProductAsync(name, selectedType, baseprice, descr);
-
-		//	//B:
-		//	//Add all its ingredients then
-		//	var pickedIngredients = chbxlist_ingrs.CheckedItems; //list with "23 : Myingredient"
-		//														 //_repo.AddNewIngredientToProductAsync();
-
-		//}
 
 		private void button1_Click_1(object sender, EventArgs e)
 		{
@@ -390,56 +386,38 @@ namespace G3Systems
 
 		}
 
-		private void dataGridViewProducts_CellEnter(object sender, DataGridViewCellEventArgs e)
-		{
-			chbxlist_ingrs.Enabled = true;
-		}
-
-		private void dataGridViewProducts_RowEnter(object sender, DataGridViewCellEventArgs e)
-		{
-			MessageBox.Show("refresha checkboxlista!");
-
-			//Fetcha allt
-			//1: fetcha produktens type.
-			//2: fetcha vilka ingredients produkten har - Proc_ProductCanHaveIngredients
-			//3: fetcha vilka ingredients produkten kan ha -Proc_ProductHasIngredients
-
-			//Placera allt
-			//1:a markera selected type på listan
-			//2:a visa alla möjliga ingredienser för produkten i chklistan
-			//3:a checka för ingredienser som produkten HAR nu ingredients
-
-		}
-
-		private void dataGridViewProducts_RowLeave(object sender, DataGridViewCellEventArgs e)
-		{
-			chbxlist_ingrs.Enabled = false;
-		}
-
 		private void dataGridViewProducts_DataError(object sender, DataGridViewDataErrorEventArgs e)
 		{
 			MessageBox.Show("Unallowed edit");
 		}
 
 		private async void btn_AddIngredient_Click(object sender, EventArgs e)
-		{	
-
-
-						// FUNGERAR EJ !!!!
-						// ATT LÄGGA TILL INGREDIENT
-			try { 
-			string name = txbxAddIngName.Text;
-			int price = Int32.Parse(txbxAddIngPrice.Text);
-			await _repo.AddNewIngredientAsync(name, price);
-			MessageBox.Show("Successfully added new ingredient!");
-			
-			}
-			catch(Exception){ MessageBox.Show("Failed importing Ingredient. Please try again."); }
-			}
-
-		private void tableLayoutPanel4_Paint(object sender, PaintEventArgs e)
 		{
+			int price = 0;
 
+			if (!int.TryParse(txbxAddIngPrice.Text, out price))
+			{
+				MessageBox.Show("Price must be a number");
+				return;
+			}
+
+			var newIngredient = new Ingredient()
+			{
+				IngredientName = txbxAddIngName.Text,
+				Price = price
+			};
+
+			try 
+			{ 
+				await _repo.AddNewIngredientAsync(newIngredient);
+				MessageBox.Show("Successfully added new ingredient!");
+			}
+			catch
+			{ 
+				MessageBox.Show("Failed importing Ingredient. Please try again."); 
+			}
+
+			GetAllIngredientsBtn_Click(sender, e);
 		}
 	}
 }
