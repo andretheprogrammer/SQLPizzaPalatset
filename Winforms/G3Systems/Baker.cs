@@ -7,138 +7,197 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Configuration;
 using TypeLib;
-using SQLServer;
-
+using G3Systems.Extensions;
 
 namespace G3Systems
 {
 	public partial class Baker : Form
 	{
 
-		private Employee user;
 		private readonly IG3SystemsRepository _repo;
+		private Employee user;
 		
 		private bool Lockedstate = false;
-
+		private Station _station;
 
 		//Ska ha som inputs helst: Employee, Building, Station
 		public Baker(Employee puser)
 		{
 			InitializeComponent();
-			_repo = new G3SystemsRepository();
+
 			user = puser;
 			lbl_username.Text = user.Username;
 			lbl_usrPname.Text = user.Username;
 
-			//Todo: hårdkodat här. Fixa så den visar riktigt värde.
-			lbl_activated.Text = "True";
-			lbl_visible.Text = "True";
-			lblPassword.Text = "";
+			try
+			{
+				// Get key string from App.config appsettings
+				string _postgreBackEnd = ConfigurationManager.AppSettings.Keys[0];
 
-		}
-
-		// TODO Rensa bort all skräp kod här tack. Utan att programmet kraschar
-		private void splitContainer4_Panel2_Paint(object sender, PaintEventArgs e)
-		{
-
+				// Check if postgreSQL Back-End is set to true App.Config 
+				if (_postgreBackEnd.GetConfigSetting())
+				{
+					MessageBox.Show("PostgreSQL", "Connected");
+					_repo = new PostgreSQL.G3SystemsRepository();
+				}
+				else
+				{
+					//MessageBox.Show("MSSQL", "Connected");
+					_repo = new SQLServer.G3SystemsRepository();
+				}
+			}
+			catch
+			{
+				MessageBox.Show("Fel i App.config", "Error");
+				throw;
+			}
 		}
 
 		private async void btn_Lock_click(object sender, EventArgs e)
 		{
+			Station currentstation = (await _repo.GetAssignedStation(user.EmployeeID));
+
 			if (noSelections()) { return; }
 			
-			if (Lockedstate == false) 
+			if (this.Lockedstate == false)  
 			{
+				//Tillstånd i Locked state
+
 				lstbxOpen.Enabled = false; //Nu AV-aktiveras ProductOrders-listan
-
-
 				int pickedPO = getOpenListChoiceInt();
 
-				//Hårdkodat??
-				int pickedStation = 1;
 
-				await _repo.SetLockOnkPOAsync(pickedPO, pickedStation);
+				//Hårdkodat??
+				await _repo.SetLockOnkPOAsync(pickedPO, currentstation.StationID);
+
+				btn_Finished.Enabled = true;
+				btn_Refresh.Enabled = false;
+				btn_Refresh.Text = "";
+				btn_Finished.BackColor = Color.Lime;
+				btn_Lock.Text = "Press to UNLOCK";
+				btn_Finished.Text = "FINISHED";
+				btn_Lock.BackColor = Color.Yellow;
+				this.Lockedstate = true;
+				btnUnlocker.Enabled = true;
+				btnUnlocker.Text = "UNLOCK STATION - RELEASE PO";
+
+
+			}
+
+			else
+			{
+
+				//STATES FÖR UPPLÅST LÄGE
+
+
+				//btnUnlocker.PerformClick();
+
+				btn_Finished.Enabled = false;
+				btn_Refresh.Enabled = true;
+				btn_Refresh.Text = "Refresh";
+				btn_Finished.BackColor = Color.Gray;
+				btn_Lock.Text = "Lock";
+				btn_Finished.Text = "";
+				btn_Lock.BackColor = Color.Beige;
+				this.Lockedstate = false;
+				lstbxOpen.Enabled = true;
+				
+				//disables the "first unlocker button"
+				btnUnlocker.Enabled = false;
+
+
+				//Unlocks the PO
+				ProductOrder PO = await _repo.GetLockedPOByStation(currentstation.StationID);
+				await _repo.SetLockOnkPOAsync(PO.ProductOrderID, 0);
+
+
+			}
+
+			ProductOrder lockedPOs = await _repo.GetLockedPOByStation(currentstation.StationID);
+			if (lockedPOs is ProductOrder)
+			{
+				Product lockedProduct = await _repo.GetProductInfoFromPO(lockedPOs.ProductOrderID);
+				lblLockedPO.Text = "Order:" + lockedPOs.OrderID + ", PO:" + lockedPOs.ProductOrderID + ", " + lockedProduct.ProductName;
+			}
+			else { lblLockedPO.Text = ""; }
+			//RefreshLockStatus(currentstation);
+
+		}
+
+		//do stuff here when form loads
+		private async void Baker_Load(object sender, EventArgs e)
+		{
+
+			Station currentstation = (await _repo.GetAssignedStation(user.EmployeeID));
+
+			lblStationName.Text = currentstation.StationName;
+			//Refresh
+			
+			RefreshLockStatus(currentstation);
+
+			lstbxPossibleStations.Items.Clear();
+			List<Station> poissibleStations = (await _repo.GetPossibleStationsForEmployee(user.EmployeeID)).ToList();
+			poissibleStations.ForEach(a => lstbxPossibleStations.Items.Add(a.StationID + ": " + a.StationName));
+			lblAssignment.Text = currentstation.StationName;
+
+			lblEmployee.Text = "";
+			//user.Types.ForEach(a => lblEmployee.Text += " | " + a);
+			lblEmployee.Text = string.Join(" | ", user.Types);
+		}
+
+		private async void RefreshLockStatus(Station pStation){
+
+			ProductOrder lockedPOs = await _repo.GetLockedPOByStation(pStation.StationID);
+
+			if (lockedPOs is ProductOrder)
+			//If there is a locked PO, then do the following.
+			{
+
+				Product lockedProduct = await _repo.GetProductInfoFromPO(lockedPOs.ProductOrderID);
+				lblLockedPO.Text = "Order:" + lockedPOs.OrderID + ", PO:" + lockedPOs.ProductOrderID + ", " + lockedProduct.ProductName;
+
+				//If PO is found, then enable the unlock button.
+				btnUnlocker.Enabled = true;
+				btnUnlocker.Text = "UNLOCK STATION - RELEASE PO";
 
 				btn_Finished.Enabled = true;
 				btn_Refresh.Enabled = false;
 				btn_Finished.BackColor = Color.Lime;
 				btn_Lock.Text = "Press to UNLOCK";
 				btn_Finished.Text = "FINISHED";
+				btn_Refresh.Text = "";
+
 				btn_Lock.BackColor = Color.Yellow;
-				Lockedstate = true;
+				btn_Lock.Enabled = false;
 
+				repopulate_POList(pStation.InBuilding);
+				repopulate_StuffingsList(pStation.InBuilding);
+				lstbxOpen.Enabled = false;
+				this.Lockedstate = true;
 
-				}
-
+			}
 			else
 			{
-				lstbxOpen.Enabled = true;
-
-				int pickedPO = getOpenListChoiceInt();
-
-				//Hårdkodat??
-				int pickedStation = 1;
-
-				await _repo.SetLockOnkPOAsync(pickedPO, 0);
-
+				lblLockedPO.Text = "";
+				//Otherwise keep grey...
+				btnUnlocker.Enabled = false;
+				btnUnlocker.Text = "Station is AVAILABLE";
+				btn_Refresh.Text = "Refresh";
 				btn_Finished.Enabled = false;
 				btn_Refresh.Enabled = true;
 				btn_Finished.BackColor = Color.Gray;
 				btn_Finished.Text = "";
-				btn_Lock.Text = "Press to LOCK";
+				btn_Lock.Text = "LOCK";
 				btn_Lock.BackColor = Color.Beige;
-				Lockedstate = false;
-			}
+				btn_Lock.Enabled = true;
+				lstbxOpen.Enabled = true;
 			
-		}
+				repopulate_POList(pStation.InBuilding);
+				this.Lockedstate = false;
+			}
 
-		private async void Baker_Load(object sender, EventArgs e)
-		{
-			//do stuff here when form loads
-
-			lstbxOpen.Items.Clear();
-			lstbxStuffings.Items.Clear();
-
-			//Hårdkodat??
-			int building = 1;
-			repopulate_POList(building);
-
-
-		}
-
-		private void splitContainer5_SplitterMoved(object sender, SplitterEventArgs e)
-		{
-
-		}
-
-		private void splitContainer3_SplitterMoved(object sender, SplitterEventArgs e)
-		{
-
-		}
-
-		private void fillByToolStripButton_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void fillByToolStripButton1_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void fillByToolStripButton2_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void fillByToolStripButton3_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void fillByToolStripButton_Click_1(object sender, EventArgs e)
-		{
 
 		}
 
@@ -155,27 +214,36 @@ namespace G3Systems
 
 		private async void btn_Refresh_Click(object sender, EventArgs e)
 		{
+			
 			if (noSelections() ) { return; } //Knapp kan inte göra något utan valda ProdOrders
 			int pickedPO = getOpenListChoiceInt();
 
 			lstbxOpen.Items.Clear();
 			lstbxStuffings.Items.Clear();
 
-			//Hårdkodat??
-			int building = 1;
+			Station currentstation = (await _repo.GetAssignedStation(user.EmployeeID));
+
+			//Inkapsla
+			ProductOrder lockedPOs = await _repo.GetLockedPOByStation(currentstation.StationID);
+			if (lockedPOs is ProductOrder)
+			{
+				Product lockedProduct = await _repo.GetProductInfoFromPO(lockedPOs.ProductOrderID);
+				lblLockedPO.Text = "Order:" + lockedPOs.OrderID + ", PO:" + lockedPOs.ProductOrderID + ", " + lockedProduct.ProductName;
+			}
+			else { lblLockedPO.Text = ""; }
+			//
 
 
-
-			repopulate_POList(building);
+			repopulate_POList(currentstation.InBuilding);
 			repopulate_StuffingsList(pickedPO);
 		}
 
 		private int getOpenListChoiceInt() {
+			
 			return Int32.Parse((lstbxOpen.SelectedItems[0]).ToString().Split(':')[0]);
 		}
 
-		//TODO Ta bort async här?
-		private async void lstbxOpen_SelectedIndexChanged(object sender, EventArgs e)
+		private void lstbxOpen_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			if (noSelections()) { return; } //event kan inte göra något utan valda ProdOrders
 			int pickedPO = getOpenListChoiceInt();
@@ -206,34 +274,99 @@ namespace G3Systems
 		private async void btn_Finished_Click(object sender, EventArgs e)
 		{
 
+			Station currentstation = (await _repo.GetAssignedStation(user.EmployeeID));
+
+
 			lstbxOpen.Enabled = true;
+			try
+			{
+			//If it gets locked by choosing a PO
+				int pickedPO = getOpenListChoiceInt();
+				await _repo.SetProcessedOnkPOAsync(pickedPO, true);
+				await _repo.SetLockOnkPOAsync(pickedPO, 0);
+			}
+			catch(IndexOutOfRangeException) {
 
-			int pickedPO = getOpenListChoiceInt();
+				int pickedPO = currentstation.StationID;
+				ProductOrder PO = await _repo.GetLockedPOByStation(currentstation.StationID);
 
-			//Hårdkodat??
-			int pickedStation = 1;
+				await _repo.SetProcessedOnkPOAsync(PO.ProductOrderID, true);
+				await _repo.SetLockOnkPOAsync(PO.ProductOrderID, 0);
 
-			await _repo.SetProcessedOnkPOAsync(pickedPO, true);
-			await _repo.SetLockOnkPOAsync(pickedPO, 0);
+				//RefreshLockStatus(currentstation);
+			}
 
+
+			int pickedStation = currentstation.StationID;
+
+			//inkapsla
+			lstbxOpen.Enabled = true;
 			btn_Finished.Enabled = false;
 			btn_Refresh.Enabled = true;
 			btn_Finished.BackColor = Color.Gray;
 			btn_Finished.Text = "";
 			btn_Lock.Text = "Press to LOCK";
 			btn_Lock.BackColor = Color.Beige;
-			Lockedstate = false;
+			btn_Lock.Enabled = true;
+			this.Lockedstate = false;
+			btnUnlocker.Enabled = false;
+			btnUnlocker.Text = "Station is AVAILABLE";
+			btn_Refresh.Text = "Refresh";
+			//
 
 
-			int building = 1;
+			//inkapsla
+			ProductOrder lockedPOs = await _repo.GetLockedPOByStation(currentstation.StationID);
 
-			repopulate_POList(building);
-			repopulate_StuffingsList(pickedPO);
+			if (lockedPOs is ProductOrder)
+			{
+				Product lockedProduct = await _repo.GetProductInfoFromPO(lockedPOs.ProductOrderID);
+				lblLockedPO.Text = "Order:" + lockedPOs.OrderID + ", PO:" + lockedPOs.ProductOrderID + ", " + lockedProduct.ProductName;
+			}
+			else { lblLockedPO.Text = ""; }
+			//
+
+			repopulate_POList(currentstation.InBuilding);
+			repopulate_StuffingsList(currentstation.StationID);
 		}
 
-		private void lbl_username_Click(object sender, EventArgs e)
+		private async void btnUnlocker_Click(object sender, EventArgs e)
 		{
 
+			//This unlocks the station! 
+
+			Station currentstation = (await _repo.GetAssignedStation(user.EmployeeID));
+
+			ProductOrder PO = await _repo.GetLockedPOByStation(currentstation.StationID);
+			await _repo.SetLockOnkPOAsync(PO.ProductOrderID, 0);
+			
+			RefreshLockStatus(currentstation);
+
+
+
+
+			lstbxOpen.Enabled = true;
+		}
+
+		private async void btnSwitcher_Click(object sender, EventArgs e)
+		{
+
+			string[] station = (lstbxPossibleStations.SelectedItems[0]).ToString().Split(':');
+			int stationChoice = Int32.Parse(station[0]);
+			await _repo.AssignStationAsync(user.EmployeeID, stationChoice);
+			lblAssignment.Text = station[1];
+			lblStationName.Text = station[1];
+
+			Station currentstation = (await _repo.GetAssignedStation(user.EmployeeID));
+			RefreshLockStatus(currentstation);
+
+		}
+
+		private void Baker_FormClosed(object sender, FormClosedEventArgs e)
+		{
+			var form = new Login();
+			this.Dispose();
+			form.ShowDialog();
 		}
 	}
 }

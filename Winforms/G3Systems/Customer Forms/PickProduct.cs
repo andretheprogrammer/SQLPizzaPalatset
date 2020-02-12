@@ -7,11 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Configuration;
 using TypeLib;
-using SQLServer;
+using G3Systems.Extensions;
 
 namespace G3Systems
 {
+	/// <summary>
+	/// Customer terminal form for handling new orders
+	/// </summary>
 	public partial class PickProduct : Form
 	{
 		private readonly IG3SystemsRepository _repo;
@@ -23,9 +27,32 @@ namespace G3Systems
 		public PickProduct(int terminalID)
 		{
 			InitializeComponent();
-			_repo = new G3SystemsRepository();
+
 			cart = new List<Product>();
 			order = new Order() { ByTerminal = terminalID, Paid = false };
+
+			try
+			{
+				// Get key string from App.config appsettings
+				string _postgreBackEnd = ConfigurationManager.AppSettings.Keys[0];
+
+				// Check if postgreSQL Back-End is set to true App.Config 
+				if (_postgreBackEnd.GetConfigSetting())
+				{
+					MessageBox.Show("PostgreSQL", "Connected");
+					_repo = new PostgreSQL.G3SystemsRepository();
+				}
+				else
+				{
+					//MessageBox.Show("MSSQL", "Connected");
+					_repo = new SQLServer.G3SystemsRepository();
+				}
+			}
+			catch
+			{
+				MessageBox.Show("Fel i App.config", "Error");
+				throw;
+			}
 		}
 
 		// Get cart sorted by producttype
@@ -56,9 +83,6 @@ namespace G3Systems
 
 		private void PickProduct_FormClosed(object sender, FormClosedEventArgs e)
 		{
-			//var form = new CustomerEnter(order.ByTerminal);
-			//form.Show();
-			//this.Hide();
 			Application.Exit();
 		}
 		#endregion
@@ -146,7 +170,7 @@ namespace G3Systems
 			try
 			{
 				var type = (ProductType)listBoxProductTypes.SelectedItem;
-				gridViewProducts.DataSource = await _repo.GetProductsAsync(type);
+				gridViewProducts.DataSource = (await _repo.GetProductsAsync(type));
 			}
 			catch (Exception msg)
 			{
@@ -335,6 +359,7 @@ namespace G3Systems
 			UpdateListBoxCart();
 		}
 
+		// 
 		private void RemoveProductFromCart(Product product)
 		{
 			var dialogResult = MessageBox.Show($"Ta bort {product.ProductName}?", "", MessageBoxButtons.YesNo);
@@ -365,11 +390,6 @@ namespace G3Systems
 						order,
 						product,
 						ingredient)));
-
-				//foreach (var ingredient in product.Ingredients)
-				//{
-				//	parameterList.Add(InsertParameters(order, product, ingredient));
-				//}
 			}
 
 			return parameterList.ToArray();
@@ -462,6 +482,7 @@ namespace G3Systems
 			{
 				MessageBox.Show(
 					string.Join("\n", cart.Select(p => p.ProductName)) +
+					Environment.NewLine +
 					GetTotalPrice(),
 					$"Order# {order.OrderID}\n");
 			}
@@ -488,8 +509,8 @@ namespace G3Systems
 		private void ReturnToEntryForm()
 		{
 			var form = new CustomerEnter(order.ByTerminal);
-			form.Show();
-			this.Hide();
+			this.Dispose();
+			form.ShowDialog();
 		}
 		#endregion
 	}

@@ -1,17 +1,15 @@
 ﻿using System;
-using System.Runtime;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
+using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.CSharp;
-using System.Data;
-using System.Data.SqlClient;
 using System.Configuration;
-using Dapper;
+using System.Data;
 using TypeLib;
+using Dapper;
+using Npgsql;
 
-namespace SQLServer
+namespace PostgreSQL
 {
     public class G3SystemsRepository : IG3SystemsRepository
     {
@@ -20,7 +18,7 @@ namespace SQLServer
         public G3SystemsRepository()
         {
             // Gets connectionstring from App.config in G3Systems
-            _connString = ConfigurationManager.ConnectionStrings["mssql"].ConnectionString;
+            _connString = ConfigurationManager.ConnectionStrings["npgsql"].ConnectionString;
         }
 
         /// <summary>
@@ -29,7 +27,7 @@ namespace SQLServer
         /// <returns></returns>
         private IDbConnection CreateConnection()
         {
-            var conn = new SqlConnection(_connString);
+            var conn = new NpgsqlConnection(_connString);
             conn.Open();
             return conn;
         }
@@ -83,8 +81,9 @@ namespace SQLServer
             using (var connection = CreateConnection())
             {
                 await connection.ExecuteAsync(
-                    "Proc_ProductSetCreate", 
-                    new {
+                    "Proc_ProductSetCreate",
+                    new
+                    {
                         product.ProductID,
                         product.ProductTypeID,
                         product.ProductName,
@@ -92,7 +91,8 @@ namespace SQLServer
                         product.PrepTime,
                         product.BasePrice,
                         product.Activated,
-                        product.Visible },
+                        product.Visible
+                    },
                         commandType: CommandType.StoredProcedure
                         );
             }
@@ -140,11 +140,14 @@ namespace SQLServer
             {
                 await connection.ExecuteAsync(
                     "Proc_UpdateEmployee",
-                    new {   employee.EmployeeID, 
-                            employee.Username, 
-                            employee.Password, 
-                            employee.LoggedIn, 
-                            employee.AssignedToStation },
+                    new
+                    {
+                        employee.EmployeeID,
+                        employee.Username,
+                        employee.Password,
+                        employee.LoggedIn,
+                        employee.AssignedToStation
+                    },
                     commandType: CommandType.StoredProcedure);
             }
         }
@@ -256,7 +259,7 @@ namespace SQLServer
                 }
             }
         }
-        
+
         // Create new order and return OrderID
         public async Task<int> CreateNewOrderAsync(Order order)
         {
@@ -268,8 +271,8 @@ namespace SQLServer
 
             using (var connection = CreateConnection())
             {
-                await connection.ExecuteScalarAsync("Proc_NewOrder", 
-                                              param: orderParam, 
+                await connection.ExecuteScalarAsync("Proc_NewOrder",
+                                              param: orderParam,
                                         commandType: CommandType.StoredProcedure);
             }
 
@@ -311,12 +314,14 @@ namespace SQLServer
             {
                 await connection.ExecuteAsync(
                     sql: "Proc_IngredientSetCreate",
-                    param: new { 
+                    param: new
+                    {
                         ingredient.IngredientID,
-                        ingredient.IngredientName, 
-                        ingredient.Price, 
-                        ingredient.Activated, 
-                        ingredient.Visible },
+                        ingredient.IngredientName,
+                        ingredient.Price,
+                        ingredient.Activated,
+                        ingredient.Visible
+                    },
                     commandType: CommandType.StoredProcedure);
             }
         }
@@ -356,10 +361,10 @@ namespace SQLServer
 
             using (var connection = CreateConnection())
             {
-                 await connection.QueryAsync<Order>(
-                       sql: "SetPickedUp",
-                     param: new { OrderID = id, PickedUp = bit_from_bool },
-                commandType: CommandType.StoredProcedure);
+                await connection.QueryAsync<Order>(
+                      sql: "SetPickedUp",
+                    param: new { OrderID = id, PickedUp = bit_from_bool },
+               commandType: CommandType.StoredProcedure);
             }   //Return signal of successs?
 
 
@@ -378,7 +383,7 @@ namespace SQLServer
             }
 
         }
-       
+
         /// <summary>
         /// Returns all the stuffings for a Product Order
         /// </summary>
@@ -398,15 +403,15 @@ namespace SQLServer
         //Använd stationid =0 för att "låsa upp" productorder.
         public async Task SetLockOnkPOAsync(int pProductOrderid, int pStationid)
         {
-                using (var connection = CreateConnection())
-                {
-                    await connection.QueryAsync<Order>(
-                          sql: "Proc_SetLockedByStation",
-                        param: new { ProductOrderID = pProductOrderid, StationID = pStationid },
-                   commandType: CommandType.StoredProcedure);
-                }
+            using (var connection = CreateConnection())
+            {
+                await connection.QueryAsync<Order>(
+                      sql: "Proc_SetLockedByStation",
+                    param: new { ProductOrderID = pProductOrderid, StationID = pStationid },
+               commandType: CommandType.StoredProcedure);
+            }
         }
-       
+
         /// <summary>
         /// Marks a Product Order as Processed
         /// </summary>
@@ -415,7 +420,7 @@ namespace SQLServer
         /// <returns></returns>
         public async Task SetProcessedOnkPOAsync(int pProductOrderid, bool pProcessed)
         {
-       
+
             int bit_from_bool;
             if (pProcessed == true) bit_from_bool = 1;
             else bit_from_bool = 0;
@@ -430,7 +435,7 @@ namespace SQLServer
 
         }
 
-        public async Task<ProductOrder> GetLockedPOByStation (int pStationid)
+        public async Task<ProductOrder> GetLockedPOByStation(int pStationid)
         {
             using (var connection = CreateConnection())
             {
@@ -464,7 +469,7 @@ namespace SQLServer
             {
                 return (await connection.QueryAsync<Product>(
                        sql: "Proc_GetProductInfoFromPO",
-                     param: new { @ProductOrderID = pProductOrderId},
+                     param: new { @ProductOrderID = pProductOrderId },
                 commandType: CommandType.StoredProcedure)).FirstOrDefault();
             }
         }
@@ -518,7 +523,7 @@ namespace SQLServer
             {
                 await connection.ExecuteAsync(
                       sql: "Proc_AddProduct",
-                    param: new { product.ProductName, product.ProductTypeID, product.BasePrice, product.Description},
+                    param: new { product.ProductName, product.ProductTypeID, product.BasePrice, product.Description },
                commandType: CommandType.StoredProcedure);
             }
         }

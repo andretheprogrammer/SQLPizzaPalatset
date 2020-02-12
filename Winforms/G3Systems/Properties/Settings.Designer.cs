@@ -54,5 +54,15 @@ namespace G3Systems.Properties {
                 return ((string)(this["G3SystemsConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.\\SQLEXPRESS;Initial Catalog=G3Systems;Integrated Security=True")]
+        public string G3ConnectionStringTest {
+            get {
+                return ((string)(this["G3ConnectionStringTest"]));
+            }
+        }
     }
 }
