@@ -615,69 +615,68 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 			@Username varchar(20),
 			@Password varchar(20),
 			@EmployeeTypeID int
-		AS
-		Begin
-			Begin Transaction;
-			Save Transaction SavePoint;
-			Begin Try
-				declare @EmployeeID int;
+			AS
+			Begin
+				Begin Transaction;
+				Save Transaction SavePoint;
+				Begin Try
+					declare @EmployeeID int;
 
-				Select @EmployeeID = EmployeeID 
-				From Employees
-				Where @Username = Username 
-				AND @Password = [Password]
-				AND EmployeeID = (Select Max(EmployeeID) from Employees);
+					Select @EmployeeID = EmployeeID 
+					From Employees
+					Where @Username = Username 
+					AND @Password = [Password]
+					AND EmployeeID = (Select Max(EmployeeID) from Employees);
 
-				if @EmployeeID is null
-				Begin
-					insert into Employees (Username, [Password])
-					values (@Username, @Password);
-					select @EmployeeID = SCOPE_IDENTITY();
-				End
-
-				Begin
-					insert into EmployeesAreEmployeeTypes (EmployeeID, EmployeeTypeID)
-					values (@EmployeeID, @EmployeeTypeID);
-				End
-				Commit Transaction
-			End Try
-			Begin Catch
-				if (@@TRANCOUNT > 0)
+					if @EmployeeID is null
 					Begin
-						Rollback Transaction SavePoint;
+						insert into Employees (Username, [Password])
+						values (@Username, @Password);
+						select @EmployeeID = SCOPE_IDENTITY();
 					End
-			End Catch
-		End
-		GO
+
+					Begin
+						insert into EmployeesAreEmployeeTypes (EmployeeID, EmployeeTypeID)
+						values (@EmployeeID, @EmployeeTypeID);
+					End
+					Commit Transaction
+				End Try
+				Begin Catch
+					if (@@TRANCOUNT > 0)
+						Begin
+							Rollback Transaction SavePoint;
+						End
+				End Catch
+			End
+			GO
 
 	--Employee login
-		GO
 		CREATE PROC Proc_GetEmployeeLogin
 			@Username varchar(20),
 			@Password varchar(20)
-		as
-		begin
-			SELECT * FROM Employees WHERE
-			CAST(Username as varbinary(100)) = CAST(@Username as varbinary(100))
-			AND CAST([Password] as varbinary(100)) = CAST(@Password as varbinary(100))
-			AND Username = @Username 
-			AND [Password] = @Password
-		end
-		GO
+			as
+			begin
+				SELECT * FROM Employees WHERE
+				CAST(Username as varbinary(100)) = CAST(@Username as varbinary(100))
+				AND CAST([Password] as varbinary(100)) = CAST(@Password as varbinary(100))
+				AND Username = @Username 
+				AND [Password] = @Password
+			end
+			GO
 
 	--Update Employee
 		Create Proc Proc_UpdateEmployeeStatus
 			@EmployeeID int,
 			@LoggedIn bit,
 			@AssignedToStation int = null
-		AS
-		Begin
-			Update Employees
-			Set LoggedIn = @LoggedIn,
-				AssignedToStation = @AssignedToStation
-			Where EmployeeID = @EmployeeID;
-		End
-		GO
+			AS
+			Begin
+				Update Employees
+				Set LoggedIn = @LoggedIn,
+					AssignedToStation = @AssignedToStation
+				Where EmployeeID = @EmployeeID;
+			End
+			GO
 
 		Create Proc Proc_UpdateEmployee
 			@EmployeeID int,
@@ -685,87 +684,87 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 			@Password varchar(20),
 			@LoggedIn bit,
 			@AssignedToStation int
-		AS
-		Begin
-			Update Employees
-			Set Username = @Username,
-				[Password] = @Password,
-				LoggedIn = @LoggedIn,
-				AssignedToStation = @AssignedToStation
-			Where EmployeeID = @EmployeeID;
-		End
-		GO
+			AS
+			Begin
+				Update Employees
+				Set Username = @Username,
+					[Password] = @Password,
+					LoggedIn = @LoggedIn,
+					AssignedToStation = @AssignedToStation
+				Where EmployeeID = @EmployeeID;
+			End
+			GO
 
 	--Product Ingredients
 		Create proc Proc_GetProductHaveIngredients
 			@ProductID int
-		AS
-		Begin
-			SELECT * FROM Ingredients as I
-			JOIN ProductHaveIngredients as PHI
-			ON PHI.IngredientID = I.IngredientID
-			WHERE PHI.ProductID = @ProductID
-		End
-		GO
+			AS
+			Begin
+				SELECT * FROM Ingredients as I
+				JOIN ProductHaveIngredients as PHI
+				ON PHI.IngredientID = I.IngredientID
+				WHERE PHI.ProductID = @ProductID
+			End
+			GO
 
 		Create proc Proc_GetProductCanHaveIngredients
 			@ProductID int
-		AS
-		Begin
-			SELECT * FROM Ingredients as I
-			JOIN ProductCanHaveIngredients as PCHI
-			ON PCHI.IngredientID = I.IngredientID
-			WHERE PCHI.ProductID = @ProductID
-		End
-		GO
+			AS
+			Begin
+				SELECT * FROM Ingredients as I
+				JOIN ProductCanHaveIngredients as PCHI
+				ON PCHI.IngredientID = I.IngredientID
+				WHERE PCHI.ProductID = @ProductID
+			End
+			GO
 
 	--Create Order
 		CREATE Proc Proc_NewOrder
 			@TerminalID int,
 			@OrderID int = 0 OUTPUT
-		AS
-			Begin
-				insert into Orders (ByTerminal)
-				values (@TerminalID);
-				set @OrderID = SCOPE_IDENTITY();
-			End
-		GO
+			AS
+				Begin
+					insert into Orders (ByTerminal)
+					values (@TerminalID);
+					set @OrderID = SCOPE_IDENTITY();
+				End
+			GO
 
 		CREATE PROC Proc_InsertProductOrders
 			@OrderID int,
 			@ProductID int,
 			@IngredientID int,
 			@Quantity int
-		AS
-		Begin
-			declare @ProductOrderID int;
-
-			-- ProductOrder
-			Select @ProductOrderID = P.ProductOrderID From ProductOrders AS P
-			Where @OrderID = P.OrderID 
-			AND @ProductID = P.ProductID
-			AND NOT EXISTS(
-				Select PO.* From Stuffings AS PO
-				Where PO.ProductOrderID = P.ProductOrderID
-				AND @IngredientID = PO.IngredientID);
-
-			if @ProductOrderID is null
+			AS
 			Begin
-				insert into ProductOrders(ProductID, OrderID)
-				values (@ProductID, @OrderID);
-				select @ProductOrderID = SCOPE_IDENTITY();
-			End
-						
-			-- Stuffing
-			if @IngredientID is not null
-			Begin
+				declare @ProductOrderID int;
+
+				-- ProductOrder
+				Select @ProductOrderID = P.ProductOrderID From ProductOrders AS P
+				Where @OrderID = P.OrderID 
+				AND @ProductID = P.ProductID
+				AND NOT EXISTS(
+					Select PO.* From Stuffings AS PO
+					Where PO.ProductOrderID = P.ProductOrderID
+					AND @IngredientID = PO.IngredientID);
+
+				if @ProductOrderID is null
 				Begin
-					insert into Stuffings(ProductOrderID, IngredientID, Quantity)
-					values (@ProductOrderID, @IngredientID, @Quantity);
+					insert into ProductOrders(ProductID, OrderID)
+					values (@ProductID, @OrderID);
+					select @ProductOrderID = SCOPE_IDENTITY();
+				End
+							
+				-- Stuffing
+				if @IngredientID is not null
+				Begin
+					Begin
+						insert into Stuffings(ProductOrderID, IngredientID, Quantity)
+						values (@ProductOrderID, @IngredientID, @Quantity);
+					End
 				End
 			End
-		End
-		GO
+			GO
 
 	--Update order
 		Create Proc Proc_UpdateOrderStatus
@@ -774,17 +773,16 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 			@Canceled int = 0,
 			@PickedUp int = 0,
 			@Returned int = 0
-		AS
-		Begin
-			Update Orders
-			Set Paid = @Paid,
-				Canceled = @Canceled,
-				PickedUp = @PickedUp,
-				Returned = @Returned
-			Where OrderID = @OrderID;
-		End
-		GO
-
+			AS
+			Begin
+				Update Orders
+				Set Paid = @Paid,
+					Canceled = @Canceled,
+					PickedUp = @PickedUp,
+					Returned = @Returned
+				Where OrderID = @OrderID;
+			End
+			GO
 
 		Create PROCEDURE Proc_ProductSetCreate(
 			@ProductID int, 
@@ -823,24 +821,24 @@ CREATE TABLE PossibleCommandsInStationType( -- Bygger upp Choices med funktional
 			@Price int,
 			@Activated int,
 			@Visible int)
-		AS
-		IF @IngredientID is null
-			BEGIN
-			INSERT INTO 
-				Ingredients(IngredientID, IngredientName,Price,Activated, Visible) 
-					VALUES(@IngredientID,@IngredientName,@Price,@Activated,@Visible)
-			END
-		ELSE
-			BEGIN
-				UPDATE Ingredients
-				SET 
-				IngredientName = @IngredientName,
-				Price = @Price,
-				Activated = @Activated,
-				Visible = @Visible
-				WHERE IngredientID = @IngredientID
-			END
-		GO
+			AS
+			IF @IngredientID is null
+				BEGIN
+				INSERT INTO 
+					Ingredients(IngredientID, IngredientName,Price,Activated, Visible) 
+						VALUES(@IngredientID,@IngredientName,@Price,@Activated,@Visible)
+				END
+			ELSE
+				BEGIN
+					UPDATE Ingredients
+					SET 
+					IngredientName = @IngredientName,
+					Price = @Price,
+					Activated = @Activated,
+					Visible = @Visible
+					WHERE IngredientID = @IngredientID
+				END
+			GO
 	--Procedures för att läggatill (eller tabort) whatever.. (en procedure för varje entitetstyp)
 	-- Kan bli hur många som helst här...
 
@@ -2443,7 +2441,6 @@ CREATE PROCEDURE Proc_GetIngredient @IngredientID int
 
 --UpdateCRUD
 CREATE PROCEDURE Proc_ProductTypeSetCreate(
-	@action varchar(10), 
 	@ProductTypeID int, 
 	@ProductTypeName varchar(100),
 	@Activated int,
