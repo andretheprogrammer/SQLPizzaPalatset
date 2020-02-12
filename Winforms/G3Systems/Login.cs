@@ -51,8 +51,19 @@ namespace G3Systems
 
 		private async void LoginBtn_Click(object sender, EventArgs e)
 		{
-			// Gets user if matching username and password exists
-			user = await _repo.GetEmployeeLoginAsync(tbUsername.Text, tbPassword.Text);
+			try
+			{
+				// Gets user if matching username and password exists
+				user = await _repo.GetEmployeeLoginAsync(tbUsername.Text, tbPassword.Text);
+			}
+			catch (System.Data.SqlClient.SqlException)
+			{
+				MessageBox.Show("Couldn't establish connection");
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.Message);
+			}
 
 			if (user is null)
 			{
