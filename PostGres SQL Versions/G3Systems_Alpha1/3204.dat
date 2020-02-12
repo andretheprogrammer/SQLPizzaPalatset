@@ -1,0 +1,29 @@
+INSERT INTO public.products (productid, producttypeid, productname, description, preptime, baseprice, activated, visible) VALUES (27, 1, 'Vesuvio', 'no description', 500, 100, true, true);
+INSERT INTO public.products (productid, producttypeid, productname, description, preptime, baseprice, activated, visible) VALUES (28, 1, 'KebabPizza', 'no description', 500, 100, true, true);
+INSERT INTO public.products (productid, producttypeid, productname, description, preptime, baseprice, activated, visible) VALUES (29, 1, 'Capricosa', 'no description', 500, 100, true, true);
+INSERT INTO public.products (productid, producttypeid, productname, description, preptime, baseprice, activated, visible) VALUES (30, 1, 'Mexicana', 'no description', 500, 100, true, true);
+INSERT INTO public.products (productid, producttypeid, productname, description, preptime, baseprice, activated, visible) VALUES (31, 2, 'ChickenSalad', 'no description', 500, 100, true, true);
+INSERT INTO public.products (productid, producttypeid, productname, description, preptime, baseprice, activated, visible) VALUES (32, 2, 'CeasarSalad', 'no description', 500, 100, true, true);
+INSERT INTO public.products (productid, producttypeid, productname, description, preptime, baseprice, activated, visible) VALUES (33, 1, 'Bolognese', 'no description', 500, 100, true, true);
+INSERT INTO public.products (productid, producttypeid, productname, description, preptime, baseprice, activated, visible) VALUES (34, 1, 'Calzone', 'no description', 500, 100, true, true);
+INSERT INTO public.products (productid, producttypeid, productname, description, preptime, baseprice, activated, visible) VALUES (35, 1, 'Hawaii', 'no description', 500, 100, true, true);
+INSERT INTO public.products (productid, producttypeid, productname, description, preptime, baseprice, activated, visible) VALUES (36, 1, 'QuattroFormaggio', 'no description', 500, 100, true, true);
+INSERT INTO public.products (productid, producttypeid, productname, description, preptime, baseprice, activated, visible) VALUES (37, 1, 'Marinara', 'no description', 500, 100, true, true);
+INSERT INTO public.products (productid, producttypeid, productname, description, preptime, baseprice, activated, visible) VALUES (38, 2, 'FetaSalad', 'no description', 500, 100, true, true);
+INSERT INTO public.products (productid, producttypeid, productname, description, preptime, baseprice, activated, visible) VALUES (39, 5, 'CocaCola', 'no description', 500, 100, true, true);
+INSERT INTO public.products (productid, producttypeid, productname, description, preptime, baseprice, activated, visible) VALUES (40, 5, 'Sprite', 'no description', 500, 100, true, true);
+INSERT INTO public.products (productid, producttypeid, productname, description, preptime, baseprice, activated, visible) VALUES (41, 5, 'Fanta', 'no description', 500, 100, true, true);
+INSERT INTO public.products (productid, producttypeid, productname, description, preptime, baseprice, activated, visible) VALUES (42, 5, 'Red Bull', 'no description', 500, 100, true, true);
+INSERT INTO public.products (productid, producttypeid, productname, description, preptime, baseprice, activated, visible) VALUES (43, 6, 'PommesFrites', 'no description', 500, 100, true, true);
+INSERT INTO public.products (productid, producttypeid, productname, description, preptime, baseprice, activated, visible) VALUES (44, 6, 'FriedChicken', 'no description', 500, 100, true, true);
+INSERT INTO public.products (productid, producttypeid, productname, description, preptime, baseprice, activated, visible) VALUES (45, 3, 'Magnum Almond', 'no description', 500, 100, true, true);
+INSERT INTO public.products (productid, producttypeid, productname, description, preptime, baseprice, activated, visible) VALUES (46, 3, 'Sandwich', 'no description', 500, 100, true, true);
+INSERT INTO public.products (productid, producttypeid, productname, description, preptime, baseprice, activated, visible) VALUES (47, 3, 'Solero', 'no description', 500, 100, true, true);
+INSERT INTO public.products (productid, producttypeid, productname, description, preptime, baseprice, activated, visible) VALUES (48, 3, 'Twister', 'no description', 500, 100, true, true);
+INSERT INTO public.products (productid, producttypeid, productname, description, preptime, baseprice, activated, visible) VALUES (49, 3, 'Igloo', 'no description', 500, 100, true, true);
+INSERT INTO public.products (productid, producttypeid, productname, description, preptime, baseprice, activated, visible) VALUES (50, 4, 'OrangeJuice', 'no description', 500, 100, true, true);
+INSERT INTO public.products (productid, producttypeid, productname, description, preptime, baseprice, activated, visible) VALUES (51, 4, 'AppleJuice', 'no description', 500, 100, true, true);
+INSERT INTO public.products (productid, producttypeid, productname, description, preptime, baseprice, activated, visible) VALUES (52, 4, 'GamerJuice', 'no description', 500, 100, true, true);
+INSERT INTO public.products (productid, producttypeid, productname, description, preptime, baseprice, activated, visible) VALUES (53, 5, 'CocaCola Strawberrytaste', 'no description', 500, 100, false, true);
+
+

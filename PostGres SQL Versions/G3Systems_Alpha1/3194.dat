@@ -1,0 +1,7 @@
+INSERT INTO public.stationtypes (stationtypeid, stationtypename, activated, visible, dangerlevel) VALUES (1, 'Salladsbar', true, true, 0);
+INSERT INTO public.stationtypes (stationtypeid, stationtypename, activated, visible, dangerlevel) VALUES (2, 'BigPizzaStation', true, true, 0);
+INSERT INTO public.stationtypes (stationtypeid, stationtypename, activated, visible, dangerlevel) VALUES (3, 'IceCreamBar', true, true, 0);
+INSERT INTO public.stationtypes (stationtypeid, stationtypename, activated, visible, dangerlevel) VALUES (4, 'Cashier', true, true, 0);
+INSERT INTO public.stationtypes (stationtypeid, stationtypename, activated, visible, dangerlevel) VALUES (5, 'Office', true, true, 0);
+
+

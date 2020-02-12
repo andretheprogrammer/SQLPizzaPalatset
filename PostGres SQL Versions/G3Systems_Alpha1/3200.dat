@@ -1,0 +1,6 @@
+INSERT INTO public.employeesareemployeetypes (employeeid, employeetypeid) VALUES (1, 4);
+INSERT INTO public.employeesareemployeetypes (employeeid, employeetypeid) VALUES (2, 3);
+INSERT INTO public.employeesareemployeetypes (employeeid, employeetypeid) VALUES (3, 2);
+INSERT INTO public.employeesareemployeetypes (employeeid, employeetypeid) VALUES (4, 1);
+
+

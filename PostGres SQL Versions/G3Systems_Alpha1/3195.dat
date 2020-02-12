@@ -1,0 +1,9 @@
+INSERT INTO public.stations (stationid, stationname, stationtypeid, inbuilding, activated, visible) VALUES (2, 'Mini SaladBar', 1, NULL, true, true);
+INSERT INTO public.stations (stationid, stationname, stationtypeid, inbuilding, activated, visible) VALUES (3, 'Corner PizzaStation', 1, NULL, true, true);
+INSERT INTO public.stations (stationid, stationname, stationtypeid, inbuilding, activated, visible) VALUES (4, 'Quick IceCreamBar', 1, NULL, true, true);
+INSERT INTO public.stations (stationid, stationname, stationtypeid, inbuilding, activated, visible) VALUES (5, 'Cashier 1', 1, NULL, true, true);
+INSERT INTO public.stations (stationid, stationname, stationtypeid, inbuilding, activated, visible) VALUES (6, 'Cashier 2', 1, NULL, true, true);
+INSERT INTO public.stations (stationid, stationname, stationtypeid, inbuilding, activated, visible) VALUES (7, 'Cashier 3', 1, NULL, true, true);
+INSERT INTO public.stations (stationid, stationname, stationtypeid, inbuilding, activated, visible) VALUES (8, 'First Office', 1, NULL, true, true);
+
+

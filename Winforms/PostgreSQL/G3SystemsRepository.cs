@@ -575,13 +575,19 @@ namespace PostgreSQL
         /// <returns></returns>
         public async Task<IEnumerable<Ingredient>> GetAllowedIngredientsByPTypeAsync(ProductType type)
         {
-            using (var connection = CreateConnection())
-            {
-                return (await connection.QueryAsync<Ingredient>(
-                      sql: "Proc_GetAllowedIngredientsByPType",
-                    param: new { ProductTypeID = type },
-               commandType: CommandType.StoredProcedure));
-            }
+            
+                var sqlQuery = @"SELECT * FROM Ingredients    
+                                WHERE IngredientID in
+                                (SELECT IngredientID
+                                FROM TypeCanHaveIngredients
+                                WHERE ProductTypeID = @ProductTypeID )";
+
+                using (var connection = CreateConnection())
+                {
+                    return await connection.QueryAsync<Ingredient>(sqlQuery);
+                }
+
+
         }
 
         public async Task DeleteIngredientsByProductId(Product product)

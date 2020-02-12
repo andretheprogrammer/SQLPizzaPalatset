@@ -1,0 +1,5 @@
+INSERT INTO public.terminals (terminalid, terminalname, buildingid, activated, visible, available) VALUES (1, 'klas', 1, true, true, true);
+INSERT INTO public.terminals (terminalid, terminalname, buildingid, activated, visible, available) VALUES (2, 'lasse', 1, true, true, true);
+INSERT INTO public.terminals (terminalid, terminalname, buildingid, activated, visible, available) VALUES (3, 'unnamed', 1, true, true, true);
+
+

@@ -1,0 +1,7 @@
+INSERT INTO public.employeetypes (employeetypeid, employeetypename, activated, visible) VALUES (1, 'Chef', true, true);
+INSERT INTO public.employeetypes (employeetypeid, employeetypename, activated, visible) VALUES (2, 'Pizzabaker', true, true);
+INSERT INTO public.employeetypes (employeetypeid, employeetypename, activated, visible) VALUES (3, 'Cashier', true, true);
+INSERT INTO public.employeetypes (employeetypeid, employeetypename, activated, visible) VALUES (4, 'Administrator', true, true);
+INSERT INTO public.employeetypes (employeetypeid, employeetypename, activated, visible) VALUES (5, 'Incompetent', true, true);
+
+
