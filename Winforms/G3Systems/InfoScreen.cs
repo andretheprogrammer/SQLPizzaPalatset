@@ -28,7 +28,6 @@ namespace G3Systems
 				// Check if postgreSQL Back-End is set to true App.Config 
 				if (_postgreBackEnd.GetConfigSetting())
 				{
-					MessageBox.Show("PostgreSQL", "Connected");
 					_repo = new PostgreSQL.G3SystemsRepository();
 				}
 				else

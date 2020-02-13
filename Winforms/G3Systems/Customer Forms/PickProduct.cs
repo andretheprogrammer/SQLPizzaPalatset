@@ -39,7 +39,6 @@ namespace G3Systems
 				// Check if postgreSQL Back-End is set to true App.Config 
 				if (_postgreBackEnd.GetConfigSetting())
 				{
-					MessageBox.Show("PostgreSQL", "Connected");
 					_repo = new PostgreSQL.G3SystemsRepository();
 				}
 				else
@@ -311,7 +310,7 @@ namespace G3Systems
 			try
 			{
 				// Try to create new order
-				await _repo.CreateProductOrdersAsync(GetInsertParameters(order));
+				await _repo.CreateProductOrdersAsync(order, cart);
 			}
 			catch (Exception ex)
 			{
@@ -359,7 +358,7 @@ namespace G3Systems
 			UpdateListBoxCart();
 		}
 
-		// 
+		// Delete product from cart list
 		private void RemoveProductFromCart(Product product)
 		{
 			var dialogResult = MessageBox.Show($"Ta bort {product.ProductName}?", "", MessageBoxButtons.YesNo);
@@ -371,45 +370,6 @@ namespace G3Systems
 
 			cart.Remove(product);
 		}
-
-		// Convert cart into parameter object array for database insert
-		private List<object> GetInsertParameters(Order order)
-		{
-			var parameterList = new List<object>();
-
-			foreach (var product in cart)
-			{
-				if (product.Ingredients == null)
-				{
-					parameterList.Add(InsertParameters(order, product));
-					continue;
-				}
-
-				product.Ingredients.ForEach(ingredient => 
-					parameterList.Add(InsertParameters(
-						order,
-						product,
-						ingredient)));
-			}
-
-			return parameterList;
-		}
-
-		// Parameters for products with no ingredients
-		private object InsertParameters(Order order, Product product) => new
-		{
-			order.OrderID,
-			product.ProductID,
-		};
-
-		// Parameters for products with ingredients
-		private object InsertParameters(Order order, Product product, Ingredient ingredient) => new
-		{
-			order.OrderID,
-			product.ProductID,
-			ingredient.IngredientID,
-			ingredient.Quantity,
-		};
 
 		// Update the bottom cart listbox with all products for display purposes
 		private void UpdateListBoxCart()
