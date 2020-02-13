@@ -111,7 +111,7 @@ namespace PostgreSQL
             {
                 await connection.ExecuteAsync(
                         sql: "proc_createnewemployee",
-                      param: employeeParams,
+                      param: employeeParams.First(),
                 commandType: CommandType.StoredProcedure
                         );
             }
