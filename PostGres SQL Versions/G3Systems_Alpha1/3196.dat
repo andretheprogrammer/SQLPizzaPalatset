@@ -1,6 +1,0 @@
-INSERT INTO public.employees (employeeid, username, password, loggedin, activated, visible, assignedtostation) VALUES (1, 'Admin', 'tja', false, true, true, 2);
-INSERT INTO public.employees (employeeid, username, password, loggedin, activated, visible, assignedtostation) VALUES (2, 'LisaCashier', '0', false, true, true, 3);
-INSERT INTO public.employees (employeeid, username, password, loggedin, activated, visible, assignedtostation) VALUES (3, 'BageyTheBaker', '0', false, true, true, 4);
-INSERT INTO public.employees (employeeid, username, password, loggedin, activated, visible, assignedtostation) VALUES (4, 'IceyTheIceman', '0', false, true, true, 5);
-
-

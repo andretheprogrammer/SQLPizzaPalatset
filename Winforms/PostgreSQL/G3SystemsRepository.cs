@@ -140,7 +140,7 @@ namespace PostgreSQL
             using (var connection = CreateConnection())
             {
                 await connection.ExecuteAsync(
-                    "Proc_UpdateEmployee",
+                    "proc_updateemployee",
                     new
                     {
                         employee.EmployeeID,
@@ -441,8 +441,8 @@ namespace PostgreSQL
             using (var connection = CreateConnection())
             {
                 return (await connection.QueryAsync<ProductOrder>(
-                       sql: "Proc_POLockedByStation",
-                     param: new { @StationID = pStationid },
+                       sql: "proc_polockedbystation",
+                     param: new { @stationid = pStationid },
                 commandType: CommandType.StoredProcedure)).FirstOrDefault();
             }
         }
@@ -453,8 +453,8 @@ namespace PostgreSQL
             using (var connection = CreateConnection())
             {
                 return (await connection.QueryAsync<Station>(
-                       sql: "Proc_GetAssignedStation",
-                     param: new { @EmployeeID = pEmployeeid },
+                       sql: "proc_getassignedstation",
+                     param: new { @employeeid = pEmployeeid },
                 commandType: CommandType.StoredProcedure)).FirstOrDefault();
             }
         }

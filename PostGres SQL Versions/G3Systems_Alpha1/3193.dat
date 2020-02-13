@@ -1,3 +1,0 @@
-INSERT INTO public.infoscreens (id, buildingid, activated, visible) VALUES (1, 1, true, true);
-
-

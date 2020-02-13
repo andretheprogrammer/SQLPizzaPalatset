@@ -1,4 +1,0 @@
-INSERT INTO public.buildings (buildingid, buildingname, activated, visible) VALUES (1, 'TonysMainPizzaHouse', true, true);
-INSERT INTO public.buildings (buildingid, buildingname, activated, visible) VALUES (2, 'Tonys UnderGroundPizza', false, true);
-
-

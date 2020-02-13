@@ -1,9 +1,0 @@
-INSERT INTO public.producttypes (producttypeid, producttypename, activated, visible) OVERRIDING SYSTEM VALUE VALUES (1, 'Pizza', true, true);
-INSERT INTO public.producttypes (producttypeid, producttypename, activated, visible) OVERRIDING SYSTEM VALUE VALUES (2, 'Sallad', true, true);
-INSERT INTO public.producttypes (producttypeid, producttypename, activated, visible) OVERRIDING SYSTEM VALUE VALUES (3, 'IceCream', true, true);
-INSERT INTO public.producttypes (producttypeid, producttypename, activated, visible) OVERRIDING SYSTEM VALUE VALUES (4, 'Fresh Juice', true, true);
-INSERT INTO public.producttypes (producttypeid, producttypename, activated, visible) OVERRIDING SYSTEM VALUE VALUES (5, 'Drinks', true, true);
-INSERT INTO public.producttypes (producttypeid, producttypename, activated, visible) OVERRIDING SYSTEM VALUE VALUES (6, 'Extras', true, true);
-INSERT INTO public.producttypes (producttypeid, producttypename, activated, visible) OVERRIDING SYSTEM VALUE VALUES (7, 'bildäck', true, true);
-
-

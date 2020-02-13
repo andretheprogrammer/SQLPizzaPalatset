@@ -1,8 +1,0 @@
-INSERT INTO public.typeismadeinstationtype (producttypeid, stationtypeid) VALUES (1, 2);
-INSERT INTO public.typeismadeinstationtype (producttypeid, stationtypeid) VALUES (2, 1);
-INSERT INTO public.typeismadeinstationtype (producttypeid, stationtypeid) VALUES (3, 3);
-INSERT INTO public.typeismadeinstationtype (producttypeid, stationtypeid) VALUES (4, 3);
-INSERT INTO public.typeismadeinstationtype (producttypeid, stationtypeid) VALUES (5, 5);
-INSERT INTO public.typeismadeinstationtype (producttypeid, stationtypeid) VALUES (6, 5);
-
-

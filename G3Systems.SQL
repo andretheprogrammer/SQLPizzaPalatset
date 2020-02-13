@@ -495,7 +495,7 @@ CREATE TABLE ProductHaveIngredients(
 	Reference INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 
 	ProductID INT NOT NULL FOREIGN KEY REFERENCES Products(ProductID),
-	IngredientID INT FOREIGN KEY REFERENCES Ingredients(IngredientID),
+	IngredientID INT NOT NULL FOREIGN KEY REFERENCES Ingredients(IngredientID),
 	
 	-- Nycklar:
 
