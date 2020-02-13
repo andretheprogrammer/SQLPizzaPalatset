@@ -357,16 +357,16 @@ namespace PostgreSQL
         //Sätter picked up på en order.
         public async Task SetOrderPickedUpToAsync(int id, bool pickbit)
         {
-            //Konvertera bool till en int - - Inkapsla! Denna kod upprepas.
-            int bit_from_bool;
-            if (pickbit == true) bit_from_bool = 1;
-            else bit_from_bool = 0;
+            ////Konvertera bool till en int - - Inkapsla! Denna kod upprepas.
+            //int bit_from_bool;
+            //if (pickbit == true) bit_from_bool = 1;
+            //else bit_from_bool = 0;
 
             using (var connection = CreateConnection())
             {
                 await connection.QueryAsync<Order>(
-                      sql: "SetPickedUp",
-                    param: new { OrderID = id, PickedUp = bit_from_bool },
+                      sql: "setpickedup",
+                    param: new { porderid = id, ppickedup = pickbit },
                commandType: CommandType.StoredProcedure);
             }   //Return signal of successs?
 
