@@ -1,17 +1,15 @@
 ﻿using System;
-using System.Runtime;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
+using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.CSharp;
-using System.Data;
-using System.Data.SqlClient;
 using System.Configuration;
-using Dapper;
+using System.Data;
 using TypeLib;
+using Dapper;
+using Npgsql;
 
-namespace SQLServer
+namespace PostgreSQL
 {
     public class G3SystemsRepository : IG3SystemsRepository
     {
@@ -20,7 +18,7 @@ namespace SQLServer
         public G3SystemsRepository()
         {
             // Gets connectionstring from App.config in G3Systems
-            _connString = ConfigurationManager.ConnectionStrings["mssql"].ConnectionString;
+            _connString = ConfigurationManager.ConnectionStrings["npgsql"].ConnectionString;
         }
 
         /// <summary>
@@ -29,7 +27,7 @@ namespace SQLServer
         /// <returns></returns>
         private IDbConnection CreateConnection()
         {
-            var conn = new SqlConnection(_connString);
+            var conn = new NpgsqlConnection(_connString);
             conn.Open();
             return conn;
         }
@@ -83,8 +81,9 @@ namespace SQLServer
             using (var connection = CreateConnection())
             {
                 await connection.ExecuteAsync(
-                    "Proc_ProductSetCreate", 
-                    new {
+                    "Proc_ProductSetCreate",
+                    new
+                    {
                         product.ProductID,
                         product.ProductTypeID,
                         product.ProductName,
@@ -92,7 +91,8 @@ namespace SQLServer
                         product.PrepTime,
                         product.BasePrice,
                         product.Activated,
-                        product.Visible },
+                        product.Visible
+                    },
                         commandType: CommandType.StoredProcedure
                         );
             }
@@ -108,8 +108,8 @@ namespace SQLServer
             using (var connection = CreateConnection())
             {
                 await connection.ExecuteAsync(
-                        sql: "Proc_CreateNewEmployee",
-                      param: employeeParams,
+                        sql: "proc_createnewemployee",
+                      param: employeeParams.First(),
                 commandType: CommandType.StoredProcedure
                         );
             }
@@ -121,7 +121,7 @@ namespace SQLServer
         /// <returns></returns>
         public async Task<IEnumerable<Employee>> GetEmployeesAsync()
         {
-            var sqlQuery = "Select * from Employees";
+            var sqlQuery = "select * from public.employees";
 
             using (var connection = CreateConnection())
             {
@@ -136,16 +136,20 @@ namespace SQLServer
         /// <returns></returns>
         public async Task UpdateEmployeeAsync(Employee employee)
         {
+            var sqlQuery = "update employees set username = @username, password = @password, loggedin = false, assignedtostation = @assignedtostation where employeeid = @employeeid";
+
             using (var connection = CreateConnection())
             {
                 await connection.ExecuteAsync(
-                    "Proc_UpdateEmployee",
-                    new {   employee.EmployeeID, 
-                            employee.Username, 
-                            employee.Password, 
-                            employee.LoggedIn, 
-                            employee.AssignedToStation },
-                    commandType: CommandType.StoredProcedure);
+                    sqlQuery,
+                    new
+                    {
+                        employee.EmployeeID,
+                        employee.Username,
+                        employee.Password,
+                        employee.LoggedIn,
+                        employee.AssignedToStation
+                    });
             }
         }
 
@@ -156,7 +160,7 @@ namespace SQLServer
         /// <returns></returns>
         public async Task DeleteEmployeeAtId(Employee employee)
         {
-            string sqlQuery = "delete from employees where EmployeeID = @EmployeeID";
+            string sqlQuery = "delete from employees where employeeID = @employeeid";
 
             using (var connection = CreateConnection())
             {
@@ -181,7 +185,7 @@ namespace SQLServer
             {
                 return (await connection.QueryAsync<Employee>(
                        sql: "Proc_GetEmployeeLogin",
-                     param: new { Username = username, Password = password },
+                     param: new { p_username = username, p_password = password },
                commandType: CommandType.StoredProcedure)).FirstOrDefault();
             }
         }
@@ -212,8 +216,8 @@ namespace SQLServer
             using (var connection = CreateConnection())
             {
                 return (await connection.QueryAsync<Order>(
-                      sql: "Proc_RightColumnInfoScreen",
-                    param: new { BuildingID = id },
+                      sql: "proc_rightcolumninfoscreen",
+                    param: new { buildingid = id },
                commandType: CommandType.StoredProcedure));
             }
         }
@@ -222,30 +226,46 @@ namespace SQLServer
             using (var connection = CreateConnection())
             {
                 return (await connection.QueryAsync<Order>(
-                      sql: "Proc_LeftColumnInfoScreen",
-                    param: new { BuildingID = id },
+                      sql: "proc_leftcolumninfoscreen",
+                    param: new { buildingid = id },
                commandType: CommandType.StoredProcedure)).ToList();
             }
         }
 
         public async Task CreateProductOrdersAsync(Order order, List<Product> cart)
         {
-            List<object> parameters = GetInsertParameters(order, cart);
+            var sqlQueryPO = "insert into productorders (productid, orderid) values (@productid, @orderid) returning productorderid;";
+            var sqlQueryIngr = "insert into stuffings (productorderid, ingredientid, quantity) values (@productorderid, @ingredientid, @quantity);";
 
             using (var connection = CreateConnection())
             {
+                int productorderid = 0;
                 // Wrap order data insert in transaction
                 using (var transaction = connection.BeginTransaction())
                 {
                     try
                     {
-                        // Loops through object array parameters for each insert
-                        await connection.ExecuteAsync(
-                                sql: "Proc_InsertProductOrders",
-                              param: parameters,
-                        commandType: CommandType.StoredProcedure,
-                        transaction: transaction);
+                        foreach (var product in cart)
+                        {
+                            productorderid = (await connection.QueryAsync<int>(
+                                sqlQueryPO, new {
+                                    productid = product.ProductID,
+                                    orderid = order.OrderID },
+                                    transaction: transaction)).Single();
 
+                            if (product.Ingredients.Count > 0)
+                            {
+                                foreach (var ingredient in product.Ingredients)
+                                {
+                                    await connection.ExecuteAsync(
+                                        sqlQueryIngr, new {
+                                            productorderid = productorderid,
+                                            ingredientid = ingredient.IngredientID,
+                                            quantity = ingredient.Quantity},
+                                        transaction: transaction);
+                                }
+                            }
+                        }
                         // Save if all inserts successfull
                         transaction.Commit();
                     }
@@ -258,42 +278,37 @@ namespace SQLServer
                 }
             }
         }
-        
+
         // Create new order and return OrderID
         public async Task<int> CreateNewOrderAsync(Order order)
         {
-            var orderParam = new DynamicParameters();
-            orderParam.AddDynamicParams(new { TerminalID = order.ByTerminal });
-            orderParam.Add("OrderID",
-                    dbType: DbType.Int32,
-                 direction: ParameterDirection.Output);
+            var sqlQuery = "insert into orders (byterminal) VALUES (@byterminal) returning orderid;";
 
             using (var connection = CreateConnection())
             {
-                await connection.ExecuteScalarAsync("Proc_NewOrder", 
-                                              param: orderParam, 
-                                        commandType: CommandType.StoredProcedure);
-            }
+                var id = (await connection.QueryAsync<int>(sqlQuery, new { byterminal = order.ByTerminal })).Single();
 
-            return orderParam.Get<int>("OrderID");
+                return id;
+            }
         }
 
         // Update order by OrderID
         public async Task UpdateOrderStatusAsync(Order order)
         {
+            var sqlQuery = "update orders set paid = @paid, pickedup = @pickedup, canceled = @canceled, returned = @returned where orderid = @orderid";
+
             using (var connection = CreateConnection())
             {
                 await connection.ExecuteAsync(
-                        sql: "Proc_UpdateOrderStatus",
+                        sql: sqlQuery,
                       param: new
                       {
-                          order.OrderID,
-                          order.Paid,
+                          orderid = order.OrderID,
+                          paid = order.Paid,
                           order.Canceled,
                           order.PickedUp,
                           order.Returned
-                      },
-                commandType: CommandType.StoredProcedure);
+                      });
             }
         }
 
@@ -313,12 +328,14 @@ namespace SQLServer
             {
                 await connection.ExecuteAsync(
                     sql: "Proc_IngredientSetCreate",
-                    param: new { 
+                    param: new
+                    {
                         ingredient.IngredientID,
-                        ingredient.IngredientName, 
-                        ingredient.Price, 
-                        ingredient.Activated, 
-                        ingredient.Visible },
+                        ingredient.IngredientName,
+                        ingredient.Price,
+                        ingredient.Activated,
+                        ingredient.Visible
+                    },
                     commandType: CommandType.StoredProcedure);
             }
         }
@@ -327,23 +344,33 @@ namespace SQLServer
         // Ingredients
         public async Task<IEnumerable<Ingredient>> GetHaveIngredientsAsync(int id)
         {
+            var sqlQuery = @"
+                     select * from ingredients as i
+			         join producthaveingredients as phi
+			         on phi.ingredientid = i.ingredientid
+			         where phi.productid = @productid;";
+
             using (var connection = CreateConnection())
             {
                 return (await connection.QueryAsync<Ingredient>(
-                        sql: "Proc_GetProductHaveIngredients",
-                      param: new { ProductID = id },
-                commandType: CommandType.StoredProcedure));
+                        sql: sqlQuery,
+                      param: new { @productid = id }));
             }
         }
 
         public async Task<IEnumerable<Ingredient>> GetCanHaveIngredientsAsync(int id)
         {
+            var sqlQuery = @"
+                     select * from ingredients as i
+			         join productcanhaveingredients as phi
+			         on phi.ingredientid = i.ingredientid
+			         where phi.productid = @productid;";
+
             using (var connection = CreateConnection())
             {
                 return (await connection.QueryAsync<Ingredient>(
-                        sql: "Proc_GetProductCanHaveIngredients",
-                      param: new { ProductID = id },
-                commandType: CommandType.StoredProcedure));
+                        sql: sqlQuery,
+                      param: new { @productid = id }));
             }
         }
 
@@ -358,10 +385,10 @@ namespace SQLServer
 
             using (var connection = CreateConnection())
             {
-                 await connection.QueryAsync<Order>(
-                       sql: "SetPickedUp",
-                     param: new { OrderID = id, PickedUp = bit_from_bool },
-                commandType: CommandType.StoredProcedure);
+                await connection.QueryAsync<Order>(
+                      sql: "SetPickedUp",
+                    param: new { OrderID = id, PickedUp = bit_from_bool },
+               commandType: CommandType.StoredProcedure);
             }   //Return signal of successs?
 
 
@@ -380,7 +407,7 @@ namespace SQLServer
             }
 
         }
-       
+
         /// <summary>
         /// Returns all the stuffings for a Product Order
         /// </summary>
@@ -400,15 +427,15 @@ namespace SQLServer
         //Använd stationid =0 för att "låsa upp" productorder.
         public async Task SetLockOnkPOAsync(int pProductOrderid, int pStationid)
         {
-                using (var connection = CreateConnection())
-                {
-                    await connection.QueryAsync<Order>(
-                          sql: "Proc_SetLockedByStation",
-                        param: new { ProductOrderID = pProductOrderid, StationID = pStationid },
-                   commandType: CommandType.StoredProcedure);
-                }
+            using (var connection = CreateConnection())
+            {
+                await connection.QueryAsync<Order>(
+                      sql: "Proc_SetLockedByStation",
+                    param: new { ProductOrderID = pProductOrderid, StationID = pStationid },
+               commandType: CommandType.StoredProcedure);
+            }
         }
-       
+
         /// <summary>
         /// Marks a Product Order as Processed
         /// </summary>
@@ -417,7 +444,7 @@ namespace SQLServer
         /// <returns></returns>
         public async Task SetProcessedOnkPOAsync(int pProductOrderid, bool pProcessed)
         {
-       
+
             int bit_from_bool;
             if (pProcessed == true) bit_from_bool = 1;
             else bit_from_bool = 0;
@@ -432,13 +459,13 @@ namespace SQLServer
 
         }
 
-        public async Task<ProductOrder> GetLockedPOByStation (int pStationid)
+        public async Task<ProductOrder> GetLockedPOByStation(int pStationid)
         {
             using (var connection = CreateConnection())
             {
                 return (await connection.QueryAsync<ProductOrder>(
-                       sql: "Proc_POLockedByStation",
-                     param: new { @StationID = pStationid },
+                       sql: "proc_polockedbystation",
+                     param: new { @stationid = pStationid },
                 commandType: CommandType.StoredProcedure)).FirstOrDefault();
             }
         }
@@ -449,8 +476,8 @@ namespace SQLServer
             using (var connection = CreateConnection())
             {
                 return (await connection.QueryAsync<Station>(
-                       sql: "Proc_GetAssignedStation",
-                     param: new { @EmployeeID = pEmployeeid },
+                       sql: "proc_getassignedstation",
+                     param: new { @employeeid = pEmployeeid },
                 commandType: CommandType.StoredProcedure)).FirstOrDefault();
             }
         }
@@ -466,7 +493,7 @@ namespace SQLServer
             {
                 return (await connection.QueryAsync<Product>(
                        sql: "Proc_GetProductInfoFromPO",
-                     param: new { @ProductOrderID = pProductOrderId},
+                     param: new { @ProductOrderID = pProductOrderId },
                 commandType: CommandType.StoredProcedure)).FirstOrDefault();
             }
         }
@@ -495,12 +522,18 @@ namespace SQLServer
 
         public async Task UpdateEmployeeStatusAsync(Employee employee)
         {
+            var sqlQuery = "update employees set loggedin = false, assignedtostation = @assignedtostation where employeeid = @employeeid";
+
             using (var connection = CreateConnection())
             {
                 await connection.ExecuteAsync(
-                      sql: "Proc_UpdateEmployeeStatus",
-                    param: new { employee.EmployeeID, employee.LoggedIn, employee.AssignedToStation },
-               commandType: CommandType.StoredProcedure);
+                    sqlQuery,
+                    new
+                    {
+                        employee.EmployeeID,
+                        employee.LoggedIn,
+                        employee.AssignedToStation
+                    });
             }
         }
 
@@ -520,7 +553,7 @@ namespace SQLServer
             {
                 await connection.ExecuteAsync(
                       sql: "Proc_AddProduct",
-                    param: new { product.ProductName, product.ProductTypeID, product.BasePrice, product.Description},
+                    param: new { product.ProductName, product.ProductTypeID, product.BasePrice, product.Description },
                commandType: CommandType.StoredProcedure);
             }
         }
@@ -571,13 +604,19 @@ namespace SQLServer
         /// <returns></returns>
         public async Task<IEnumerable<Ingredient>> GetAllowedIngredientsByPTypeAsync(ProductType type)
         {
-            using (var connection = CreateConnection())
-            {
-                return (await connection.QueryAsync<Ingredient>(
-                      sql: "Proc_GetAllowedIngredientsByPType",
-                    param: new { ProductTypeID = type },
-               commandType: CommandType.StoredProcedure));
-            }
+            
+                var sqlQuery = @"SELECT * FROM Ingredients    
+                                WHERE IngredientID in
+                                (SELECT IngredientID
+                                FROM TypeCanHaveIngredients
+                                WHERE ProductTypeID = @ProductTypeID )";
+
+                using (var connection = CreateConnection())
+                {
+                    return await connection.QueryAsync<Ingredient>(sqlQuery);
+                }
+
+
         }
 
         public async Task DeleteIngredientsByProductId(Product product)
@@ -590,45 +629,5 @@ namespace SQLServer
                commandType: CommandType.StoredProcedure);
             }
         }
-
-
-        // Convert cart into parameter object array for database insert
-        private List<object> GetInsertParameters(Order order, List<Product> cart)
-        {
-            var parameterList = new List<object>();
-
-            foreach (var product in cart)
-            {
-                if (product.Ingredients == null)
-                {
-                    parameterList.Add(InsertParameters(order, product));
-                    continue;
-                }
-
-                product.Ingredients.ForEach(ingredient =>
-                    parameterList.Add(InsertParameters(
-                        order,
-                        product,
-                        ingredient)));
-            }
-
-            return parameterList;
-        }
-
-        // Parameters for products with no ingredients
-        private object InsertParameters(Order order, Product product) => new
-        {
-            order.OrderID,
-            product.ProductID,
-        };
-
-        // Parameters for products with ingredients
-        private object InsertParameters(Order order, Product product, Ingredient ingredient) => new
-        {
-            order.OrderID,
-            product.ProductID,
-            ingredient.IngredientID,
-            ingredient.Quantity,
-        };
     }
 }

@@ -7,29 +7,44 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Configuration;
+using TypeLib;
+using G3Systems.Extensions;
+
 
 namespace G3Systems
 {
 	public partial class Cashier : Form
 	{
-		public Cashier()
+		private Employee user;
+		private readonly IG3SystemsRepository _repo;
+		public Cashier(Employee puser)
 		{
 			InitializeComponent();
-		}
+			user = puser;
+			lbl_username.Text = user.Username;
 
-		private void toolStripComboBox1_Click(object sender, EventArgs e)
-		{
+			try
+			{
+				// Get key string from App.config appsettings
+				string _postgreBackEnd = ConfigurationManager.AppSettings.Keys[0];
 
-		}
-
-		private void toolStripContainer1_LeftToolStripPanel_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void toolStripStatusLabel1_Click(object sender, EventArgs e)
-		{
-
+				// Check if postgreSQL Back-End is set to true App.Config 
+				if (_postgreBackEnd.GetConfigSetting())
+				{
+					_repo = new PostgreSQL.G3SystemsRepository();
+				}
+				else
+				{
+					//MessageBox.Show("MSSQL", "Connected");
+					_repo = new SQLServer.G3SystemsRepository();
+				}
+			}
+			catch
+			{
+				MessageBox.Show("Fel i App.config", "Error");
+				throw;
+			}
 		}
 
 		private void tabPage1_Click(object sender, EventArgs e)
@@ -37,10 +52,6 @@ namespace G3Systems
 			this.WindowState = FormWindowState.Maximized;
 		}
 
-		private void statusStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-		{
-
-		}
 
 		private void tabPage1_Click_1(object sender, EventArgs e)
 		{
@@ -52,39 +63,49 @@ namespace G3Systems
 			this.WindowState = FormWindowState.Maximized;
 		}
 
-		private void bindingSource1_CurrentChanged(object sender, EventArgs e)
-		{
-
-		}
-
-		private void Form1_Load(object sender, EventArgs e)
-		{
-
-		}
-
-		private void dataGridView6_CellContentClick(object sender, DataGridViewCellEventArgs e)
-		{
-
-		}
-
-		private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-		{
-
-		}
-
-		private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
-		{
-
-		}
-
-		private void splitContainer5_Panel1_Paint(object sender, PaintEventArgs e)
-		{
-
-		}
-
 		private void Cashier_FormClosed(object sender, FormClosedEventArgs e)
 		{
-			Application.Exit();
+			Logout();
+		}
+
+
+		private async void btnPickedUp_Click(object sender, EventArgs e)
+		{
+			//int selectedindex = lstbxC_Finished.SelectedItems.IndexOf();
+			//int val = lstbxC_Finished.Ge
+
+			foreach (int myitem in lstbxC_Finished.SelectedItems)
+			{
+				//label2.Text = label2.Text + "tea" + myitem;
+				await _repo.SetOrderPickedUpToAsync(myitem,true);
+			}
+
+			btnRefresh.PerformClick();
+		}
+
+		private async void btnRefresh_click(object sender, EventArgs e)
+		{
+			lstbxC_Processing.Items.Clear();
+			lstbxC_Finished.Items.Clear();
+
+			List<Order> InProcessOrders = (await _repo.GetInProcessOrderssAsync(1)).ToList();
+			List<Order> finishedOrders = (await _repo.GetFinishedOrdersAsync(1)).ToList();
+
+			InProcessOrders.ForEach(a => lstbxC_Processing.Items.Add(a.OrderID));
+			finishedOrders.ForEach(a => lstbxC_Finished.Items.Add(a.OrderID));
+
+		}
+
+		private void btn_LogOut_Click(object sender, EventArgs e)
+		{
+			Logout();
+		}
+
+		private void Logout()
+		{
+			var form = new Login();
+			this.Dispose();
+			form.ShowDialog();
 		}
 	}
 }
