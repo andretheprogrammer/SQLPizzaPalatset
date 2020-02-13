@@ -228,8 +228,10 @@ namespace SQLServer
             }
         }
 
-        public async Task CreateProductOrdersAsync(List<object> parameters)
+        public async Task CreateProductOrdersAsync(Order order, List<Product> cart)
         {
+            List<object> parameters = GetInsertParameters(order, cart);
+
             using (var connection = CreateConnection())
             {
                 // Wrap order data insert in transaction
@@ -588,5 +590,45 @@ namespace SQLServer
                commandType: CommandType.StoredProcedure);
             }
         }
+
+
+        // Convert cart into parameter object array for database insert
+        private List<object> GetInsertParameters(Order order, List<Product> cart)
+        {
+            var parameterList = new List<object>();
+
+            foreach (var product in cart)
+            {
+                if (product.Ingredients == null)
+                {
+                    parameterList.Add(InsertParameters(order, product));
+                    continue;
+                }
+
+                product.Ingredients.ForEach(ingredient =>
+                    parameterList.Add(InsertParameters(
+                        order,
+                        product,
+                        ingredient)));
+            }
+
+            return parameterList;
+        }
+
+        // Parameters for products with no ingredients
+        private object InsertParameters(Order order, Product product) => new
+        {
+            order.OrderID,
+            product.ProductID,
+        };
+
+        // Parameters for products with ingredients
+        private object InsertParameters(Order order, Product product, Ingredient ingredient) => new
+        {
+            order.OrderID,
+            product.ProductID,
+            ingredient.IngredientID,
+            ingredient.Quantity,
+        };
     }
 }

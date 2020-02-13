@@ -59,7 +59,7 @@ namespace TypeLib
         // Order Create
         Task<int> CreateNewOrderAsync(Order order);
 
-        Task CreateProductOrdersAsync(List<object> parameters);
+        Task CreateProductOrdersAsync(Order order, List<Product> cart);
 
         // Orders Read
         Task<IEnumerable<Order>> GetOrdersAsync();
