@@ -105,8 +105,6 @@ namespace PostgreSQL
         /// <returns></returns>
         public async Task CreateNewEmployee(List<object> employeeParams)
         {
-            //var username = employeeParams.Cast<dynamic>().First(x => x.);
-            
             using (var connection = CreateConnection())
             {
                 await connection.ExecuteAsync(
@@ -266,20 +264,14 @@ namespace PostgreSQL
         // Create new order and return OrderID
         public async Task<int> CreateNewOrderAsync(Order order)
         {
-            var orderParam = new DynamicParameters();
-            orderParam.AddDynamicParams(new { TerminalID = order.ByTerminal });
-            orderParam.Add("OrderID",
-                    dbType: DbType.Int32,
-                 direction: ParameterDirection.Output);
+            var sqlQuery = "insert into orders (byterminal) VALUES (@byterminal) returning orderid;";
 
             using (var connection = CreateConnection())
             {
-                await connection.ExecuteScalarAsync("Proc_NewOrder",
-                                              param: orderParam,
-                                        commandType: CommandType.StoredProcedure);
-            }
+                var id = (await connection.QueryAsync<int>(sqlQuery, new { byterminal = order.ByTerminal })).Single();
 
-            return orderParam.Get<int>("OrderID");
+                return id;
+            }
         }
 
         // Update order by OrderID
@@ -333,23 +325,33 @@ namespace PostgreSQL
         // Ingredients
         public async Task<IEnumerable<Ingredient>> GetHaveIngredientsAsync(int id)
         {
+            var sqlQuery = @"
+                     select * from ingredients as i
+			         join producthaveingredients as phi
+			         on phi.ingredientid = i.ingredientid
+			         where phi.productid = @productid;";
+
             using (var connection = CreateConnection())
             {
                 return (await connection.QueryAsync<Ingredient>(
-                        sql: "Proc_GetProductHaveIngredients",
-                      param: new { ProductID = id },
-                commandType: CommandType.StoredProcedure));
+                        sql: sqlQuery,
+                      param: new { @productid = id }));
             }
         }
 
         public async Task<IEnumerable<Ingredient>> GetCanHaveIngredientsAsync(int id)
         {
+            var sqlQuery = @"
+                     select * from ingredients as i
+			         join productcanhaveingredients as phi
+			         on phi.ingredientid = i.ingredientid
+			         where phi.productid = @productid;";
+
             using (var connection = CreateConnection())
             {
                 return (await connection.QueryAsync<Ingredient>(
-                        sql: "Proc_GetProductCanHaveIngredients",
-                      param: new { ProductID = id },
-                commandType: CommandType.StoredProcedure));
+                        sql: sqlQuery,
+                      param: new { @productid = id }));
             }
         }
 
