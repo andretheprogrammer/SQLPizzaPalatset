@@ -232,22 +232,40 @@ namespace PostgreSQL
             }
         }
 
-        public async Task CreateProductOrdersAsync(List<object> parameters)
+        public async Task CreateProductOrdersAsync(Order order, List<Product> cart)
         {
+            var sqlQueryPO = "insert into productorders (productid, orderid) values (@productid, @orderid) returning productorderid;";
+            var sqlQueryIngr = "insert into stuffings (productorderid, ingredientid, quantity) values (@productorderid, @ingredientid, @quantity);";
+
             using (var connection = CreateConnection())
             {
+                int productorderid = 0;
                 // Wrap order data insert in transaction
                 using (var transaction = connection.BeginTransaction())
                 {
                     try
                     {
-                        // Loops through object list parameters for each insert
-                        await connection.ExecuteAsync(
-                                sql: "Proc_InsertProductOrders",
-                              param: parameters,
-                        commandType: CommandType.StoredProcedure,
-                        transaction: transaction);
+                        foreach (var product in cart)
+                        {
+                            productorderid = (await connection.QueryAsync<int>(
+                                sqlQueryPO, new {
+                                    productid = product.ProductID,
+                                    orderid = order.OrderID },
+                                    transaction: transaction)).Single();
 
+                            if (product.Ingredients.Count > 0)
+                            {
+                                foreach (var ingredient in product.Ingredients)
+                                {
+                                    await connection.ExecuteAsync(
+                                        sqlQueryIngr, new {
+                                            productorderid = productorderid,
+                                            ingredientid = ingredient.IngredientID,
+                                            quantity = ingredient.Quantity},
+                                        transaction: transaction);
+                                }
+                            }
+                        }
                         // Save if all inserts successfull
                         transaction.Commit();
                     }
@@ -277,19 +295,20 @@ namespace PostgreSQL
         // Update order by OrderID
         public async Task UpdateOrderStatusAsync(Order order)
         {
+            var sqlQuery = "update orders set paid = @paid, pickedup = @pickedup, canceled = @canceled, returned = @returned where orderid = @orderid";
+
             using (var connection = CreateConnection())
             {
                 await connection.ExecuteAsync(
-                        sql: "Proc_UpdateOrderStatus",
+                        sql: sqlQuery,
                       param: new
                       {
-                          order.OrderID,
-                          order.Paid,
+                          orderid = order.OrderID,
+                          paid = order.Paid,
                           order.Canceled,
                           order.PickedUp,
                           order.Returned
-                      },
-                commandType: CommandType.StoredProcedure);
+                      });
             }
         }
 
