@@ -373,7 +373,7 @@ namespace G3Systems
 		}
 
 		// Convert cart into parameter object array for database insert
-		private object[] GetInsertParameters(Order order)
+		private List<object> GetInsertParameters(Order order)
 		{
 			var parameterList = new List<object>();
 
@@ -392,7 +392,7 @@ namespace G3Systems
 						ingredient)));
 			}
 
-			return parameterList.ToArray();
+			return parameterList;
 		}
 
 		// Parameters for products with no ingredients
