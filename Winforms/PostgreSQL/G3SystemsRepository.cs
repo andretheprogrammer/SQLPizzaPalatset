@@ -136,7 +136,7 @@ namespace PostgreSQL
         /// <returns></returns>
         public async Task UpdateEmployeeAsync(Employee employee)
         {
-            var sqlQuery = "update employees";
+            
             using (var connection = CreateConnection())
             {
                 await connection.ExecuteAsync(
@@ -216,8 +216,8 @@ namespace PostgreSQL
             using (var connection = CreateConnection())
             {
                 return (await connection.QueryAsync<Order>(
-                      sql: "Proc_RightColumnInfoScreen",
-                    param: new { BuildingID = id },
+                      sql: "proc_rightcolumninfoscreen",
+                    param: new { buildingid = id },
                commandType: CommandType.StoredProcedure));
             }
         }
@@ -226,8 +226,8 @@ namespace PostgreSQL
             using (var connection = CreateConnection())
             {
                 return (await connection.QueryAsync<Order>(
-                      sql: "Proc_LeftColumnInfoScreen",
-                    param: new { BuildingID = id },
+                      sql: "proc_leftcolumninfoscreen",
+                    param: new { buildingid = id },
                commandType: CommandType.StoredProcedure)).ToList();
             }
         }
