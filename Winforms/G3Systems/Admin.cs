@@ -123,7 +123,7 @@ namespace G3Systems
 
 			try
 			{
-				await _repo.CreateNewEmployee(parameters.ToArray());
+				await _repo.CreateNewEmployee(parameters);
 			}
 			catch (System.Data.SqlClient.SqlException)
 			{
@@ -138,11 +138,11 @@ namespace G3Systems
 			GetEmployeesBtn_Click(sender, e);
 		}
 
-		private object InsertParameters(Employee employee, EmployeeType employeeType) => new
+		private object InsertParameters(Employee employee, EmployeeType employeeTypeID) => new
 		{
-			Username = employee.Username,
-			Password = employee.Password,
-			EmployeeTypeID = employeeType
+			username = employee.Username,
+			password = employee.Password,
+			employeetypeid = employeeTypeID
 		};
 
 		private void ClearEmployeeTextBoxes()
@@ -281,23 +281,23 @@ namespace G3Systems
 		{
 
 			//Server sends too big list
-			//Make it send only logged in users. Not ALL users.
+			////Make it send only logged in users. Not ALL users.
 
-			var Loggedin = (await _repo.GetEmployeesAsync()).ToList();
+			//var Loggedin = (await _repo.GetEmployeesAsync()).ToList();
 
-			listViewLoggedInEmployees.Items.Clear();
+			//listViewLoggedInEmployees.Items.Clear();
 
-			foreach (Employee emp in Loggedin)
-			{
+			//foreach (Employee emp in Loggedin)
+			//{
 
-				if (emp.LoggedIn == true)
-				{
-					listViewLoggedInEmployees.Items.Add
-									(
-									new ListViewItem(emp.Username)
-									);
-				}
-			}
+			//	if (emp.LoggedIn == true)
+			//	{
+			//		listViewLoggedInEmployees.Items.Add
+			//						(
+			//						new ListViewItem(emp.Username)
+			//						);
+			//	}
+			//}
 		}
 
 		private void LogoutButton_Click(object sender, EventArgs e)

@@ -103,12 +103,14 @@ namespace PostgreSQL
         /// </summary>
         /// <param name="employee"></param>
         /// <returns></returns>
-        public async Task CreateNewEmployee(object[] employeeParams)
+        public async Task CreateNewEmployee(List<object> employeeParams)
         {
+            //var username = employeeParams.Cast<dynamic>().First(x => x.);
+            
             using (var connection = CreateConnection())
             {
                 await connection.ExecuteAsync(
-                        sql: "Proc_CreateNewEmployee",
+                        sql: "proc_createnewemployee",
                       param: employeeParams,
                 commandType: CommandType.StoredProcedure
                         );
@@ -232,7 +234,7 @@ namespace PostgreSQL
             }
         }
 
-        public async Task CreateProductOrdersAsync(object[] parameters)
+        public async Task CreateProductOrdersAsync(List<object> parameters)
         {
             using (var connection = CreateConnection())
             {
@@ -241,7 +243,7 @@ namespace PostgreSQL
                 {
                     try
                     {
-                        // Loops through object array parameters for each insert
+                        // Loops through object list parameters for each insert
                         await connection.ExecuteAsync(
                                 sql: "Proc_InsertProductOrders",
                               param: parameters,
@@ -499,12 +501,18 @@ namespace PostgreSQL
 
         public async Task UpdateEmployeeStatusAsync(Employee employee)
         {
+            var sqlQuery = "update employees set loggedin = false, assignedtostation = @assignedtostation where employeeid = @employeeid";
+
             using (var connection = CreateConnection())
             {
                 await connection.ExecuteAsync(
-                      sql: "Proc_UpdateEmployeeStatus",
-                    param: new { employee.EmployeeID, employee.LoggedIn, employee.AssignedToStation },
-               commandType: CommandType.StoredProcedure);
+                    sqlQuery,
+                    new
+                    {
+                        employee.EmployeeID,
+                        employee.LoggedIn,
+                        employee.AssignedToStation
+                    });
             }
         }
 

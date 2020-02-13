@@ -103,7 +103,7 @@ namespace SQLServer
         /// </summary>
         /// <param name="employee"></param>
         /// <returns></returns>
-        public async Task CreateNewEmployee(object[] employeeParams)
+        public async Task CreateNewEmployee(List<object> employeeParams)
         {
             using (var connection = CreateConnection())
             {
@@ -228,7 +228,7 @@ namespace SQLServer
             }
         }
 
-        public async Task CreateProductOrdersAsync(object[] parameters)
+        public async Task CreateProductOrdersAsync(List<object> parameters)
         {
             using (var connection = CreateConnection())
             {
