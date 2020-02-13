@@ -268,12 +268,12 @@ namespace G3Systems
 
 		private void timer1_Tick(object sender, EventArgs e)
 		{
-			listViewLoggedInEmployees.Items.Add(
-												new ListViewItem("HEY")
-												);
+			//listViewLoggedInEmployees.Items.Add(
+			//									new ListViewItem("HEY")
+			//									);
 			
 			
-			var yo = listViewLoggedInEmployees.Items;
+			//var yo = listViewLoggedInEmployees.Items;
 
 		}
 
