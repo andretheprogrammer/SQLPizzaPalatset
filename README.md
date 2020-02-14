@@ -10,15 +10,11 @@ Programmet fungerar även med PostGres som databas p.g.a "Repository pattern" an
 
 ## Installations guide: 
 
-# 1: Klona projektet.
+# A: Klona projektet.
 
-# A) Importera MSSQL databasfilen G3Systems.SQL
+# B) Importera MSSQL databasfilen G3Systems.SQL
 - Copy-pasta all text i textfilen som en Query i SQL Server. 
 - Nu har du en databas G3Systems
-
-# B) Importera PostGres Databasfilen:
-- Ladda ner databasfilen Alpha6.tar
-- Importera den i PGAdmin
 
 # C) I solutions: Konfigurera App.config 
 - Skriv in server detaljer för sqlserver
