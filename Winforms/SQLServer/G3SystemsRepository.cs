@@ -368,14 +368,14 @@ namespace SQLServer
         }
 
         // Baker - Hariz
-        public async Task<IEnumerable<Workload>> GetOpenPOAsync(int pBuildingid)
+        public async Task<IEnumerable<Workload>> GetOpenPOAsync(int pStationID)
         {
             //Vänstra listan på baker
             using (var connection = CreateConnection())
             {
                 return (await connection.QueryAsync<Workload>(
                        sql: "Proc_OpenOrders",
-                     param: new { BuildingID = pBuildingid },
+                     param: new { StationID = pStationID },
                 commandType: CommandType.StoredProcedure));
             }
 
@@ -486,7 +486,7 @@ namespace SQLServer
         {
             using (var connection = CreateConnection())
             {
-                await connection.QueryAsync<Order>(
+                await connection.QueryAsync<Employee>(
                       sql: "Proc_SetEmployeeToStation",
                     param: new { @EmployeeID = pEmployeeid, @Stationid = pStationid },
                commandType: CommandType.StoredProcedure);

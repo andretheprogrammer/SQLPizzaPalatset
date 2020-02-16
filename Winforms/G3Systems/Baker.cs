@@ -171,8 +171,8 @@ namespace G3Systems
 				btn_Lock.BackColor = Color.Yellow;
 				btn_Lock.Enabled = false;
 
-				repopulate_POList(pStation.InBuilding);
-				repopulate_StuffingsList(pStation.InBuilding);
+				repopulate_POList(pStation.StationID);
+				repopulate_StuffingsList(lockedPOs.ProductOrderID);
 				lstbxOpen.Enabled = false;
 				this.Lockedstate = true;
 
@@ -193,7 +193,7 @@ namespace G3Systems
 				btn_Lock.Enabled = true;
 				lstbxOpen.Enabled = true;
 			
-				repopulate_POList(pStation.InBuilding);
+				repopulate_POList(pStation.StationID);
 				this.Lockedstate = false;
 			}
 
@@ -233,7 +233,7 @@ namespace G3Systems
 			//
 
 
-			repopulate_POList(currentstation.InBuilding);
+			repopulate_POList(currentstation.StationID);
 			repopulate_StuffingsList(pickedPO);
 		}
 
@@ -256,10 +256,10 @@ namespace G3Systems
 			repopulate_StuffingsList(pickedPO);
 		}
 
-		private async void repopulate_POList(int building)
+		private async void repopulate_POList(int station)
 		{
 			lstbxOpen.Items.Clear();
-			List<Workload> openPOrders = (await _repo.GetOpenPOAsync(building)).ToList();
+			List<Workload> openPOrders = (await _repo.GetOpenPOAsync(station)).ToList();
 			openPOrders.ForEach(a => lstbxOpen.Items.Add(a.ProductOrderID + ": " + a.ProductName + ", " + a.PrepTime));
 		}
 
@@ -325,8 +325,8 @@ namespace G3Systems
 			else { lblLockedPO.Text = ""; }
 			//
 
-			repopulate_POList(currentstation.InBuilding);
-			repopulate_StuffingsList(currentstation.StationID);
+			repopulate_POList(currentstation.StationID);
+			repopulate_StuffingsList(lockedPOs.ProductOrderID);
 		}
 
 		private async void btnUnlocker_Click(object sender, EventArgs e)
@@ -352,6 +352,7 @@ namespace G3Systems
 
 			string[] station = (lstbxPossibleStations.SelectedItems[0]).ToString().Split(':');
 			int stationChoice = Int32.Parse(station[0]);
+			
 			await _repo.AssignStationAsync(user.EmployeeID, stationChoice);
 			lblAssignment.Text = station[1];
 			lblStationName.Text = station[1];
