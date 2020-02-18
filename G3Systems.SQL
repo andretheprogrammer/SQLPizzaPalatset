@@ -2212,18 +2212,19 @@ CREATE PROCEDURE Proc_GetStuffings (@ProductOrderID Int)
 --ProductOrders som går att välja
 --Bagarens vänstra lista.
 --Filtreringsstrategi: Börja med den största mängden. Sålla sedan ner.
-CREATE PROCEDURE Proc_OpenOrders  @BuildingID INT
+CREATE PROCEDURE Proc_OpenOrders  @StationID INT
 	AS
 
 	SELECT ProductOrderID, ProductName,PrepTime
 	FROM (SELECT ProductOrderID, ProductID
-		 FROM ProductOrders
-		 WHERE LockedByStation IS NULL and
+		FROM ProductOrders
+		WHERE LockedByStation IS NULL and
 				Processed =0 and
 				Activated=1 and
 				Visible=1 and
 
-		 OrderID in ( SELECT OrderID 
+
+		OrderID in ( SELECT OrderID 
 				FROM Orders
 				WHERE Orders.Paid = 1 and
 						Orders.Canceled=0 and
@@ -2235,8 +2236,26 @@ CREATE PROCEDURE Proc_OpenOrders  @BuildingID INT
 						Orders.ByTerminal IN 
 							(SELECT TerminalID
 							FROM Terminals
-							WHERE Terminals.BuildingID = @BuildingID)
-					 )) as POProds JOIN Products on Products.ProductID=POProds.ProductID
+
+							--Filter PO's based on where the order was made
+							WHERE Terminals.BuildingID = (SELECT InBuilding FROM Stations WHERE StationID= @StationID)  )
+
+					 )
+		and ProductID In
+						(SELECT ProductID
+						FROM Products
+						WHERE ProductTypeID in
+										
+									(SELECT ProductTypeID  
+									FROM TypeIsMadeInStationType
+									WHERE StationTypeID in
+														(SELECT StationTypeID
+														FROM Stations
+
+														--Filter PO's based on stationtype
+														WHERE StationID = @StationID)))
+
+					 ) as POProds JOIN Products on Products.ProductID=POProds.ProductID
 	GO
 
 --Baker
